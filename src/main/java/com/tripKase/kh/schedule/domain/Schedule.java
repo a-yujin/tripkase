@@ -1,5 +1,14 @@
 package com.tripKase.kh.schedule.domain;
 
-public class Schedule {
+import java.sql.Date;
 
+public class Schedule {
+	private int scheNo;
+	private String scheName;
+	private String scheDays;
+	private String scheSeq;
+	private String schePeriod;
+	private String scheKategorie;
+	private String scheContentsId;
+	private Date scheRegDay;
 }
