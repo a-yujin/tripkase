@@ -8,11 +8,13 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
+		<typeAlias type="com.tripKase.kh.admin.domain.Report" alias="Report"/>
 	<!--<typeAlias type="com.kh.junspring.member.domain.Member" alias="Member"/>
 		<typeAlias type="com.kh.junspring.board.domain.Board" alias="Board"/>
 		<typeAlias type="com.kh.junspring.board.domain.Reply" alias="Reply"/> -->
 	</typeAliases>
 	<mappers>
+		<mapper resource="mappers/admin-mapper.xml"/>
 	<!-- <mapper resource="mappers/member-mapper.xml"/>
 		 <mapper resource="mappers/board-mapper.xml"/> -->
 	</mappers>
