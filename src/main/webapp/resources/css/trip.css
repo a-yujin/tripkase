@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#back-img {
+
+}
+	#img-text {
+		text-align : center;
+		padding-top : 50px;
+	}
+
+#text-area {
+	padding-top : 100px;
+	text-align : center;
+}
+
+#textTitle {
+	width : 1000px;
+	height : 40px;
+}
