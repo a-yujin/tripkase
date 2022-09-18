@@ -1,6 +1,7 @@
 package com.tripKase.kh.restaurant.domain;
 
 public class Restaurant {
+	
 	private int resNo;
 	private String resName;
 	private String resType;
@@ -15,4 +16,99 @@ public class Restaurant {
 	private String resMap;
 	private String resStatus;
 	private String memberId;
+	public int getResNo() {
+		return resNo;
+	}
+	public void setResNo(int resNo) {
+		this.resNo = resNo;
+	}
+	public String getResName() {
+		return resName;
+	}
+	public void setResName(String resName) {
+		this.resName = resName;
+	}
+	public String getResType() {
+		return resType;
+	}
+	public void setResType(String resType) {
+		this.resType = resType;
+	}
+	public String getResArena() {
+		return resArena;
+	}
+	public void setResArena(String resArena) {
+		this.resArena = resArena;
+	}
+	public String getResTel() {
+		return resTel;
+	}
+	public void setResTel(String resTel) {
+		this.resTel = resTel;
+	}
+	public String getResDayoff() {
+		return resDayoff;
+	}
+	public void setResDayoff(String resDayoff) {
+		this.resDayoff = resDayoff;
+	}
+	public String getResMainmenu() {
+		return resMainmenu;
+	}
+	public void setResMainmenu(String resMainmenu) {
+		this.resMainmenu = resMainmenu;
+	}
+	public String getResDetail() {
+		return resDetail;
+	}
+	public void setResDetail(String resDetail) {
+		this.resDetail = resDetail;
+	}
+	public String getResFilename() {
+		return resFilename;
+	}
+	public void setResFilename(String resFilename) {
+		this.resFilename = resFilename;
+	}
+	public String getResFileRename() {
+		return resFileRename;
+	}
+	public void setResFileRename(String resFileRename) {
+		this.resFileRename = resFileRename;
+	}
+	public String getResFilepath() {
+		return resFilepath;
+	}
+	public void setResFilepath(String resFilepath) {
+		this.resFilepath = resFilepath;
+	}
+	public String getResMap() {
+		return resMap;
+	}
+	public void setResMap(String resMap) {
+		this.resMap = resMap;
+	}
+	public String getResStatus() {
+		return resStatus;
+	}
+	public void setResStatus(String resStatus) {
+		this.resStatus = resStatus;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	@Override
+	public String toString() {
+		return "Restaurant [resNo=" + resNo + ", resName=" + resName + ", resType=" + resType + ", resArena=" + resArena
+				+ ", resTel=" + resTel + ", resDayoff=" + resDayoff + ", resMainmenu=" + resMainmenu + ", resDetail="
+				+ resDetail + ", resFilename=" + resFilename + ", resFileRename=" + resFileRename + ", resFilepath="
+				+ resFilepath + ", resMap=" + resMap + ", resStatus=" + resStatus + ", memberId=" + memberId + "]";
+	}
+	
+	
+	
+	
 }
