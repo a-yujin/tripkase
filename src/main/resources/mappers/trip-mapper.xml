@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TripMapper">
+	<resultMap type="Trip" id="TripResultMap">
+		<id property="tripNo" column="TRIP_NO" />
+ 		<result property="tripTitle" column="TRIP_TITLE" />
+ 		<result property="tripContents" column="TRIP_CONTENTS" />
+ 		<result property="tripWriter" column="TRIP_WRITER" />
+ 		<result property="tripCreate" column="TRIP_CREATE" />
+ 		<result property="tripUpdate" column="TRIP_UPDATE" />
+ 		<result property="tripFileName" column="TRIP_FILENAME" />
+ 		<result property="tripFileRename" column="TRIP_FILERENAME" />
+ 		<result property="tripFilePath" column="TRIP_FILEPATH" />
+ 		<result property="tripStatus" column="TRIP_STATUS" />
+ 		<result property="tripCount" column="TRIP_COUNT" />
+ 		<result property="tripLike" column="TRIP_LIKE" />
+ 		<result property="tripShow" column="TRIP_SHOW" />
+ 	</resultMap>
+ 	
+	<!-- 게시글 작성 -->
+	<insert id="insertTrip">
+		INSERT INTO TRIP_TBL VALUES(SEQ_TRIP_NO.NEXTVAL, #{tripTitle}, #{tripContents}, #{tripWriter}, DEFAULT, DEFAULT, #{tripFileName}, #{tripFileRename}, #{tripFilePath}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
+	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectListOne" resultMap="tripResultMap">
+		SELECT * FROM TRIP_TBL WHERE TRIP_NO = #{tripNo} AND TRIP_STATUS = 'Y'
+	</select>
+</mapper>

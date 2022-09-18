@@ -13,15 +13,15 @@ public class Trip {
 	private String tripFileRename; // 여행소통 변경후 첨부파일 이름
 	private String tripFilePath; // 여행소통 첨부파일 경로
 	private String tripStatus; // 여행소통 게시글 존재여부
-	private String tripCount; // 여행소통 게시글 수
-	private String tripLike; // 여행소통 게시글 좋아요 수
-	private String tripShow; // 여행소통 게시글 조회수
+	private int tripCount; // 여행소통 게시글 수
+	private int tripLike; // 여행소통 게시글 좋아요 수
+	private int tripShow; // 여행소통 게시글 조회수
 	
 	public Trip() {}
 
 	public Trip(int tripNo, String tripTitle, String tripContents, String tripWriter, Date tripCreate, Date tripUpdate,
-			String tripFileName, String tripFileRename, String tripFilePath, String tripStatus, String tripCount,
-			String tripLike, String tripShow) {
+			String tripFileName, String tripFileRename, String tripFilePath, String tripStatus, int tripCount,
+			int tripLike, int tripShow) {
 		super();
 		this.tripNo = tripNo;
 		this.tripTitle = tripTitle;
@@ -118,27 +118,27 @@ public class Trip {
 		this.tripStatus = tripStatus;
 	}
 
-	public String getTripCount() {
+	public int getTripCount() {
 		return tripCount;
 	}
 
-	public void setTripCount(String tripCount) {
+	public void setTripCount(int tripCount) {
 		this.tripCount = tripCount;
 	}
 
-	public String getTripLike() {
+	public int getTripLike() {
 		return tripLike;
 	}
 
-	public void setTripLike(String tripLike) {
+	public void setTripLike(int tripLike) {
 		this.tripLike = tripLike;
 	}
 
-	public String getTripShow() {
+	public int getTripShow() {
 		return tripShow;
 	}
 
-	public void setTripShow(String tripShow) {
+	public void setTripShow(int tripShow) {
 		this.tripShow = tripShow;
 	}
 

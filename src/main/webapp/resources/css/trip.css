@@ -1,19 +1,61 @@
 @charset "UTF-8";
 
-#back-img {
-
+/* tripWriteForm.jsp */
+.first-text {
+	text-align : center;
+	padding-top : 50px;
+	font-size : 20px;
 }
-	#img-text {
-		text-align : center;
-		padding-top : 50px;
-	}
+#second-text {
+	text-align : center;
+	padding-top : 10px;
+	font-size : 12px;	
+}
 
 #text-area {
-	padding-top : 100px;
+	padding-top : 50px;
 	text-align : center;
 }
+	#textTitle {
+		width : 800px;
+		height : 40px;
+	}
+	#textContent {
+		margin-top : 10px;
+		width : 800px;
+		height : 500px;
+		resize : none;
+	}
+	
+	#formFileSm {
+		width : 800px;
+		margin : 0 auto;
+		border-color : gray;
+	}
+	
+#trip-button1 {
+	text-align : center;
+}
+	#tbutton1 {
+		margin-right : 30px;
+		width : 100px;
+		height : 40px;
+		background-color : white;
+		border : solid 1px gray;
+		border-radius : 20px;
+	}
+	#tbutton2 {
+		margin-left : 30px;
+		width : 100px;
+		height : 40px;
+		background-color : white;
+		border : solid 1px gray;
+		border-radius : 20px;
+	}
 
-#textTitle {
-	width : 1000px;
-	height : 40px;
+/* tripDetailView.jsp */
+	
+/* tripListView.jsp */
+#back-img {
+	background-image : url(.3/images/trip/tripListBackground.jpg);
 }
