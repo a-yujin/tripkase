@@ -15,4 +15,6 @@ public interface AdminStore {
 
 	Member selectOneMember(SqlSession session, String memberId, String memberName);
 
+	int updateMember(SqlSession session, Member member);
+
 }

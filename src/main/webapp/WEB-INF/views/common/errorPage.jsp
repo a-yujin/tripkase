@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>에러 메시지</h1>
+	${msg }
 </body>
 </html>

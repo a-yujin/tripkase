@@ -15,7 +15,7 @@ public class AdminStoreLogic implements AdminStore {
 
 	@Override
 	public List<Member> selectAllMember(SqlSession session) {
-		List<Member> mList = session.selectList("MemberMapper.selectAllMember");
+		List<Member> mList = session.selectList("AdminMapper.selectAllMember");
 		return mList;
 	}
 	
@@ -24,10 +24,15 @@ public class AdminStoreLogic implements AdminStore {
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("memberId", memberId);
 		param.put("memberName", memberName);
-		Member member = session.selectOne("MemberMapper.selectOneMember", param);
+		Member member = session.selectOne("AdminMapper.selectOneMember", param);
 		return member;
 	}
 	
+	@Override
+	public int updateMember(SqlSession session, Member member) {
+		int result = session.update("AdminMapper.updateMember", member);
+		return result;
+	}
 	
 
 	@Override
@@ -35,6 +40,7 @@ public class AdminStoreLogic implements AdminStore {
 		List<Report> rList = session.selectList("AdminMapper.selectAllReport");
 		return rList;
 	}
+
 
 
 }

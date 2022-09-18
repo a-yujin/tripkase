@@ -38,5 +38,11 @@ public class AdminServiceLogic implements AdminService {
 		Member member = aStore.selectOneMember(session, memberId, memberName);
 		return member;
 	}
+
+	@Override
+	public int updateMember(Member member) {
+		int result = aStore.updateMember(session, member);
+		return result;
+	}
 	
 }
