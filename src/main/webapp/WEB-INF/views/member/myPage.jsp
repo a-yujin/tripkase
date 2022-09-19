@@ -7,7 +7,7 @@
 <title>마이페이지</title>
 </head>
 <body>
-	<h1 align="center">회원가입</h1>
+	<h1 align="center">마이페이지</h1>
 	<div align="center" class="">
 		<form  action="/member/modify.tripkase" method="POST">
 		<table>
@@ -20,7 +20,7 @@
 			<tr>
 				<td> * 현재 비밀번호</td>
 				<td>
-					<input type="text" name="memberPwd" value="${mOne.memberPwd }" readonly>
+					<input type="password" name="memberPwd" value="${mOne.memberPwd }" readonly>
 				</td>
 			 </tr>
 			<tr>
@@ -67,7 +67,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<td><a href="/member/modify.tripkase">수정하기</a></td>
+					<button type="button" onclick="checkPassword();">수정페이지로 이동</button>
 					<button type="button" onclick="removeMember();">탈퇴하기</button>
 				</td>
 			</tr>
@@ -77,11 +77,25 @@
 	<script>
 		function removeMember() {
 			if(confirm("탈퇴하시겠습니까?")){
-			location.href="/member/remove.kh";
+			location.href="/member/removeMember.tripkase";
 			}
 		}
-		
 		$("#postcodify_search_button").postcodifyPopUp();
+		
+		function checkPassword(){
+			var goodUrl = "/member/modifyView.tripkase";
+			var badUrl = "member/myPage";
+			alert("패스워드를 입력해주세요.");
+			var password = prompt("password입력");	
+			var memberPwd = "${sessionScope.loginMember.memberPwd}";
+		
+			if(password == memberPwd){
+				location.href = goodUrl;
+			}else{
+				alert("패스워드가 일치하지 않습니다.");
+				location.href = badUrl;
+			}
+		}
 	</script>
 </body>
 </html>

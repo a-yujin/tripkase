@@ -15,9 +15,28 @@
 			
 			<b>이메일 주소</b>
 			<input type="text" name="memberEmail" placeholder="이메일을 입력해주세요."><br>
-			<input type="submit" value="확인">
+			<button type="button" onclick="findMemberId();">아이디 찾기</button>
 			</form>
 		</div>	
 
+	<script>
+	function findMemberId(){
+		
+	}
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

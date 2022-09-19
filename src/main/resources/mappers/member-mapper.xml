@@ -4,9 +4,64 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="MemberMapper">
  
- <insert id="registerMember">
- 		INSERT INTO MEMBER_TBL
- 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  #{memberGrade}, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT,#{mStatus},#{adminYN})
- 	</insert>
+ 	 	<resultMap 	type="Member" 				id="MemberResultMap">
+	 		<id 	property="memberId" 		column="MEMBER_ID"/>
+	 		<result property="memberPwd" 		column="MEMBER_PWD"/>
+	 		<result property="memberEmail" 		column="MEMBER_EMAIL"/>
+	 		<result property="memberName" 		column="MEMBER_NAME"/>
+	 		<result property="memberNick" 		column="MEMBER_NICK"/>
+	 		<result property="memberBd" 		column="MEMBER_BD"/>
+	 		<result property="memberGrade" 		column="MEMBER_GRADE"/>
+	 		<result property="memberGender" 	column="MEMBER_GENDER"/>
+	 		<result property="memberPhone" 		column="MEMBER_PHONE"/>
+	 		<result property="mPfpName" 		column="M_PFP_NAME"/>
+	 		<result property="mPfpReName" 		column="M_PFP_RENAME"/>
+	 		<result property="mPfpPath" 		column="M_PFP_PATH"/>
+	 		<result property="mRegisterDate" 	column="M_REGISTER_DATE"/>
+	 		<result property="mStatus" 			column="MEMBER_STATUS"/>
+	 		<result property="adminYN" 			column="ADMIN_YN"/>
+ 		</resultMap>
  
+ 
+	 <insert id="registerMember">
+	 		INSERT INTO MEMBER_TBL
+	 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  #{memberGrade}, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT)
+	 </insert>
+ 
+ 	<select id="selectLoingMember" resultMap="MemberResultMap">
+ 		SELECT * FROM MEMBER_TBL
+ 		WHERE MEMBER_ID = #{memberId} AND MEMBER_PWD = #{memberPwd}
+ 	</select>
+ 
+ 	<select id="selectOneMemberById" resultMap="MemberResultMap">
+ 		SELECT * FROM MEMBER_TBL
+ 		WHERE MEMBER_ID = #{memberId}
+ 	</select>
+ 	
+ 	<delete id="removeMember">
+ 	DELETE FROM MEMBER_TBL
+ 	WHERE MEMBER_ID = #{memberId}
+ 	</delete>
+ 
+ 	<update id="updateMember">
+ 		UPDATE MEMBER_TBL
+ 		SET MEMBER_PWD = #{memberPwd}, MEMBER_NICK = #{memberNick}, MEMBER_NAME = #{memberName}, MEMBER_BD = #{memberBd}, 
+ 		MEMBER_GENDER = #{memberGender}, MEMBER_PHONE = #{memberPhone}, MEMBER_EMAIL = #{memberEmail}
+ 		WHERE MEMBER_ID = #{memberId}
+ 	</update>
+ 	
+ 	<select id="findMemberId" resultMap="MemberResultMap">
+ 	SELECT MEMBER_ID FROM MEMBER_TBL
+ 	WHERE MEMBER_NAME = #{memberName} AND MEMBER_EMAIL = #{memberEmail}
+ 	</select>
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

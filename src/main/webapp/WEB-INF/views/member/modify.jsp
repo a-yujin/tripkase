@@ -8,71 +8,62 @@
 <title>마이페이지</title>
 </head>
 <body>
-	<h1 align="center">회원가입</h1>
+	<h1 align="center">회원정보 수정</h1>
 	<div class="">
 		<form  action="/member/modify.tripkase" method="GET">
-		<table>
+		<table align="center">
+			
+			<c:if test="${sessionScope.loginMember.memberPwd eq loginMember.memberPwd }">
+			
 			<tr>
 				<td> * 아이디</td>
 				<td>
-					<input type="text" id="memberId" name="memberId" value="${mOne.memberId }" readonly>
+					<input type="text" name="memberId" value="${loginMember.memberId }" readonly >
 				</td>
-			</tr>
-			<c:if test="${sessionScope.loginMember.memberPwd eq loginMember.memberPwd }">
-			<tr>
-				<td> * 현재 비밀번호</td>
-				<td>
-					<input type="text" name="memberPwd" value="${mOne.memberPwd }" >
-				</td>
-			 </tr>
+			</tr> 
 			<tr>
 				<td> * 변경할 비밀번호</td>
 				<td>
-					<input type="text" name="memberPwd" value="${mOne.memberPwd }" >
+					<input type="text" name="memberPwd" value="${loginMember.memberPwd }" >
 				</td>
 			</tr> 
 			<tr>
 				<td> * 닉네임</td> 
 				<td>
-					<input type="text" name="memberNick" value="${mOne.memberNick }" >
+					<input type="text" name="memberNick" value="${loginMember.memberNick }" >
 				</td>
 			</tr>
 			<tr>
 				<td> * 이름</td>
 				<td>
-					<input type="text" name="memberName" value="${mOne.memberName }" >
+					<input type="text" name="memberName" value="${loginMember.memberName }" >
 				</td>
 			</tr>
 			<tr>
 				<td> * 생년월일</td>
 				<td>
-					<input type="text" name="memberBd" value="${mOne.memberBd }" >
+					<input type="text" name="memberBd" value="${loginMember.memberBd }" >
 				</td>
 			</tr>
 			<tr>
 				<td> * 성별</td>
 				<td>
-					<input type="text" name="memberGender" value="${mOne.memberGender }" >
+					<input type="text" name="memberGender" value="${loginMember.memberGender }" >
 				</td>
 			</tr>
 			<tr>
 				<td> * 핸드폰번호</td>
 				<td>
-					<input type="text" name="memberPhone" value="${mOne.memberPhone }" >
+					<input type="text" name="memberPhone" value="${loginMember.memberPhone }" >
 				</td>
 			</tr>
 			<tr>
 				<td> * 이메일</td>
 				<td>
-					<input type="text" name="memberEmail" value="${mOne.memberEmail }" >
+					<input type="text" name="memberEmail" value="${loginMember.memberEmail }" >
 				</td>
 			</tr>
-			<tr>
-				<td> * 현재 나의 등급</td>
-				<td>
-					<input type="text" name="memberGrade" value="${mOne.memberGrade }" readonly>
-				</td>
-			</tr>
+		
 			</c:if>
 			<tr>
 				<td colspan="2" align="center">

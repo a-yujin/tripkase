@@ -25,6 +25,11 @@ public class MemberController {
 		return "member/register"; // 스프링의 리턴타입은 String으로 정해져있음
 	   }	
 	
+	@RequestMapping(value="/member/modifyView.tripkase", method = RequestMethod.GET) // value = 사용할 url
+	public String membermodifyView() {
+		return "member/modify"; // 스프링의 리턴타입은 String으로 정해져있음
+	   }	
+	
 	@RequestMapping(value="/member/findIdView.tripkase", method = RequestMethod.GET) // value = 사용할 url
 	public String memberfindId() {
 		return "member/findId"; // 스프링의 리턴타입은 String으로 정해져있음
@@ -36,7 +41,7 @@ public class MemberController {
 	   }	
 
 	// 회원가입 o
-	@RequestMapping(value="/member/register.tripdkase", method = RequestMethod.POST)
+	@RequestMapping(value="/member/register.tripkase", method = RequestMethod.POST)
 	public ModelAndView register(ModelAndView mv, @ModelAttribute Member member) {
 		 int result = mService.registMember(member);
 		 if(result > 0) {
@@ -142,22 +147,26 @@ public class MemberController {
 		return mv;
 	}
 	
-	// 정보수정 - 변경할 비밀번호 member & 컬럼 추가?
+	// 정보수정 o
 	@RequestMapping(value="/member/modify.tripkase", method = RequestMethod.GET)
 	public ModelAndView modifyMember(
 			ModelAndView mv,
 			@ModelAttribute Member member
 			) {
+		try {
 		int result = mService.modifyMember(member);
 		if(result > 0) {
 			mv.setViewName("redirect:/member/mypage.tripkase");
-		}else {
-			mv.addObject("msg", "회원정보 수정에 실패하였습니다.");
+		}else{
+			mv.addObject("msg", "회원 정보가 수정되지 않았습니다.");
 			mv.setViewName("common/errorPage");
 		}
-		return mv;
+		}catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
 	}
-	
+		return mv;
+}
 	// 회원 삭제 o
 	@RequestMapping(value="/member/removeMember.tripkase", method = RequestMethod.GET)
 	public ModelAndView removeMember(
@@ -168,15 +177,12 @@ public class MemberController {
 		String memberId = member.getMemberId();
 		int result = mService.removeMember(memberId);
 		mv.setViewName("redirect:/member/logout.tripkase");
-			
 		}catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("common.errorPage");
 		}
 		return mv;
 	}
-	
-	
 }
 
 

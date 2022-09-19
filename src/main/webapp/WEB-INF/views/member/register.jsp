@@ -9,7 +9,7 @@
 <body>
 	<h1 align="center">회원가입</h1>
 	<div align="center">
-		<form action="/member/register.tripdkase" method="post">
+		<form action="/member/register.tripkase" method="post">
 		<table>
 			<tr>
 				<td> * 아이디</td>
