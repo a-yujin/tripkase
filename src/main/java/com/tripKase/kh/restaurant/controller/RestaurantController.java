@@ -26,11 +26,13 @@ public class RestaurantController {
 	@Autowired
 	private  RestaurantService resService;
 	
+	// 맛집 등록 페이지 불러오기
 	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.GET)
 	public String restaurantInsertPage() {
 		return "restaurant/restaurantInsertPage";
 	}
 
+	// 맛집 등록 메소드
 	@RequestMapping(value="/restaurant/insertRestaurant.tripkase", method=RequestMethod.POST)
 	public ModelAndView insertRestaurant(
 			ModelAndView mv
@@ -71,61 +73,66 @@ public class RestaurantController {
 		return mv;
 	}
 	
-//	@GetMapping(value="/restaurant/restaurantPage.tripkase")
-//	public ModelAndView restaurantPage(ModelAndView mv) {	// 맛집 기본 페이지
-//		List<Restaurant> resList = resService.printAllBoard();
-//		mv.addObject("resList", resList);
-//		mv.setViewName("restaurant/restaurantPage");
-//		return mv;
-//	}
-//	
-//	@PostMapping(value="/resDetailView.tripkase")
-//	public ModelAndView restaurantDetailView(int resNo) {	// 맛집 상세조회 페이지
-//		ModelAndView mv = new ModelAndView();
-//		List<Restaurant> resList = resService.printAllRestaurant(resNo);
-//		mv.addObject("resList" , resList);
-//		mv.setViewName("restaurant/resDetailView");
-//		return mv;
-//	}
+
+	//맛집 검색 기본 페이지
+	@RequestMapping(value="/restaurant/restaurantMainPage.tripkase", method=RequestMethod.GET)
+	public String restaurantMainPage() {
+
+		return "restaurant/restaurantMainPage";
+	}
+	
+	// 맛집 검색 목록 페이지
+	@RequestMapping(value="/restaurant/restaurantSearch.tripkase", method=RequestMethod.GET)
+	public ModelAndView restaurantSearch(
+		ModelAndView mv
+		, @RequestParam("searchCondition") String searchCondition
+		, @RequestParam("searchValue") String searchValue
+		, @RequestParam(value="page", defaultValue="1") int currentPage) {	// 페이지가 널이면 디폴트값을 1로 설정
+	try {
+		int totalCount = resService.getRestaurantCount(searchCondition, searchValue);
+		int boardLimit = 10;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int)((double)totalCount/boardLimit + 0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		endNavi = startNavi + naviLimit - 1;
+		if(maxPage < endNavi) {
+			endNavi = maxPage;
+		}
+		List<Restaurant> resList = resService.printRestaurantByValue(
+				searchCondition, searchValue, currentPage, boardLimit);
+		if(!resList.isEmpty()) {
+			mv.addObject("resList", resList);
+		}else {
+			mv.addObject("resList", null);
+		}
+		mv.addObject("urlVal", "search")
+			.addObject("searchCondition", searchCondition)
+			.addObject("searchValue", searchValue)
+			.addObject("maxPage", maxPage)
+			.addObject("currentPage", currentPage)
+			.addObject("startNavi", startNavi)
+			.addObject("endNavi", endNavi)
+			.setViewName("restaurant/restaurantListView");
+	} catch (Exception e) {
+		mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+	}
+	return mv;
+	}
 	
 	
-//	@GetMapping(value="/resSearch.tripkase")
-//	public ModelAndView restaurantSearch(		// 맛집 검색시 열리는 페이지
-//		ModelAndView mv
-//		, @RequestParam("searchCondition") String searchCondition
-//		, @RequestParam("searchValue") String searchValue
-//		, @RequestParam(value="page", defaultValue="1") int currentPage) {	// 페이지가 널이면 디폴트값을 1로 설정
-//	try {
-//		int totalCount = resService.getRestaurantCount(searchCondition, searchValue);
-//		int boardLimit = 10;
-//		int naviLimit = 5;
-//		int maxPage;
-//		int startNavi;
-//		int endNavi;
-//		maxPage = (int)((double)totalCount/boardLimit + 0.9);
-//		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
-//		endNavi = startNavi + naviLimit - 1;
-//		if(maxPage < endNavi) {
-//			endNavi = maxPage;
-//		}
-//		List<Restaurant> resList = resService.printRestaurantByValue(
-//				searchCondition, searchValue, currentPage, boardLimit);
-//		if(!resList.isEmpty()) {
-//			mv.addObject("resList", resList);
-//		}else {
-//			mv.addObject("resList", null);
-//		}
-//		mv.addObject("urlVal", "search")
-//			.addObject("searchCondition", searchCondition)
-//			.addObject("searchValue", searchValue)
-//			.addObject("maxPage", maxPage)
-//			.addObject("currentPage", currentPage)
-//			.addObject("startNavi", startNavi)
-//			.addObject("endNavi", endNavi)
-//			.setViewName("restaurant/listView");
-//	} catch (Exception e) {
-//		mv.addObject("msg", e.toString()).setViewName("common/errorPage");
-//	}
-//	return mv;
-//	}
+	//맛집 상세 조회
+	@RequestMapping(value="/restaurant/restaurantDetailView.tripkase", method=RequestMethod.POST)
+	public ModelAndView restaurantDetailView(ModelAndView mv, Integer resNo) {
+		try {
+			Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
+			mv.addObject("restaurant" , restaurant);
+			mv.setViewName("restaurant/resDetailView");
+		} catch (Exception e) {
+			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+		}
+		return mv;
+	}
 }

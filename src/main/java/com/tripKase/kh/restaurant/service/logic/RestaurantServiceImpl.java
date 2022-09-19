@@ -1,5 +1,7 @@
 package com.tripKase.kh.restaurant.service.logic;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,25 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public int insertRestaurant(Restaurant restaurant) {
 		int result = resStore.insertRestaurant(session, restaurant);
 		return result;
+	}
+
+	@Override
+	public int getRestaurantCount(String searchCondition, String searchValue) {
+		int count = resStore.getRestaurantCount(session, searchCondition, searchValue);
+		return count;
+	}
+
+	@Override
+	public List<Restaurant> printRestaurantByValue(String searchCondition, String searchValue, int currentPage,
+			int boardLimit) {
+		List<Restaurant> resList = resStore.printRestaurantByValue(session, searchCondition, searchValue, currentPage, boardLimit);
+		return resList;
+	}
+
+	@Override
+	public Restaurant printOneByRestaurantNo(Integer resNo) {
+		Restaurant restaurant = resStore.printOneByRestaurantNo(session, resNo);
+		return restaurant;
 	}
 
 }

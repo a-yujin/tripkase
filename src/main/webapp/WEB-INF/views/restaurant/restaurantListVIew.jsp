@@ -42,18 +42,18 @@
 	<tr align="center" height="20">
 		<td colspan="6">
 			<c:if test ="${currentPage != 1}">
-				<a href="/board/${urlVal }.kh?page=${currentPage - 1 }&searchCondition=${searchCondition}&searchValue=${searchValue}">[이전]</a>
+				<a href="/restaurant/${urlVal }.tripkase?page=${currentPage - 1 }&searchCondition=${searchCondition}&searchValue=${searchValue}">[이전]</a>
 			</c:if>
 			<c:forEach var="p" begin="${startNavi }" end="${endNavi }">
 				<c:if test="${currentPage eq p }">
 					${p }
 				</c:if>
 				<c:if test="${currentPage ne p }">
-					<a href="/board/${urlVal }.kh?page=${p }&searchCondition=${searchCondition}&searchValue=${searchValue}">${p }</a>
+					<a href="/restaurant/${urlVal }.tripkase?page=${p }&searchCondition=${searchCondition}&searchValue=${searchValue}">${p }</a>
 				</c:if>
 			</c:forEach>
 			<c:if test ="${maxPage > currentPage}">
-			<a href="/board/${urlVal }.kh?page=${currentPage + 1 }&searchCondition=${searchCondition}&searchValue=${searchValue}">[다음]</a>
+			<a href="/restaurant/${urlVal }.tripkase?page=${currentPage + 1 }&searchCondition=${searchCondition}&searchValue=${searchValue}">[다음]</a>
 			</c:if>
 		</td>
 	</tr>
