@@ -15,4 +15,6 @@ public interface AdminService {
 
 	int updateMember(Member member);
 
+	int deleteMember(String memberId);
+
 }

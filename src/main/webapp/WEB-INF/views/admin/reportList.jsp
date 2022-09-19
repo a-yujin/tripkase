@@ -8,7 +8,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>전체 신고 조회</h2>
-	${rList }
+	<h2 align="ceter">전체 신고 조회</h2>
+	<table align="center" border="1">
+					<tr>
+						<td>No</td>
+						<td>분류</td>
+						<td>제목</td>
+						<td>신고일</td>
+						<td>상세조회</td>
+					</tr>
+					<c:forEach items="${rList }" var="report" varStatus="i">
+					<tr>
+						<td>${ i.count}</td>
+						<td>${ report.reportType}</td>
+						<td>${ report.reportTitle}</td>
+						<td>${ report.reportDate}</td>
+						<td><button>상세조회</button></td>		
+					</tr>
+					</c:forEach> 
+			</table>
 </body>
 </html>

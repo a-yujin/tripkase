@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 상세 조회</title>
 </head>
 <body>
-		<form action="/admin/updateMember.tripkase" method="post">
-			아이디 <input type="text" name="memberId" value="${member.memberId }"/><br>
+	<h2>회원 상세 조회</h2>
+			<form action="/admin/updateMember.tripkase" method="post">
+			아이디 <input type="text" name="memberId" value="${member.memberId }"  readonly/><br>
 			비밀번호 <input type="password" name="memberPwd" value="${member.memberPwd }" /><br>
 			이메일 <input type="text" name="memberEmail" value="${member.memberEmail }" /><br>
 			이름 <input type="text" name="memberName" value="${member.memberName }" /><br>
@@ -17,15 +18,13 @@
 			회원등급 <input type="text" name="memberGrade" value="${member.memberGrade }" /><br>
 			성별 <input type="text" name="memberGender" value="${member.memberGender }" /><br>
 			번호 <input type="text" name="memberPhone" value="${member.memberPhone }" /><br>
-			회원가입일 <input type="text" name="mRegisterDate" value="${member.mRegisterDate }" /><br>
+			회원가입일<input type="text" name="mRegisterDate" value="${member.mRegisterDate }" readonly/><br>
+			<button>수정</button>
+			<button type="button" onclick="location.href='/admin/deleteMember.tripkase?memberId=${member.memberId}'">삭제</button>
 			<input type="hidden" name="mPfpName" value="${member.mPfpName }" /><br>
 			<input type="hidden" name="mPfpReName" value="${member.mPfpReName }" /><br>
 			<input type="hidden" name="mPfpPath" value="${member.mPfpPath }" /><br>
-			<button>수정</button>
-		</form>
-		<form action="/admin/deleteMember.tripkase'">
-			<input type="hidden" name="memberId" value="${member.memberId }"/><br>
-			<button>삭제</button>
-		</form>
+			</form>
+			
 </body>
 </html>

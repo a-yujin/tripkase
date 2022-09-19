@@ -21,21 +21,6 @@ public class AdminController {
 	@Autowired
 	AdminService aService;
 	
-	//전체 회원 조회
-	@RequestMapping(value="/admin/memberAll.tripkase", method=RequestMethod.GET)
-	public ModelAndView selectAllMember(
-			ModelAndView mv) {
-		List<Member> mList = aService.selectAllMember();
-		try {
-			mv.addObject("mList",mList);
-			mv.setViewName("admin/memberList");
-		} catch (Exception e) {
-			mv.addObject("msg",e.toString());
-			mv.setViewName("/common/errorPage");
-		}
-		return mv;
-	}
-	
 	//회원 검색 폼으로 이동
 	@RequestMapping(value="/admin/memberSelectForm.tripkase", method=RequestMethod.GET)
 	public ModelAndView memberSelectView(
@@ -62,6 +47,22 @@ public class AdminController {
 		return mv;
 	}
 	
+	//전체 회원 조회
+	@RequestMapping(value="/admin/memberAll.tripkase", method=RequestMethod.GET)
+	public ModelAndView selectAllMember(
+			ModelAndView mv) {
+		List<Member> mList = aService.selectAllMember();
+		try {
+			mv.addObject("mList",mList);
+			mv.setViewName("admin/memberList");
+		} catch (Exception e) {
+			mv.addObject("msg",e.toString());
+			mv.setViewName("/common/errorPage");
+		}
+		return mv;
+	}
+	
+	
 	//회원 상세 조회
 	@RequestMapping(value="/admin/memberDetail.tripkase", method=RequestMethod.GET)
 	public ModelAndView memberDetail(
@@ -69,6 +70,8 @@ public class AdminController {
 			,@RequestParam("memberId") String memberId
 			,@RequestParam("memberName") String memberName
 			) {
+		System.out.println(memberId);
+		System.out.println(memberName);
 		Member member = aService.selectOneMember(memberId, memberName);
 		try {
 			mv.addObject("member",member);
@@ -87,9 +90,7 @@ public class AdminController {
 			, @ModelAttribute Member member) {
 		try {
 			int result = aService.updateMember(member);
-			mv.addObject("memberId", member.getMemberId());
-			mv.addObject("memberName", member.getMemberName());
-			mv.setViewName("redirect:/admin/memberDetail.tripkase");
+			mv.setViewName("redirect:/admin/memberAll.tripkase");
 		} catch (Exception e) {
 			mv.addObject("msg",e.toString());
 			mv.setViewName("/common/errorPage");
@@ -100,7 +101,15 @@ public class AdminController {
 	//회원 정보 삭제
 	@RequestMapping(value="/admin/deleteMember.tripkase")
 	public ModelAndView deleteMember(
-			ModelAndView mv) {
+			ModelAndView mv
+			,@RequestParam("memberId") String memberId) {
+		try {
+			int result = aService.deleteMember(memberId);
+			mv.setViewName("redirect:/admin/memberAll.tripkase");
+		} catch (Exception e) {
+			mv.addObject("msg",e.toString());
+			mv.setViewName("/common/errorPage");
+		}
 		return mv;
 		
 	}
@@ -122,6 +131,7 @@ public class AdminController {
 	}
 	
 	//신고 상세 조회
+	
 	
 	//신고 컨텐츠(게시글, 댓글, 평점) 삭제
 	

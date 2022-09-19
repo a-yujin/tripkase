@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-	<h2 align="center">회원 조회</h2>
+	<h2 align="center">회원 조회</h2>	
 	<c:if test="${mList ne null }">
-		<form action="/admin/memberDetail.tripkase">
 				<table align="center" border="1">
 					<tr>
 						<td>아이디</td>
@@ -21,25 +21,19 @@
 						<td>상세조회</td>
 					</tr>
 					<c:forEach items="${mList }" var="member">
-					<input type="hidden" name="memberId" value="${ member.memberId}" />
-					<input type="hidden" name="memberName" value="${ member.memberName}" />
 					<tr>
 						<td>${ member.memberId}</td>
 						<td>${ member.memberNick}</td>
 						<td>${ member.memberName}</td>
 						<td>${ member.memberPhone}</td>
 						<td>${ member.memberEmail}</td>
-						<td><button>수정/삭제</button></td>
+						<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
 			</table>
-		</form>
 	</c:if>
-
+	
 	<c:if test="${member ne null }">
-		<form action="/admin/memberDetail.tripkase">
-			<input type="hidden" name="memberId" value="${memberId }"/>
-			<input type="hidden" name="memberName" value="${memberName }"/>
 			<table align="center" border="1">
 				<tr>
 					<td>아이디</td>
@@ -55,10 +49,9 @@
 					<td>${member.memberName}</td>
 					<td>${member.memberPhone}</td>
 					<td>${member.memberEmail}</td>
-					<td><button>수정/삭제</button></td>
+					<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>			
 				</tr>
 			</table>
-		</form>
 	</c:if>
 </body>
 </html>

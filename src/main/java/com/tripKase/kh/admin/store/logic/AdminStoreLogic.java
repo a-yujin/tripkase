@@ -41,6 +41,12 @@ public class AdminStoreLogic implements AdminStore {
 		return rList;
 	}
 
+	@Override
+	public int deleteMember(SqlSession session, String memberId) {
+		int result = session.update("AdminMapper.deleteMember", memberId);
+		return result;
+	}
+
 
 
 }
