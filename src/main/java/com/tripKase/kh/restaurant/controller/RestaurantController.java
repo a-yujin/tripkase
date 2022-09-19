@@ -1,14 +1,19 @@
 package com.tripKase.kh.restaurant.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.restaurant.domain.Restaurant;
@@ -20,11 +25,50 @@ public class RestaurantController {
 	
 	@Autowired
 	private  RestaurantService resService;
+	
+	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.GET)
+	public String restaurantInsertPage() {
+		return "restaurant/restaurantInsertPage";
+	}
 
-	@RequestMapping(value="/restaurant/insertRestaurant.tripkase", method=RequestMethod.GET)
-	public int insertRestaurant(Restaurant restaurant) {
+	@RequestMapping(value="/restaurant/insertRestaurant.tripkase", method=RequestMethod.POST)
+	public ModelAndView insertRestaurant(
+			ModelAndView mv
+			, @ModelAttribute Restaurant restaurant
+			, @RequestParam(value="resUploadFile", required=false) MultipartFile uploadFile
+			,HttpServletRequest request) {
 		
-		return resService.insertRestaurant(restaurant);
+		try {
+			String resFilename = uploadFile.getOriginalFilename();
+			if(!resFilename.equals("")) {
+				/////////////////////////////////////////////////
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				String savePath = root + "\\resUploadFiles";
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				String resFileRename
+					= sdf.format(new Date(System.currentTimeMillis()))+"."
+						+ resFilename.substring(resFilename.lastIndexOf(".")+1);
+				// 이름 바꿔주는 메소드
+				File file = new File(savePath);
+				if(!file.exists()) {
+					file.mkdir();
+				}
+				//////////////////////////////////////////////////
+				String resFilepath = savePath + "\\" + resFileRename;
+				uploadFile.transferTo(new File(resFilepath)); 
+				// 파일을 buploadFiles 경로에 저장하는 메소드
+				restaurant.setResFilename(resFilename);
+				restaurant.setResFileRename(resFileRename);
+				restaurant.setResFilepath(resFilepath);
+			}
+			int result = resService.insertRestaurant(restaurant);
+			mv.setViewName("redirect:/restaurant/restaurantMainPage.tripkase");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
 	}
 	
 //	@GetMapping(value="/restaurant/restaurantPage.tripkase")
