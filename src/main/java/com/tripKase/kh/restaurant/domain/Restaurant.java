@@ -5,7 +5,7 @@ public class Restaurant {
 	private int resNo;
 	private String resName;
 	private String resType;
-	private String resArena;
+	private String resArea;
 	private String resTel;
 	private String resDayoff;
 	private String resMainmenu;
@@ -15,6 +15,7 @@ public class Restaurant {
 	private String resFilepath;
 	private String resMap;
 	private String resStatus;
+	private String resAddress;
 	private String memberId;
 	public int getResNo() {
 		return resNo;
@@ -34,11 +35,11 @@ public class Restaurant {
 	public void setResType(String resType) {
 		this.resType = resType;
 	}
-	public String getResArena() {
-		return resArena;
+	public String getResArea() {
+		return resArea;
 	}
-	public void setResArena(String resArena) {
-		this.resArena = resArena;
+	public void setResArea(String resArea) {
+		this.resArea = resArea;
 	}
 	public String getResTel() {
 		return resTel;
@@ -96,17 +97,26 @@ public class Restaurant {
 	}
 	public String getMemberId() {
 		return memberId;
+	}	
+	public String getResAddress() {
+		return resAddress;
+	}
+	public void setResAddress(String resAddress) {
+		this.resAddress = resAddress;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
 	@Override
 	public String toString() {
-		return "Restaurant [resNo=" + resNo + ", resName=" + resName + ", resType=" + resType + ", resArena=" + resArena
+		return "Restaurant [resNo=" + resNo + ", resName=" + resName + ", resType=" + resType + ", resArea=" + resArea
 				+ ", resTel=" + resTel + ", resDayoff=" + resDayoff + ", resMainmenu=" + resMainmenu + ", resDetail="
 				+ resDetail + ", resFilename=" + resFilename + ", resFileRename=" + resFileRename + ", resFilepath="
-				+ resFilepath + ", resMap=" + resMap + ", resStatus=" + resStatus + ", memberId=" + memberId + "]";
+				+ resFilepath + ", resMap=" + resMap + ", resStatus=" + resStatus + ", resAddress=" + resAddress
+				+ ", memberId=" + memberId + "]";
 	}
+	
+
 	
 	
 	
