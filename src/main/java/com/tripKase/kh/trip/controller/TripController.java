@@ -76,35 +76,34 @@ public class TripController {
 	return mv;
 	}
 
-	@RequestMapping(value="/trip/tripList.kh", method=RequestMethod.GET)
+	@RequestMapping(value="/trip/tripList.tripkase", method=RequestMethod.GET)
 	public ModelAndView tripListView(
-			ModelAndView mv, 
+			ModelAndView mv,
 			@RequestParam(value="page", required=false) Integer page) {
-		// 페이징처리
 		int currentPage = (page != null) ? page : 1;
 		int totalCount = tService.getTotalCount("", ""); // 전체 개시물의 갯수
-		int tripLimit = 10;
-		int naviLimit = 5;
-		int maxPage;
-		int startNavi;
-		int endNavi;
-		maxPage = (int)((double)totalCount / tripLimit + 0.9); 
-		startNavi = ((int)((double)currentPage/naviLimit + 0.9)-1) * naviLimit + 1;
-		endNavi = startNavi + naviLimit - 1;
-		if(maxPage < endNavi) {
-			endNavi = maxPage;
-		} // 오류방지
-		
-		// 게시판 리스트
-		List<Trip> tList = tService.printAllTrip(currentPage, tripLimit);
-		if(!tList.isEmpty()) {
-			mv.addObject("urlValue", "list"); // 검색 후 페이징 사용 시 url값이 list에서 search로 변경되지 않는 것을 해결
-			mv.addObject("maxPage", maxPage);
-			mv.addObject("currentPage", currentPage); // [이전], [다음] 페이징 처리 하기 위해 작성	
-			mv.addObject("startNavi", startNavi);
-			mv.addObject("endNavi", endNavi);
-			mv.addObject("tList", tList);
-		}
+				int tripLimit = 10;
+				int naviLimit = 5;
+				int maxPage;
+				int startNavi;
+				int endNavi;
+				maxPage = (int)((double)totalCount / tripLimit + 0.9); // 0.9는 반올림하기 위해서 작성해주는 것
+				startNavi = ((int)((double)currentPage/naviLimit + 0.9)-1) * naviLimit + 1;
+				endNavi = startNavi + naviLimit - 1;
+				if(maxPage < endNavi) {
+					endNavi = maxPage;
+				} // 오류방지
+				
+				// 게시판 리스트
+				List<Trip> tList = tService.printAllTrip(currentPage, tripLimit);
+				if(!tList.isEmpty()) {
+					mv.addObject("urlValue", "list"); // 검색 후 페이징 사용 시 url값이 list에서 search로 변경되지 않는 것을 해결
+					mv.addObject("maxPage", maxPage);
+					mv.addObject("currentPage", currentPage); // [이전], [다음] 페이징 처리 하기 위해 작성	
+					mv.addObject("startNavi", startNavi);
+					mv.addObject("endNavi", endNavi);
+					mv.addObject("tList", tList);
+				}
 		mv.setViewName("trip/tripListView");
 		return mv;
 	}
