@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행카세: Index</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="/home.tripkase"/>
+
 </body>
 </html>

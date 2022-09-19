@@ -13,7 +13,8 @@ public class Notice {
 	private String nFileName; // 공지 파일 이름
 	private String nFileRename; // 공지 파일 변경된 이름
 	private String nFilePath; // 공지 파일 경로
-	private int noticeCount; // 공지 게시글 수
+	private int noticeCount; // 공지 게시글 수(삭제 예정)
+	private String noticeStatus; // 공지 게시 여부
 	
 	public int getNoticeNo() {
 		return noticeNo;
@@ -81,12 +82,18 @@ public class Notice {
 	public void setNoticeCount(int noticeCount) {
 		this.noticeCount = noticeCount;
 	}
+	public String getNoticeStatus() {
+		return noticeStatus;
+	}
+	public void setNoticeStatus(String noticeStatus) {
+		this.noticeStatus = noticeStatus;
+	}
 	
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeWriter=" + noticeWriter + ", noticeType=" + noticeType
 				+ ", noticeTitle=" + noticeTitle + ", nCreateDate=" + nCreateDate + ", nUpdateDate=" + nUpdateDate
 				+ ", nContents=" + nContents + ", nFileName=" + nFileName + ", nFileRename=" + nFileRename
-				+ ", nFilePath=" + nFilePath + ", noticeCount=" + noticeCount + "]";
+				+ ", nFilePath=" + nFilePath + ", noticeCount=" + noticeCount + ", noticeStatus=" + noticeStatus + "]";
 	}
 }
