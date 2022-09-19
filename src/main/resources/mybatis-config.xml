@@ -9,13 +9,32 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.tripKase.kh.admin.domain.Report" alias="Report"/>
-	<!--<typeAlias type="com.kh.junspring.member.domain.Member" alias="Member"/>
-		<typeAlias type="com.kh.junspring.board.domain.Board" alias="Board"/>
-		<typeAlias type="com.kh.junspring.board.domain.Reply" alias="Reply"/> -->
+		<typeAlias type="com.tripKase.kh.attraction.domain.Attraction" alias="Attraction"/>
+		<typeAlias type="com.tripKase.kh.course.domain.Course" alias="Course"/>
+		<typeAlias type="com.tripKase.kh.grade.domain.Grade" alias="Grade"/>
+		<typeAlias type="com.tripKase.kh.member.domain.Member" alias="Member"/>
+		<typeAlias type="com.tripKase.kh.notice.domain.Notice" alias="Notice"/>
+		<typeAlias type="com.tripKase.kh.qna.domain.QnA" alias="QnA"/>
+		<typeAlias type="com.tripKase.kh.restaurant.domain.Restaurant" alias="Restaurant"/>
+		<typeAlias type="com.tripKase.kh.room.domain.Room" alias="Room"/>
+		<typeAlias type="com.tripKase.kh.schedule.domain.Schedule" alias="Schedule"/>
+		<typeAlias type="com.tripKase.kh.storage.domain.Storage" alias="Storage"/>
+		<typeAlias type="com.tripKase.kh.trip.domain.Trip" alias="Trip"/>
+		<typeAlias type="com.tripKase.kh.trip.domain.TripReply" alias="TripReply"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/admin-mapper.xml"/>
-	<!-- <mapper resource="mappers/member-mapper.xml"/>
-		 <mapper resource="mappers/board-mapper.xml"/> -->
+		<mapper resource="mappers/attraction-mapper.xml"/>
+		<mapper resource="mappers/course-mapper.xml"/>
+		<mapper resource="mappers/grade-mapper.xml"/>
+		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/qna-mapper.xml"/>
+		<mapper resource="mappers/restaurant-mapper.xml"/>
+		<mapper resource="mappers/room-mapper.xml"/>
+		<mapper resource="mappers/schedule-mapper.xml"/>
+		<mapper resource="mappers/storage-mapper.xml"/>
+		<mapper resource="mappers/trip-mapper.xml"/>
+		<mapper resource="mappers/tripReply-mapper.xml"/>
 	</mappers>
 </configuration>

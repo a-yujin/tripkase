@@ -13,4 +13,6 @@ public interface AdminService {
 
 	Member selectOneMember(String memberId, String memberName);
 
+	int updateMember(Member member);
+
 }

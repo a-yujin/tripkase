@@ -12,8 +12,33 @@
  		<result property="reportContents" column="REPORT_CONTENTS" />
  		<result property="reportDate" column="REPORT_DATE" />
  	</resultMap>
+ 	<resultMap type="Member" id="MemberResultMap">
+ 		<id property="memberId" column="MEMBER_ID"/>
+ 		<result property="memberPwd" column="MEMBER_PWD"/>
+ 		<result property="memberEmail" column="MEMBER_EMAIL"/>
+ 		<result property="memberName" column="MEMBER_NAME"/>
+ 		<result property="memberNick" column="MEMBER_NICK"/>
+ 		<result property="memberBd" column="MEMBER_BD"/>
+ 		<result property="memberGrade" column="MEMBER_GRADE"/>
+ 		<result property="memberGender" column="MEMBER_GENDER"/>
+ 		<result property="memberPhone" column="MEMBER_PHONE"/>
+ 		<result property="mPfpName" column="M_PFP_NAME"/>
+ 		<result property="mPfpReName" column="M_PFP_RENAME"/>
+ 		<result property="mPfpPath" column="M_PFP_PATH"/>
+ 		<result property="mRegisterDate" column="M_REGISTER_DATE"/>
+ 		<result property="mStatus" column="MEMBER_STATUS"/>
+ 		<result property="adminYN" column="ADMIN_YN"/>
+ 	</resultMap>
  
  	<select id="selectAllReport" resultMap="ReportResultMap">
  		SELECT * FROM REPORT_TBL
+ 	</select>
+ 	<select id="selectAllMember" resultMap="MemberResultMap">
+ 		SELECT * FROM MEMBER_TBL
+ 	</select>
+ 	<select id="selectOneMember" resultMap="MemberResultMap">
+ 		SELECT * FROM MEMBER_TBL
+ 		WHERE MEMBER_ID = #{memberId}
+ 		AND MEMBER_NAME = #{memberName}
  	</select>
  </mapper>

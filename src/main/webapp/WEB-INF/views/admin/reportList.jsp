@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h2>전체 신고 조회</h2>
 	${rList }
 </body>
 </html>
