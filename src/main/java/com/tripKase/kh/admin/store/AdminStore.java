@@ -17,4 +17,6 @@ public interface AdminStore {
 
 	int updateMember(SqlSession session, Member member);
 
+	int deleteMember(SqlSession session, String memberId);
+
 }

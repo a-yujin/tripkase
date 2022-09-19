@@ -44,5 +44,11 @@ public class AdminServiceLogic implements AdminService {
 		int result = aStore.updateMember(session, member);
 		return result;
 	}
+
+	@Override
+	public int deleteMember(String memberId) {
+		int result = aStore.deleteMember(session, memberId);
+		return result;
+	}
 	
 }
