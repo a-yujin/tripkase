@@ -45,7 +45,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public Member findMemberId(SqlSession session, String memberName, String memberEmail) {
-		HashMap<String, String> param = new HashMap<>();
+		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("memberName", memberName);
 		param.put("memberEmail", memberEmail);
 		Member result = session.selectOne("MemberMapper.findMemberId", param );
@@ -54,7 +54,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public Member findPwdMember(SqlSession session, String memberId, String memberEmail) {
-		HashMap<String, String> param = new HashMap<>();
+		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("memberId", memberId);
 		param.put("memberEmail", memberEmail);
 		Member member = session.selectOne("MemberMapper.findMemberPwd", param);
