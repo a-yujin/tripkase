@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="MemberMapper">
  
- 	 	<resultMap 	type="Member" 				id="MemberResultMap">
+ 	 		<resultMap 	type="Member" 				id="MemberResultMap">
 	 		<id 	property="memberId" 		column="MEMBER_ID"/>
 	 		<result property="memberPwd" 		column="MEMBER_PWD"/>
 	 		<result property="memberEmail" 		column="MEMBER_EMAIL"/>
@@ -20,7 +20,7 @@
 	 		<result property="mRegisterDate" 	column="M_REGISTER_DATE"/>
 	 		<result property="mStatus" 			column="MEMBER_STATUS"/>
 	 		<result property="adminYN" 			column="ADMIN_YN"/>
- 		</resultMap>
+ 			</resultMap>
  
  
 	 <insert id="registerMember">

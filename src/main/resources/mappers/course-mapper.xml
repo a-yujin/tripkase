@@ -4,4 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CourseMapper">
 
+			<resultMap 	type="Member" 				id="MemberResultMap">
+	 		<id 	property="courseNo" 			column="COURSE_NO"/>
+	 		<result property="courseName" 			column="COURSE_NAME"/>
+	 		<result property="courseThema" 			column="COURSE_THEMA"/>
+	 		<result property="courseDistance" 		column="COURSE_DISTANCE"/>
+	 		<result property="courseFileName" 		column="COURSE_FILENAME"/>
+	 		<result property="courseFileReName" 	column="COURSE_FILERENAME"/>
+	 		<result property="courseFilePath" 		column="COURSE_FILEPATH"/>
+	 		<result property="locationCode" 		column="LOCATION_CODE"/>
+	 		<result property="locationName" 		column="LOCATION_NAME"/>
+	 		<result property="cStatus" 				column="C_STATUS"/>
+ 			</resultMap>
+ 			
+ 		<insert id="insertCourse">
+ 		INSERT INTO COURSE_TBL
+ 		VALUES(#{courseName}, #{courseThema}, #{courseDistance}, #{courseFileName}, #{courseFileReName}, #{courseFilePath},
+ 			   #{locationCode}, #{locationName}, #{cStatus})
+ 		</insert>
 </mapper>
