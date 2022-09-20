@@ -21,14 +21,14 @@ public class NoticeStoreLogic implements NoticeStore {
 
 	// 총 게시글 수 가져오기
 	@Override
-	public int selectTotalCount(SqlSessionTemplate session) {
+	public int selectTotalCount(SqlSession session) {
 		int totalCount = session.selectOne("NoticeMapper.selectTotalCount");
-		return 0;
+		return totalCount;
 	}
 
 	// 공지 목록 조회
 	@Override
-	public List<Notice> selectAllNotice(SqlSessionTemplate session, int currentPage, int noticeLimit) {
+	public List<Notice> selectAllNotice(SqlSession session, int currentPage, int noticeLimit) {
 		int offset = (currentPage-1)*noticeLimit;
 		RowBounds rowBounds = new RowBounds(offset, noticeLimit);
 		List<Notice> nList = session.selectList("NoticeMapper.selectAllNotice", null, rowBounds);

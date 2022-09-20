@@ -12,9 +12,9 @@ public interface NoticeStore {
 	public int insertNotice(SqlSession session, Notice notice);
 
 	// 총 게시글 수 가져오기
-	public int selectTotalCount(SqlSessionTemplate session);
+	public int selectTotalCount(SqlSession session);
 
 	// 공지 목록 조회
-	public List<Notice> selectAllNotice(SqlSessionTemplate session, int currentPage, int noticeLimit);
+	public List<Notice> selectAllNotice(SqlSession session, int currentPage, int noticeLimit);
 	
 }

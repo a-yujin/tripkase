@@ -2,46 +2,54 @@
 body{
 	margin: 0;
 }
-#header{
-	width: 100%;
-	height: 50px;
-	background-color: white;
-	border-bottom: 1px solid lightgray;
-}
-.header-item{
-}
-#logo{
-	float:left;
+.logo{
 	width: 20%;
+	padding-left:  80px;
+	padding-right: 100px;
 }
 img{
-	height: 85%;
-	width: 85%;
-}
-#menu{
 	width: 60%;
-}
-#menu-item{
-}
-#menu li{
-	width : 20%;
-    height : 100%;
-    text-align : center;
-    
-    list-style-type : none;
-    float : left;
-    line-height : 50px;
-}
-#login-item{
-
-}
-#login li{
-	vertical-align: middle;
-	align-items: center;
-	width: 20%;
 	height: 100%;
-	text-align : center;
-	list-style-type : none;
-	float : right;
-	line-hegight: 50px;
+}
+#header{
+	background-color: white;
+	list-style-type: none;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	border-bottom: 1px solid lightgray;
+	height: 50px;
+	margin:0;
+	padding: 10px;
+	padding-left: 0;
+}
+.menu{
+	line-height: 50px;
+	height: 100%;
+	width: 10%;
+}
+li{
+	font-weight: bold;
+	font-size: 16px;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+}
+.login{
+	line-height: 50px;
+	height: 100%;
+	width: 20%;
+	padding-left: 180px;
+}
+li a{
+	display: block;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+}
+.menu a:hover{
+	color: #A8D1F0;
+}
+.login a:hover{
+	color: #A8D1F0;
 }

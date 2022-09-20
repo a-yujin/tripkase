@@ -6,9 +6,6 @@
 <title>여행카세: Home</title>
 </head>
 <body>
-<h1>
-	여행카세 홈페이지!  
-</h1>
-	<jsp:include page="../views/common/header.jsp"></jsp:include>
+	<jsp:include page="../views/common/header.jsp"/>
 </body>
 </html>
