@@ -8,10 +8,9 @@ public interface RestaurantService {
 
 	public int insertRestaurant(Restaurant restaurant);
 
-	public int getRestaurantCount(String searchCondition, String searchValue);
+	public int getRestaurantCount(String searchValue, String areaValue,String [] typeValue);
 
-	public List<Restaurant> printRestaurantByValue(String searchCondition, String searchValue, int currentPage,
-			int boardLimit);
+	public List<Restaurant> printRestaurantByValue(String searchValue, String areaValue, String [] typeValue, int currentPage, int boardLimit);
 
 	public Restaurant printOneByRestaurantNo(Integer resNo);
 	

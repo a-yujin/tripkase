@@ -10,10 +10,9 @@ public interface RestaurantStore {
 
 	public int insertRestaurant(SqlSession session, Restaurant restaurant);
 
-	public int getRestaurantCount(SqlSession session, String searchCondition, String searchValue);
+	public int getRestaurantCount(SqlSession session, String searchValue, String areaValue, String [] typeValue);
 
-	public List<Restaurant> printRestaurantByValue(SqlSession session, String searchCondition,
-			String searchValue, int currentPage, int boardlimit);
+	public List<Restaurant> printRestaurantByValue(SqlSession session, String searchValue, String areaValue, String [] typeValue, int currentPage, int boardlimit);
 
 	public Restaurant printOneByRestaurantNo(SqlSession session, Integer resNo);
 

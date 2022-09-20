@@ -22,13 +22,20 @@
  	</resultMap>
  		
 	<insert id="insertRestaurant">
-		INSERT INTO RESTAURANT_TBL VALUES(2, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resFilename},#{resFileRename}, #{resFilepath}, #{resMap}, DEFAULT, #{resAddress})
+		INSERT INTO RESTAURANT_TBL VALUES(3, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resFilename},#{resFileRename}, #{resFilepath}, #{resMap}, DEFAULT, #{resAddress})
 	</insert>
 	
 	<select id="getRestaurantCount" resultType="_int" resultMap="RestaurantResultMap">
-		SELECT COUNT(*) FROM RESTAURANT_TBL WHERE RES_STATUS = 'Y' AND
-		RES_NAME LIKE '%' || #{searchValue} || '%' OR RES_TYPE LIKE '%' || #{searchValue} || '%'  OR RES_AREA LIKE '%' || #{searchValue} || '%'
+		SELECT COUNT(*) FROM RESTAURANT_TBL WHERE RES_AREA = #{resArea} AND RES_TYPE IN
+		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
+			#{resType}
+		</foreach>
 	</select>
 	
-	
+	<select id="printRestaurantByValue" resultMap="RestaurantResultMap">
+		SELECT * FROM RESTAURANT_TBL WHERE RES_AREA = #{resArea} AND RES_TYPE IN
+		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
+			#{resType}
+		</foreach>
+	</select>
 </mapper>
