@@ -20,22 +20,23 @@ public class RestaurantStoreLogic implements RestaurantStore{
 	}
 
 	@Override
-	public int getRestaurantCount(SqlSession session, String searchCondition, String searchValue) {
-		HashMap<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("searchCondition", searchCondition);
+	public int getRestaurantCount(SqlSession session, String searchValue, String areaValue, String [] typeValue) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
 		int count = session.selectOne("RestaurantMapper.getRestaurantCount", paramMap);
 		return count;
 	}
 
 	@Override
-	public List<Restaurant> printRestaurantByValue(SqlSession session, String searchCondition,
-			String searchValue, int currentPage, int boardlimit) {
+	public List<Restaurant> printRestaurantByValue(SqlSession session, String searchValue, String areaValue, String [] typeValue, int currentPage, int boardlimit) {
 		int offset = (currentPage-1)*boardlimit;
 		RowBounds rowBounds = new RowBounds(offset, boardlimit);
-		HashMap<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("searchCondition", searchCondition);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
 		List<Restaurant> resList = session.selectList("RestaurantMapper.printRestaurantByValue", paramMap, rowBounds);
 		return resList;
 	}

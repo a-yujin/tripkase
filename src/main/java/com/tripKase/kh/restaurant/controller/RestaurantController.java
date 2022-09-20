@@ -27,7 +27,7 @@ public class RestaurantController {
 	private  RestaurantService resService;
 	
 	// 맛집 등록 페이지 불러오기
-	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.GET)
+	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.POST)
 	public String restaurantInsertPage() {
 		return "restaurant/restaurantInsertPage";
 	}
@@ -64,7 +64,7 @@ public class RestaurantController {
 				restaurant.setResFilepath(resFilepath);
 			}
 			int result = resService.insertRestaurant(restaurant);
-			mv.setViewName("redirect:/restaurant/restaurantMainPage.tripkase");
+			mv.setViewName("/restaurant/restaurantMainPage");
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("msg", e.getMessage());
@@ -72,6 +72,9 @@ public class RestaurantController {
 		}
 		return mv;
 	}
+	
+	//맛집 수정 페이지
+	
 	
 
 	//맛집 검색 기본 페이지
@@ -81,45 +84,57 @@ public class RestaurantController {
 		return "restaurant/restaurantMainPage";
 	}
 	
+//	//맛집 리스트 부르는 메소드
+//	@RequestMapping(value="/restaurant/restaurantListView.tripkase", method=RequestMethod.GET)
+//	public String restaurantListView() {
+//
+//		return "restaurant/restaurantListView";
+//	}
+	
+	
 	// 맛집 검색 목록 페이지
 	@RequestMapping(value="/restaurant/restaurantSearch.tripkase", method=RequestMethod.GET)
 	public ModelAndView restaurantSearch(
-		ModelAndView mv
-		, @RequestParam("searchCondition") String searchCondition
-		, @RequestParam("searchValue") String searchValue
-		, @RequestParam(value="page", defaultValue="1") int currentPage) {	// 페이지가 널이면 디폴트값을 1로 설정
-	try {
-		int totalCount = resService.getRestaurantCount(searchCondition, searchValue);
-		int boardLimit = 10;
-		int naviLimit = 5;
-		int maxPage;
-		int startNavi;
-		int endNavi;
-		maxPage = (int)((double)totalCount/boardLimit + 0.9);
-		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
-		endNavi = startNavi + naviLimit - 1;
-		if(maxPage < endNavi) {
-			endNavi = maxPage;
+			ModelAndView mv
+			, @RequestParam("searchValue") String searchValue
+			, @RequestParam("areaValue") String areaValue
+			, @RequestParam("typeValue") String [] typeValue
+			, @RequestParam(value="page", defaultValue="1") int currentPage) {
+			System.out.println(searchValue + ", " + areaValue  + ", " +  typeValue);
+		try {
+			int totalCount = resService.getRestaurantCount(searchValue, areaValue, typeValue);
+			int boardLimit = 10;
+			int naviLimit = 5;
+			int maxPage;
+			int startNavi;
+			int endNavi;
+			maxPage = (int)((double)totalCount/boardLimit + 0.9);
+			startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+			endNavi = startNavi + naviLimit - 1;
+			if(maxPage < endNavi) {
+				endNavi = maxPage;
+			}
+			List<Restaurant> resList = resService.printRestaurantByValue(
+					searchValue ,areaValue, typeValue, currentPage, 10);
+			if(!resList.isEmpty()) {
+				mv.addObject("resList", resList);
+			}else {
+				mv.addObject("resList", null);
+			}
+			mv.addObject("urlVal", "search")
+				.addObject("searchValue", searchValue)
+				.addObject("areaValue", typeValue)
+				.addObject("typeValue", typeValue)
+				.addObject("maxPage", maxPage)
+				.addObject("currentPage", currentPage)
+				.addObject("startNavi", startNavi)
+				.addObject("endNavi", endNavi)
+				.setViewName("redirect:/restaurant/restaurantListView");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 		}
-		List<Restaurant> resList = resService.printRestaurantByValue(
-				searchCondition, searchValue, currentPage, boardLimit);
-		if(!resList.isEmpty()) {
-			mv.addObject("resList", resList);
-		}else {
-			mv.addObject("resList", null);
-		}
-		mv.addObject("urlVal", "search")
-			.addObject("searchCondition", searchCondition)
-			.addObject("searchValue", searchValue)
-			.addObject("maxPage", maxPage)
-			.addObject("currentPage", currentPage)
-			.addObject("startNavi", startNavi)
-			.addObject("endNavi", endNavi)
-			.setViewName("restaurant/restaurantListView");
-	} catch (Exception e) {
-		mv.addObject("msg", e.toString()).setViewName("common/errorPage");
-	}
-	return mv;
+		return mv;
 	}
 	
 	

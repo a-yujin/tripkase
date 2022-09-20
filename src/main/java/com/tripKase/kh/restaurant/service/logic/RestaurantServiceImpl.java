@@ -27,15 +27,15 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 	@Override
-	public int getRestaurantCount(String searchCondition, String searchValue) {
-		int count = resStore.getRestaurantCount(session, searchCondition, searchValue);
+	public int getRestaurantCount(String searchValue, String areaValue, String [] typeValue) {
+		int count = resStore.getRestaurantCount(session, searchValue, areaValue, typeValue);
 		return count;
 	}
 
 	@Override
-	public List<Restaurant> printRestaurantByValue(String searchCondition, String searchValue, int currentPage,
+	public List<Restaurant> printRestaurantByValue(String searchValue, String areaValue,String [] typeValue, int currentPage,
 			int boardLimit) {
-		List<Restaurant> resList = resStore.printRestaurantByValue(session, searchCondition, searchValue, currentPage, boardLimit);
+		List<Restaurant> resList = resStore.printRestaurantByValue(session, searchValue, areaValue, typeValue, currentPage, boardLimit);
 		return resList;
 	}
 

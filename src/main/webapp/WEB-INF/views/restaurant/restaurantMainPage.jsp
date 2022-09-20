@@ -11,26 +11,26 @@
 <body>
 	<br><br>
 	<form action="/restaurant/restaurantSearch.tripkase" method="get">
-		<input type="text" id=restaurantName>
+		<input type="text" id="restaurantName" name="searchValue">
 		<br>
-		<input type="radio" id="resArea" name="resArea" value="all"> 전체보기
-		<input type="radio" id="resArea" name="resArea" value="seoul"> 서울
-		<input type="radio" id="resArea" name="resArea" value="gyenggi"> 경기
-		<input type="radio" id="resArea" name="resArea" value="incheon"> 인천
-		<input type="radio" id="resArea" name="resArea" value="kangwon"> 강원
-		<input type="radio" id="resArea" name="resArea" value="chungbuk"> 충청북도
-		<input type="radio" id="resArea" name="resArea" value="chungnam"> 충청남도
-		<input type="radio" id="resArea" name="resArea" value="gyengbuk"> 경상북도
-		<input type="radio" id="resArea" name="resArea" value="gyengnam"> 경상남도
-		<input type="radio" id="resArea" name="resArea" value="jeonbuk"> 전라북도
-		<input type="radio" id="resArea" name="resArea" value="jeonnam"> 전라남도
-		<input type="radio" id="resArea" name="resArea" value="jeju"> 제주
+		<input type="radio" id="resArea1" name="areaValue" value="all"> 전체보기
+		<input type="radio" id="resArea2" name="areaValue" value="seoul"> 서울
+		<input type="radio" id="resArea3" name="areaValue" value="gyeonggi"> 경기
+		<input type="radio" id="resArea4" name="areaValue" value="incheon"> 인천
+		<input type="radio" id="resArea5" name="areaValue" value="kangwon"> 강원
+		<input type="radio" id="resArea6" name="areaValue" value="chungbuk"> 충청북도
+		<input type="radio" id="resArea7" name="areaValue" value="chungnam"> 충청남도
+		<input type="radio" id="resArea8" name="areaValue" value="gyeongbuk"> 경상북도
+		<input type="radio" id="resArea9" name="areaValue" value="gyeongnam"> 경상남도
+		<input type="radio" id="resArea10" name="areaValue" value="jeonbuk"> 전라북도
+		<input type="radio" id="resArea11" name="areaValue" value="jeonnam"> 전라남도
+		<input type="radio" id="resArea12" name="areaValue" value="jeju"> 제주
 		<br><br>
-		<label><input type="checkbox" name="resType" value="korea"> 한식 </label>
-		<label><input type="checkbox" name="resType" value="chinese"> 중식 </label>
-		<label><input type="checkbox" name="resType" value="japan"> 일식 </label>
-		<label><input type="checkbox" name="resType" value="amearica"> 양식 </label>
-		<label><input type="checkbox" name="resType" value="guitar"> 기타 </label>
+		<label><input type="checkbox" name="typeValue" value="korean"> 한식 </label>
+		<label><input type="checkbox" name="typeValue" value="chinese"> 중식 </label>
+		<label><input type="checkbox" name="typeValue" value="Japanese"> 일식 </label>
+		<label><input type="checkbox" name="typeValue" value="american"> 양식 </label>
+		<label><input type="checkbox" name="typeValue" value="etc"> 기타 </label>
 		<br><br>
 		<input type="submit" value="조회하기">
 	</form>
