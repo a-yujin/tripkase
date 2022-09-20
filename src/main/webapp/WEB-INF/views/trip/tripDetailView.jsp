@@ -6,36 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 여행소통 게시글 보기</title>
+<link href="../resources/css/trip.css" rel="stylesheet">
 </head>
 <body>
-	<h1 align="center">${trip.tripNo }번째 게시글 </h1>
-	<table align="center" width="500" border="1">	
-		<tr>
-			<td>제목</td>
-			<td>${trip.tripTitle }</td>
-		</tr>
-		<tr>
-			<td>작성날짜</td>
-			<td>${trip.tripCreate }</td>
-		</tr>
-		<tr height="300">
-			<td>내용</td>
-			<td>${trip.tripContents }</td>
-		</tr>
-		<tr>
-			<td>첨부파일</td>
-			<td>
-				<img alt="본문이미지"
-				src="/resources/tuploadFiles/${trip.tripFileRename }"
-				width="300" height="300">
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<a href="#">수정 페이지로 이동</a>
-				<a href="#">삭제하기</a>
-			</td>
-		</tr>		
-	</table>
+	<br><br><br><br>
+	<div id="first">
+		<div id="first-left">
+			<img src="/resources/tuploadFiles/${trip.tripFileRename }" width="400" height="400" alt="본문 이미지">
+		</div>
+		<div id="first-right">
+			<img src="/resources/images/trip/dot.png" id="dot-select">
+			<br>
+			<p>제목 : ${trip.tripTitle }</p>
+			<p>작성자 : </p>
+			<p>작성일자 : ${trip.tripCreate }</p>
+			<br>
+			<p>${trip.tripContents }</p>
+		</div>
+	</div>
+	<br>
+	<div id="button-move">
+		<button class="but-move">이전 페이지</button>
+		<button class="but-move" onclick="location.href='/trip/tripList.tripkase';">목록으로</button>
+		<button class="but-move">다음 페이지</button>
+	</div>
+	<br><br><hr width="80%"><br>
 </body>
 </html>
