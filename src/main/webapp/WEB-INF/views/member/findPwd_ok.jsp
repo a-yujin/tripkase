@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행카세 : 아이디 찾기</title>
+<title>여행카세 : 비밀번호 찾기</title>
 </head>
 <body>
 	<h3>${Msg }</h3>

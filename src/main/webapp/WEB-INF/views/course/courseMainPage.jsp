@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행카세 : 아이디 찾기</title>
+<title>여행카세 : 코스 </title>
 </head>
 <body>
-	<h3>${Msg }</h3>
+
 </body>
 </html>

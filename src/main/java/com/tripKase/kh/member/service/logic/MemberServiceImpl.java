@@ -48,17 +48,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String findIdMember(Member member) {
-		String result = mStore.findMemberId(session, member);
+	public Member findIdMember(String memberName, String memberEmail) {
+		Member result = mStore.findMemberId(session, memberName, memberEmail);
 		return result;
 	}
 
 	@Override
-	public Member findPwdMember(Member member) {
-		Member mOne = mStore.findPwdMember(session, member);
-		return mOne;
+	public Member findPwdMember(String memberId, String memberEmail) {
+		Member member = mStore.findPwdMember(session, memberId, memberEmail);
+		return member;
 	}
-
-
-
 }
+
+
+
+
+
+
+
+

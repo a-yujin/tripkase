@@ -27,6 +27,7 @@ public class Member {
 		this.memberPwd = memberPwd;
 	}
 	
+	
 	public String getMemberId() {
 		return memberId;
 	}
