@@ -13,13 +13,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.admin.service.AdminService;
+import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.NoticeReply;
+import com.tripKase.kh.qna.domain.QnA;
+import com.tripKase.kh.trip.domain.Trip;
+import com.tripKase.kh.trip.domain.TripReply;
 
 @Controller
 public class AdminController {
 
 	@Autowired
 	AdminService aService;
+	
+	
+	//관리자 메인페이지 뷰
+	@RequestMapping(value="/admin/adminMainPage.tripkase")
+	public String mainPageView() {
+		return "/admin/adminMain";
+	}
+	
 	
 	//회원 검색 폼으로 이동
 	@RequestMapping(value="/admin/memberSelectForm.tripkase", method=RequestMethod.GET)
@@ -131,11 +144,72 @@ public class AdminController {
 	}
 	
 	//신고 상세 조회
-	
+	@RequestMapping(value="/admin/reportDetail.tripkase")
+	public ModelAndView reportDetail(
+			ModelAndView mv
+			,@RequestParam("reportNo") int reportNo) {
+			
+			//신고 객체 가져오기
+			Report report = aService.selectOneReport(reportNo);
+			
+			//컨텐츠 타입, 컨텐츠 순번 가져오기
+			String cotentsType = report.getCommonType();
+			int cotentsNo = report.getCommonNo();
+			
+			//게시글 신고면 여행 게시글 정보가져오고 디테일로 넘기기
+			if(cotentsType.equals("게시글")) {
+				Trip trip = aService.selectTripByNo(cotentsNo);
+				mv.addObject("trip",trip);
+			//여행 신고면 여행 게시글의 댓글 가져오고 디테일로 넘기기
+			} else if(cotentsType.equals("여행 댓글")) {
+				TripReply tripReply  = aService.selectTripRelyByNo(cotentsNo);
+				mv.addObject("tripReply",tripReply);
+			//문의 신고면 문의 게시글의 댓글 가져오고 디테일로 넘기기
+			} else if(cotentsType.equals("공지 댓글")) {
+				NoticeReply noticeReply  = aService.selectNoticeReplyByNo(cotentsNo);
+				mv.addObject("noticeReply",noticeReply);
+			//평점 신고면 평점 가져오고 디테일로 넘기기
+			} else if (cotentsType.equals("평점")) {
+				Grade grade = aService.selectGradeByNo(cotentsNo);
+				mv.addObject("grade",grade);
+			}
+			mv.addObject("report",report);
+			mv.setViewName("/admin/reportDetail");
+		return mv;
+	}
 	
 	//신고 컨텐츠(게시글, 댓글, 평점) 삭제
+	@RequestMapping(value="/admin/deleteContents.tripkase")
+	public ModelAndView deleteContents(
+			ModelAndView mv
+			,@RequestParam("reportNo") Integer reportNo
+			,@RequestParam(value="tripNo", required=false) Integer tripNo
+			,@RequestParam(value="tReplyNo", required=false) Integer tReplyNo
+			,@RequestParam(value="nReplyNo", required=false) Integer nReplyNo
+			,@RequestParam(value="gradeNo", required=false) Integer gradeNo
+			) {
+		//해당 컨텐츠로 찾아가 삭제하기
+		if(tripNo != null) {
+			int result = aService.deleteTripByNo(tripNo);
+		} else if (tReplyNo != null) {
+			int result = aService.deleteTripReplyByNo(tReplyNo);
+		} else if (nReplyNo != null) {
+			int result = aService.deleteNoticeReplyByNo(nReplyNo);
+		} else if (gradeNo != null) {
+			int result = aService.deleteGradeByNo(gradeNo);
+		}
+		//해당 컨텐츠를 삭제하면 신고 완료 처리(신고삭제)
+			int result = aService.deleteReport(reportNo);
+			mv.setViewName("redirect:/admin/reportList.tripkase");
+		return mv;
+	}
 	
 	//공지 조회
+	public ModelAndView noticeList(
+			ModelAndView mv) {
+		
+		return mv;
+	}
 	
 	//공지 상세 조회
 	

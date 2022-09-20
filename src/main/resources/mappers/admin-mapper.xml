@@ -11,6 +11,7 @@
  		<result property="reportTitle" column="REPORT_TITLE" />
  		<result property="reportContents" column="REPORT_CONTENTS" />
  		<result property="reportDate" column="REPORT_DATE" />
+ 		<result property="memberId" column="MEMBER_ID" />
  	</resultMap>
  	<resultMap type="Member" id="MemberResultMap">
  		<id property="memberId" column="MEMBER_ID"/>
@@ -29,10 +30,33 @@
  		<result property="mStatus" column="MEMBER_STATUS"/>
  		<result property="adminYN" column="ADMIN_YN"/>
  	</resultMap>
+ 	<resultMap type="Trip" id="tripResultMap">
+		<id property="tripNo" column="TRIP_NO" />
+ 		<result property="tripTitle" column="TRIP_TITLE" />
+ 		<result property="tripContents" column="TRIP_CONTENTS" />
+ 		<result property="tripWriter" column="TRIP_WRITER" />
+ 		<result property="tripCreate" column="TRIP_CREATE" />
+ 		<result property="tripUpdate" column="TRIP_UPDATE" />
+ 		<result property="tripFileName" column="TRIP_FILENAME" />
+ 		<result property="tripFileRename" column="TRIP_FILERENAME" />
+ 		<result property="tripFilePath" column="TRIP_FILEPATH" />
+ 		<result property="tripStatus" column="TRIP_STATUS" />
+ 		<result property="tripCount" column="TRIP_COUNT" />
+ 		<result property="tripLike" column="TRIP_LIKE" />
+ 		<result property="tripShow" column="TRIP_SHOW" />
+ 	</resultMap>
+ 	<resultMap type="Grade" id="GradeResultMap">
+		<id property="gradeNo" column="GRADE_NO" />
+ 		<result property="contentsCode" column="CONTENTS_CODE" />
+ 		<result property="contentsNo" column="CONTENTS_NO" />
+ 		<result property="gradeComment" column="GRADE_COMMENT" />
+ 		<result property="gradeStar" column="GRADE_STAR" />
+ 		<result property="gradeCreate" column="GRADE_CREATE" />
+ 		<result property="memberId" column="MEMBER_ID" />
+ 	</resultMap>
  
- 	<select id="selectAllReport" resultMap="ReportResultMap">
- 		SELECT * FROM REPORT_TBL
- 	</select>
+ 
+ 	<!--회원 관리  -->
  	<select id="selectAllMember" resultMap="MemberResultMap">
  		SELECT * FROM MEMBER_TBL WHERE MEMBER_STATUS = 'Y'
  	</select>
@@ -49,5 +73,48 @@
 		UPDATE MEMBER_TBL SET MEMBER_ID = #{memberId}, MEMBER_PWD = #{memberPwd}, MEMBER_EMAIL = #{memberEmail}, MEMBER_NAME = #{memberName}, MEMBER_NICK = #{memberNick}, MEMBER_BD = #{memberBd}, MEMBER_GRADE = #{memberGrade}, MEMBER_GENDER = #{memberGender}, MEMBER_PHONE = #{memberPhone}
 		WHERE MEMBER_ID = #{memberId}
 	</update>
+	
+	<!--신고 조회  -->
+ 	<select id="selectAllReport" resultMap="ReportResultMap">
+ 		SELECT * FROM REPORT_TBL
+ 	</select>
+ 	<select id="selectOneReport" resultMap="ReportResultMap">
+ 		SELECT * FROM REPORT_TBL WHERE REPORT_NO = #{reportNo}
+ 	</select>
+ 	
+ 	<!--신고된 컨텐츠 가져오기 -->
+ 	<select id="selectTripByNo" resultMap="tripResultMap">
+ 		SELECT * FROM TRIP_TBL WHERE TRIP_NO = #{cotentsNo}
+ 	</select>
+ 	<select id="selectTripRelyByNo">
+ 		SELECT * FROM TRIP_REPYL_TBL WHERE REPLY_NO = #{cotentsNo}
+ 	</select>
+ 	<select id="selectNoticeReplyByNo">
+ 		SELECT * FROM NOTICE_REPLY_TBL WHERE REPLY_NO = #{cotentsNo}
+ 	</select>
+ 	<select id="selectGradeByNo" resultMap="GradeResultMap">
+ 		SELECT * FROM GRADE_TBL WHERE GRADE_NO = #{cotentsNo}
+ 	</select>
+ 	
+ 	<!-- 신고 컨텐츠 삭제  -->
+	<delete id="deleteTripByNo">
+		DELETE FROM TRIP_TBL WHERE TRIP_NO = #{tripNo}
+	</delete>
+	<delete id="deleteTripReplyByNo">
+		DELETE FROM TRIP_REPLY_TBL WHERE TRIP_REPLYT_NO = #{tReplyNo}
+	</delete>
+	<delete id="deleteNoticeReplyByNo">
+		DELETE FROM NOTICE_REPLY_TBL WHERE NOTICE_REPLY_NO = #{nReplyNo}
+	</delete>
+	<delete id="deleteGradeByNo">
+		DELETE FROM GRADE_TBL WHERE GRADE_NO = #{gradeNo}
+	</delete>
+	<!--신고 완료 처리  -->
+	<delete id="deleteReport">
+		DELETE FROM REPORT_TBL WHERE REPORT_NO = #{reportNo}
+	</delete>
+	
+	<!--공지 관련  -->
+	
 	
  </mapper>

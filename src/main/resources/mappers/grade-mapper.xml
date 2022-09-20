@@ -3,5 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="GradeMapper">
-
+ 	<resultMap type="Grade" id="GradeResultMap">
+		<id property="gradeNo" column="GRADE_NO" />
+ 		<result property="contentsCode" column="CONTENTS_CODE" />
+ 		<result property="contentsNo" column="CONTENTS_NO" />
+ 		<result property="gradeComment" column="GRADE_COMMENT" />
+ 		<result property="gradeStar" column="GRADE_STAR" />
+ 		<result property="gradeCreate" column="GRADE_CREATE" />
+ 		<result property="memberId" column="MEMBER_ID" />
+ 	</resultMap>
 </mapper>

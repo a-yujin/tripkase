@@ -12,6 +12,7 @@
 	<table align="center" border="1">
 					<tr>
 						<td>No</td>
+						<td>컨텐츠</td>
 						<td>분류</td>
 						<td>제목</td>
 						<td>신고일</td>
@@ -20,10 +21,11 @@
 					<c:forEach items="${rList }" var="report" varStatus="i">
 					<tr>
 						<td>${ i.count}</td>
+						<td>${ report.commonType}</td>
 						<td>${ report.reportType}</td>
 						<td>${ report.reportTitle}</td>
 						<td>${ report.reportDate}</td>
-						<td><button>상세조회</button></td>		
+						<td><button type="button" onclick="location.href='/admin/reportDetail.tripkase?reportNo=${report.reportNo}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
 			</table>

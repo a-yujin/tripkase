@@ -12,5 +12,6 @@
 	<button onclick="location.href='/admin/memberAll.tripkase'">전체 회원 조회</button>
 	<button onclick="location.href='/admin/memberSelectForm.tripkase'">개별 회원 조회</button>
 	<button onclick="location.href='/admin/reportList.tripkase'">신고 조회</button>
+	<button onclick="location.href='/admin/noticeList.tripkase'">공지 조회</button>
 </body>
 </html>

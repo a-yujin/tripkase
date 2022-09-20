@@ -10,7 +10,16 @@ public class Report {
 	private String reportTitle; //신고 제목
 	private String reportContents; //신고 내용
 	private Date reportDate; //신고일
+	private String memberId; //신고자
 	
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	
 	public int getReportNo() {
 		return reportNo;
@@ -59,7 +68,7 @@ public class Report {
 	public String toString() {
 		return "Report [reportNo=" + reportNo + ", commonType=" + commonType + ", commonNo=" + commonNo
 				+ ", reportType=" + reportType + ", reportTitle=" + reportTitle + ", reportContents=" + reportContents
-				+ ", reportDate=" + reportDate + "]";
+				+ ", reportDate=" + reportDate + ", memberId="+memberId+"]";
 	}
 	
 	
