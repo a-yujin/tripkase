@@ -3,6 +3,7 @@ package com.tripKase.kh.admin.store.logic;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.admin.store.AdminStore;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
@@ -18,8 +20,10 @@ import com.tripKase.kh.trip.domain.TripReply;
 public class AdminStoreLogic implements AdminStore {
 
 	@Override
-	public List<Member> selectAllMember(SqlSession session) {
-		List<Member> mList = session.selectList("AdminMapper.selectAllMember");
+	public List<Member> selectAllMember(SqlSession session, int currentPage, int limit) {
+		int offset = (currentPage-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Member> mList = session.selectList("AdminMapper.selectAllMember", null, rowBounds);
 		return mList;
 	}
 	
@@ -45,8 +49,10 @@ public class AdminStoreLogic implements AdminStore {
 	}
 	
 	@Override
-	public List<Report> selectAllReport(SqlSession session) {
-		List<Report> rList = session.selectList("AdminMapper.selectAllReport");
+	public List<Report> selectAllReport(SqlSession session,int currentPage, int limit) {
+		int offset = (currentPage-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Report> rList = session.selectList("AdminMapper.selectAllReport",null,rowBounds);
 		return rList;
 	}
 
@@ -111,5 +117,29 @@ public class AdminStoreLogic implements AdminStore {
 	public int deleteGradeByNo(SqlSession session, Integer gradeNo) {
 		int result = session.delete("AdminMapper.deleteGradeByNo",gradeNo);
 		return result;
+	}
+
+	@Override
+	public int getMemberTotalCount(SqlSession session) {
+		int result = session.selectOne("AdminMapper.getMemberTotalCount");
+		return result;
+	}
+
+	@Override
+	public int getReportTotalCount(SqlSession session) {
+		int result = session.selectOne("AdminMapper.getReportTotalCount");
+		return result;
+	}
+
+	@Override
+	public int registerNotice(SqlSession session, Notice notice) {
+		int result = session.insert("AdminMapper.registerNotice",notice);
+		return result;
+	}
+
+	@Override
+	public Notice noticeDetail(SqlSession session, int noticeNo) {
+		Notice notice = session.selectOne("AdminMapper.noticeDetail", noticeNo);
+		return notice;
 	}
 }

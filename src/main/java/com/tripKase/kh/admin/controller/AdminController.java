@@ -1,21 +1,30 @@
 package com.tripKase.kh.admin.controller;
 
+import java.io.File;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.admin.service.AdminService;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
+import com.tripKase.kh.notice.service.NoticeService;
 import com.tripKase.kh.qna.domain.QnA;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
@@ -25,6 +34,8 @@ public class AdminController {
 
 	@Autowired
 	AdminService aService;
+	@Autowired
+	NoticeService nService;
 	
 	
 	//관리자 메인페이지 뷰
@@ -63,11 +74,34 @@ public class AdminController {
 	//전체 회원 조회
 	@RequestMapping(value="/admin/memberAll.tripkase", method=RequestMethod.GET)
 	public ModelAndView selectAllMember(
-			ModelAndView mv) {
-		List<Member> mList = aService.selectAllMember();
+			ModelAndView mv
+			,@RequestParam(value="page", required=false) Integer page) {
+		////////////////////////////////////////////////////
+		int currentPage = (page!=null) ? page : 1;
+		int totalCount = aService.getMemberTotalCount();
+		int boardLimit = 10;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int)((double)totalCount/boardLimit + 0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		System.out.println(currentPage+","+totalCount);
+		endNavi = startNavi + naviLimit - 1;
+		if(maxPage < endNavi) {
+			endNavi = maxPage;
+		}
+		////////////////////////////////////////////////////
+		List<Member> mList = aService.selectAllMember(currentPage, boardLimit);
 		try {
-			mv.addObject("mList",mList);
-			mv.setViewName("admin/memberList");
+			if(!mList.isEmpty()) {
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("startNavi", startNavi);
+				mv.addObject("endNavi", endNavi);
+				mv.addObject("mList",mList);
+				mv.setViewName("admin/memberList");
+			}
 		} catch (Exception e) {
 			mv.addObject("msg",e.toString());
 			mv.setViewName("/common/errorPage");
@@ -83,8 +117,6 @@ public class AdminController {
 			,@RequestParam("memberId") String memberId
 			,@RequestParam("memberName") String memberName
 			) {
-		System.out.println(memberId);
-		System.out.println(memberName);
 		Member member = aService.selectOneMember(memberId, memberName);
 		try {
 			mv.addObject("member",member);
@@ -131,11 +163,34 @@ public class AdminController {
 	//신고 전체 조회
 	@RequestMapping(value="/admin/reportList.tripkase", method=RequestMethod.GET)
 	public ModelAndView ReportList(
-			ModelAndView mv) {
-		List<Report> rList = aService.selectAllReport();
+			ModelAndView mv
+			,@RequestParam(value="page", required = false) Integer page) {
+		////////////////////////////////////////////////////
+		int currentPage = (page!=null) ? page : 1;
+		int totalCount = aService.getReportTotalCount();
+		int boardLimit = 10;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int)((double)totalCount/boardLimit + 0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		System.out.println(currentPage+","+totalCount);
+		endNavi = startNavi + naviLimit - 1;
+		if(maxPage < endNavi) {
+		endNavi = maxPage;
+		}
+		////////////////////////////////////////////////////
+		List<Report> rList = aService.selectAllReport(currentPage, boardLimit);
 		try {
-			mv.addObject("rList", rList);
-			mv.setViewName("/admin/reportList");
+			if(!rList.isEmpty()) {
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("startNavi", startNavi);
+				mv.addObject("endNavi", endNavi);
+				mv.addObject("rList", rList);
+				mv.setViewName("/admin/reportList");
+			}
 		} catch (Exception e) {
 			mv.addObject("msg",e.toString());
 			mv.setViewName("/common/errorPage");
@@ -205,25 +260,118 @@ public class AdminController {
 	}
 	
 	//공지 조회
+	@RequestMapping("/admin/noticeList.tripkase")
 	public ModelAndView noticeList(
-			ModelAndView mv) {
-		
+			ModelAndView mv
+			,@RequestParam(value="page", required=false) Integer page) {
+			////////////////////////////////////////////////////
+			int currentPage = (page!=null) ? page : 1;
+			int totalCount = nService.getTotalCount();
+			int noticeLimit = 10;
+			int naviLimit = 5;
+			int maxPage;
+			int startNavi;
+			int endNavi;
+			maxPage = (int)((double)totalCount/noticeLimit + 0.9);
+			startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+			System.out.println(currentPage+","+totalCount);
+			endNavi = startNavi + naviLimit - 1;
+			if(maxPage < endNavi) {
+			endNavi = maxPage;
+			}
+			////////////////////////////////////////////////////
+			List<Notice> nList = nService.printAllNotice(currentPage, noticeLimit);
+			try {
+				if(!nList.isEmpty()) {
+					mv.addObject("currentPage", currentPage);
+					mv.addObject("maxPage", maxPage);
+					mv.addObject("startNavi", startNavi);
+					mv.addObject("endNavi", endNavi);
+					mv.addObject("nList",nList);
+					mv.setViewName("admin/noticeList");
+				}
+			} catch (Exception e) {
+				mv.addObject("msg",e.toString());
+				mv.setViewName("/common/errorPage");
+			}
 		return mv;
 	}
 	
 	//공지 상세 조회
+	@RequestMapping("/admin/noticeDetail.tripkase")
+	public ModelAndView noticeDetail(
+			ModelAndView mv
+			,@RequestParam("noticeNo") int noticeNo
+			) {
+		Notice notice = aService.noticeDetail(noticeNo);
+		mv.addObject("notice",notice);
+		mv.setViewName("admin/noticeDetail");
+		return mv;
+	}
+	
+	//공지 작성 폼으로 이동
+	@RequestMapping("/admin/noticeWriteForm.tripkase")
+	public String noticeWriteForm() {
+		return "/admin/noticeWriteForm";
+	}
 	
 	//공지 등록
-	
+	@RequestMapping(value="/admin/registerNotice.tripkase", method=RequestMethod.POST)
+	public ModelAndView registerNotice(
+			ModelAndView mv,
+			@ModelAttribute Notice notice,
+			@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile, // value -> jsp name
+			HttpServletRequest request) {
+		try {
+			String noticeFileName = uploadFile.getOriginalFilename();
+			if(!noticeFileName.equals("")) {
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				String savePath = root + "\\nUploadFiles";
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				String noticeFileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+noticeFileName.substring(noticeFileName.lastIndexOf(".")+1);
+				File file = new File(savePath);
+				if(!file.exists()) {
+					file.mkdir();
+				}
+				uploadFile.transferTo(new File(savePath+"\\"+noticeFileRename));
+				String noticeFilePath = savePath+"\\"+noticeFileRename;
+				notice.setnFileName(noticeFileName);
+				notice.setnFileRename(noticeFileRename);
+				notice.setnFilePath(noticeFilePath);
+			}
+			int result = aService.registerNotice(notice);
+			mv.setViewName("redirect:/admin/noticeList.tripkase");
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	//공지 수정
-	
+	public ModelAndView updateNotice(
+			ModelAndView mv) {
+		return mv;
+	}
 	//공지 삭제
+	public ModelAndView deleteNotice(
+			ModelAndView mv) {
+		return mv;
+	}
 	
 	//문의 조회
-	
+	public ModelAndView qnaList(
+			ModelAndView mv) {
+		return mv;
+	}
 	//문의 상세 조회
-	
+	public ModelAndView qnaDetail(
+			ModelAndView mv) {
+		return mv;
+	}
 	//문의 답변 등록
-	
+	public ModelAndView registerQnA(
+			ModelAndView mv) {
+		return mv;
+	}
 		
 }

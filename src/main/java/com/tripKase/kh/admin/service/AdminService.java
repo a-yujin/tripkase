@@ -5,15 +5,16 @@ import java.util.List;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
 
 public interface AdminService {
 
-	List<Member> selectAllMember();
+	List<Member> selectAllMember(int currentPage, int limit);
 
-	List<Report> selectAllReport();
+	List<Report> selectAllReport(int currentPage, int limit);
 
 	Member selectOneMember(String memberId, String memberName);
 
@@ -40,5 +41,13 @@ public interface AdminService {
 	int deleteNoticeReplyByNo(Integer qReplyNo);
 
 	int deleteGradeByNo(Integer gradeNo);
+
+	int getMemberTotalCount();
+
+	int getReportTotalCount();
+
+	int registerNotice(Notice notice);
+
+	Notice noticeDetail(int noticeNo);
 
 }

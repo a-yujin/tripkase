@@ -13,6 +13,7 @@ import com.tripKase.kh.admin.service.AdminService;
 import com.tripKase.kh.admin.store.AdminStore;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
@@ -26,14 +27,14 @@ public class AdminServiceLogic implements AdminService {
 	private AdminStore aStore;
 	
 	@Override
-	public List<Member> selectAllMember() {
-		List<Member> mList = aStore.selectAllMember(session);
+	public List<Member> selectAllMember(int currentPage, int boardLimit) {
+		List<Member> mList = aStore.selectAllMember(session,currentPage,boardLimit);
 		return mList;
 	}
 
 	@Override
-	public List<Report> selectAllReport() {
-		List<Report> rList = aStore.selectAllReport(session);
+	public List<Report> selectAllReport(int currentPage, int boardLimit) {
+		List<Report> rList = aStore.selectAllReport(session,currentPage,boardLimit);
 		return rList;
 	}
 
@@ -113,6 +114,30 @@ public class AdminServiceLogic implements AdminService {
 	public int deleteGradeByNo(Integer gradeNo) {
 		int result = aStore.deleteGradeByNo(session, gradeNo);
 		return result;
+	}
+
+	@Override
+	public int getMemberTotalCount() {
+		int result = aStore.getMemberTotalCount(session);
+		return result;
+	}
+
+	@Override
+	public int getReportTotalCount() {
+		int result = aStore.getReportTotalCount(session);
+		return result;
+	}
+
+	@Override
+	public int registerNotice(Notice notice) {
+		int result = aStore.registerNotice(session,notice);
+		return result;
+	}
+
+	@Override
+	public Notice noticeDetail(int noticeNo) {
+		Notice notice = aStore.noticeDetail(session, noticeNo);
+		return notice;
 	}
 	
 }
