@@ -10,7 +10,7 @@ body {
 	padding-top : 50px;
 	font-size : 20px;
 }
-#second-text {
+.second-text {
 	text-align : center;
 	padding-top : 10px;
 	font-size : 12px;	
@@ -37,8 +37,32 @@ body {
 		border-color : gray;
 	}
 	
+#add-wrapper {
+	width : 100%;
+	margin : 0 auto;
+}
+	#add-outside {
+		width : 1000px;
+		height : 250px;
+		margin : 0 auto;
+		text-align : center;
+	}
+	.trip-add {
+		width : 200px;
+		height : 200px;
+		display : inline-block;
+		border : solid 1px gray;
+		margin-left : 20px;
+		margin-right : 20px;	
+	}
+		.add-button {
+			
+		}
+	
+	
 #trip-button1 {
 	text-align : center;
+	padding-top : 20px;
 }
 	#tbutton1 {
 		margin-right : 30px;
@@ -56,9 +80,40 @@ body {
 		border : solid 1px gray;
 		border-radius : 20px;
 	}
-
 /* tripDetailView.jsp */
+#first {
+	margin : 0 auto;
+	width : 1000px;
+	height : 450px;
+}
+	#first-left {
+		float : left;
+		text-align : center;
+		width : 50%;
+		height : 400px;
+	}
+	#first-right {
+		float : right;
+		width : 50%;
+		height : 400px;
+	}
+	#dot-select {
+		float : right;
+	}
 	
+#button-move {
+	text-align : center;
+}
+	.but-move {
+		width : 100px;
+		height : 35px;
+		margin-left : 20px;
+		margin-right : 20px;
+		border : solid 1px gray;
+		border-radius : 15px;
+		background-color : white;
+	}
+
 /* tripListView.jsp */
 #back-img {
 	width : 100%;
@@ -91,9 +146,42 @@ body {
 		border : solid 1px gray;
 		border-radius : 20px;
 	}
+
+#card-wrapper {
+	width : 1400px;
+	margin : 0 auto;
+}
+	#card-outside {
+		width : 1400px;
+		height : 5000px;
+		margin : 0 auto;
+	}
+	#card-inside {
+		display : inline-block;
+		float : left;
+		margin-left : 50px;
+	}
+	#list-title {
+		font-size : 15px;
+		height : 10px;
+	}
+	#list-text {
+		font-size : 14px;
+		margin-top : 10px;
+		height : 150px;
+		overflow : hidden;
+	}
+	#like-counter {
+		font-size : 12px;
+	}
+	#card-maker {
+		margin-top : 15px;
+		font-size : 12px;
+		float : right;
+	}
 	
 #input-group {
-	width : 1000px;
+	width : 1200px;
 	margin : 0 auto;
 	padding-bottom : 120px;
 }

@@ -37,6 +37,6 @@
 	<select id="selectTotalCount" resultType="_int">
 		SELECT COUNT(*) FROM TRIP_TBL
 		WHERE TRIP_STATUS = 'Y' AND
-		TRIP_TITLE LIKE '%' || #{searchValue} || '%' OR TRIP_WRITER LIKE '%' || #{searchValue} || '%'			
+		TRIP_TITLE LIKE '%' || #{searchValue} || '%' OR TRIP_WRITER LIKE '%' || #{searchValue} || '%'		
 	</select>
 </mapper>
