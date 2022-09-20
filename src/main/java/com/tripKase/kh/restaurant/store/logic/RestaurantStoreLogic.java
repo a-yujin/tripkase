@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.restaurant.store.RestaurantStore;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
 public class RestaurantStoreLogic implements RestaurantStore{
 
@@ -25,8 +29,8 @@ public class RestaurantStoreLogic implements RestaurantStore{
 		paramMap.put("searchValue", searchValue);
 		paramMap.put("areaValue", areaValue);
 		paramMap.put("typeValue", typeValue);
-		int count = session.selectOne("RestaurantMapper.getRestaurantCount", paramMap);
-		return count;
+		
+		return session.selectOne("RestaurantMapper.getRestaurantCount", paramMap);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,8 @@ public class RestaurantController {
 	@Autowired
 	private  RestaurantService resService;
 	
-	// 맛집 등록 페이지 불러오기
-	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.POST)
+	// 맛집 등록 페이지 불러오기 http://127.0.0.1:9999/restaurant/restaurantInsertPage.tripkase
+	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.GET)
 	public String restaurantInsertPage() {
 		return "restaurant/restaurantInsertPage";
 	}
@@ -64,7 +65,7 @@ public class RestaurantController {
 				restaurant.setResFilepath(resFilepath);
 			}
 			int result = resService.insertRestaurant(restaurant);
-			mv.setViewName("/restaurant/restaurantMainPage");
+			mv.setViewName("restaurant/restaurantMainPage");
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("msg", e.getMessage());
@@ -77,33 +78,26 @@ public class RestaurantController {
 	
 	
 
-	//맛집 검색 기본 페이지
+	//맛집 검색 기본 페이지 http://127.0.0.1:9999/restaurant/restaurantMainPage.tripkase
 	@RequestMapping(value="/restaurant/restaurantMainPage.tripkase", method=RequestMethod.GET)
 	public String restaurantMainPage() {
 
 		return "restaurant/restaurantMainPage";
 	}
 	
-//	//맛집 리스트 부르는 메소드
-//	@RequestMapping(value="/restaurant/restaurantListView.tripkase", method=RequestMethod.GET)
-//	public String restaurantListView() {
-//
-//		return "restaurant/restaurantListView";
-//	}
-	
 	
 	// 맛집 검색 목록 페이지
 	@RequestMapping(value="/restaurant/restaurantSearch.tripkase", method=RequestMethod.GET)
 	public ModelAndView restaurantSearch(
 			ModelAndView mv
-			, @RequestParam("searchValue") String searchValue
+			, @RequestParam(value="searchValue", required = false) String searchValue
 			, @RequestParam("areaValue") String areaValue
 			, @RequestParam("typeValue") String [] typeValue
-			, @RequestParam(value="page", defaultValue="1") int currentPage) {
+			, @RequestParam(value="page", required = false , defaultValue="1") int currentPage) {
 			System.out.println(searchValue + ", " + areaValue  + ", " +  typeValue);
 		try {
 			int totalCount = resService.getRestaurantCount(searchValue, areaValue, typeValue);
-			int boardLimit = 10;
+			int boardLimit = 5;
 			int naviLimit = 5;
 			int maxPage;
 			int startNavi;
@@ -115,7 +109,7 @@ public class RestaurantController {
 				endNavi = maxPage;
 			}
 			List<Restaurant> resList = resService.printRestaurantByValue(
-					searchValue ,areaValue, typeValue, currentPage, 10);
+					searchValue ,areaValue, typeValue, currentPage, boardLimit);
 			if(!resList.isEmpty()) {
 				mv.addObject("resList", resList);
 			}else {
@@ -129,7 +123,7 @@ public class RestaurantController {
 				.addObject("currentPage", currentPage)
 				.addObject("startNavi", startNavi)
 				.addObject("endNavi", endNavi)
-				.setViewName("redirect:/restaurant/restaurantListView");
+				.setViewName("/restaurant/restaurantListView");
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
@@ -139,12 +133,15 @@ public class RestaurantController {
 	
 	
 	//맛집 상세 조회
-	@RequestMapping(value="/restaurant/restaurantDetailView.tripkase", method=RequestMethod.POST)
-	public ModelAndView restaurantDetailView(ModelAndView mv, Integer resNo) {
+	@RequestMapping(value="/restaurant/restaurantDetailView.tripkase", method=RequestMethod.GET)
+	public ModelAndView restaurantDetailView(ModelAndView mv, HttpSession session,
+							@RequestParam("resNo") Integer resNo,  @RequestParam("page") Integer page) {
 		try {
 			Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
+			session.setAttribute("resNo", restaurant.getResNo());
 			mv.addObject("restaurant" , restaurant);
-			mv.setViewName("restaurant/resDetailView");
+			mv.addObject("page", page);
+			mv.setViewName("restaurant/restaurantDetailView");
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 		}

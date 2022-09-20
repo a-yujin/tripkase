@@ -13,7 +13,7 @@
 	<form action="/restaurant/restaurantSearch.tripkase" method="get">
 		<input type="text" id="restaurantName" name="searchValue">
 		<br>
-		<input type="radio" id="resArea1" name="areaValue" value="all"> 전체보기
+		<input type="radio" id="resArea1" name="areaValue" value=""> 전체보기
 		<input type="radio" id="resArea2" name="areaValue" value="seoul"> 서울
 		<input type="radio" id="resArea3" name="areaValue" value="gyeonggi"> 경기
 		<input type="radio" id="resArea4" name="areaValue" value="incheon"> 인천
@@ -28,7 +28,7 @@
 		<br><br>
 		<label><input type="checkbox" name="typeValue" value="korean"> 한식 </label>
 		<label><input type="checkbox" name="typeValue" value="chinese"> 중식 </label>
-		<label><input type="checkbox" name="typeValue" value="Japanese"> 일식 </label>
+		<label><input type="checkbox" name="typeValue" value="japanese"> 일식 </label>
 		<label><input type="checkbox" name="typeValue" value="american"> 양식 </label>
 		<label><input type="checkbox" name="typeValue" value="etc"> 기타 </label>
 		<br><br>

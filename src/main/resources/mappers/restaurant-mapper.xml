@@ -22,18 +22,36 @@
  	</resultMap>
  		
 	<insert id="insertRestaurant">
-		INSERT INTO RESTAURANT_TBL VALUES(3, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resFilename},#{resFileRename}, #{resFilepath}, #{resMap}, DEFAULT, #{resAddress})
+		INSERT INTO RESTAURANT_TBL VALUES(SEQ_RES_NO.NEXTVAL, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resFilename},#{resFileRename}, #{resFilepath}, #{resMap}, DEFAULT, #{resAddress})
 	</insert>
 	
-	<select id="getRestaurantCount" resultType="_int" resultMap="RestaurantResultMap">
-		SELECT COUNT(*) FROM RESTAURANT_TBL WHERE RES_AREA = #{resArea} AND RES_TYPE IN
+	<select id="printOneByRestaurantNo" resultMap="RestaurantResultMap">
+		SELECT * FROM RESTAURANT_TBL WHERE RES_NO = #{resNo}
+	</select>
+	
+	<select id="getRestaurantCount" resultType="_int" parameterType="map">
+		SELECT
+			COUNT(*)
+		FROM RESTAURANT_TBL
+		WHERE RES_NAME LIKE '%'||#{searchValue}||'%'
+		 <if test='!areaValue.equals("") and areaValue !=null'>
+            AND RES_AREA = #{areaValue}
+        </if>
+			AND RES_TYPE IN
 		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
 			#{resType}
 		</foreach>
 	</select>
 	
-	<select id="printRestaurantByValue" resultMap="RestaurantResultMap">
-		SELECT * FROM RESTAURANT_TBL WHERE RES_AREA = #{resArea} AND RES_TYPE IN
+	<select id="printRestaurantByValue" resultMap="RestaurantResultMap" parameterType="map">
+		SELECT
+		 * 
+		FROM RESTAURANT_TBL
+		WHERE RES_NAME LIKE '%'||#{searchValue}||'%'
+		 <if test='!areaValue.equals("") and areaValue !=null'>
+            AND RES_AREA = #{areaValue}
+        </if>
+			AND RES_TYPE IN
 		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
 			#{resType}
 		</foreach>

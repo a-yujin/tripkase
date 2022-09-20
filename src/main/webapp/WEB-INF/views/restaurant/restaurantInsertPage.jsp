@@ -11,24 +11,24 @@
 	<form action="/restaurant/insertRestaurant.tripkase" method="post" enctype="multipart/form-data">
 		
 		<br><br>종류 선택
-		<input type="radio" id="resType" name="resType" value="korea"> 한식
+		<input type="radio" id="resType" name="resType" value="korean"> 한식
 		<input type="radio" id="resType" name="resType" value="chinese"> 중식
-		<input type="radio" id="resType" name="resType" value="japan"> 일식
-		<input type="radio" id="resType" name="resType" value="amearica"> 양식
-		<input type="radio" id="resType" name="resType" value="guitar"> 기타
+		<input type="radio" id="resType" name="resType" value="japanese"> 일식
+		<input type="radio" id="resType" name="resType" value="american"> 양식
+		<input type="radio" id="resType" name="resType" value="etc"> 기타
 		
 		<br><br> 지역
-		<input type="radio" id="resArea" name="resArea" value="seoul"> 서울
-		<input type="radio" id="resArea" name="resArea" value="gyenggi"> 경기
-		<input type="radio" id="resArea" name="resArea" value="incheon"> 인천
-		<input type="radio" id="resArea" name="resArea" value="kangwon"> 강원
-		<input type="radio" id="resArea" name="resArea" value="chungbuk"> 충청북도
-		<input type="radio" id="resArea" name="resArea" value="chungnam"> 충청남도
-		<input type="radio" id="resArea" name="resArea" value="gyengbuk"> 경상북도
-		<input type="radio" id="resArea" name="resArea" value="gyengnam"> 경상남도
-		<input type="radio" id="resArea" name="resArea" value="jeonbuk"> 전라북도
-		<input type="radio" id="resArea" name="resArea" value="jeonnam"> 전라남도
-		<input type="radio" id="resArea" name="resArea" value="jeju"> 제주
+		<input type="radio" id="resArea1" name="resArea" value="seoul"> 서울
+		<input type="radio" id="resArea2" name="resArea" value="gyeonggi"> 경기
+		<input type="radio" id="resArea3" name="resArea" value="incheon"> 인천
+		<input type="radio" id="resArea4" name="resArea" value="kangwon"> 강원
+		<input type="radio" id="resArea5" name="resArea" value="chungbuk"> 충청북도
+		<input type="radio" id="resArea6" name="resArea" value="chungnam"> 충청남도
+		<input type="radio" id="resArea7" name="resArea" value="gyeongbuk"> 경상북도
+		<input type="radio" id="resArea8" name="resArea" value="gyeongnam"> 경상남도
+		<input type="radio" id="resArea9" name="resArea" value="jeonbuk"> 전라북도
+		<input type="radio" id="resArea10" name="resArea" value="jeonnam"> 전라남도
+		<input type="radio" id="resArea11" name="resArea" value="jeju"> 제주
 		<br><br>
 		
 		<br><br>이름
