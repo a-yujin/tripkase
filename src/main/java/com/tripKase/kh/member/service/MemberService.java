@@ -14,9 +14,10 @@ public interface MemberService {
 	
 	public int removeMember(String memberId);
 	
-	public String findIdMember(Member member);
+	public Member findIdMember(String memberName, String memberEmail);
 	
-	public Member findPwdMember(Member member);
+	public Member findPwdMember(String memberId, String memberEmail);
+	
 	
 
 }

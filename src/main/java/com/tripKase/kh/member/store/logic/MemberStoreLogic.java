@@ -21,7 +21,7 @@ public class MemberStoreLogic implements MemberStore {
 
 	@Override
 	public Member memberLogin(SqlSession session, Member member) {
-		Member mOne = session.selectOne("MemberMapper.selectLoingMember", member);
+		Member mOne = session.selectOne("MemberMapper.selectLoginMember", member);
 		return mOne;
 	}
 
@@ -44,17 +44,34 @@ public class MemberStoreLogic implements MemberStore {
 	}
 
 	@Override
-	public String findMemberId(SqlSession session, Member member) {
-		String result = session.selectOne("MemberMapper.findMemberId", member);
+	public Member findMemberId(SqlSession session, String memberName, String memberEmail) {
+		HashMap<String, String> param = new HashMap<>();
+		param.put("memberName", memberName);
+		param.put("memberEmail", memberEmail);
+		Member result = session.selectOne("MemberMapper.findMemberId", param );
 		return result;
 	}
 
 	@Override
-	public Member findPwdMember(SqlSession session, Member member) {
-		Member mOne = session.selectOne("MemberMapper.findMemberPwd", member);
-		return mOne;
+	public Member findPwdMember(SqlSession session, String memberId, String memberEmail) {
+		HashMap<String, String> param = new HashMap<>();
+		param.put("memberId", memberId);
+		param.put("memberEmail", memberEmail);
+		Member member = session.selectOne("MemberMapper.findMemberPwd", param);
+		return member;
 	}
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

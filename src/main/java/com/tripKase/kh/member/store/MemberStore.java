@@ -16,7 +16,8 @@ public interface MemberStore {
 	
 	public int removeMember(SqlSession session,String memberId);
 	
-	public String findMemberId(SqlSession session, Member member);
+	public Member findMemberId(SqlSession session, String memberName, String memberEmail);
 	
-	public Member findPwdMember(SqlSession session, Member member);
+	public Member findPwdMember(SqlSession session, String memberId, String memberEmail);
+	
 }

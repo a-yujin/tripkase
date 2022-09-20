@@ -25,10 +25,10 @@
  
 	 <insert id="registerMember">
 	 		INSERT INTO MEMBER_TBL
-	 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  #{memberGrade}, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT)
+	 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  DEFAULT, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT)
 	 </insert>
  
- 	<select id="selectLoingMember" resultMap="MemberResultMap">
+ 	<select id="selectLoginMember" resultMap="MemberResultMap">
  		SELECT * FROM MEMBER_TBL
  		WHERE MEMBER_ID = #{memberId} AND MEMBER_PWD = #{memberPwd}
  	</select>
@@ -51,8 +51,13 @@
  	</update>
  	
  	<select id="findMemberId" resultMap="MemberResultMap">
- 	SELECT MEMBER_ID FROM MEMBER_TBL
+ 	SELECT * FROM MEMBER_TBL
  	WHERE MEMBER_NAME = #{memberName} AND MEMBER_EMAIL = #{memberEmail}
+ 	</select>
+ 	
+ 	<select id="findMemberPwd" resultMap="MemberResultMap">
+ 	SELECT * FROM MEMBER_TBL
+ 	WHERE MEMBER_ID = #{memberId} AND MEMBER_EMAIL = #{memberEmail}
  	</select>
  </mapper>
  
