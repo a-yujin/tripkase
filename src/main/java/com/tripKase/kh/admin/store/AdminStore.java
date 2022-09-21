@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
@@ -52,4 +53,11 @@ public interface AdminStore {
 
 	Notice noticeDetail(SqlSession session, int noticeNo);
 
+	List<NoticeImg> noticeImgDetail(SqlSession session, int noticeNo);
+
+	int registerNoticeImg(SqlSession session, NoticeImg noticeImg);
+
+	int updateNotice(SqlSession session, Notice notice);
+
+	int updateNoticeImg(SqlSession session, NoticeImg noticeImg);
 }

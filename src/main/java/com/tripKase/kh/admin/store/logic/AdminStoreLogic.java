@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.admin.store.AdminStore;
 import com.tripKase.kh.grade.domain.Grade;
@@ -141,10 +142,36 @@ public class AdminStoreLogic implements AdminStore {
 		int result = session.insert("AdminMapper.registerNotice",notice);
 		return result;
 	}
-
+	
+	//공지 상세 조회에 사용할 공지 정보
 	@Override
 	public Notice noticeDetail(SqlSession session, int noticeNo) {
 		Notice notice = session.selectOne("AdminMapper.noticeDetail", noticeNo);
 		return notice;
+	}
+
+	//공지 상세 조회에서 서용할 이미지 정보
+	@Override
+	public List<NoticeImg> noticeImgDetail(SqlSession session, int noticeNo) {
+		List<NoticeImg> niList = session.selectList("AdminMapper.noticeImgDetail", noticeNo);
+		return niList;
+	}
+	
+	@Override
+	public int registerNoticeImg(SqlSession session, NoticeImg noticeImg) {
+		int result = session.insert("AdminMapper.registerNoticeImg",noticeImg);
+		return result;
+	}
+
+	@Override
+	public int updateNotice(SqlSession session, Notice notice) {
+		int result = session.update("AdminMapper.updateNotice", notice);
+		return result;
+	}
+
+	@Override
+	public int updateNoticeImg(SqlSession session, NoticeImg noticeImg) {
+		int result = session.update("AdminMapper.updateNoticeImg", noticeImg);
+		return result;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +35,9 @@
 		<tr>
 			<td>첨부파일</td>
 			<td>
-				<img alt="본문이미지" 
-				src="/resources/nUploadFiles/${notice.nFileRename }" 
-				width="300" height="300">
+				<c:forEach items="${niList }" var="img" varStatus="i">
+				<img alt="공지이미지" src="/resources/nUploadFiles/${img.nFileRename}" width="300" height="300">
+				</c:forEach>
 			</td>
 		</tr>
 		<tr>

@@ -2,6 +2,7 @@ package com.tripKase.kh.admin.service;
 
 import java.util.List;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
@@ -49,5 +50,13 @@ public interface AdminService {
 	int registerNotice(Notice notice);
 
 	Notice noticeDetail(int noticeNo);
+
+	List<NoticeImg> noticeImgDetail(int noticeNo);
+
+	int registerNoticeImg(NoticeImg noticeImg);
+
+	int updateNotice(Notice notice);
+
+	int updateNoticeImg(NoticeImg noticeImg);
 
 }

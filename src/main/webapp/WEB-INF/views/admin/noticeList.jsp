@@ -27,13 +27,13 @@
 					<tr>
 						<td colspan="3" align="center">
 							<c:if test="${currentPage ne 1 }">
-								<a href="/admin/reportList.tripkase?page=${currentPage - 1}">이전</a>
+								<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
 							</c:if>
 							<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-							<a href="/admin/reportList.tripkase?page=${page }">${page }</a>
+							<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
 							</c:forEach>
 							<c:if test="${currentPage ne maxPage}">
-							<a href="/admin/reportList.tripkase?page=${currentPage + 1 }">다음</a>
+							<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
 							</c:if>
 						</td>
 						<td>

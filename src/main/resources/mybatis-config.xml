@@ -9,6 +9,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.tripKase.kh.admin.domain.Report" alias="Report"/>
+		<typeAlias type="com.tripKase.kh.admin.domain.NoticeImg" alias="NoticeImg"/>
 		<typeAlias type="com.tripKase.kh.attraction.domain.Attraction" alias="Attraction"/>
 		<typeAlias type="com.tripKase.kh.course.domain.Course" alias="Course"/>
 		<typeAlias type="com.tripKase.kh.grade.domain.Grade" alias="Grade"/>

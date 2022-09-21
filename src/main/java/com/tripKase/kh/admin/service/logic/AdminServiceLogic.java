@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.admin.service.AdminService;
 import com.tripKase.kh.admin.store.AdminStore;
@@ -138,6 +139,30 @@ public class AdminServiceLogic implements AdminService {
 	public Notice noticeDetail(int noticeNo) {
 		Notice notice = aStore.noticeDetail(session, noticeNo);
 		return notice;
+	}
+
+	@Override
+	public int registerNoticeImg(NoticeImg noticeImg) {
+		int result = aStore.registerNoticeImg(session,noticeImg);
+		return result;
+	}
+
+	@Override
+	public List<NoticeImg> noticeImgDetail(int noticeNo) {
+		List<NoticeImg> niList = aStore.noticeImgDetail(session, noticeNo);
+		return niList;
+	}
+
+	@Override
+	public int updateNotice(Notice notice) {
+		int result = aStore.updateNotice(session,notice);
+		return result;
+	}
+
+	@Override
+	public int updateNoticeImg(NoticeImg noticeImg) {
+		int result = aStore.updateNoticeImg(session,noticeImg);
+		return result;
 	}
 	
 }
