@@ -67,6 +67,7 @@
 		<result property="nFilePath" 	column="N_FILEPATH"/>
 		<result property="noticeCount" 	column="NOTICE_COUNT"/>
 		<result property="noticeStatus" column="NOTICE_STATUS"/>
+		<result property="imgNo" column="IMG_NO"/>
 	</resultMap>
  
  	<!--회원 관리  -->
@@ -138,8 +139,8 @@
 		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
 		AND NOTICE_STATUS = 'Y'
 	</select>
-	<insert id="insertNotice">
+	<insert id="registerNotice">
 		INSERT INTO NOTICE_TBL
-		VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeWriter}, #{noticeType}, #{noticeTitle}, DEFAULT, DEFAULT, #{nContents}, #{nFileName}, #{nFileRename}, #{nFilePath}, DEFAULT, DEFAULT)
+		VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeWriter}, #{noticeType}, #{noticeTitle}, DEFAULT, DEFAULT, #{nContents}, #{nFileName}, #{nFileRename}, #{nFilePath}, DEFAULT, DEFAULT, #{imgNo})
 	</insert>
  </mapper>

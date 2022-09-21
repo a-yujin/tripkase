@@ -18,7 +18,8 @@ import com.tripKase.kh.trip.domain.TripReply;
 
 @Repository
 public class AdminStoreLogic implements AdminStore {
-
+	
+	//회원
 	@Override
 	public List<Member> selectAllMember(SqlSession session, int currentPage, int limit) {
 		int offset = (currentPage-1)*limit;
@@ -48,6 +49,7 @@ public class AdminStoreLogic implements AdminStore {
 		return result;
 	}
 	
+	//신고 조회
 	@Override
 	public List<Report> selectAllReport(SqlSession session,int currentPage, int limit) {
 		int offset = (currentPage-1)*limit;
@@ -62,7 +64,7 @@ public class AdminStoreLogic implements AdminStore {
 		return report;
 	}
 
-
+	//신고된 컨텐츠
 	@Override
 	public Trip selectTripByNo(SqlSession session, int cotentsNo) {
 		Trip trip = session.selectOne("AdminMapper.selectTripByNo", cotentsNo);
@@ -89,6 +91,7 @@ public class AdminStoreLogic implements AdminStore {
 		return grade;
 	}
 	
+	//신고된 컨텐츠 삭제
 	@Override
 	public int deleteReport(SqlSession session, Integer reportNo) {
 		int result = session.delete("AdminMapper.deleteReport",reportNo);
@@ -119,6 +122,7 @@ public class AdminStoreLogic implements AdminStore {
 		return result;
 	}
 
+	//getTotalCount
 	@Override
 	public int getMemberTotalCount(SqlSession session) {
 		int result = session.selectOne("AdminMapper.getMemberTotalCount");
@@ -131,6 +135,7 @@ public class AdminStoreLogic implements AdminStore {
 		return result;
 	}
 
+	//공지 관련
 	@Override
 	public int registerNotice(SqlSession session, Notice notice) {
 		int result = session.insert("AdminMapper.registerNotice",notice);

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.admin.domain.Report;
@@ -315,44 +316,113 @@ public class AdminController {
 		return "/admin/noticeWriteForm";
 	}
 	
+//	//공지 등록
+//	@RequestMapping(value="/admin/registerNotice.tripkase", method=RequestMethod.POST)
+//	public ModelAndView registerNotice(
+//			ModelAndView mv,
+//			@ModelAttribute Notice notice,
+//			@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
+//			HttpServletRequest request) {
+//		try {
+//			String noticeFileName = uploadFile.getOriginalFilename();
+//			if(!noticeFileName.equals("")) {
+//				String root = request.getSession().getServletContext().getRealPath("resources");
+//				//resources/nUploadFiles
+//				String savePath = root + "\\nUploadFiles";
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+//				//20220921104350.jpg
+//				String noticeFileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+noticeFileName.substring(noticeFileName.lastIndexOf(".")+1);
+//				File file = new File(savePath);
+//				if(!file.exists()) {
+//					System.out.println(savePath);
+//					file.mkdir();
+//				}
+//				//resources/nUploadFiles/202209211104350.jpg 
+//				uploadFile.transferTo(new File(savePath+"\\"+noticeFileRename));
+//				String noticeFilePath = savePath+"\\"+noticeFileRename;
+//				notice.setnFileName(noticeFileName);
+//				notice.setnFileRename(noticeFileRename);
+//				notice.setnFilePath(noticeFilePath);
+//			}
+//			int result = aService.registerNotice(notice);
+//			mv.setViewName("redirect:/admin/noticeList.tripkase");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			mv.addObject("msg", e.getMessage());
+//			mv.setViewName("common/errorPage");
+//		}
+//		return mv;
+//	}
+	
 	//공지 등록
 	@RequestMapping(value="/admin/registerNotice.tripkase", method=RequestMethod.POST)
 	public ModelAndView registerNotice(
 			ModelAndView mv,
 			@ModelAttribute Notice notice,
-			@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile, // value -> jsp name
-			HttpServletRequest request) {
+//			@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
+			@RequestParam(value="uploadFile", required=false) List<MultipartFile> uploadFile,
+			HttpServletRequest request,
+			MultipartHttpServletRequest mRequest) {
 		try {
-			String noticeFileName = uploadFile.getOriginalFilename();
-			if(!noticeFileName.equals("")) {
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				String savePath = root + "\\nUploadFiles";
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-				String noticeFileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+noticeFileName.substring(noticeFileName.lastIndexOf(".")+1);
-				File file = new File(savePath);
-				if(!file.exists()) {
-					file.mkdir();
+			System.out.println(uploadFile.size());
+			int imgNo = 1;
+			
+			for(MultipartFile mf : uploadFile ) {
+				String noticeFileName = mf.getOriginalFilename();
+				if(!noticeFileName.equals("")) {
+					String root = request.getSession().getServletContext().getRealPath("resources");
+					//resources/nUploadFiles
+					String savePath = root + "\\nUploadFiles";
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					//20220921104350.jpg
+					String noticeFileRename = sdf.format(new Date(System.currentTimeMillis()))+imgNo+"."+noticeFileName.substring(noticeFileName.lastIndexOf(".")+1);
+					File file = new File(savePath);
+					if(!file.exists()) {
+						System.out.println(savePath);
+						file.mkdir();
+					}
+					//resources/nUploadFiles/202209211104350.jpg 
+					mf.transferTo(new File(savePath+"\\"+noticeFileRename));
+					String noticeFilePath = savePath+"\\"+noticeFileRename;
+					notice.setnFileName(noticeFileName);
+					notice.setnFileRename(noticeFileRename);
+					notice.setnFilePath(noticeFilePath);
+					imgNo = imgNo +1;
 				}
-				uploadFile.transferTo(new File(savePath+"\\"+noticeFileRename));
-				String noticeFilePath = savePath+"\\"+noticeFileRename;
-				notice.setnFileName(noticeFileName);
-				notice.setnFileRename(noticeFileRename);
-				notice.setnFilePath(noticeFilePath);
+				int result = aService.registerNotice(notice);
+				mv.setViewName("redirect:/admin/noticeList.tripkase");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				mv.addObject("msg", e.getMessage());
+				mv.setViewName("common/errorPage");
 			}
-			int result = aService.registerNotice(notice);
-			mv.setViewName("redirect:/admin/noticeList.tripkase");
-		} catch (Exception e) {
-			mv.addObject("msg", e.getMessage());
-			mv.setViewName("common/errorPage");
-		}
 		return mv;
 	}
-	//공지 수정
+	//공지 수정 페이지 
+	@RequestMapping(value="/admin/modifyNoticeView.tripkase")
+	public ModelAndView modifyNoticeView(
+			ModelAndView mv
+			,@RequestParam("noticeNo") int noticeNo) {
+		Notice notice = aService.noticeDetail(noticeNo);
+		mv.addObject("notice", notice);
+		mv.setViewName("/admin/modifyNoticeForm");
+		return mv;
+	}
+	
+	//공지 수정 페이지 
+	@RequestMapping(value="/admin/updateNotice.tripkase", method=RequestMethod.POST)
 	public ModelAndView updateNotice(
-			ModelAndView mv) {
+			ModelAndView mv
+			,@RequestParam("noticeNo") int noticeNo) {
+		Notice notice = aService.noticeDetail(noticeNo);
+		mv.addObject("notice", notice);
+		mv.setViewName("/admin/modifyNoticeForm");
 		return mv;
 	}
+	
 	//공지 삭제
+	@RequestMapping(value="admin/deleteNotice.tripkase")
 	public ModelAndView deleteNotice(
 			ModelAndView mv) {
 		return mv;
