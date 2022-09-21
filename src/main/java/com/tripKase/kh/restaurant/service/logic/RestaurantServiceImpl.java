@@ -45,4 +45,10 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return restaurant;
 	}
 
+	@Override
+	public int deleteRestaurant(Integer resNo) {
+		int result = resStore.deleteRestaurant(session, resNo);
+		return result;
+	}
+
 }

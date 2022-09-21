@@ -3,37 +3,62 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="RestaurantMapper">
-
  	 <resultMap type="Restaurant" 			id="RestaurantResultMap">
-	 	<id 	property="resNo" 			column="RES_NO"/>
-	 	<result property="resArea" 			column="RES_AREA"/>
-	 	<result property="resType" 			column="RES_TYPE"/>
-	 	<result property="resName" 			column="RES_NAME"/>
-	 	<result property="resTel" 			column="RES_TEL"/>
-	 	<result property="resDayoff" 		column="RES_DAYOFF"/>
-	 	<result property="resMainmenu" 		column="RES_MAINMENU"/>
-	 	<result property="resDetail" 		column="RES_DETAIL"/>
-	 	<result property="resFilename" 		column="RES_FILENAME"/>
-	 	<result property="resFileRename" 	column="RES_FILERENAME"/>
-	 	<result property="resFilepath" 		column="RES_FILEPATH"/>
-	 	<result property="resMap" 			column="RES_MAP"/>
-	 	<result property="resStatus" 		column="RES_STATUS"/>
-	 	<result property="resAddress" 		column="RES_ADDRESS"/>
+	 	<id 	property="resNo" 			column="RES_NO"/>			<!-- 맛집 ID-->
+	 	<result property="resArea" 			column="RES_AREA"/>			<!-- 맛집 지역 -->
+	 	<result property="resType" 			column="RES_TYPE"/>			<!-- 맛집 타입 -->
+	 	<result property="resName" 			column="RES_NAME"/>			<!-- 맛집 가게 이름 -->
+	 	<result property="resTel" 			column="RES_TEL"/> 			<!-- 맛집 연락처 -->
+	 	<result property="resDayoff" 		column="RES_DAYOFF"/>		<!-- 맛집 휴일 -->
+	 	<result property="resMainmenu" 		column="RES_MAINMENU"/> 	<!-- 맛집 대표메뉴 -->
+	 	<result property="resDetail" 		column="RES_DETAIL"/>		<!-- 맛집 상세정보 -->
+	 	<result property="resFilename" 		column="RES_FILENAME"/>		<!-- 맛집 이미지파일 업로드 -->
+	 	<result property="resFileRename" 	column="RES_FILERENAME"/>	<!-- 맛집 이미지파일 업로드 후 -->
+	 	<result property="resFilepath" 		column="RES_FILEPATH"/>		<!-- 맛집 이미지 경로 -->
+	 	<result property="resMap" 			column="RES_MAP"/> 			<!-- 맛집 지도 위치 -->
+	 	<result property="resStatus" 		column="RES_STATUS"/>		<!-- 맛집 게시 여부 (Y/N) -->
+	 	<result property="resAddress" 		column="RES_ADDRESS"/>		<!-- 맛집 주소 -->
  	</resultMap>
- 		
+ 	
+ 	<!-- 맛집 등록  -->
 	<insert id="insertRestaurant">
-		INSERT INTO RESTAURANT_TBL VALUES(3, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resFilename},#{resFileRename}, #{resFilepath}, #{resMap}, DEFAULT, #{resAddress})
+		INSERT INTO RESTAURANT_TBL VALUES(SEQ_RES_NO.NEXTVAL, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resFilename},#{resFileRename}, #{resFilepath}, #{resMap}, DEFAULT, #{resAddress})
 	</insert>
 	
-	<select id="getRestaurantCount" resultType="_int" resultMap="RestaurantResultMap">
-		SELECT COUNT(*) FROM RESTAURANT_TBL WHERE RES_AREA = #{resArea} AND RES_TYPE IN
+	<!-- 맛집 삭제 (게시 여부를 N으로) -->
+	<update id="deleteRestaurant">
+		UPDATE RESTAURANT_TBL SET RES_STATUS = 'N' WHERE RES_NO = #{resNo}
+	</update>
+	
+	<!-- 맛집 ID값으로 하나 선택하는 매퍼 -->
+	<select id="printOneByRestaurantNo" resultMap="RestaurantResultMap">
+		SELECT * FROM RESTAURANT_TBL WHERE RES_NO = #{resNo}
+	</select>
+	
+	<!-- 맛집 필터 검색 후 나오는 수 카운트 -->
+	<select id="getRestaurantCount" resultType="_int" parameterType="map">
+		SELECT COUNT(*) FROM RESTAURANT_TBL
+		WHERE RES_NAME LIKE '%'||#{searchValue}||'%' AND RES_STATUS = 'Y'
+		 <if test='!areaValue.equals("") and areaValue !=null'>
+            AND RES_AREA = #{areaValue}
+        </if>
+			AND RES_TYPE IN
 		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
 			#{resType}
 		</foreach>
 	</select>
 	
-	<select id="printRestaurantByValue" resultMap="RestaurantResultMap">
-		SELECT * FROM RESTAURANT_TBL WHERE RES_AREA = #{resArea} AND RES_TYPE IN
+	<!-- 맛집 필터 검색 매퍼 -->
+	<select id="printRestaurantByValue" resultMap="RestaurantResultMap" parameterType="map">
+		<!-- 검색값을 와일드카드로 감싼 후 가게 이름과 비교해서 동일하고 게시여부가 Y인 맛집만 -->
+		SELECT * FROM RESTAURANT_TBL
+		WHERE RES_NAME LIKE '%'||#{searchValue}||'%' AND RES_STATUS = 'Y'
+		 <!-- 지역값이 전체보기(insertPage에 지역 전체보기의 값을 ""으로 넣음)가 아니거나 지역값이 널이 아닌경우는 선택한 지역값을 조회하게 -->
+		 <if test='!areaValue.equals("") and areaValue !=null'>
+            AND RES_AREA = #{areaValue}
+        </if>
+        <!-- 맛집 종류인 타입밸류를 포이치 통해서 선택해서 선택된 값만 비교 -->
+			AND RES_TYPE IN
 		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
 			#{resType}
 		</foreach>

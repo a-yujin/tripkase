@@ -1,110 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>마이 페이지</title>
 </head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <body>
+	<jsp:include page="../common/header.jsp"/>
 	<h1 align="center">마이페이지</h1>
 	<div align="center" class="">
-		<form  action="/member/modify.tripkase" method="POST">
-		<table>
-			<tr>
-				<td> * 아이디</td>
-				<td>
-					<input type="text" id="memberId" name="memberId" value="${mOne.memberId }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 현재 비밀번호</td>
-				<td>
-					<input type="password" name="memberPwd" value="${mOne.memberPwd }" readonly>
-				</td>
-			 </tr>
-			<tr>
-				<td> * 닉네임</td> 
-				<td>
-					<input type="text" name="memberNick" value="${mOne.memberNick }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 이름</td>
-				<td>
-					<input type="text" name="memberName" value="${mOne.memberName }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 생년월일</td>
-				<td>
-					<input type="text" name="memberBd" value="${mOne.memberBd }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 성별</td>
-				<td>
-					<input type="text" name="memberGender" value="${mOne.memberGender }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 핸드폰번호</td>
-				<td>
-					<input type="text" name="memberPhone" value="${mOne.memberPhone }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 이메일</td>
-				<td>
-					<input type="text" name="memberEmail" value="${mOne.memberEmail }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td> * 현재 나의 등급</td>
-				<td>
-					<input type="text" name="memberGrade" value="${mOne.memberGrade }" readonly>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<button type="button" onclick="checkPassword();">수정페이지로 이동</button>
-					<button type="button" onclick="removeMember();">탈퇴하기</button>
-				</td>
-			</tr>
-		</table>
-	</form>
+		<div>
+		닉네임 :
+		<input id= "memberinfo1" class="form-control" type="text" placeholder="${mOne.memberNick }" aria-label="Disabled input example" disabled>
+		<br>
+		회원 등급 : 
+		<input id= "memberinfo2" class="form-control" type="text" placeholder="${mOne.memberGrade }" aria-label="Disabled input example" disabled>
+		</div><br><br>
+		
+		<div onclick="location.href='/member/storageMain.tripkase';">
+			보관함
+		</div><br><br>
+		
+		<div onclick="location.href='#';">
+			여행일정관리
+		</div><br><br>
+		
+		<div onclick="location.href='/member/myInfo.tripkase';">
+			내정보관리
+		</div><br><br>
+		
+		<div onclick="location.href='#';">
+			Q&A
+		</div>
 	</div>
-	<script>
-		function removeMember() {
-			if(confirm("탈퇴하시겠습니까?")){
-			location.href="/member/removeMember.tripkase";
-			}
-		}
-		$("#postcodify_search_button").postcodifyPopUp();
-		
-		function checkPassword(){
-			var goodUrl = "/member/modifyView.tripkase";
-			var badUrl = "member/myPage";
-			alert("패스워드를 입력해주세요.");
-			var password = prompt("password입력");	
-			var memberPwd = "${sessionScope.loginMember.memberPwd}";
-		
-			if(password == memberPwd){
-				location.href = goodUrl;
-			}else{
-				alert("패스워드가 일치하지 않습니다.");
-				location.href = badUrl;
-			}
-		}
-	</script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </html>
-
-
-
-
-
-
-
-
-

@@ -21,12 +21,12 @@ public class RestaurantStoreLogic implements RestaurantStore{
 
 	@Override
 	public int getRestaurantCount(SqlSession session, String searchValue, String areaValue, String [] typeValue) {
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("searchValue", searchValue);
-		paramMap.put("areaValue", areaValue);
-		paramMap.put("typeValue", typeValue);
-		int count = session.selectOne("RestaurantMapper.getRestaurantCount", paramMap);
-		return count;
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();		// 해쉬 맵 스트링 스트링일 경우 리스트를 못받아와서 해쉬맵 스트링 오브젝트
+		paramMap.put("searchValue", searchValue);		// 가게명 검색값을 해쉬맵에 넣어줌
+		paramMap.put("areaValue", areaValue);			// 지역값 해쉬맵에 넣어줌
+		paramMap.put("typeValue", typeValue);			// 맛집 종류값 해쉬맵에 넣어줌 ( 리스트 )
+		
+		return session.selectOne("RestaurantMapper.getRestaurantCount", paramMap);
 	}
 
 	@Override
@@ -45,6 +45,12 @@ public class RestaurantStoreLogic implements RestaurantStore{
 	public Restaurant printOneByRestaurantNo(SqlSession session, Integer resNo) {
 		Restaurant restaurant = session.selectOne("RestaurantMapper.printOneByRestaurantNo", resNo);
 		return restaurant;
+	}
+
+	@Override
+	public int deleteRestaurant(SqlSession session, Integer resNo) {
+		int result = session.update("RestaurantMapper.deleteRestaurant", resNo);
+		return result;
 	}
 
 }
