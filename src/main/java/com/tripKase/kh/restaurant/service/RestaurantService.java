@@ -13,6 +13,8 @@ public interface RestaurantService {
 	public List<Restaurant> printRestaurantByValue(String searchValue, String areaValue, String [] typeValue, int currentPage, int boardLimit);
 
 	public Restaurant printOneByRestaurantNo(Integer resNo);
+
+	public int deleteRestaurant(Integer resNo);
 	
 	
 }

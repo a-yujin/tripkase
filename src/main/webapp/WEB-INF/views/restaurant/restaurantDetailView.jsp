@@ -10,6 +10,7 @@
 <body>
 	<table align="center" border="1">
 		<tr>
+			<th>맛집ID값</th>
 			<th>이미지</th>
 			<th>맛집이름</th>
 			<th>주소</th>
@@ -21,7 +22,8 @@
 			<th>대표메뉴</th>
 		</tr>
 		<tr>
-			<td><img src="#"></td>
+			<td>${restaurant.resNo }</td>
+			<td><img src="/resources/resUploadFiles/${restaurant.resFileRename }" width="300" height="300"></td>
 			<td>${restaurant.resName }</td>
 			<td>${restaurant.resAddress }</td>
 			<td></td>
@@ -33,6 +35,9 @@
 			<td>${restaurant.resDayoff }</td>
 			<td>${restaurant.resMainmenu }</td>
 		</tr>
+		
+		<a href="/restaurant/deleteRestaurant.tripkase">삭제</a>
+		
 	</table>
 </body>
 </html>

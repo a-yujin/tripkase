@@ -24,7 +24,7 @@
 		<c:forEach items="${resList }" var="restaurant" varStatus="i">
 			<tr>
 				<td>
-					<img alt="맛집이미지" src="#" width="300" height="300">
+					<img src="/resources/resUploadFiles/${restaurant.resFileRename }" width="150" height="150">
 				</td>
 				<td><a href="/restaurant/restaurantDetailView.tripkase?resNo=${restaurant.resNo }&page=${currentPage}">${restaurant.resName }</a></td>
 				<td>${restaurant.resAddress }</td>
@@ -44,21 +44,37 @@
 	<tr align="center" height="20">
 		<td colspan="6">
 			<c:if test ="${currentPage != 1}">
-				<a href="/restaurant/${urlVal }.tripkase?page=${currentPage - 1 }&areaValue=${areaValue}&searchValue=${searchValue}&typeValue=${typeValue.toString()}">[이전]</a>
+				<a href="/restaurant/${urlVal }.tripkase?page=${currentPage - 1 }&areaValue=${areaValue}&searchValue=${searchValue}
+																<c:forEach items="${typeValue}" var="list">
+																		&typeValue=${list}
+																</c:forEach>">[이전]</a>
+			<!-- forEach통해 리스트로 받아지는 쿼리스트링을 벗겨내서 포이치문 한번 더 쓰는걸로 쿼리스트링 완성 -->
 			</c:if>
+			
 			<c:forEach var="p" begin="${startNavi }" end="${endNavi }">
 				<c:if test="${currentPage eq p }">
 					${p }
 				</c:if>
 				<c:if test="${currentPage ne p }">
-					<a href="/restaurant/${urlVal }.tripkase?page=${p }&areaValue=${areaValue}&searchValue=${searchValue}&typeValue=${typeValue.toString()}">${p }</a>
+					<a href="/restaurant/${urlVal }.tripkase?page=${p }&areaValue=${areaValue}&searchValue=${searchValue}
+													<c:forEach items="${typeValue}" var="list">
+															&typeValue=${list}
+													</c:forEach>">${p }</a>
 				</c:if>
 			</c:forEach>
+			
 			<c:if test ="${maxPage > currentPage}">
-			<a href="/restaurant/${urlVal }.tripkase?page=${currentPage + 1 }&areaValue=${areaValue}&searchValue=${searchValue}&typeValue=${typeValue.toString()}">[다음]</a>
+			<a href="/restaurant/${urlVal }.tripkase?page=${currentPage + 1 }&areaValue=${areaValue}&searchValue=${searchValue}
+						&typeValue=<c:forEach items="${typeValue}" var="list">
+											&typeValue=${list}
+									</c:forEach>">[다음]</a>
 			</c:if>
 		</td>
 	</tr>
+		<c:forEach items="${typeValue}" var="list">
+				${list}
+		</c:forEach>
+		<%-- 참고한 포이치를 통한 배열 인덱스값 추출--%>
 </table>
 </body>
 </html>
