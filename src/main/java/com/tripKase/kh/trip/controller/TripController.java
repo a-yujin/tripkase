@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.trip.domain.Trip;
+import com.tripKase.kh.trip.domain.TripReply;
 import com.tripKase.kh.trip.service.TripService;
 
 @Controller
@@ -47,10 +50,15 @@ public class TripController {
 			ModelAndView mv,
 			@ModelAttribute Trip trip,
 			@RequestParam(value="uploadFile") MultipartFile uploadFile,
-			HttpServletRequest request) {
+			HttpServletRequest request,
+			HttpSession session) {
 		try {
 			String tripFileName = uploadFile.getOriginalFilename();
 			if(!tripFileName.equals("")) {
+				// 로그인 유저 닉네임 가져오기
+				Member member = (Member)session.getAttribute("loginMember");
+				String tripWriter = member.getMemberNick();
+				trip.setTripWriter(tripWriter);
 				// 사진 저장 경로
 				String root = request.getSession().getServletContext().getRealPath("resources");
 				String savePath = root + "\\tuploadFiles";
@@ -77,10 +85,44 @@ public class TripController {
 	return mv;
 	}
 
+	/**
+	 * 여행소통 상세페이지 댓글 등록
+	 * @param mv
+	 * @param tReply
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/trip/addReply.tripkase", method=RequestMethod.POST)
+	public ModelAndView registerTriptReply(
+			ModelAndView mv,
+			@ModelAttribute TripReply tReply,
+			HttpSession session) {
+		Member member = (Member)session.getAttribute("loginMember");
+		String replyWriter = member.getMemberId();
+		int tripNo = tReply.getRepTripNo();
+		tReply.settReplyWriter(replyWriter);
+		int result = tService.registerReply(tReply);
+		if(result > 0) {
+			mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo);
+		}
+		return mv;
+	}
+	
+	/**
+	 * 여행소통 게시판 리스트
+	 * @param mv
+	 * @param trip
+	 * @param page
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/trip/tripList.tripkase", method=RequestMethod.GET)
 	public ModelAndView tripListView(
 			ModelAndView mv,
-			@RequestParam(value="page", required=false) Integer page) {
+			@ModelAttribute Trip trip,
+			@RequestParam(value="page", required=false) Integer page,
+			HttpSession session) {
+		
 		int currentPage = (page != null) ? page : 1;
 		int totalCount = tService.getTotalCount("", ""); // 전체 개시물의 갯수
 		int tripLimit = 10;
@@ -107,16 +149,27 @@ public class TripController {
 		mv.setViewName("trip/tripListView");
 		return mv;
 	}
-
+	
+	/**
+	 * 여행소통 상세페이지
+	 * @param mv
+	 * @param tripNo
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/trip/detailView.tripkase", method=RequestMethod.GET)
 	public ModelAndView tripDetailView(
 			ModelAndView mv,
 			@RequestParam("tripNo") int tripNo,
 			HttpSession session) {
 		Trip trip = tService.printListOne(tripNo);
+		// 댓글 List
+		List<TripReply> rList = tService.printAllTripReply(tripNo);
 		session.setAttribute("tripNo", trip.getTripNo());
+		// 댓글 List를 jsp에서 사용가능하게 해주는 코드
+		mv.addObject("rList", rList);
 		mv.addObject("trip", trip);
 		mv.setViewName("trip/tripDetailView");
 		return mv;
-	}
+	} 
 }
