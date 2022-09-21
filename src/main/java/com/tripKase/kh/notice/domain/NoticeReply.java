@@ -7,8 +7,8 @@ public class NoticeReply {
 	private int refNoticeNo; // 참고 공지 번호
 	private String nReplyWriter; // 공지 댓글 작성자
 	private String nReplyContents; // 공지 댓글 내용
-	private Date nReCreateDate; // 공지 등록일
-	private Date nReUpdateDate; // 공지 수정일
+	private Date nreCreateDate; // 공지 등록일
+	private Date nreUpdateDate; // 공지 수정일
 	private int nReplyCount; // 공지 댓글 수
 	private String nReplyStatus; // 공지 댓글 게시 여부
 	
@@ -36,17 +36,17 @@ public class NoticeReply {
 	public void setnReplyContents(String nReplyContents) {
 		this.nReplyContents = nReplyContents;
 	}
-	public Date getnReCreateDate() {
-		return nReCreateDate;
+	public Date getnreCreateDate() {
+		return nreCreateDate;
 	}
-	public void setnReCreateDate(Date nReCreateDate) {
-		this.nReCreateDate = nReCreateDate;
+	public void setnreCreateDate(Date nreCreateDate) {
+		this.nreCreateDate = nreCreateDate;
 	}
-	public Date getnReUpdateDate() {
-		return nReUpdateDate;
+	public Date getnreUpdateDate() {
+		return nreUpdateDate;
 	}
-	public void setnReUpdateDate(Date nReUpdateDate) {
-		this.nReUpdateDate = nReUpdateDate;
+	public void setnreUpdateDate(Date nreUpdateDate) {
+		this.nreUpdateDate = nreUpdateDate;
 	}
 	public int getnReplyCount() {
 		return nReplyCount;
@@ -64,7 +64,7 @@ public class NoticeReply {
 	@Override
 	public String toString() {
 		return "NoticeReply [nReplyNo=" + nReplyNo + ", refNoticeNo=" + refNoticeNo + ", nReplyWriter=" + nReplyWriter
-				+ ", nReplyContents=" + nReplyContents + ", nReCreateDate=" + nReCreateDate + ", nReUpdateDate="
-				+ nReUpdateDate + ", nReplyCount=" + nReplyCount + ", nReplyStatus=" + nReplyStatus + "]";
+				+ ", nReplyContents=" + nReplyContents + ", nreCreateDate=" + nreCreateDate + ", nreUpdateDate="
+				+ nreUpdateDate + ", nReplyCount=" + nReplyCount + ", nReplyStatus=" + nReplyStatus + "]";
 	}
 }

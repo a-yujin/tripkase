@@ -14,4 +14,7 @@ public interface NoticeService {
 	// 공지 목록 조회
 	public List<Notice> printAllNotice(int currentPage, int noticeLimit);
 
+	// 공지 상세 조회
+	public Notice printOneByNo(Integer noticeNo);
+
 }

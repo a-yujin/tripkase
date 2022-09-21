@@ -2,16 +2,16 @@
 body{
 	margin: 0;
 }
-.logo{
+#tk_logo{
 	width: 20%;
 	padding-left:  80px;
 	padding-right: 100px;
 }
-img{
+#tk_logo_img{
 	width: 60%;
 	height: 100%;
 }
-#header{
+#tk_header{
 	background-color: white;
 	list-style-type: none;
 	position: fixed;
@@ -23,33 +23,54 @@ img{
 	padding: 10px;
 	padding-left: 0;
 }
-.menu{
+#tk_menu1{
 	line-height: 50px;
 	height: 100%;
 	width: 10%;
 }
-li{
+#tk_menu2{
+	line-height: 50px;
+	height: 100%;
+	width: 10%;
+}
+#tk_menu3{
+	line-height: 50px;
+	height: 100%;
+	width: 10%;
+}
+.tk_h_item{
 	font-weight: bold;
 	font-size: 16px;
 	float: left;
 	text-align: center;
 	vertical-align: middle;
 }
-.login{
+#tk_login_btn{
+	font-weight: bold;
+	font-size: 16px;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
 	line-height: 50px;
 	height: 100%;
 	width: 20%;
 	padding-left: 180px;
 }
-li a{
+.tk_h_item a{
 	display: block;
 	color: black;
 	text-align: center;
 	text-decoration: none;
 }
-.menu a:hover{
+#tk_menu1 a:hover{
 	color: #A8D1F0;
 }
-.login a:hover{
+#tk_menu2 a:hover{
+	color: #A8D1F0;
+}
+#tk_menu3 a:hover{
+	color: #A8D1F0;
+}
+#tk_login a:hover{
 	color: #A8D1F0;
 }

@@ -35,4 +35,11 @@ public class NoticeStoreLogic implements NoticeStore {
 		return nList;
 	}
 
+	// 공지 상세 조회
+	@Override
+	public Notice selectOneByNo(SqlSession session, Integer noticeNo) {
+		Notice notice = session.selectOne("NoticeMapper.selectOneByNo", noticeNo);
+		return notice;
+	}
+
 }

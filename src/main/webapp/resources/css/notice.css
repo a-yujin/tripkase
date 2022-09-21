@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+/* 공지 목록 */
+#nListTable{
+	width: 600px;
+}
+
+#nListContents1{
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+#nListContents1 a{
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 18px;
+	color: black;
+}
+
+#nListContents2{
+	font-size: 12px;
+}
+
+#nListDate{
+	width: 13%;
+}
+
+#bottomLine{
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightgray;
+}
+
+#nListPage{
+	padding-top: 30px;
+}
+
+#nListPage a{
+	text-decoration: none;
+}
+
+#nListPrev{
+	color: black;
+	font-size: 12px;
+	padding-right: 30px;
+}
+
+#nListNext{
+	color: black;
+	font-size: 12px;
+	padding-left: 25px;
+}
+
+#nListCurrent{
+	padding-right: 5px;
+	font-size: 13px;
+	color: #A8D1F0;
+}
+
+#nListOther{
+	padding-right: 5px;
+	font-size: 13px;
+	color: black;
+}
+
+/* 공지 상세 */
+#nDetailTable{
+	width: 600px;
+}
+
+#nDetailPic{
+	width: 100%;
+}
+
+#nDetailContents1{
+	font-weight: bold;
+	font-size: 20px;
+	color: black;
+	padding-bottom: 5px;
+}
+
+#nDetailContents2{
+	font-size: 12px;
+}
+
+#nDetailWriter{
+	width: 12%;
+}
+
+#bottomLine2{
+	padding-top: 10px;
+	border-bottom: 1px solid lightgray;
+}
