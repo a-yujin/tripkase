@@ -42,7 +42,7 @@
 						<input type="hidden" id="like-check" value="${trip.tripLike }">
 						<img src="/resources/images/trip/beforeLike.png" id="likeimg" class="likeimgs" width="35px" height="30px">
 						<span id="like-counter">${trip.tripLike }</span>
-						<span id="card-maker">${loginUser.memberName } ${trip.tripCreate }</span>
+						<span id="card-maker">${trip.tripWriter } ${trip.tripCreate }</span>
 					</div>
 				</div>
 			</c:forEach>

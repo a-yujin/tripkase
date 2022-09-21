@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.tripKase.kh.trip.domain.Trip;
+import com.tripKase.kh.trip.domain.TripReply;
 import com.tripKase.kh.trip.store.TripStore;
 
 @Repository
@@ -19,6 +20,13 @@ public class TripStoreLogic implements TripStore{
 		return result;
 	}
 	
+	// 여행소통 게시글 댓글 등록 기능
+	@Override
+	public int insertTripReply(SqlSessionTemplate session, TripReply tReply) {
+		int result = session.insert("TripReplyMapper.insertTripReply", tReply);
+		return result;
+	}
+
 	// 여행소통 게시판 전체 조회
 	@Override
 	public List<Trip> selectAllTrip(SqlSessionTemplate session, int currentPage, int limit) {
@@ -28,11 +36,18 @@ public class TripStoreLogic implements TripStore{
 		List<Trip> tList = session.selectList("TripMapper.selectAllTrip", null, rowBounds);
 		return tList;
 	}
+	
+	// 여행소통 게시글 댓글 조회
+	@Override
+	public List<TripReply> selectAllReply(SqlSessionTemplate session, int tripNo) {
+		List<TripReply> tList = session.selectList("TripReplyMapper.selectAllTripReply", tripNo);
+		return tList;
+	}
 
 	// 여행소통 게시글 상세 조회
 	@Override
 	public Trip selectListOne(SqlSessionTemplate session, int tripNo) {
-		Trip trip = session.selectOne("selectListOne", tripNo);
+		Trip trip = session.selectOne("TripMapper.selectListOne", tripNo);
 		return trip;
 	}
 	

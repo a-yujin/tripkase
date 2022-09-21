@@ -33,13 +33,13 @@
 		<!-- 추쳔여행 추기하기 영역 -->
 		<div>
 			<p class="first-text">추천여행 추가하기</p>	
-			<p class="second-text">추천하고 싶은 여행지는 최대 4개까지 추가 가능합니다.</p>
+			<p class="second-text">아래 박스를 클릭하면 추천 여행지 추가가 가능하며 추천하고 싶은 여행지는 최대 4개까지 추가 가능합니다.</p>
 		</div>
 		<br><br>
 		<div id="add-wrapper">
 			<div id="add-outside">
 				<div id="add-inside">
-					<div class="trip-add">
+					<div class="trip-add" onclick="window.open('/trip/addTrip.tripkase', 'window_name', 'width=600, height=600, location=no, status=no, scrollbars=yes');">
 					</div>
 					<div class="trip-add">
 					</div>
@@ -54,7 +54,7 @@
 		<!-- 버튼 영역 -->
 		<br>
 		<div id="trip-button1">
-			<input type="button" id="tbutton1" value="목록으로">
+			<input type="button" id="tbutton1" value="목록으로" onclick="location.href='/trip/tripList.tripkase';">
 			<input type="submit" id="tbutton2" value="등록하기">
 		</div>
 		<br><br>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tripKase.kh.trip.domain.Trip;
+import com.tripKase.kh.trip.domain.TripReply;
 import com.tripKase.kh.trip.service.TripService;
 import com.tripKase.kh.trip.store.TripStore;
 
@@ -24,11 +25,24 @@ public class TripServiceImpl implements TripService {
 		return result;
 	}
 	
+	@Override
+	public int registerReply(TripReply tReply) {
+		int result = tStore.insertTripReply(session, tReply);
+		return result;
+	}
+
 	// 여행소통 게시판 전체 조회
 	@Override
 	public List<Trip> printAllTrip(int currentPage, int limit) {
 		List<Trip> tList = tStore.selectAllTrip(session, currentPage, limit);
 		return tList;
+	}
+	
+	// 여행소통 게시글 댓글 조회
+	@Override
+	public List<TripReply> printAllTripReply(int tripNo) {
+		List<TripReply> tList = tStore.selectAllReply(session, tripNo);
+		return null;
 	}
 
 	// 여행소통 게시글 상세페이지 조회

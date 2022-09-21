@@ -55,10 +55,9 @@ body {
 		margin-left : 20px;
 		margin-right : 20px;	
 	}
-		.add-button {
-			
+		#add-button {
+		
 		}
-	
 	
 #trip-button1 {
 	text-align : center;
@@ -81,9 +80,10 @@ body {
 		border-radius : 20px;
 	}
 /* tripDetailView.jsp */
+/* 상세페이지 상단 */
 #first {
 	margin : 0 auto;
-	width : 1000px;
+	width : 900px;
 	height : 450px;
 }
 	#first-left {
@@ -100,7 +100,7 @@ body {
 	#dot-select {
 		float : right;
 	}
-	
+/* 상세페이지 버튼 (이전 게시글, 목륵으로, 다음게시글) */
 #button-move {
 	text-align : center;
 }
@@ -112,6 +112,47 @@ body {
 		border : solid 1px gray;
 		border-radius : 15px;
 		background-color : white;
+	}
+	
+/* tripDetailView.jsp (댓글) */
+#tReply-wrapper {
+	width : 60%;
+	margin : 0 auto;
+}
+	#tReply-background {
+		width : 100%;
+		height : 170px;
+		text-align : center;
+		border : solid 1px lightgray;
+		background-color : lightgray;
+	}
+	#tReply-write {
+		width : 97%;
+		height : 100px;
+		margin : 10px 5px 5px 5px;
+		font-size : 15px;
+		border : none;
+		resize : none;
+	}
+	#tReply-writebt {
+		float : right;
+		width : 100px;
+		height : 35px;
+		margin-right : 10px;
+		border : solid 1px lightgray;
+		border-radius : 15px;
+		background-color : white;
+	}
+#reply-wrapper {
+	width : 100%;
+	height : 500px;
+	border : solid 1px gray;
+}
+	#profile-img {
+		width : 70px;
+		height : 70px;
+		border : solid 1px;
+		border-radius : 50%;
 	}
 
 /* tripListView.jsp */
