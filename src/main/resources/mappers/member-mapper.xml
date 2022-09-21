@@ -20,12 +20,14 @@
 	 		<result property="mRegisterDate" 	column="M_REGISTER_DATE"/>
 	 		<result property="mStatus" 			column="MEMBER_STATUS"/>
 	 		<result property="adminYN" 			column="ADMIN_YN"/>
+	 		<result property="writerPost" 		column="WRITE_POST"/>
  			</resultMap>
  
  
 	 <insert id="registerMember">
 	 		INSERT INTO MEMBER_TBL
-	 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  DEFAULT, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT)
+	 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  
+	 		DEFAULT, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 	 </insert>
  
  	<select id="selectLoginMember" resultMap="MemberResultMap">
@@ -59,6 +61,12 @@
  	SELECT * FROM MEMBER_TBL
  	WHERE MEMBER_ID = #{memberId} AND MEMBER_EMAIL = #{memberEmail}
  	</select>
+ 	
+ 	<select id="countPost" resultMap="MemberResultMap">
+ 	SELECT COUNT(TRIP_TITLE) FROM TRIP_TBL				<!-- 다른 테이블의 컬럼 갯수를 어떻게 count? 이거 맞나?-->
+ 	WHERE TRIP_WRITER = #{memberNick}
+ 	</select>
+ 	
  </mapper>
  
  

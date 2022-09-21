@@ -122,6 +122,24 @@ public class MemberController {
 	 
 
 	// 마이페이지 o
+	@RequestMapping(value = "/member/myinfo.tripkase", method = RequestMethod.GET)
+	public ModelAndView memberMyInfo(ModelAndView mv, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		String memberId = member.getMemberId();
+		Member mOne = mService.memberOneById(memberId);
+		if (mOne != null) {
+			mv.addObject("mOne", mOne);
+			mv.setViewName("/member/myinfo");
+		} else {
+			mv.addObject("msg", "회원정보가 없습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	// 마이페이지 o
 	@RequestMapping(value = "/member/myPage.tripkase", method = RequestMethod.GET)
 	public ModelAndView memberMyPage(ModelAndView mv, HttpServletRequest request) {
 
@@ -172,12 +190,20 @@ public class MemberController {
 		return mv;
 	}
 	
-	// 회원 등급
-	@RequestMapping(value="/member/memberGrade.tripkase", method = RequestMethod.POST)
-	public String memberGrade() {
+	// 회원 등급 - 1. id값으로 게시물  & 댓글 작성한거 count로 가져오기 메소드? 2. 가져온거로 업데이트 메소드?
+	@RequestMapping(value="/member/memberGrade.tripkase", method = RequestMethod.POST) // 보여줄 페이지가 없는데 value 어떻게 해야하나?
+	public ModelAndView memberGrade(
+			ModelAndView mv,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("loginMember");
+		String memberNick = member.getMemberNick();
+		int countPost = mService.countPost(memberNick);
+		//int countReply = mService.countReply(memberId);
 		
 		
-		return null;
+		return mv;
 	}
 }
 

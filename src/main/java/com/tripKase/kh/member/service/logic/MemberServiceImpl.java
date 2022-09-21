@@ -58,6 +58,12 @@ public class MemberServiceImpl implements MemberService {
 		Member member = mStore.findPwdMember(session, memberId, memberEmail);
 		return member;
 	}
+
+	@Override
+	public int countPost(String memberNick) {
+		int countPost = mStore.countPost(session, memberNick);
+		return countPost;
+	}
 }
 
 

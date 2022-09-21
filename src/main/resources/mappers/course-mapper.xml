@@ -4,13 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CourseMapper">
 
-			<resultMap 	type="Member" 				id="MemberResultMap">
+			<resultMap 	type="Course" 				id="courseResultMap">
 	 		<id 	property="courseNo" 			column="COURSE_NO"/>
 	 		<result property="courseName" 			column="COURSE_NAME"/>
 	 		<result property="courseThema" 			column="COURSE_THEMA"/>
 	 		<result property="courseDistance" 		column="COURSE_DISTANCE"/>
 	 		<result property="courseFileName" 		column="COURSE_FILENAME"/>
-	 		<result property="courseFileReName" 	column="COURSE_FILERENAME"/>
+	 		<result property="courseFileRename" 	column="COURSE_FILERENAME"/>
 	 		<result property="courseFilePath" 		column="COURSE_FILEPATH"/>
 	 		<result property="locationCode" 		column="LOCATION_CODE"/>
 	 		<result property="locationName" 		column="LOCATION_NAME"/>
@@ -19,7 +19,30 @@
  			
  		<insert id="insertCourse">
  		INSERT INTO COURSE_TBL
- 		VALUES(#{courseName}, #{courseThema}, #{courseDistance}, #{courseFileName}, #{courseFileReName}, #{courseFilePath},
- 			   #{locationCode}, #{locationName}, #{cStatus})
+ 		VALUES(SEQ_COS_NO.NEXTVAL, #{courseName}, #{courseThema}, #{courseDistance}, #{courseFileName}, #{courseFileRename}, #{courseFilePath},
+ 			 #{locationName}, DEFAULT)
  		</insert>
+ 		
+ 		<select id="selectCourseAll" resultMap="courseResultMap">
+ 		SELECT * FROM COURSE_TBL
+ 		 <if test='!locationName.equals("all")'>
+ 		WHERE LOCATION_NAME = #{locationName}
+ 		</if>
+ 		</select>
+ 		
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

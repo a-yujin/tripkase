@@ -18,6 +18,8 @@ public interface MemberService {
 	
 	public Member findPwdMember(String memberId, String memberEmail);
 	
+	public int countPost(String memberNick);
+	
 	
 
 }

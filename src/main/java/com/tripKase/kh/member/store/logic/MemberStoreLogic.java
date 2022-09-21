@@ -60,6 +60,12 @@ public class MemberStoreLogic implements MemberStore {
 		Member member = session.selectOne("MemberMapper.findMemberPwd", param);
 		return member;
 	}
+
+	@Override
+	public int countPost(SqlSession session, String memberNick) {
+		int countpost = session.selectOne("MemberMapper.countPost", memberNick);
+		return countpost;
+	}
 }
 
 

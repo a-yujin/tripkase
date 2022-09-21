@@ -20,4 +20,6 @@ public interface MemberStore {
 	
 	public Member findPwdMember(SqlSession session, String memberId, String memberEmail);
 	
+	public int countPost(SqlSession session, String memberNick);
+	
 }

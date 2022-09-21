@@ -7,6 +7,7 @@
 <title>여행카세 : 코스등록 </title>
 </head>
 <body>
+	<h1 align="center">코스 등록  페이지</h1>
 	<form action="/course/insertCourse.tripkase" method="post" enctype="multipart/form-data">
 		<table align="center" border="1">
 			<tr>
@@ -23,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>코스 이미지</td>
-				<td><input type="file" name="courseFileName"></textarea></td>
+				<td><input type="file" name="uploadFile"></textarea></td>
 			</tr>
 			<tr>
 				<td>코스 지역</td>
