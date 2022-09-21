@@ -6,6 +6,7 @@ import java.io.File;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class NoticeController {
 	private NoticeService nService;
 	
 	/**
-	 * 공지 작성
+	 * 공지 작성(테스트용)
 	 * @return
 	 */
 	@RequestMapping(value="/notice/write.tripkase", method=RequestMethod.GET)
@@ -85,7 +86,7 @@ public class NoticeController {
 	@RequestMapping(value="/notice/list.tripkase", method=RequestMethod.GET)
 	public ModelAndView showNoticeList(
 			ModelAndView mv,
-			@RequestParam(value="page", required=false) Integer page) {		
+			@RequestParam(value="page", required=false) Integer page) {
 		int currentPage = (page != null) ? page : 1; // 현재 페이지(페이지가 없으면 1, 아니면 해당 페이지 번호)
 		int totalCount = nService.getTotalCount(); // 총 게시글 수
 		int noticeLimit = 5; // 한 페이지에 보여줄 게시글 수
@@ -112,6 +113,30 @@ public class NoticeController {
 		}
 		
 		mv.setViewName("notice/noticeList");
+		return mv;
+	}
+	
+	/**
+	 * 공지 상세 조회
+	 * @param mv
+	 * @param noticeNo
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/notice/detail.tripkase", method=RequestMethod.GET)
+	public ModelAndView showNoticeDetail(
+			ModelAndView mv,
+			@RequestParam("noticeNo") Integer noticeNo,
+			HttpSession session) {
+		try {
+			Notice notice = nService.printOneByNo(noticeNo);
+			session.setAttribute("noticeNo", notice.getNoticeNo());
+			mv.addObject("notice", notice);
+			mv.setViewName("notice/noticeDetail");
+		} catch (Exception e) {
+			mv.addObject("msg", e.toString());
+			mv.setViewName("common/errorPage");
+		}
 		return mv;
 	}
 }

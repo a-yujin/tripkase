@@ -39,4 +39,11 @@ public class NoticeServiceImpl implements NoticeService{
 		return nList;
 	}
 
+	// 공지 상세 조회
+	@Override
+	public Notice printOneByNo(Integer noticeNo) {
+		Notice notice = nStore.selectOneByNo(session, noticeNo);
+		return notice;
+	}
+
 }

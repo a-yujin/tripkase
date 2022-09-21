@@ -16,5 +16,8 @@ public interface NoticeStore {
 
 	// 공지 목록 조회
 	public List<Notice> selectAllNotice(SqlSession session, int currentPage, int noticeLimit);
+
+	// 공지 상세 조회
+	public Notice selectOneByNo(SqlSession session, Integer noticeNo);
 	
 }
