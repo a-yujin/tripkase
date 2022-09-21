@@ -54,7 +54,21 @@
  		<result property="gradeCreate" column="GRADE_CREATE" />
  		<result property="memberId" column="MEMBER_ID" />
  	</resultMap>
- 
+ 	<resultMap type="Notice" id="noticeResultMap">
+		<id property="noticeNo" 		column="NOTICE_NO"/>
+		<result property="noticeWriter"	column="NOTICE_WRITER"/>
+		<result property="noticeType" 	column="NOTICE_TYPE"/>
+		<result property="noticeTitle" 	column="NOTICE_TITLE"/>
+		<result property="nCreateDate" 	column="N_CREATE_DATE"/>
+		<result property="nUpdateDate" 	column="N_UPDATE_DATE"/>
+		<result property="nContents" 	column="N_CONTENTS"/>
+		<result property="nFileName" 	column="N_FILENAME"/>
+		<result property="nFileRename"	column="N_FILERENAME"/>
+		<result property="nFilePath" 	column="N_FILEPATH"/>
+		<result property="noticeCount" 	column="NOTICE_COUNT"/>
+		<result property="noticeStatus" column="NOTICE_STATUS"/>
+		<result property="imgNo" column="IMG_NO"/>
+	</resultMap>
  
  	<!--회원 관리  -->
  	<select id="selectAllMember" resultMap="MemberResultMap">
@@ -65,6 +79,9 @@
  		WHERE MEMBER_ID = #{memberId}
  		AND MEMBER_NAME = #{memberName}
  		AND MEMBER_STATUS = 'Y'
+ 	</select>
+ 	<select id="getMemberTotalCount" resultType="_int">
+ 		SELECT COUNT(*) FROM MEMBER_TBL
  	</select>
 	<update id="deleteMember">
 		UPDATE MEMBER_TBL SET MEMBER_STATUS = 'N' WHERE MEMBER_ID = #{memberId}
@@ -78,6 +95,9 @@
  	<select id="selectAllReport" resultMap="ReportResultMap">
  		SELECT * FROM REPORT_TBL
  	</select>
+ 	<select id="getReportTotalCount" resultType="_int">
+ 		SELECT COUNT(*) FROM REPORT_TBL
+ 	</select>
  	<select id="selectOneReport" resultMap="ReportResultMap">
  		SELECT * FROM REPORT_TBL WHERE REPORT_NO = #{reportNo}
  	</select>
@@ -87,10 +107,10 @@
  		SELECT * FROM TRIP_TBL WHERE TRIP_NO = #{cotentsNo}
  	</select>
  	<select id="selectTripRelyByNo">
- 		SELECT * FROM TRIP_REPYL_TBL WHERE REPLY_NO = #{cotentsNo}
+ 		SELECT * FROM T_REPYL_TBL WHERE T_REPLY_NO = #{cotentsNo}
  	</select>
  	<select id="selectNoticeReplyByNo">
- 		SELECT * FROM NOTICE_REPLY_TBL WHERE REPLY_NO = #{cotentsNo}
+ 		SELECT * FROM N_REPLY_TBL WHERE N_REPLY_NO = #{cotentsNo}
  	</select>
  	<select id="selectGradeByNo" resultMap="GradeResultMap">
  		SELECT * FROM GRADE_TBL WHERE GRADE_NO = #{cotentsNo}
@@ -115,6 +135,12 @@
 	</delete>
 	
 	<!--공지 관련  -->
-	
-	
+	<select id="noticeDetail" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+		AND NOTICE_STATUS = 'Y'
+	</select>
+	<insert id="registerNotice">
+		INSERT INTO NOTICE_TBL
+		VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeWriter}, #{noticeType}, #{noticeTitle}, DEFAULT, DEFAULT, #{nContents}, #{nFileName}, #{nFileRename}, #{nFilePath}, DEFAULT, DEFAULT, #{imgNo})
+	</insert>
  </mapper>

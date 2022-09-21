@@ -27,7 +27,7 @@
 	<button type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&nReplyNo=${noticeReply.repyNo}'">댓글 삭제</button>
 	</c:if>
 	<c:if test="${grade ne null }">
-	평점 내용  : <input type="text" name="contetns" value="${grade.gradeContents }" readonly/><br>
+	평점 내용  : <input type="text" name="contetns" value="${grade.gradeComment }" readonly/><br>
 	<button type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&gradeNo=${grade.gradeNo}'">평점 삭제</button>
 	</c:if>
 	

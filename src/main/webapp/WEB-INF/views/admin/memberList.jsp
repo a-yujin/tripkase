@@ -30,6 +30,19 @@
 						<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
+					<tr>
+						<td colspan="6" align="center">
+							<c:if test="${currentPage ne 1 }">
+								<a href="/admin/memberAll.tripkase?page=${currentPage - 1}">이전</a>
+							</c:if>
+							<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
+							<a href="/admin/memberAll.tripkase?page=${page }">${page }</a>
+							</c:forEach>
+							<c:if test="${currentPage ne maxPage}">
+							<a href="/admin/memberAll.tripkase?page=${currentPage + 1 }">다음</a>
+							</c:if>
+						</td>
+					</tr>
 			</table>
 	</c:if>
 	
@@ -47,7 +60,7 @@
 					<td>${member.memberId}</td>
 					<td>${member.memberNick}</td>
 					<td>${member.memberName}</td>
-					<td>${member.memberPhone}</td>
+					<td>${member.memberPhone}</td>    
 					<td>${member.memberEmail}</td>
 					<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>			
 				</tr>

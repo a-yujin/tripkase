@@ -7,15 +7,16 @@ import org.apache.ibatis.session.SqlSession;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
 
 public interface AdminStore {
 
-	List<Member> selectAllMember(SqlSession session);
+	List<Member> selectAllMember(SqlSession session,int currentPage, int boardLimit);
 
-	List<Report> selectAllReport(SqlSession session);
+	List<Report> selectAllReport(SqlSession session,int currentPage, int boardLimit);
 
 	Member selectOneMember(SqlSession session, String memberId, String memberName);
 
@@ -42,5 +43,13 @@ public interface AdminStore {
 	int deleteNoticeReplyByNo(SqlSession session, Integer nReplyNo);
 
 	int deleteGradeByNo(SqlSession session, Integer gradeNo);
+
+	int getMemberTotalCount(SqlSession session);
+
+	int getReportTotalCount(SqlSession session);
+
+	int registerNotice(SqlSession session, Notice notice);
+
+	Notice noticeDetail(SqlSession session, int noticeNo);
 
 }
