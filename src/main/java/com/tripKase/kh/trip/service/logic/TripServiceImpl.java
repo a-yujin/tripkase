@@ -33,15 +33,15 @@ public class TripServiceImpl implements TripService {
 
 	// 여행소통 게시판 전체 조회
 	@Override
-	public List<Trip> printAllTrip(int currentPage, int limit) {
-		List<Trip> tList = tStore.selectAllTrip(session, currentPage, limit);
+	public List<Trip> printAllTrip(int currentPage, int triplimit) {
+		List<Trip> tList = tStore.selectAllTrip(session, currentPage, triplimit);
 		return tList;
 	}
 	
 	// 여행소통 게시글 댓글 조회
 	@Override
-	public List<TripReply> printAllTripReply(int tripNo) {
-		List<TripReply> tList = tStore.selectAllReply(session, tripNo);
+	public List<TripReply> printAllTripReply(int repTripNo) {
+		List<TripReply> tList = tStore.selectAllReply(session, repTripNo);
 		return null;
 	}
 
@@ -54,8 +54,28 @@ public class TripServiceImpl implements TripService {
 	
 	// 여행소통 게시판 리스트 검색 기능
 	@Override
-	public int getTotalCount(String searchCondition, String searchValue) {
-		int totalCount = tStore.selectTotalCount(session, searchCondition, searchValue);
+	public int getTotalCount(String searchValue) {
+		int totalCount = tStore.selectTotalCount(session, searchValue);
 		return totalCount;
+	}
+	
+	// 여행소통 게시글 수정 기능
+	@Override
+	public int modifyTrip(Trip trip) {
+		int result = tStore.updateTrip(session, trip);
+		return result;
+	}
+	
+	// 여행소통 게시글 삭제 기능
+	@Override
+	public int removeListOne(int tripNo) {
+		int result = tStore.deleteListOne(session, tripNo);
+		return result;
+	}
+
+	@Override
+	public List<Trip> printSearchTrip(String searchValue, int currentPage, int tripLimit) {
+		List<Trip> tList = tStore.selectSearchTrip(session, searchValue, currentPage, tripLimit);
+		return tList;
 	}
 }
