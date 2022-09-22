@@ -7,7 +7,15 @@
 <meta charset="UTF-8">
 <title>여행카세 : 맛집 목록 페이지</title>
 <!-- 테스트용 jsp  -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
+<style>
+    body {
+        font-family : 'Noto Sans KR',sans-serif;
+    }
+</style>
 <body>
 	<h1 align="center">맛집 목록</h1>
 <br><br>

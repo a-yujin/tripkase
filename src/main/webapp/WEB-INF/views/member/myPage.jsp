@@ -20,7 +20,7 @@
 		<input id= "memberinfo2" class="form-control" type="text" placeholder="${mOne.memberGrade }" aria-label="Disabled input example" disabled>
 		</div><br><br>
 		
-		<div onclick="location.href='/member/storageMain.tripkase';">
+		<div onclick="location.href='/storage/storageView.tripkase';">
 			보관함
 		</div><br><br>
 		
@@ -31,6 +31,7 @@
 		<div onclick="location.href='/member/myinfo.tripkase';">
 			내정보관리
 		</div><br><br>
+
 		
 		<div onclick="location.href='#';">
 			Q&A
