@@ -5,11 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>여행카세 : 전체 공지 조회</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<style>
+	.noticeTable{
+		float:left;
+		padding-left:100px;
+	}
+</style>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	<div class="noticeTable">
 	<h2 align="center">전체 공지 조회</h2><br>
-	<table align="center" border="1">
+	<table class="table table-hover" align="center" border="1">
 					<tr>
 						<td>No</td>
 						<td>제목</td>
@@ -27,13 +38,13 @@
 					<tr>
 						<td colspan="3" align="center">
 							<c:if test="${currentPage ne 1 }">
-								<a href="/admin/reportList.tripkase?page=${currentPage - 1}">이전</a>
+								<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
 							</c:if>
 							<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-							<a href="/admin/reportList.tripkase?page=${page }">${page }</a>
+							<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
 							</c:forEach>
 							<c:if test="${currentPage ne maxPage}">
-							<a href="/admin/reportList.tripkase?page=${currentPage + 1 }">다음</a>
+							<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
 							</c:if>
 						</td>
 						<td>
@@ -41,5 +52,7 @@
 						</td>
 					</tr>
 			</table>
+	</div>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

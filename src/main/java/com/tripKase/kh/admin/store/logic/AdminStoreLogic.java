@@ -7,12 +7,14 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.admin.domain.Report;
 import com.tripKase.kh.admin.store.AdminStore;
 import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
+import com.tripKase.kh.qna.domain.QnA;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
 
@@ -141,10 +143,71 @@ public class AdminStoreLogic implements AdminStore {
 		int result = session.insert("AdminMapper.registerNotice",notice);
 		return result;
 	}
-
+	
+	//공지 상세 조회에 사용할 공지 정보
 	@Override
 	public Notice noticeDetail(SqlSession session, int noticeNo) {
 		Notice notice = session.selectOne("AdminMapper.noticeDetail", noticeNo);
 		return notice;
+	}
+
+	//공지 상세 조회에서 서용할 이미지 정보
+	@Override
+	public List<NoticeImg> noticeImgDetail(SqlSession session, int noticeNo) {
+		List<NoticeImg> niList = session.selectList("AdminMapper.noticeImgDetail", noticeNo);
+		return niList;
+	}
+	
+	@Override
+	public int registerNoticeImg(SqlSession session, NoticeImg noticeImg) {
+		int result = session.insert("AdminMapper.registerNoticeImg",noticeImg);
+		return result;
+	}
+
+	@Override
+	public int updateNotice(SqlSession session, Notice notice) {
+		int result = session.update("AdminMapper.updateNotice", notice);
+		return result;
+	}
+
+	@Override
+	public int updateNoticeImg(SqlSession session, NoticeImg noticeImg) {
+		int result = session.update("AdminMapper.updateNoticeImg", noticeImg);
+		return result;
+	}
+
+	@Override
+	public int deleteNotice(SqlSession session,int noticeNo) {
+		int result = session.delete("AdminMapper.deleteNotice", noticeNo);
+		return result;
+	}
+	
+	//문의 관련
+	
+	//문의 조회
+	@Override
+	public List<QnA> selectAllQnA(SqlSession session, int currentPage, int limit ) {
+		int offset = (currentPage-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<QnA> qList = session.selectList("AdminMapper.selectAllQnA", null, rowBounds);
+		return qList;
+	}
+
+	@Override
+	public int getTotalQnACount(SqlSession session) {
+		int result = session.selectOne("AdminMapper.getTotalQnACount");
+		return result;
+	}
+
+	@Override
+	public QnA selectOneQnA(SqlSession session, int qnaNo) {
+		QnA qna = session.selectOne("AdminMapper.selectOneQnA", qnaNo);
+		return qna;
+	}
+
+	@Override
+	public int registerAnswer(SqlSession session, QnA qna) {
+		int result = session.update("AdminMapper.registerAnswer", qna);
+		return result;
 	}
 }

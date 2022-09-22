@@ -8,6 +8,9 @@
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	
 	<h2 align="center">공지 등록</h2>
 	<form action="/admin/registerNotice.tripkase" method="post" enctype="multipart/form-data">
 		<table align="center" border="1">

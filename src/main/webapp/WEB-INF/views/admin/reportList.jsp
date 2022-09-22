@@ -5,11 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>여행 카세 : 전체 신고 조회</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<style>
+	.reportTable{
+		float:left;
+		padding-left:100px;
+	}
+</style>
 </head>
 <body>
-	<h2 align="center">전체 신고 조회</h2>
-	<table align="center" border="1">
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	
+	<div class="reportTable">
+		<h2 align="center">전체 신고 조회</h2>
+			<table class="table table-hover" align="center" border="1">
 					<tr>
 						<td>No</td>
 						<td>컨텐츠</td>
@@ -42,5 +54,8 @@
 						</td>
 					</tr>
 			</table>
+	</div>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

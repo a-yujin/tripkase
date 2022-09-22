@@ -4,70 +4,86 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="AdminMapper">
  	<resultMap type="Report" id="ReportResultMap">
- 		<id property="reportNo" column="REPORT_NO" />
- 		<result property="commonType" column="COMMON_TYPE" />
- 		<result property="commonNo" column="COMMON_NO" />
- 		<result property="reportType" column="REPORT_TYPE" />
- 		<result property="reportTitle" column="REPORT_TITLE" />
+ 		<id property="reportNo" 		column="REPORT_NO" />
+ 		<result property="commonType" 	column="COMMON_TYPE" />
+ 		<result property="commonNo" 	column="COMMON_NO" />
+ 		<result property="reportType" 	column="REPORT_TYPE" />
+ 		<result property="reportTitle" 	column="REPORT_TITLE" />
  		<result property="reportContents" column="REPORT_CONTENTS" />
- 		<result property="reportDate" column="REPORT_DATE" />
- 		<result property="memberId" column="MEMBER_ID" />
+ 		<result property="reportDate" 	column="REPORT_DATE" />
+ 		<result property="memberId" 	column="MEMBER_ID" />
  	</resultMap>
  	<resultMap type="Member" id="MemberResultMap">
- 		<id property="memberId" column="MEMBER_ID"/>
- 		<result property="memberPwd" column="MEMBER_PWD"/>
- 		<result property="memberEmail" column="MEMBER_EMAIL"/>
- 		<result property="memberName" column="MEMBER_NAME"/>
- 		<result property="memberNick" column="MEMBER_NICK"/>
- 		<result property="memberBd" column="MEMBER_BD"/>
- 		<result property="memberGrade" column="MEMBER_GRADE"/>
+ 		<id property="memberId" 		column="MEMBER_ID"/>
+ 		<result property="memberPwd" 	column="MEMBER_PWD"/>
+ 		<result property="memberEmail"	column="MEMBER_EMAIL"/>
+ 		<result property="memberName" 	column="MEMBER_NAME"/>
+ 		<result property="memberNick" 	column="MEMBER_NICK"/>
+ 		<result property="memberBd" 	column="MEMBER_BD"/>
+ 		<result property="memberGrade" 	column="MEMBER_GRADE"/>
  		<result property="memberGender" column="MEMBER_GENDER"/>
- 		<result property="memberPhone" column="MEMBER_PHONE"/>
- 		<result property="mPfpName" column="M_PFP_NAME"/>
- 		<result property="mPfpReName" column="M_PFP_RENAME"/>
- 		<result property="mPfpPath" column="M_PFP_PATH"/>
+ 		<result property="memberPhone" 	column="MEMBER_PHONE"/>
+ 		<result property="mPfpName" 	column="M_PFP_NAME"/>
+ 		<result property="mPfpReName" 	column="M_PFP_RENAME"/>
+ 		<result property="mPfpPath" 	column="M_PFP_PATH"/>
  		<result property="mRegisterDate" column="M_REGISTER_DATE"/>
- 		<result property="mStatus" column="MEMBER_STATUS"/>
- 		<result property="adminYN" column="ADMIN_YN"/>
+ 		<result property="mStatus" 		column="MEMBER_STATUS"/>
+ 		<result property="adminYN" 		column="ADMIN_YN"/>
  	</resultMap>
  	<resultMap type="Trip" id="tripResultMap">
 		<id property="tripNo" column="TRIP_NO" />
- 		<result property="tripTitle" column="TRIP_TITLE" />
+ 		<result property="tripTitle" 	column="TRIP_TITLE" />
  		<result property="tripContents" column="TRIP_CONTENTS" />
- 		<result property="tripWriter" column="TRIP_WRITER" />
- 		<result property="tripCreate" column="TRIP_CREATE" />
- 		<result property="tripUpdate" column="TRIP_UPDATE" />
- 		<result property="tripFileName" column="TRIP_FILENAME" />
+ 		<result property="tripWriter" 	column="TRIP_WRITER" />
+ 		<result property="tripCreate" 	column="TRIP_CREATE" />
+ 		<result property="tripUpdate" 	column="TRIP_UPDATE" />
+ 		<result property="tripFileName" 	column="TRIP_FILENAME" />
  		<result property="tripFileRename" column="TRIP_FILERENAME" />
  		<result property="tripFilePath" column="TRIP_FILEPATH" />
- 		<result property="tripStatus" column="TRIP_STATUS" />
- 		<result property="tripCount" column="TRIP_COUNT" />
- 		<result property="tripLike" column="TRIP_LIKE" />
- 		<result property="tripShow" column="TRIP_SHOW" />
+ 		<result property="tripStatus" 	column="TRIP_STATUS" />
+ 		<result property="tripCount" 	column="TRIP_COUNT" />
+ 		<result property="tripLike" 	column="TRIP_LIKE" />
+ 		<result property="tripShow" 	column="TRIP_SHOW" />
  	</resultMap>
  	<resultMap type="Grade" id="GradeResultMap">
 		<id property="gradeNo" column="GRADE_NO" />
  		<result property="contentsCode" column="CONTENTS_CODE" />
- 		<result property="contentsNo" column="CONTENTS_NO" />
+ 		<result property="contentsNo" 	column="CONTENTS_NO" />
  		<result property="gradeComment" column="GRADE_COMMENT" />
- 		<result property="gradeStar" column="GRADE_STAR" />
- 		<result property="gradeCreate" column="GRADE_CREATE" />
- 		<result property="memberId" column="MEMBER_ID" />
+ 		<result property="gradeStar" 	column="GRADE_STAR" />
+ 		<result property="gradeCreate"	column="GRADE_CREATE" />
+ 		<result property="memberId" 	column="MEMBER_ID" />
  	</resultMap>
  	<resultMap type="Notice" id="noticeResultMap">
 		<id property="noticeNo" 		column="NOTICE_NO"/>
 		<result property="noticeWriter"	column="NOTICE_WRITER"/>
-		<result property="noticeType" 	column="NOTICE_TYPE"/>
 		<result property="noticeTitle" 	column="NOTICE_TITLE"/>
 		<result property="nCreateDate" 	column="N_CREATE_DATE"/>
 		<result property="nUpdateDate" 	column="N_UPDATE_DATE"/>
 		<result property="nContents" 	column="N_CONTENTS"/>
-		<result property="nFileName" 	column="N_FILENAME"/>
-		<result property="nFileRename"	column="N_FILERENAME"/>
-		<result property="nFilePath" 	column="N_FILEPATH"/>
 		<result property="noticeCount" 	column="NOTICE_COUNT"/>
 		<result property="noticeStatus" column="NOTICE_STATUS"/>
-		<result property="imgNo" column="IMG_NO"/>
+	</resultMap>
+ 	<resultMap type="NoticeImg" id="noticeImgResultMap">
+		<id property="imgNo" 			column="IMG_NO"/>
+		<result property="noticeNo"		column="NOTICE_NO"/>
+		<result property="nFileName" 	column="N_FILENAME"/>
+		<result property="nFileRename" 	column="N_FILERENAME"/>
+		<result property="nFilePath" 	column="N_FILEPATH"/>
+	</resultMap>
+	<resultMap type="QnA" id="QnAResultMap">
+		<id property="questionNo" 			column="QUESTION_NO"/>
+		<result property="questionWriter"	column="QUESTION_WRITER"/>
+		<result property="questionType"		column="QUESTION_TYPE"/>
+		<result property="questionTitle"	column="QUESTION_TITLE"/>
+		<result property="qContents"		column="QUESTION_CONTENTS"/>
+		<result property="qCreateDate"		column="Q_CREATE_DATE"/>
+		<result property="qFileName"		column="Q_FILENAME"/>
+		<result property="qFileRename"		column="Q_FILERENAME"/>
+		<result property="qFilePath"		column="Q_FILEPATH"/>
+		<result property="answerWriter"		column="ANSWER_WRITER"/>
+		<result property="aContents"		column="ANSWER_CONTENTS"/>
+		<result property="aCreateDate"		column="A_CREATE_DATE"/>
 	</resultMap>
  
  	<!--회원 관리  -->
@@ -134,13 +150,48 @@
 		DELETE FROM REPORT_TBL WHERE REPORT_NO = #{reportNo}
 	</delete>
 	
-	<!--공지 관련  -->
-	<select id="noticeDetail" resultMap="noticeResultMap">
-		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
-		AND NOTICE_STATUS = 'Y'
-	</select>
+	<!--공지 등록  -->
 	<insert id="registerNotice">
 		INSERT INTO NOTICE_TBL
-		VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeWriter}, #{noticeType}, #{noticeTitle}, DEFAULT, DEFAULT, #{nContents}, #{nFileName}, #{nFileRename}, #{nFilePath}, DEFAULT, DEFAULT, #{imgNo})
+		VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeWriter}, #{noticeTitle}, DEFAULT, DEFAULT, #{nContents}, DEFAULT, DEFAULT)
 	</insert>
+	<!--공지 이미지 등록 -->
+	<insert id="registerNoticeImg">
+		INSERT INTO NOTICE_IMG
+		VALUES(SEQ_N_IMG_NO.NEXTVAL, SEQ_NOTICE_NO.CURRVAL, #{nFileName}, #{nFileRename}, #{nFilePath})
+	</insert>
+	<!--공지 조회  -->
+	<select id="noticeDetail" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+	</select>
+	<!--공지 이미지 조회  -->
+	<select id="noticeImgDetail" resultMap="noticeImgResultMap">
+		SELECT * FROM NOTICE_IMG WHERE NOTICE_NO = #{noticeNo}
+	</select>
+	<!--공지 수정  -->
+	<update id="updateNotice">
+		UPDATE NOTICE_TBL SET NOTICE_TITLE = #{noticeTitle}, N_UPDATE_DATE = DEFAULT, N_CONTENTS = #{nContents} WHERE NOTICE_NO = #{noticeNo}
+	</update>
+	<!--공지 이미지 수정  -->
+	<update id="updateNoticeImg">
+		UPDATE NOTICE_IMG SET N_FILENAME = #{nFileName}, N_FILERENAME = #{nFileRename}, N_FILEPATH = #{nFilePath} WHERE IMG_NO = #{imgNo}
+	</update>
+	<!--공지 삭제  -->
+	<delete id="deleteNotice">
+		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+	</delete>
+	
+	<!--문의 관련  -->
+	<select id="getTotalQnACount" resultType="_int">
+		SELECT COUNT(*) FROM QNA_TBL
+	</select>
+	<select id="selectAllQnA" resultMap="QnAResultMap">
+		SELECT * FROM QNA_TBL
+	</select>
+	<select id="selectOneQnA" resultMap="QnAResultMap">
+		SELECT * FROM QNA_TBL WHERE QUESTION_NO = #{qnaNo}
+	</select>
+	<update id="registerAnswer">
+		UPDATE QNA_TBL SET ANSWER_WRITER = #{answerWriter}, ANSWER_CONTENTS = #{aContents}, A_CREATE_DATE = DEFAULT WHERE QUESTION_NO = #{questionNo}
+	</update>
  </mapper>

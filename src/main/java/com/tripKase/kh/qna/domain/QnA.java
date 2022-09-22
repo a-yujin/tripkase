@@ -7,15 +7,15 @@ public class QnA {
 	private String questionWriter; // 질문 작성자
 	private String questionType; // 질문 유형
 	private String questionTitle; // 질문 제목
+	private String qContents; // 질문 내용
 	private Date qCreateDate; // 질문 등록일
 	private String answerYN; // 답변 여부
-	private String qContents; // 질문 내용
 	private String qFileName; // 질문 파일 이름
 	private String qFileRename; // 질문 파일 변경된 이름
 	private String qFilePath; // 질문 파일 경로
 	private String answerWriter; // 답변 작성자
-	private Date aCreateDate; // 답변 등록일
 	private String aContents; // 답변 내용
+	private Date aCreateDate; // 답변 등록일
 	
 	public int getQuestionNo() {
 		return questionNo;

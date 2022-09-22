@@ -4,14 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>여행카세 : 관리자 페이지</title>
 </head>
 <body>
-	<h2>여행카세 관리자 페이지</h2>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	
-	<button onclick="location.href='/admin/memberAll.tripkase'">전체 회원 조회</button>
-	<button onclick="location.href='/admin/memberSelectForm.tripkase'">개별 회원 조회</button>
-	<button onclick="location.href='/admin/reportList.tripkase'">신고 조회</button>
-	<button onclick="location.href='/admin/noticeList.tripkase'">공지 조회</button>
+	<div id="body">
+		<div>
+			<h1>관리자 페이지</h1>
+		</div>
+		<div class="mainImg">
+			<img width="700" height="400" src="/resources/images/logo_tripkase.png"/>
+		</div>
+	</div>
 </body>
 </html>
