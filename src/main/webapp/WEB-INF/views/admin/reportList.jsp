@@ -37,7 +37,7 @@
 						<td>${ report.reportType}</td>
 						<td>${ report.reportTitle}</td>
 						<td>${ report.reportDate}</td>
-						<td><button type="button" onclick="location.href='/admin/reportDetail.tripkase?reportNo=${report.reportNo}'">상세조회</button></td>		
+						<td><button class="btn btn-default" type="button" onclick="location.href='/admin/reportDetail.tripkase?reportNo=${report.reportNo}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
 					<tr>

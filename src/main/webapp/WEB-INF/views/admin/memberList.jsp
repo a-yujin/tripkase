@@ -38,7 +38,7 @@
 							<td>${ member.memberName}</td>
 							<td>${ member.memberPhone}</td>
 							<td>${ member.memberEmail}</td>
-							<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>		
+							<td><button class="btn btn-default" onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>		
 						</tr>
 						</c:forEach> 
 						<tr>
@@ -73,7 +73,7 @@
 						<td>${member.memberName}</td>
 						<td>${member.memberPhone}</td>    
 						<td>${member.memberEmail}</td>
-						<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>			
+						<td><button class="btn btn-default" onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>			
 					</tr>
 				</table>
 		</c:if>

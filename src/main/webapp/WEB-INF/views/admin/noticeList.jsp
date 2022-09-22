@@ -32,7 +32,7 @@
 						<td>${ i.count}</td>
 						<td>${ notice.noticeTitle}</td>
 						<td>${ notice.nUpdateDate}</td>
-						<td><button type="button" onclick="location.href='/admin/noticeDetail.tripkase?noticeNo=${notice.noticeNo}'">상세조회</button></td>		
+						<td><button class="btn btn-default" type="button" onclick="location.href='/admin/noticeDetail.tripkase?noticeNo=${notice.noticeNo}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
 					<tr>
@@ -48,11 +48,11 @@
 							</c:if>
 						</td>
 						<td>
-							<button type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
+							<button class="btn btn-default" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
 						</td>
 					</tr>
 			</table>
 	</div>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

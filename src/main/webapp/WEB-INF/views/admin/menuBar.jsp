@@ -40,7 +40,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	<br><br><br><br>
+	<br><br><br>
 	<div id="side">
 		<ul>
 			<li>
@@ -86,6 +86,7 @@
 				<a class="function" href="#" onclick="location.href='/admin/reportList.tripkase'">컨텐츠 수정/삭제</a><br><br><br>
 			</li>
 		</ul>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
 </body>
 </html>

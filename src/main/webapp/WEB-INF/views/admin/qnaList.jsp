@@ -34,11 +34,11 @@
 							<td>${ qna.questionType}</td>
 							<td>${ qna.questionTitle}</td>
 							<td>${ qna.qCreateDate}</td>
-							<td><button type="button" onclick="location.href='/admin/qnaDetail.tripkase?qnaNo=${qna.questionNo}'">상세조회</button></td>		
+							<td><button class="btn btn-default" type="button" onclick="location.href='/admin/qnaDetail.tripkase?qnaNo=${qna.questionNo}'">상세조회</button></td>		
 						</tr>
 						</c:forEach> 
 						<tr>
-							<td colspan="3" align="center">
+							<td colspan="4" align="center">
 								<c:if test="${currentPage ne 1 }">
 									<a href="/admin/qnaList.tripkase?page=${currentPage - 1}">이전</a>
 								</c:if>
@@ -50,7 +50,7 @@
 								</c:if>
 							</td>
 							<td>
-								<button type="button" onclick="location.href='/admin/qnaWriteForm.tripkase'">답변등록</button>
+								<button class="btn btn-default" type="button" onclick="location.href='/admin/qnaWriteForm.tripkase'">답변등록</button>
 							</td>
 						</tr>
 				</table>
