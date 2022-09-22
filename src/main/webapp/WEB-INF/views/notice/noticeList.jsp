@@ -13,7 +13,6 @@
 	<jsp:include page="../common/header.jsp"/>
 	<br><br><br><br><br>
 	<!-- 공지 번호, 타입, 첨부파일 필요 -->
-	
 	<table id="nListTable" align="center">
 		<!-- 공지 목록에 데이터가 있을 때 -->
 		<c:if test="${!empty nList}">
