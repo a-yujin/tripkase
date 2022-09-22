@@ -8,6 +8,7 @@ import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
+import com.tripKase.kh.qna.domain.QnA;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
 
@@ -17,6 +18,8 @@ public interface AdminService {
 
 	List<Report> selectAllReport(int currentPage, int limit);
 
+	List<QnA> selectAllQnA(int currentPage, int limit);
+	
 	Member selectOneMember(String memberId, String memberName);
 
 	int updateMember(Member member);
@@ -58,5 +61,14 @@ public interface AdminService {
 	int updateNotice(Notice notice);
 
 	int updateNoticeImg(NoticeImg noticeImg);
+
+	int deleteNotice(int noticeNo);
+
+
+	int getTotalQnACount();
+
+	QnA selectOneQnA(int qnaNo);
+
+	int registerAnswer(QnA qna);
 
 }

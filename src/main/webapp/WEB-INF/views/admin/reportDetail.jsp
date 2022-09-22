@@ -8,6 +8,9 @@
 <title>신고 상세 조회</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	
 	<h2>신고 상세 조회</h2><br>
 	분류 : <input type="text" name="reportType" value="${report.reportType }" readonly/><br>
 	신고 제목 : <input type="text" name="reportTitle" value="${report.reportTitle }" readonly/><br>

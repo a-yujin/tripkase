@@ -8,10 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<h1 align="center">${notice.noticeNo }번 게시글 수정하기</h1>
 	<br>
 	<form action="/admin/updateNotice.tripkase" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="boardNo" value="${notice.noticeNo }">
+		<input type="hidden" name="noticeNo" value="${notice.noticeNo }">
 		<%-- <input type="hidden" name="page" value="${page }">
 		<input type="hidden" name="boardFilename" value="${board.boardFilename }">
 		<input type="hidden" name="boardFileRename" value="${board.boardFileRename }"> --%>
@@ -34,6 +36,7 @@
 				<td>
 					<c:forEach items="${niList }" var="img">
 						<input type="hidden" value="${img.imgNo }" name="imgNo">
+						<input type="hidden" value="${img.nFileRename }" name="nFileRename">
 						<input type="file" name="reloadFile">
 						<a href="#">${img.nFileName }</a><br>
 					</c:forEach>

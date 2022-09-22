@@ -130,6 +130,24 @@ public class AdminController {
 		return mv;
 	}
 	
+	//회원 정보 수정 페이지로
+	@RequestMapping("/admin/modifyMemberView.tripkase")
+	public ModelAndView modifyMemberView(
+			ModelAndView mv
+			,@RequestParam("memberId") String memberId
+			,@RequestParam("memberName") String memberName
+			) {
+		Member member = aService.selectOneMember(memberId, memberName);
+		try {
+			mv.addObject("member",member);
+			mv.setViewName("admin/modifyMemerForm");
+		} catch (Exception e) {
+			mv.addObject("msg",e.toString());
+			mv.setViewName("/common/errorPage");
+		}
+		return mv;
+	}
+	
 	//회원 정보 수정
 	@RequestMapping(value="/admin/updateMember.tripkase", method=RequestMethod.POST)
 	public ModelAndView updateMember(
@@ -424,7 +442,8 @@ public class AdminController {
 			ModelAndView mv
 			,@ModelAttribute Notice notice
 			,@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile
-			,@RequestParam("imgNo") int[] arr
+			,@RequestParam("imgNo") int[] imgNoArr
+			,@RequestParam("nFileRename") String[] nFileRenameArr
 			,HttpServletRequest request) {
 		int num = 0;
 		NoticeImg noticeImg = null;
@@ -434,12 +453,17 @@ public class AdminController {
 				String noticeFileName = mf.getOriginalFilename();
 				if(!noticeFileName.equals("")) {
 					String root = request.getSession().getServletContext().getRealPath("resources");
-					//resources/nUploadFiles
 					String savePath = root + "\\nUploadFiles";
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-					//202209211043501.jpg
+					//기존 파일 삭제
+					String nFileRename = nFileRenameArr[num];
+					File file = new File(savePath + "\\" + nFileRename);
+					if(file.exists()) {
+						file.delete();
+					}
+					//새로운 파일 등록
 					String noticeFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+"."+noticeFileName.substring(noticeFileName.lastIndexOf(".")+1);
-					File file = new File(savePath);
+					file = new File(savePath);
 					//resources/nUploadFiles/202209211104350.jpg 
 					mf.transferTo(new File(savePath+"\\"+noticeFileRename));
 					String noticeFilePath = savePath+"\\"+noticeFileRename;
@@ -447,7 +471,7 @@ public class AdminController {
 					noticeImg.setnFileName(noticeFileName);
 					noticeImg.setnFileRename(noticeFileRename);
 					noticeImg.setnFilePath(noticeFilePath);
-					int imgNo = arr[num];
+					int imgNo = imgNoArr[num];
 					noticeImg.setImgNo(imgNo);
 					num = num +1;
 					}
@@ -464,23 +488,66 @@ public class AdminController {
 	//공지 삭제
 	@RequestMapping(value="admin/deleteNotice.tripkase")
 	public ModelAndView deleteNotice(
-			ModelAndView mv) {
+			ModelAndView mv
+			,@RequestParam("noticeNo") int noticeNo) {
+		int result = aService.deleteNotice(noticeNo);
+		mv.setViewName("redirect:/admin/noticeList.tripkase");
 		return mv;
 	}
 	
 	//문의 조회
+	@RequestMapping("/admin/qnaList.tripkase")
 	public ModelAndView qnaList(
-			ModelAndView mv) {
+			ModelAndView mv
+			,@RequestParam(value="page", required = false) Integer page) {
+		////////////////////////////////////////////////////
+		int currentPage = (page!=null) ? page : 1;
+		int totalCount = aService.getTotalQnACount();
+		int noticeLimit = 10;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int)((double)totalCount/noticeLimit + 0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		endNavi = startNavi + naviLimit - 1;
+		if(maxPage < endNavi) {
+		endNavi = maxPage;
+		}
+		////////////////////////////////////////////////////
+		List<QnA> qList = aService.selectAllQnA(currentPage, noticeLimit);
+		try {
+			if(!qList.isEmpty()) {
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("startNavi", startNavi);
+				mv.addObject("endNavi", endNavi);
+				mv.addObject("qList",qList);
+				mv.setViewName("admin/qnaList");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg",e.toString());
+			mv.setViewName("/common/errorPage");
+		}
 		return mv;
 	}
 	//문의 상세 조회
+	@RequestMapping("/admin/qnaDetail.tripkase")
 	public ModelAndView qnaDetail(
-			ModelAndView mv) {
+			ModelAndView mv,
+			@RequestParam("qnaNo") int qnaNo) {
+		QnA qna = aService.selectOneQnA(qnaNo);
+		mv.addObject("qna",qna);
+		mv.setViewName("/admin/qnaDetail");
 		return mv;
 	}
 	//문의 답변 등록
+	@RequestMapping("/admin/qnaAnswer.tripkase")
 	public ModelAndView registerQnA(
-			ModelAndView mv) {
+			ModelAndView mv
+			,@ModelAttribute QnA qna) {
+		int result = aService.registerAnswer(qna);
+		mv.setViewName("redirect:/admin/qnaList.tripkase");
 		return mv;
 	}
 		

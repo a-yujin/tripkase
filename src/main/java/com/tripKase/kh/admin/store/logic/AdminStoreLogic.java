@@ -14,6 +14,7 @@ import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
+import com.tripKase.kh.qna.domain.QnA;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
 
@@ -172,6 +173,41 @@ public class AdminStoreLogic implements AdminStore {
 	@Override
 	public int updateNoticeImg(SqlSession session, NoticeImg noticeImg) {
 		int result = session.update("AdminMapper.updateNoticeImg", noticeImg);
+		return result;
+	}
+
+	@Override
+	public int deleteNotice(SqlSession session,int noticeNo) {
+		int result = session.delete("AdminMapper.deleteNotice", noticeNo);
+		return result;
+	}
+	
+	//문의 관련
+	
+	//문의 조회
+	@Override
+	public List<QnA> selectAllQnA(SqlSession session, int currentPage, int limit ) {
+		int offset = (currentPage-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<QnA> qList = session.selectList("AdminMapper.selectAllQnA", null, rowBounds);
+		return qList;
+	}
+
+	@Override
+	public int getTotalQnACount(SqlSession session) {
+		int result = session.selectOne("AdminMapper.getTotalQnACount");
+		return result;
+	}
+
+	@Override
+	public QnA selectOneQnA(SqlSession session, int qnaNo) {
+		QnA qna = session.selectOne("AdminMapper.selectOneQnA", qnaNo);
+		return qna;
+	}
+
+	@Override
+	public int registerAnswer(SqlSession session, QnA qna) {
+		int result = session.update("AdminMapper.registerAnswer", qna);
 		return result;
 	}
 }

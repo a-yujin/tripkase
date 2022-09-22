@@ -16,6 +16,7 @@ import com.tripKase.kh.grade.domain.Grade;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
+import com.tripKase.kh.qna.domain.QnA;
 import com.tripKase.kh.trip.domain.Trip;
 import com.tripKase.kh.trip.domain.TripReply;
 
@@ -37,6 +38,12 @@ public class AdminServiceLogic implements AdminService {
 	public List<Report> selectAllReport(int currentPage, int boardLimit) {
 		List<Report> rList = aStore.selectAllReport(session,currentPage,boardLimit);
 		return rList;
+	}
+	
+	@Override
+	public List<QnA> selectAllQnA(int currentPage, int boardLimit) {
+		List<QnA> qList = aStore.selectAllQnA(session,currentPage,boardLimit);
+		return qList;
 	}
 
 	@Override
@@ -128,6 +135,12 @@ public class AdminServiceLogic implements AdminService {
 		int result = aStore.getReportTotalCount(session);
 		return result;
 	}
+	
+	@Override
+	public int getTotalQnACount() {
+		int result = aStore.getTotalQnACount(session);
+		return result;
+	}
 
 	@Override
 	public int registerNotice(Notice notice) {
@@ -164,5 +177,25 @@ public class AdminServiceLogic implements AdminService {
 		int result = aStore.updateNoticeImg(session,noticeImg);
 		return result;
 	}
+
+	@Override
+	public int deleteNotice(int noticeNo) {
+		int result = aStore.deleteNotice(session, noticeNo);
+		return result;
+	}
+
+	@Override
+	public QnA selectOneQnA(int qnaNo) {
+		QnA qna = aStore.selectOneQnA(session, qnaNo);
+		return qna;
+	}
+
+	@Override
+	public int registerAnswer(QnA qna) {
+		int result = aStore.registerAnswer(session, qna);
+		return result;
+	}
+
+
 	
 }

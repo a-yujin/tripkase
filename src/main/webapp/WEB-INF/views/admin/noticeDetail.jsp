@@ -8,6 +8,8 @@
 <title>공지 상세 조회</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<h2>공지 상세 조회</h2><br>
 	<table align="center" width="500" border="1">
 		<tr>
@@ -44,7 +46,7 @@
 			<td colspan="2" align="center">
 				<a href="/admin/modifyNoticeView.tripkase?noticeNo=${notice.noticeNo }">수정 페이지로 이동</a>
 				<%-- <a href="#" onclick="boardRemove(${page});" >삭제하기</a> --%>
-				<a href="#" onclick="return confirm('게시물을 삭제하시겠습니까?');" >삭제하기</a>
+				<a href="/admin/deleteNotice.tripkase?noticeNo=${notice.noticeNo }" >삭제하기</a>
 			</td>
 		</tr>
 	</table>
