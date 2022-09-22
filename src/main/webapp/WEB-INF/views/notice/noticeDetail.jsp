@@ -25,6 +25,7 @@
 		<tr height="100">
 			<td colspan="2">${notice.nContents}</td>
 		</tr>
+		<!-- 파일 데이터가 이미지 테이블로 가면서 수정 필요 -->
 		<tr>
 			<td colspan="2">
 				<img id="nDetailPic" src="/resources/nUploadFiles/${notice.nFileRename}" onerror="this.style.display='none'" alt="첨부파일">

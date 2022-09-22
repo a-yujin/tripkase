@@ -89,13 +89,13 @@ public class NoticeController {
 			@RequestParam(value="page", required=false) Integer page) {
 		int currentPage = (page != null) ? page : 1; // 현재 페이지(페이지가 없으면 1, 아니면 해당 페이지 번호)
 		int totalCount = nService.getTotalCount(); // 총 게시글 수
-		int noticeLimit = 5; // 한 페이지에 보여줄 게시글 수
+		int noticeLimit = 14; // 한 페이지에 보여줄 게시글 수
 		int naviLimit = 5; // 한 화면에서 보여줄 페이지 수
 		int maxPage; // 마지막 페이지 번호
 		int startNavi; // 페이징 시작 번호 ex. (6) 7 8 9 10
 		int endNavi; // 페이징 끝 번호 ex. 6 7 8 9 (10)
 		
-		maxPage = (int)((double)totalCount/noticeLimit+0.9); // int로 형변환시 내림 위해 0.9 더하기
+		maxPage = (int)((double)totalCount/noticeLimit+0.95); // int로 형변환시 내림 위해 0.9 더하기
 		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
 		endNavi = startNavi + naviLimit - 1;
 		if(maxPage < endNavi) {
