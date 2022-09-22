@@ -22,4 +22,8 @@ public interface MemberStore {
 	
 	public int countPost(SqlSession session, String memberNick);
 	
+	public int countReply(SqlSession session, String memberNick);
+	
+	public int memberGrade(SqlSession session, String memberGrade, String memberId);
+	
 }

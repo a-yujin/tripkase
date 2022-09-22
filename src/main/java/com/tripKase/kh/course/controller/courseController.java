@@ -70,7 +70,7 @@ public class courseController {
 			return mv;
 		}
 	
-	// 코스 메인페이지 및 지역별 코스 조회 o 
+	// 코스 메인페이지 및 지역별 코스 조회 o
 		@RequestMapping(value="/course/selectCourse.tripkase", method = RequestMethod.GET)
 		public ModelAndView selectCourse(
 				@RequestParam("locationName") String locationName,
@@ -80,12 +80,55 @@ public class courseController {
 			mv.addObject("cList",cList);
 			mv.setViewName("course/courseMainPage");
 			return mv;
-			
 	}
 	
 	// 코스 상세보기
 		
+	@RequestMapping(value="course/courseDetail.tripkase", method = RequestMethod.GET)
+	public ModelAndView courseDetail(ModelAndView mv, @RequestParam("courseNo") int courseNo) {
+		try {
+			Course course = cService.courseByNo(courseNo);
+			System.out.println(courseNo);
+			if (course != null) {
+				mv.addObject("cOne", course);
+				mv.setViewName("/course/courseDetail");
+			}
+
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	// 코스 삭제
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -66,6 +66,21 @@ public class MemberStoreLogic implements MemberStore {
 		int countpost = session.selectOne("MemberMapper.countPost", memberNick);
 		return countpost;
 	}
+
+	@Override
+	public int countReply(SqlSession session, String memberNick) {
+		int countReply = session.selectOne("MemberMapper.countReply", memberNick);
+		return countReply;
+	}
+
+	@Override
+	public int memberGrade(SqlSession session, String memberGrade, String memberId) {
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("memberGrade", memberGrade);
+		param.put("memberId", memberId);
+		int result = session.update("MemberMapper.memberGrade", param);
+		return result;
+	}
 }
 
 

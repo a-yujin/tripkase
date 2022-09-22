@@ -33,4 +33,6 @@ public interface CourseStore {
 	public List<Course> selectCourseJeonnam(SqlSession session, String locationName);
 
 	public List<Course> selectCourseJeju(SqlSession session, String locationName);
+	
+	public Course courseByNo(SqlSession session, int courseNo);
 }

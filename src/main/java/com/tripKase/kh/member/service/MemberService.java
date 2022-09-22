@@ -20,6 +20,8 @@ public interface MemberService {
 	
 	public int countPost(String memberNick);
 	
+	public int countReply(String memberNick);
 	
+	public int memberGrade(String memberGrade, String memberId);
 
 }

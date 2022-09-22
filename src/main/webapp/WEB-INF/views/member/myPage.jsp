@@ -28,7 +28,7 @@
 			여행일정관리
 		</div><br><br>
 		
-		<div onclick="location.href='/member/myInfo.tripkase';">
+		<div onclick="location.href='/member/myinfo.tripkase';">
 			내정보관리
 		</div><br><br>
 		

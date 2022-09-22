@@ -15,12 +15,13 @@
 	 		<result property="locationCode" 		column="LOCATION_CODE"/>
 	 		<result property="locationName" 		column="LOCATION_NAME"/>
 	 		<result property="cStatus" 				column="C_STATUS"/>
+	 		<result property="courseInfo" 			column="COURSE_INFO"/>
  			</resultMap>
  			
  		<insert id="insertCourse">
  		INSERT INTO COURSE_TBL
  		VALUES(SEQ_COS_NO.NEXTVAL, #{courseName}, #{courseThema}, #{courseDistance}, #{courseFileName}, #{courseFileRename}, #{courseFilePath},
- 			 #{locationName}, DEFAULT)
+ 			 #{locationName}, DEFAULT, #{courseInfo})
  		</insert>
  		
  		<select id="selectCourseAll" resultMap="courseResultMap">
@@ -28,6 +29,11 @@
  		 <if test='!locationName.equals("all")'>
  		WHERE LOCATION_NAME = #{locationName}
  		</if>
+ 		</select>
+ 		
+ 		<select id="courseByNo" resultMap="courseResultMap">
+ 		SELECT * FROM COURSE_TBL
+ 		WHERE COURSE_NO = #{courseNo}
  		</select>
  		
 </mapper>

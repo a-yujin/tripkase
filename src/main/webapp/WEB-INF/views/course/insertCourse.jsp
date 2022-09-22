@@ -16,19 +16,23 @@
 			</tr>
 			<tr>
 				<td>코스 테마</td>
-				<td><input type="text" name="courseThema"></textarea></td>
+				<td><input type="text" name="courseThema"></td>
 			</tr>
 			<tr>
 				<td>코스 거리</td>
-				<td><input type="text" name="courseDistance"></textarea></td>
+				<td><input type="text" name="courseDistance"></td>
 			</tr>
 			<tr>
 				<td>코스 이미지</td>
-				<td><input type="file" name="uploadFile"></textarea></td>
+				<td><input type="file" name="uploadFile"></td>
 			</tr>
 			<tr>
 				<td>코스 지역</td>
-				<td><input type="text" name="locationName"></td>
+				<td><input type="text" name="locationName" placeholder = "영어로 입력해주세요"></td>
+			</tr>
+			<tr>
+				<td>코스 설명</td>
+				<td><textarea col="50" row="50"> </textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">

@@ -14,7 +14,7 @@
 			<input type="text" name="memberId" placeholder="아이디를 입력해주세요."> <br>
 			
 			<b>비밀번호</b>
-			<input type="text" name="memberPwd" placeholder="비밀번호를 입력해주세요."><br>
+			<input type="password" name="memberPwd" placeholder="비밀번호를 입력해주세요."><br>
 			<button type="submit">로그인</button>
 			<button type="button" onclick="location.href='/member/registerView.tripkase'">회원가입</button >
 			<button type="button" onclick="location.href='/member/registerView.tripkase'">아이디 찾기</button >

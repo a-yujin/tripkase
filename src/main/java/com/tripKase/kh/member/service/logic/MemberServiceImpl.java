@@ -64,6 +64,21 @@ public class MemberServiceImpl implements MemberService {
 		int countPost = mStore.countPost(session, memberNick);
 		return countPost;
 	}
+
+	@Override
+	public int countReply(String memberNick) {
+		int countReply = mStore.countReply(session, memberNick);
+		return countReply;
+	}
+
+	@Override
+	public int memberGrade(String memberGrade, String memberId) {
+		int result = mStore.memberGrade(session, memberGrade, memberId);
+		return result;
+	}
+
+	
+
 }
 
 

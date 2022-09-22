@@ -96,4 +96,39 @@ public class CourseServiceImpl implements CourseService {
 		return cList;
 	}
 
+	@Override
+	public Course courseByNo(int courseNo) {
+		Course cOne = cStore.courseByNo(session, courseNo);
+		return cOne;
+	}
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -31,4 +31,6 @@ public interface CourseService {
 	public List<Course> selectCourseJeonnam(String locationName);
 
 	public List<Course> selectCourseJeju(String locationName);
+	
+	public Course courseByNo(int courseNo);
 }

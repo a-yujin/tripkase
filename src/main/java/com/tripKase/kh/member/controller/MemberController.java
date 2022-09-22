@@ -1,5 +1,7 @@
 package com.tripKase.kh.member.controller;
 
+import java.util.concurrent.CountDownLatch;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -72,7 +74,9 @@ public class MemberController {
 			mv.addObject("msg", "회원정보없음");
 			mv.setViewName("common.errorPage");
 		}
+		
 		return mv;
+		
 	}
 
 	// 로그아웃 o
@@ -143,19 +147,42 @@ public class MemberController {
 	@RequestMapping(value = "/member/myPage.tripkase", method = RequestMethod.GET)
 	public ModelAndView memberMyPage(ModelAndView mv, HttpServletRequest request) {
 
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("loginMember");
-		String memberId = member.getMemberId();
-		Member mOne = mService.memberOneById(memberId);
-		if (mOne != null) {
-			mv.addObject("mOne", mOne);
-			mv.setViewName("/member/myPage");
-		} else {
-			mv.addObject("msg", "회원정보가 없습니다.");
-			mv.setViewName("common/errorPage");
-		}
-		return mv;
-	}
+		try {
+			HttpSession session = request.getSession();
+			Member member = (Member) session.getAttribute("loginMember");
+			String memberId = member.getMemberId();
+			String memberNick = member.getMemberNick();
+			String memberGrade = member.getMemberGrade();
+			
+			int countPost = mService.countPost(memberNick);
+			int countReply = mService.countReply(memberNick);		
+			if(countPost <1 && countReply < 1 ) {
+				memberGrade = "뚜벅이";
+			} else if (countPost >= 2 && countReply >= 2 ) {
+				memberGrade = "자전거";
+			} else if (countPost >= 20 && countReply >= 30 ) {
+				memberGrade = "자동차";
+			} else if (countPost >= 30 && countReply >= 40 ) {
+				memberGrade = "기차";
+			} else if (countPost >= 40 && countReply >= 50 ) {
+				memberGrade = "비행기";
+			} 
+			int result = mService.memberGrade(memberGrade, memberId);	// 멤버등급 업데이트
+			
+			Member mOne = mService.memberOneById(memberId);	// 회원 정보 가져오기
+			if (mOne != null) {
+				mv.addObject("mOne", mOne);
+				mv.setViewName("/member/myPage");
+			}
+			
+			} catch (Exception e) {
+				mv.addObject("msg", "회원정보가 없습니다.");
+				mv.setViewName("common/errorPage");
+				e.printStackTrace();
+			}
+			return mv;
+			}
+		
 
 	// 정보수정 o
 	@RequestMapping(value = "/member/modify.tripkase", method = RequestMethod.GET)
@@ -190,21 +217,34 @@ public class MemberController {
 		return mv;
 	}
 	
-	// 회원 등급 - 1. id값으로 게시물  & 댓글 작성한거 count로 가져오기 메소드? 2. 가져온거로 업데이트 메소드?
-	@RequestMapping(value="/member/memberGrade.tripkase", method = RequestMethod.POST) // 보여줄 페이지가 없는데 value 어떻게 해야하나?
-	public ModelAndView memberGrade(
-			ModelAndView mv,
-			HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("loginMember");
-		String memberNick = member.getMemberNick();
-		int countPost = mService.countPost(memberNick);
-		//int countReply = mService.countReply(memberId);
-		
-		
-		return mv;
-	}
+//	//회원 등급
+//	@RequestMapping(value = "/member/memberGrade.tripkase", method = RequestMethod.GET)
+//	public ModelAndView memberGrade(
+//			ModelAndView mv,
+//			HttpServletRequest request) {
+//		HttpSession session = request.getSession();
+//		Member member = (Member)session.getAttribute("loginMember");
+//		String memberNick = member.getMemberNick();
+//		String memberGrade = member.getMemberGrade();
+//		int countPost = mService.countPost(memberNick);
+//		int countReply = mService.countReply(memberNick);		
+//		if(countPost == 0 && countReply == 0 ) {
+//			memberGrade = "뚜벅이";
+//		} else if (countPost == 10 && countReply == 20 ) {
+//			memberGrade = "자전거";
+//		} else if (countPost == 20 && countReply == 30 ) {
+//			memberGrade = "자동차";
+//		} else if (countPost == 30 && countReply == 40 ) {
+//			memberGrade = "기차";
+//		} else if (countPost == 40 && countReply == 50 ) {
+//			memberGrade = "비행기";
+//		} 
+//		
+//		int result = mService.memberGrade(memberGrade);
+//		
+//		return mv;
+//	}
+	
 }
 
 

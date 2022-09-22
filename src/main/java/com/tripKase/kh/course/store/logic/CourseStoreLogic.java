@@ -88,4 +88,10 @@ public class CourseStoreLogic implements CourseStore {
 		List<Course> cList = session.selectList("CourseMapper.selectCourseJeju", locationName);
 		return cList;
 	}
+
+	@Override
+	public Course courseByNo(SqlSession session, int courseNo) {
+		Course cOne = session.selectOne("CourseMapper.courseByNo", courseNo);
+		return cOne;
+	}
 }
