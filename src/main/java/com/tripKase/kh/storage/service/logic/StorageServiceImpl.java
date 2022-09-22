@@ -7,6 +7,7 @@ import com.tripKase.kh.storage.store.StorageStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -22,10 +23,16 @@ public class StorageServiceImpl implements StorageService {
         return stoStore.getStorageDatas(memberId);
     }
 
-//	@Override
-//	public int insertStorage(String contentsCode, String contentsId) {
-//		contentsId
-//		
-//		return result;
-//	}
+
+	@Override
+	public int insertStorage(HashMap<String, Object> paramMap) {
+		int result = stoStore.insertStorage(paramMap);
+		return result;
+	}
+
+    
+
+
+
+
 }

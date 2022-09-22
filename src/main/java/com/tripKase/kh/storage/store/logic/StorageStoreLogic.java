@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -18,9 +19,13 @@ public class StorageStoreLogic implements StorageStore {
         return session.selectList("StorageMapper.getStorageDatas", memberId);
     }
 
-//	@Override
-//	public int insertStorage(String contentsCode, String contentsId) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+	@Override
+	public int insertStorage(HashMap<String, Object> paramMap) {
+		int result = session.insert("StorageMapper.insertStorage",paramMap);
+		return result;
+	}
+
+    
+
+	
 }

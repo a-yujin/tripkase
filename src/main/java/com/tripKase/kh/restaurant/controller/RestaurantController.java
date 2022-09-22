@@ -77,7 +77,7 @@ public class RestaurantController {
 	@RequestMapping(value="/restaurant/deleteRestaurant.tripkase", method=RequestMethod.GET)
 	public String deleteRestaurant(HttpSession session) {
 		try {
-			int resNo = (int)session.getAttribute("resNo");
+			int resNo = Integer.parseInt(session.getAttribute("resNo").toString());
 			int result = resService.deleteRestaurant(resNo);
 			if(result > 0) {
 				session.removeAttribute("resNo");

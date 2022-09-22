@@ -57,37 +57,45 @@
     <div id="storagetitle">
         <h2>나의 보관함</h2>
     </div>
-    <div class="contents-type">　　#관광지</div>
-        <div class="contents-area">
-            <div class="contents-contents">
-                <img src="/resources/resUploadFiles/20220921134942.jpg" class="contents-img" width="150px" height="150px">
-                <p class="contents-name">{$trip.tripName}</p>
-                <a href="#" class="contents-btn">추가</a>
-                <a href="#" class="contents-btn">삭제</a>
-            </div>
-        </div>
-    </div>
+    <c:if test="${!empty resList }">
+   		<div class="contents-type">　　#관광지</div>
+   			<c:forEach items="${stoList }" var="attraction" varStatus="i">
+	        <div class="contents-area">
+	            <div class="contents-contents">
+	                <img src="#" class="contents-img" width="150px" height="150px">
+	                <p class="contents-name">${stoList.attrName}</p>
+	                <a href="#" class="contents-btn">추가</a>
+	                <a href="#" class="contents-btn">삭제</a>
+	            </div>
+	        </div>
+	        </c:forEach>
+	    </div>
+	</c:if>
     <br>
     <div class="contents-type">　　#맛집</div>
-        <div class="contents-area">
-            <div class="contents-contents">
-            	<img src="/resources/resUploadFiles/20220921134942.jpg" class="contents-img" width="150px" height="150px">
-            	<p>{$restaurant.resName}</p>
-                <a href="#" class="contents-btn">추가</a>
-                <a href="#" class="contents-btn">삭제</a>
-            </div>
-        </div>
+        <c:forEach items="${stoList }" var="attraction" varStatus="i">
+	        <div class="contents-area">
+	            <div class="contents-contents">
+	                <img src="#" class="contents-img" width="150px" height="150px">
+	                <p class="contents-name">${stoList.resName }</p>
+	                <a href="#" class="contents-btn">추가</a>
+	                <a href="#" class="contents-btn">삭제</a>
+	            </div>
+	        </div>
+	     </c:forEach>
     </div>
     <br>
     <div class="contents-type">　　#숙소</div>
-        <div class="contents-area">
-            <div class="contents-contents">
-            	<img src="/resources/resUploadFiles/20220921134942.jpg" class="contents-img" width="150px" height="150px">
-            	<p>{$room.roomName}</p>
-            	<a href="#" class="contents-btn">추가</a>
-                <a href="#" class="contents-btn">삭제</a>
-            </div>
-        </div>
+        <c:forEach items="${stoList }" var="attraction" varStatus="i">
+	        <div class="contents-area">
+	            <div class="contents-contents">
+	                <img src="#" class="contents-img" width="150px" height="150px">
+	                <p class="contents-name">${stoList.roomName}</p>
+	                <a href="#" class="contents-btn">추가</a>
+	                <a href="#" class="contents-btn">삭제</a>
+	            </div>
+	        </div>
+	     </c:forEach>
     </div>   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

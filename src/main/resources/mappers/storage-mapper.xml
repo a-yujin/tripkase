@@ -13,17 +13,29 @@
         <result property="memberId"      column="MEMBER_ID"/>
     </resultMap>
 
+	
+	<insert id="insertStorage">
+		INSERT INTO STORAGE_TBL VALUES(SEQ_STO_NO.NEXTVAL, #{contentsCode}, #{contentsId}, #{memberId})
+	</insert>
+
+
     <!--  보관함 데이터 가져오기 -->
-    <select id="getStorageDatas" parameterType="string" resultMap="StorageResultMap">
-        SELECT
+    <select id="getStorageDatas" resultMap="StorageResultMap">
+         SELECT
             A.STO_NO -- 보관함 PK
             ,A.CONTENTS_CODE -- 맛집,숙소,관광지 구분 코드
             ,A.CONTENTS_NO -- 맛집,숙소,관광지 PK
             ,A.MEMBER_ID -- 등록자
             ,B.RES_FILERENAME -- 맛집 이미지파일 이름
             ,B.RES_NAME -- 맛집 이름
+            ,C.ATTR_FILERENAME
+            ,C.ATTR_NAME
+            ,D.ROOM_FILERENAME
+            ,D.ROOM_NAME
         FROM STORAGE_TBL A
-        LEFT JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO AND A.CONTENTS_CODE = '1')
+        LEFT JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO AND A.CONTENTS_CODE = 'restaurant')
+        LEFT JOIN ATTRACTION_TBL C ON (A.CONTENTS_NO = C.ATTR_NO AND A.CONTENTS_CODE = 'attraction')
+        LEFT JOIN ROOM_TBL D ON (A.CONTENTS_NO = D.ROOM_NO AND A.CONTENTS_CODE = 'room')
         WHERE MEMBER_ID = #{memberId}
     </select>
 </mapper>
