@@ -13,6 +13,10 @@
 	.memberTable{
 		float:left;
 		padding-left:100px;
+		width:700px;
+	}
+	td{
+		text-align:center;
 	}
 </style>
 </head>
@@ -38,20 +42,28 @@
 							<td>${ member.memberName}</td>
 							<td>${ member.memberPhone}</td>
 							<td>${ member.memberEmail}</td>
-							<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>		
+							<td><button class="btn btn-default" onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>		
 						</tr>
 						</c:forEach> 
 						<tr>
-							<td colspan="6" align="center">
-								<c:if test="${currentPage ne 1 }">
-									<a href="/admin/memberAll.tripkase?page=${currentPage - 1}">이전</a>
-								</c:if>
-								<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-								<a href="/admin/memberAll.tripkase?page=${page }">${page }</a>
-								</c:forEach>
-								<c:if test="${currentPage ne maxPage}">
-								<a href="/admin/memberAll.tripkase?page=${currentPage + 1 }">다음</a>
-								</c:if>
+							<td height="30" colspan="6" align="center">
+								<ul class="pagination">
+									<li>
+										<c:if test="${currentPage ne 1 }">
+											<a href="/admin/memberAll.tripkase?page=${currentPage - 1}">이전</a>
+										</c:if>
+									</li>
+									<li>
+										<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
+											<a href="/admin/memberAll.tripkase?page=${page }">${page }</a>
+										</c:forEach>
+									</li>
+									<li>
+										<c:if test="${currentPage ne maxPage}">
+											<a href="/admin/memberAll.tripkase?page=${currentPage + 1 }">다음</a>
+										</c:if>
+									</li>
+							    </ul>
 							</td>
 						</tr>
 				</table>
@@ -73,7 +85,7 @@
 						<td>${member.memberName}</td>
 						<td>${member.memberPhone}</td>    
 						<td>${member.memberEmail}</td>
-						<td><button onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>			
+						<td><button class="btn btn-default" onclick="location.href='/admin/memberDetail.tripkase?memberId=${member.memberId}&memberName=${member.memberName}'">상세조회</button></td>			
 					</tr>
 				</table>
 		</c:if>

@@ -12,6 +12,10 @@
 	.noticeTable{
 		float:left;
 		padding-left:100px;
+		width:700px;
+	}
+	td{
+		text-align:center;
 	}
 </style>
 </head>
@@ -32,27 +36,35 @@
 						<td>${ i.count}</td>
 						<td>${ notice.noticeTitle}</td>
 						<td>${ notice.nUpdateDate}</td>
-						<td><button type="button" onclick="location.href='/admin/noticeDetail.tripkase?noticeNo=${notice.noticeNo}'">상세조회</button></td>		
+						<td><button class="btn btn-default" type="button" onclick="location.href='/admin/noticeDetail.tripkase?noticeNo=${notice.noticeNo}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
 					<tr>
 						<td colspan="3" align="center">
-							<c:if test="${currentPage ne 1 }">
-								<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
-							</c:if>
-							<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-							<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
-							</c:forEach>
-							<c:if test="${currentPage ne maxPage}">
-							<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
-							</c:if>
+							<ul class="pagination">
+								<li>
+									<c:if test="${currentPage ne 1 }">
+										<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
+									</c:if>
+								</li>
+								<li>
+									<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
+										<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
+									</c:forEach>
+								</li>
+								<li>
+									<c:if test="${currentPage ne maxPage}">
+										<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
+									</c:if>
+								</li>
+							</ul>	
 						</td>
 						<td>
-							<button type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
+							<button class="btn btn-default" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
 						</td>
 					</tr>
 			</table>
 	</div>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

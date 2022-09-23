@@ -13,6 +13,7 @@
 		.memberTable{
 			float:left;
 			padding-left:100px;
+			width:700px;
 		}
 	</style>
 </head>
@@ -55,8 +56,8 @@
 						<td>${member.mRegisterDate }</td></tr>
 					<tr align="center">
 						<td colspan="2">
-						<button type="button" onclick="location.href='/admin/modifyMemberView.tripkase?memberId=${member.memberId}&memberName=${member.memberName }'">수정</button>
-						<button type="button" onclick="location.href='/admin/deleteMember.tripkase?memberId=${member.memberId}'">삭제</button>
+						<button class="btn btn-default" type="button" onclick="location.href='/admin/modifyMemberView.tripkase?memberId=${member.memberId}&memberName=${member.memberName }'">수정</button>
+						<button class="btn btn-default" type="button" onclick="location.href='/admin/deleteMember.tripkase?memberId=${member.memberId}'">삭제</button>
 					</td>
 				</table>
 	</div>

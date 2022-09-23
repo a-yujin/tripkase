@@ -16,10 +16,10 @@
 			<li class="tk_h_item" id="tk_menu2"><a href="/trip/tripList.tripkase">소통</a></li>
 			<li class="tk_h_item" id="tk_menu3"><a href="/notice/list.tripkase">공지</a></li>
 			<c:if test="${sessionScope.loginMember eq null }">
-		        <div>
+		        <div id="login">
 		        	<table align="right">
 			           <tr>
-			              <td><a href="/member/loginView.tripkase">로그인</a></td>
+			              <td><a href="/member/loginView.tripkase"><b>로그인</b></a></td>
 			           </tr>
 		        	</table>
 		        </div>
@@ -27,7 +27,7 @@
 	      	<c:if test="${sessionScope.loginMember ne null }"> <!-- ne : not equal -->
 	      		<table align="right">
 		        	<tr>
-			            <td colspan="2">${sessionScope.loginMember.memberName }님 환영합니다!</td>
+			            <td colspan="2"><b>${sessionScope.loginMember.memberName }</b>님 환영합니다!</td>
 			            <td></td>
 		        	</tr>
 		         	<tr>
