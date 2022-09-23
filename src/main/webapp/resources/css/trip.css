@@ -105,7 +105,7 @@ body {
 	#first-right {
 		float : right;
 		width : 50%;
-		height : 400px;
+		height : 350px;
 	}
 /* 상세페이지 선택버튼(수정, 삭제, 신고) */
 #choice-drop {
@@ -131,7 +131,11 @@ body {
 		text-align : center;
 		font-size : 12px;
 	}
-
+/* 좋아요, 조회수 */
+#like-count {
+	height : 50px;
+	text-align : center;
+}
 
 /* 상세페이지 이동버튼 (이전 게시글, 목륵으로, 다음게시글) */
 #button-move {

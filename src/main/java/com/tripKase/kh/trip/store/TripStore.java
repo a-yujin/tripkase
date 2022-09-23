@@ -24,5 +24,8 @@ public interface TripStore {
 	public int updateTrip(SqlSessionTemplate session, Trip trip);
 	// 여행소통 게시글 삭제 기능
 	public int deleteListOne(SqlSessionTemplate session, int tripNo);
+	// 여행소통 검색 기능
 	public List<Trip> selectSearchTrip(SqlSessionTemplate session, String searchValue, int currentPage, int tripLimit);
+	// 여행소통 게시글 조회수 기능
+	public int updateTripCount(SqlSessionTemplate session, int tripNo);
 }

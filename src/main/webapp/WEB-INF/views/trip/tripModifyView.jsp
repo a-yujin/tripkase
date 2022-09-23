@@ -9,33 +9,34 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"/>
+	<br><br><br>
 	<div>
 		<p class="first-text">게시글 수정</p>
 	</div>
 	
 	<form action="/trip/tripModify.tripkase" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="page" value="${page }">
 		<input type="hidden" name="tripNo" value="${trip.tripNo }">
 		<input type="hidden" name="tripFileName" value="${trip.tripFileName }">
 		<input type="hidden" name="tripFileRename" value="${trip.tripFileRename }">
+
 		<!-- 게시글 제목, 내용 작성 영역 -->
 		<div id="text-area">
 			<input type="text" id="textTitle" name="tripTitle" value="${trip.tripTitle }"> <br>
 			<textarea id="textContent" name="tripContents">${trip.tripContents }</textarea> <br>
 		</div>
-		
+
 		<!-- 파일 업로드 영역 -->
 		<div class="mb-3">
-			<input type="file" id="formFileSm" class="form-control form-control-sm" name="uploadFile">
-			<a href="#">${trip.tripFileName }</a>
+			<input type="file" id="formFileSm" class="form-control form-control-sm" name="reloadFile" value="${trip.tripFileName }">
 		</div>
 		<br><br>
-		
-		<hr style="width : 80%; margin : 0 auto;">
 		
 		<!-- 버튼 영역 -->
 		<br>
 		<div id="trip-button1">
-			<input type="button" id="tbutton1" value="돌아가기" onclick="">
+			<input type="button" id="tbutton1" value="돌아가기" onclick="javascript:history.go(-1);">
 			<input type="submit" id="tbutton2" value="수정하기">
 		</div>
 		<br><br>
