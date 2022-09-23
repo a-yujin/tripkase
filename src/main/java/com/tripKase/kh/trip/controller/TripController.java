@@ -292,7 +292,7 @@ public class TripController {
 	public String tripRemove(
 			Model model,
 			HttpSession session) {
-		int tripNo = (int)session.getAttribute("tripNo");
+		int tripNo = (Integer)session.getAttribute("tripNo");
 		int result = tService.removeListOne(tripNo);
 		if(result > 0) {
 			session.removeAttribute("tripNo");
