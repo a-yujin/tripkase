@@ -2,17 +2,44 @@
 /* 관광지 검색 화면 */
 #attrSearchWrap{
 	height: auto;
-	width: 600px;
+	width: 700px;
 	border: 1px solid lightgray;
-	text-align: center;
 	margin: 0 auto;
 }
 
+#searchTextDiv{
+	text-align: center;
+}
+
 #searchText{
-	width: 100%;
+	font-size: 12px;
+	width: 95%;
 	margin-bottom: 30px;
 }
 
-.searchRadio1{
-	border: 1px solid lightgray;
+.attrLocation{
+	display: none;
+	margin: 10px;
+}
+
+.attrLocation + label{
+	float: left;
+	padding: 5px 0px;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	font-size: 12px !important;
+	width: 110px;
+	width: 8%;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.attrLocation:checked + label{
+	background-image: none;
+	background-color: #A8D1F0;
+	color: #fff;
+}
+
+#radioAll + label{
+	margin-left: 15px;
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.notice.domain.Notice;
+import com.tripKase.kh.notice.domain.NoticeReply;
 
 public interface NoticeStore {
 	// 공지 등록
@@ -19,5 +21,10 @@ public interface NoticeStore {
 
 	// 공지 상세 조회
 	public Notice selectOneByNo(SqlSession session, Integer noticeNo);
+	// 공지 상세 - 이미지 조회
+	public List<NoticeImg> selectImgByNo(SqlSession session, Integer noticeNo);
+
+	// 공지 댓글 등록
+	public int insertNReply(SqlSession session, NoticeReply nReply);
 	
 }

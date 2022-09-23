@@ -90,3 +90,41 @@
 	padding-top: 10px;
 	border-bottom: 1px solid lightgray;
 }
+
+#nDetailImg{
+	padding-bottom: 50px;
+}
+
+/* 공지 댓글 */
+#nReplyRegister{
+	width: 600px;
+	background-color: #f5f5f5;
+}
+
+#nReplyRegiTd1{
+	text-align: center;
+}
+
+#nReplyRegiText{
+	width: 95%;
+	height: 60px;
+	margin: 10px;
+	margin-bottom: 7px;
+	border: 0;
+}
+
+#nReplyRegiBtn{
+	border: 0;
+	border-radius: 5px;
+	background-color: #A8D1F0;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 14px;
+	padding-right: 14px;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	float: right;
+	margin-right: 15px;
+	margin-bottom: 7px;
+}

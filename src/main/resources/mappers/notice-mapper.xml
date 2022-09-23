@@ -6,16 +6,23 @@
 	<resultMap type="Notice" id="noticeResultMap">
 		<id property="noticeNo" 		column="NOTICE_NO"/>
 		<result property="noticeWriter"	column="NOTICE_WRITER"/>
-		<result property="noticeType" 	column="NOTICE_TYPE"/>
+<!-- 		<result property="noticeType" 	column="NOTICE_TYPE"/> -->
 		<result property="noticeTitle" 	column="NOTICE_TITLE"/>
 		<result property="nCreateDate" 	column="N_CREATE_DATE"/>
 		<result property="nUpdateDate" 	column="N_UPDATE_DATE"/>
 		<result property="nContents" 	column="N_CONTENTS"/>
-		<result property="nFileName" 	column="N_FILENAME"/>
+<!-- 		<result property="nFileName" 	column="N_FILENAME"/>
 		<result property="nFileRename"	column="N_FILERENAME"/>
-		<result property="nFilePath" 	column="N_FILEPATH"/>
+		<result property="nFilePath" 	column="N_FILEPATH"/> -->
 		<result property="noticeCount" 	column="NOTICE_COUNT"/>
 		<result property="noticeStatus" column="NOTICE_STATUS"/>
+	</resultMap>
+	<resultMap type="NoticeImg" id="nImgResultMap">
+		<id property="imgNo" 			column="IMG_NO"/>
+		<result property="noticeNo"		column="NOTICE_NO"/>
+		<result property="nFileName" 	column="N_FILENAME"/>
+		<result property="nFileRename" 	column="N_FILERENAME"/>
+		<result property="nFilePath" 	column="N_FILEPATH"/>
 	</resultMap>
 	
 	<!-- 총 게시글 수 가져오기 -->
@@ -32,4 +39,12 @@
 	<select id="selectOneByNo" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo} AND NOTICE_STATUS = 'Y'
 	</select>
+	<select id="selectImgByNo" resultMap="nImgResultMap">
+		SELECT * FROM NOTICE_IMG WHERE NOTICE_NO = #{noticeNo}
+	</select>
+	
+	<!-- 공지 댓글 등록 -->
+	<insert id="insertNReply">
+		INSERT INTO N_REPLY_TBL VALUES(SEQ_NREPLY_NO.NEXTVAL, #{refNoticeNo}, #{nReplyWriter}, #{nReplyContents}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
 </mapper>

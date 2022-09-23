@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.notice.domain.Notice;
+import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.notice.service.NoticeService;
 
 @Controller
@@ -61,9 +63,9 @@ public class NoticeController {
 				}
 				uploadFile.transferTo(new File(savePath+"\\"+noticeFileRename));
 				String noticeFilePath = savePath+"\\"+noticeFileRename;
-				notice.setnFileName(noticeFileName);
-				notice.setnFileRename(noticeFileRename);
-				notice.setnFilePath(noticeFilePath);
+//				notice.setnFileName(noticeFileName);
+//				notice.setnFileRename(noticeFileRename);
+//				notice.setnFilePath(noticeFilePath);
 			}
 			int result = nService.registerNotice(notice);
 			// 성공 시 테스트용 페이지로 이동
@@ -89,7 +91,7 @@ public class NoticeController {
 			@RequestParam(value="page", required=false) Integer page) {
 		int currentPage = (page != null) ? page : 1; // 현재 페이지(페이지가 없으면 1, 아니면 해당 페이지 번호)
 		int totalCount = nService.getTotalCount(); // 총 게시글 수
-		int noticeLimit = 14; // 한 페이지에 보여줄 게시글 수
+		int noticeLimit = 5; // 한 페이지에 보여줄 게시글 수
 		int naviLimit = 5; // 한 화면에서 보여줄 페이지 수
 		int maxPage; // 마지막 페이지 번호
 		int startNavi; // 페이징 시작 번호 ex. (6) 7 8 9 10
@@ -130,12 +132,37 @@ public class NoticeController {
 			HttpSession session) {
 		try {
 			Notice notice = nService.printOneByNo(noticeNo);
+			List<NoticeImg> nImgList = nService.printImgByNo(noticeNo);
 			session.setAttribute("noticeNo", notice.getNoticeNo());
 			mv.addObject("notice", notice);
+			mv.addObject("nImgList", nImgList);
 			mv.setViewName("notice/noticeDetail");
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString());
 			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/**
+	 * 공지 댓글 등록
+	 * @param mv
+	 * @param nReply
+	 * @param page
+	 * @param session
+	 * @return
+	 */
+	public ModelAndView registerNoticeReply(
+			ModelAndView mv,
+			@ModelAttribute NoticeReply nReply,
+			@RequestParam("page") int page,
+			HttpSession session) {
+		String nReplyWriter = "test writer";
+		int noticeNo = nReply.getRefNoticeNo();
+		nReply.setnReplyWriter(nReplyWriter);
+		int result = nService.registerNReply(nReply);
+		if(result > 0) {
+			mv.setViewName("redirect:/notice/detail.tripkase?noticeNo="+noticeNo+"&page="+page);
 		}
 		return mv;
 	}
