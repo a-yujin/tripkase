@@ -3,7 +3,6 @@ package com.tripKase.kh.storage.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tripKase.kh.attraction.domain.Attraction;
-import com.tripKase.kh.attraction.service.AttractionService;
 import com.tripKase.kh.member.domain.Member;
-import com.tripKase.kh.restaurant.domain.Restaurant;
-import com.tripKase.kh.restaurant.service.RestaurantService;
-import com.tripKase.kh.room.domain.Room;
-import com.tripKase.kh.room.service.RoomService;
-import com.tripKase.kh.storage.domain.ResStorage;
 import com.tripKase.kh.storage.domain.Storage;
 import com.tripKase.kh.storage.service.StorageService;
 
@@ -30,12 +21,6 @@ public class StorageController {
 
 	@Autowired
 	private StorageService stoService;
-	@Autowired
-	private RestaurantService resService;
-	@Autowired
-	private RoomService rSerivce;
-	@Autowired
-	private AttractionService attrSerivce;
 	
 //	/**
 //	 * 보관함 데이터 불러오기

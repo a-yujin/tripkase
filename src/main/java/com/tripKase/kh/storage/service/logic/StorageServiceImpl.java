@@ -4,7 +4,6 @@ import com.tripKase.kh.attraction.domain.Attraction;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.restaurant.store.RestaurantStore;
 import com.tripKase.kh.room.domain.Room;
-import com.tripKase.kh.storage.domain.ResStorage;
 import com.tripKase.kh.storage.domain.Storage;
 import com.tripKase.kh.storage.service.StorageService;
 import com.tripKase.kh.storage.store.StorageStore;

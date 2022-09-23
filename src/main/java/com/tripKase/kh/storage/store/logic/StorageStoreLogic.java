@@ -3,7 +3,6 @@ package com.tripKase.kh.storage.store.logic;
 import com.tripKase.kh.attraction.domain.Attraction;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.room.domain.Room;
-import com.tripKase.kh.storage.domain.ResStorage;
 import com.tripKase.kh.storage.domain.Storage;
 import com.tripKase.kh.storage.store.StorageStore;
 import org.apache.ibatis.session.SqlSession;
