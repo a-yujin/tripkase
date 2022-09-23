@@ -12,6 +12,7 @@
 		.memberTable{
 			float:left;
 			padding-left:100px;
+			width:700px;
 		}
 	</style>
 </head>

@@ -13,6 +13,7 @@
 	.noticeTable{
 		float:left;
 		padding-left:100px;
+		width:700px;
 	}
 </style>
 </head>
@@ -49,10 +50,10 @@
 				<td>
 					<c:if test="${niList ne null }">
 						<c:forEach items="${niList }" var="img" varStatus="i">
-							<img alt="공지이미지" src="/resources/nUploadFiles/${img.nFileRename}" width="300" height="300">
+							<img alt="공지이미지" src="/resources/nUploadFiles/${img.nFileRename}" width="400" height="200">
 						</c:forEach>
 					</c:if>
-					<c:if test="${niList ne null }">
+					<c:if test="${niList eq null }">
 						첨부파일 없음
 					</c:if>
 				</td>

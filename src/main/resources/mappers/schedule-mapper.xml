@@ -3,5 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ScheduleMapper">
-
+	<resultMap type="Schedule" id="ScheduleResultMap">
+		<id property="scheSeq" column="SCHEDULE_SEQ"/>
+		<result property="scheDays" column="SCHEDULE_DAYS"/>
+		<result property="scheNo" column="SCHEDULE_NO"/>
+		<result property="contetnsType" column="CONTENTS_TYPE"/>
+		<result property="contetnsNo" column="CONTENTS_NO"/>
+		<result property="scheName" column="SCHEDULE_NAME"/>
+		<result property="schePeriod" column="SCHEDULE_PERIOD"/>
+		<result property="scheCreate" column="SCHEDULE_CREATE"/>
+		<result property="memberId" column="MEMBER_ID"/>
+	</resultMap>
+	
+	<select id="selectAllSchedule" resultMap="ScheduleResultMap">
+		SELECT * FROM SCHEDULE_TBL
+	</select>
 </mapper>

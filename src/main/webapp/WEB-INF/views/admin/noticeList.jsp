@@ -12,6 +12,10 @@
 	.noticeTable{
 		float:left;
 		padding-left:100px;
+		width:700px;
+	}
+	td{
+		text-align:center;
 	}
 </style>
 </head>
@@ -37,15 +41,23 @@
 					</c:forEach> 
 					<tr>
 						<td colspan="3" align="center">
-							<c:if test="${currentPage ne 1 }">
-								<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
-							</c:if>
-							<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-							<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
-							</c:forEach>
-							<c:if test="${currentPage ne maxPage}">
-							<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
-							</c:if>
+							<ul class="pagination">
+								<li>
+									<c:if test="${currentPage ne 1 }">
+										<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
+									</c:if>
+								</li>
+								<li>
+									<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
+										<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
+									</c:forEach>
+								</li>
+								<li>
+									<c:if test="${currentPage ne maxPage}">
+										<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
+									</c:if>
+								</li>
+							</ul>	
 						</td>
 						<td>
 							<button class="btn btn-default" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>

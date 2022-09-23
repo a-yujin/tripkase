@@ -8,8 +8,8 @@ body{
 	padding-right: 100px;
 }
 #tk_logo_img{
-	width: 60%;
-	height: 100%;
+	width: 80px;
+	height: 50px;
 }
 #tk_header{
 	background-color: white;
@@ -17,7 +17,7 @@ body{
 	position: fixed;
 	top: 0px;
 	width: 100%;
-	border-bottom: 1px solid lightgray;
+
 	height: 50px;
 	margin:0;
 	padding: 10px;
@@ -73,4 +73,19 @@ body{
 }
 #tk_login a:hover{
 	color: #A8D1F0;
+}
+#tk_wrap{
+	height : 80px;
+	border-bottom: 1px solid lightgray;
+}
+#login{
+	margin-top:10px;
+	padding-right:50px;
+}
+
+a{
+	display: block;
+	color: black;
+	text-align: center;
+	text-decoration: none;
 }

@@ -12,9 +12,13 @@
 	.noticeTable{
 		float:left;
 		padding-left:100px;
+		width:700px;
 	}
 	textarea{
 		border:0;
+	}
+	td{
+		text-align:center;
 	}
 </style>
 </head>
@@ -22,7 +26,7 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="noticeTable">
-		<h2>문의 상세 조회</h2><br>
+		<h2 align="center">문의 상세 조회</h2><br>
 		<form action="/admin/qnaAnswer.tripkase">
 			<input type="hidden" name="questionNo" value="${qna.questionNo }">
 			<input type="hidden" name="answerWriter" value="admin">
