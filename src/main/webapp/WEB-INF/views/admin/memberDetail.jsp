@@ -5,6 +5,7 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 <meta charset="UTF-8">
 <title>여행카세 : 회원 상세 조회</title>

@@ -58,6 +58,8 @@
 </head>
 <link href="../resources/css/.css" rel="stylesheet">
 <body>
+
+	<h2><b>#지역</b></h2>
 	 	<label class="box-radio-input">
 		<input type="radio"   id="cosArea1" 	onclick="selectCourse(this, 'all');"> <span>전체보기</span>
 		<input type="radio"   id="cosArea2" 	onclick="selectCourse(this, 'seoul');"> <span>서울</span>
@@ -74,7 +76,7 @@
 		</label>
 	
 	
-	
+	<h3><b>#${locationValue }</b></h3>
 
 	<div id=contents>
 		<ul>
@@ -87,60 +89,16 @@
 							</a>
 						</div>
 						<div class="textarea">
-							<p>${course.courseName }</p>
-							<p>${course.courseThema }</p>
-						</div>
+							<br>
+							<span>여행 이름 : ${course.courseName }</span>
+							<br><br><br><br>
+							<span>여행 테마 : ${course.courseThema }</span>
+					</div>	
 					<br><br>
-				</li><hr>
-				<li class="courseList">
-						<div class="photo">
-							<a href="/course/courseDetail.tripkase?courseNo=${course.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/${course.courseFileRename }">
-							</a>
-						</div>
-						<div class="textarea">
-							<p>${course.courseName }</p>
-							<p>${course.courseThema }</p>
-						</div>
-					<br><br>
-				</li><hr>
-						<li class="courseList">
-						<div class="photo">
-							<a href="/course/courseDetail.tripkase?courseNo=${course.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/${course.courseFileRename }">
-							</a>
-						</div>
-						<div class="textarea">
-							<p>${course.courseName }</p>
-							<p>${course.courseThema }</p>
-						</div>
-					<br><br>
-				</li><hr>
-						<li class="courseList">
-						<div class="photo">
-							<a href="/course/courseDetail.tripkase?courseNo=${course.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/${course.courseFileRename }">
-							</a>
-						</div>
-						<div class="textarea">
-							<p>${course.courseName }</p>
-							<p>${course.courseThema }</p>
-						</div>
-					<br><br>
-				</li><hr>
-						<li class="courseList">
-						<div class="photo">
-							<a href="/course/courseDetail.tripkase?courseNo=${course.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/${course.courseFileRename }">
-							</a>
-						</div>
-						<div class="textarea">
-							<p>${course.courseName }</p>
-							<p>${course.courseThema }</p>
-						</div>
-					<br><br>
-				</li><hr>
+				</li>
+				
 			
+						
 				
 			</c:forEach>
 		</ul>
@@ -149,9 +107,9 @@
 	</div>
 	<script>
 		function selectCourse(obj, area) {
-			var dd = console.log(obj.nextElementSibling.innerHTML);
-		//	document.getElementById("dd").innerHTML=localName;
-			location.href='/course/selectCourse.tripkase?locationName='+area;
+			var value = obj.nextElementSibling.innerHTML;
+			//document.getElementById("localName").innerHTML=value;
+			location.href='/course/selectCourse.tripkase?locationName='+area+"&locationValue="+value;
 		}
 	</script>
 

@@ -72,7 +72,7 @@ public class MemberController {
 			mv.setViewName("redirect:/home.tripkase");
 		} else {
 			mv.addObject("msg", "회원정보없음");
-			mv.setViewName("common.errorPage");
+			mv.setViewName("common/errorPage");
 		}
 		
 		return mv;
@@ -88,7 +88,7 @@ public class MemberController {
 			mv.setViewName("redirect:/home.tripkase");
 		} else {
 			mv.addObject("msg", "로그아웃 실패");
-			mv.setViewName("common.errorPage");
+			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}
@@ -212,7 +212,7 @@ public class MemberController {
 			mv.setViewName("redirect:/member/logout.tripkase");
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
-			mv.setViewName("common.errorPage");
+			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}

@@ -5,11 +5,29 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style>
+.register {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.register input {
+  width: 80%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+</style>
+
 </head>
 <body>
-	<h1 align="center">회원가입</h1>
+	<h2 align="center">회원가입</h2>
 	<div align="center">
 		<form action="/member/register.tripkase" method="post">
+		<div class="register">
 		<table>
 			<tr>
 				<td> * 아이디</td>
@@ -59,13 +77,13 @@
 					<input type="text" name="memberEmail">
 				</td>
 			</tr>	
-			</tr>
+				<tr>
 					<td align="center" colspan="30">
-					<input type="submit" value="join !">
+					<input type="submit" value="회원가입 !">
 					</td>
 				</tr>
-				
 			</table>
+				</div>
 		</form>
 	</div>
 </body>

@@ -35,4 +35,7 @@ public interface CourseStore {
 	public List<Course> selectCourseJeju(SqlSession session, String locationName);
 	
 	public Course courseByNo(SqlSession session, int courseNo);
+	
+	public int removeCourse(SqlSession session, String courseNo);
+	
 }

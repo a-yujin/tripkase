@@ -36,6 +36,11 @@
  		WHERE COURSE_NO = #{courseNo}
  		</select>
  		
+ 		<delete id="removeCourse">
+ 		DELETE FROM COURSE_TBL
+ 		WHERE COURSE_NO = #{courseNo}
+ 		</delete>
+ 		
 </mapper>
 
 

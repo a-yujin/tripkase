@@ -33,4 +33,7 @@ public interface CourseService {
 	public List<Course> selectCourseJeju(String locationName);
 	
 	public Course courseByNo(int courseNo);
+	
+	public int removeCourse(String courseNo);
+	
 }

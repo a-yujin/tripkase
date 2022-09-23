@@ -94,4 +94,11 @@ public class CourseStoreLogic implements CourseStore {
 		Course cOne = session.selectOne("CourseMapper.courseByNo", courseNo);
 		return cOne;
 	}
+
+	@Override
+	public int removeCourse(SqlSession session, String courseNo) {
+		int result = session.update("CourseMapper.removeCourse", courseNo);
+		return result;
+	}
+
 }

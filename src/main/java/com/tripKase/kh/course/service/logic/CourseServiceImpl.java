@@ -102,6 +102,14 @@ public class CourseServiceImpl implements CourseService {
 		return cOne;
 	}
 
+	@Override
+	public int removeCourse(String courseNo) {
+		int result = cStore.removeCourse(session, courseNo);
+		return result;
+	}
+
+
+
 	
 }
 
