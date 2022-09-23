@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.notice.domain.Notice;
+import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.notice.store.NoticeStore;
 
 @Repository
@@ -40,6 +42,19 @@ public class NoticeStoreLogic implements NoticeStore {
 	public Notice selectOneByNo(SqlSession session, Integer noticeNo) {
 		Notice notice = session.selectOne("NoticeMapper.selectOneByNo", noticeNo);
 		return notice;
+	}
+	// 공지 상세 이미지 조회
+	@Override
+	public List<NoticeImg> selectImgByNo(SqlSession session, Integer noticeNo) {
+		List<NoticeImg> nImgList = session.selectList("NoticeMapper.selectImgByNo", noticeNo);
+		return nImgList;
+	}
+
+	// 공지 댓글 등록
+	@Override
+	public int insertNReply(SqlSession session, NoticeReply nReply) {
+		int result = session.insert("NoticeMapper.insertNReply", nReply);
+		return result;
 	}
 
 }

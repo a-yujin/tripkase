@@ -5,14 +5,14 @@ import java.sql.Date;
 public class Notice {
 	private int noticeNo; // 공지 번호
 	private String noticeWriter; // 공지 작성자
-	private String noticeType; // 공지 유형
+//	private String noticeType; // 공지 유형
 	private String noticeTitle; // 공지 제목
 	private Date nCreateDate; // 공지 등록일
 	private Date nUpdateDate; // 공지 수정일
 	private String nContents; // 공지 내용
-	private String nFileName; // 공지 파일 이름
-	private String nFileRename; // 공지 파일 변경된 이름
-	private String nFilePath; // 공지 파일 경로
+//	private String nFileName; // 공지 파일 이름
+//	private String nFileRename; // 공지 파일 변경된 이름
+//	private String nFilePath; // 공지 파일 경로
 	private int noticeCount; // 공지 게시글 수(삭제 예정)
 	private String noticeStatus; // 공지 게시 여부
 	private int imgNo;
@@ -29,12 +29,12 @@ public class Notice {
 	public void setNoticeWriter(String noticeWriter) {
 		this.noticeWriter = noticeWriter;
 	}
-	public String getNoticeType() {
-		return noticeType;
-	}
-	public void setNoticeType(String noticeType) {
-		this.noticeType = noticeType;
-	}
+//	public String getNoticeType() {
+//		return noticeType;
+//	}
+//	public void setNoticeType(String noticeType) {
+//		this.noticeType = noticeType;
+//	}
 	public String getNoticeTitle() {
 		return noticeTitle;
 	}
@@ -59,24 +59,24 @@ public class Notice {
 	public void setnContents(String nContents) {
 		this.nContents = nContents;
 	}
-	public String getnFileName() {
-		return nFileName;
-	}
-	public void setnFileName(String nFileName) {
-		this.nFileName = nFileName;
-	}
-	public String getnFileRename() {
-		return nFileRename;
-	}
-	public void setnFileRename(String nFileRename) {
-		this.nFileRename = nFileRename;
-	}
-	public String getnFilePath() {
-		return nFilePath;
-	}
-	public void setnFilePath(String nFilePath) {
-		this.nFilePath = nFilePath;
-	}
+//	public String getnFileName() {
+//		return nFileName;
+//	}
+//	public void setnFileName(String nFileName) {
+//		this.nFileName = nFileName;
+//	}
+//	public String getnFileRename() {
+//		return nFileRename;
+//	}
+//	public void setnFileRename(String nFileRename) {
+//		this.nFileRename = nFileRename;
+//	}
+//	public String getnFilePath() {
+//		return nFilePath;
+//	}
+//	public void setnFilePath(String nFilePath) {
+//		this.nFilePath = nFilePath;
+//	}
 	public int getNoticeCount() {
 		return noticeCount;
 	}
@@ -98,10 +98,8 @@ public class Notice {
 	
 	@Override
 	public String toString() {
-		return "Notice [noticeNo=" + noticeNo + ", noticeWriter=" + noticeWriter + ", noticeType=" + noticeType
-				+ ", noticeTitle=" + noticeTitle + ", nCreateDate=" + nCreateDate + ", nUpdateDate=" + nUpdateDate
-				+ ", nContents=" + nContents + ", nFileName=" + nFileName + ", nFileRename=" + nFileRename
-				+ ", nFilePath=" + nFilePath + ", noticeCount=" + noticeCount + ", noticeStatus=" + noticeStatus
-				+ ", imgNo=" + imgNo + "]";
+		return "Notice [noticeNo=" + noticeNo + ", noticeWriter=" + noticeWriter + ", noticeTitle=" + noticeTitle
+				+ ", nCreateDate=" + nCreateDate + ", nUpdateDate=" + nUpdateDate + ", nContents=" + nContents
+				+ ", noticeCount=" + noticeCount + ", noticeStatus=" + noticeStatus + ", imgNo=" + imgNo + "]";
 	}
 }

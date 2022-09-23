@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.notice.domain.Notice;
+import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.notice.service.NoticeService;
 import com.tripKase.kh.notice.store.NoticeStore;
 
@@ -44,6 +46,19 @@ public class NoticeServiceImpl implements NoticeService{
 	public Notice printOneByNo(Integer noticeNo) {
 		Notice notice = nStore.selectOneByNo(session, noticeNo);
 		return notice;
+	}
+	// 공지 상세 - 이미지 조회
+	@Override
+	public List<NoticeImg> printImgByNo(Integer noticeNo) {
+		List<NoticeImg> nImgList = nStore.selectImgByNo(session, noticeNo);
+		return nImgList;
+	}
+
+	// 공지 댓글 등록
+	@Override
+	public int registerNReply(NoticeReply nReply) {
+		int result = nStore.insertNReply(session, nReply);
+		return result;
 	}
 
 }
