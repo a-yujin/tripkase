@@ -15,7 +15,7 @@ public interface TripService {
 	// 여행소통 게시글 댓글 조회
 	public List<TripReply> printAllTripReply(int repTripNo);
 	// 여행소통 게시글 상세페이지
-	public Trip printListOne(int tripNo);
+	public Trip printListOne(Integer tripNo);
 	// 여행소통 게시판 리스트 검색 기능
 	public int getTotalCount(String searchValue);
 	// 여행소통 게시글 수정 기능

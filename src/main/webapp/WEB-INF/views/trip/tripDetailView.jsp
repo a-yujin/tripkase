@@ -27,7 +27,7 @@
 					<img src="/resources/images/trip/dot.png" id="dot-select">
 				</button>
 					<ul id="choice-menu" class="dropdown-menu">
-						<li><a id="choice-menu1" class="dropdown-item" onclick="location.href='/trip/tripModifyView.tripkase?tripNo=${trip.tripNo }';">수정하기</a></li>
+						<li><a id="choice-menu1" class="dropdown-item" onclick="location.href='/trip/tripModifyView.tripkase?tripNo=${trip.tripNo }&page=${page }';">수정하기</a></li>
 						<li><a id="choice-menu2" class="dropdown-item" onclick="tripOneRemove()">삭제하기</a></li>
 					</ul>
 			</div>
@@ -37,19 +37,26 @@
 			<p>작성일자 : ${trip.tripCreate }</p>
 			<br>
 			<p>${trip.tripContents }</p>
-			<img src="/resources/images/trip/beforeLike.png" id="beforeLike" class="likeimgs" width="35px" height="30px" onclick="contentLike()">
-            <img src="/resources/images/trip/afterLike.png" id="afterLike" class="likeimgs" width="35px" height="30px" onclick="contentLike()">
+			<!-- 좋아요, 조회수 영역 -->
+			<div id="like-count">
+				<img src="/resources/images/trip/beforeLike.png" id="beforeLike" class="likeimgs" width="35px" height="30px" onclick="contentLike()">
+    	        <img src="/resources/images/trip/afterLike.png" id="afterLike" class="likeimgs" width="35px" height="30px" onclick="contentLike()">
+				<span>${trip.tripLike }</span>     
+				<img src="/resources/images/trip/see.png" width="35px" height="30px">      
+            	<span>${trip.tripCount }</span>
+			</div>
 		</div>
 	</div>
 	<br>
 	<div id="button-move">
-		<button class="but-move">이전 페이지</button>
+		<button class="but-move">이전 게시글</button>
 		<button class="but-move" onclick="location.href='/trip/tripList.tripkase';">목록으로</button>
-		<button class="but-move">다음 페이지</button>
+		<button class="but-move">다음 게시글</button>
 	</div>
 	<br><br><br>	
 	<!-- 댓글 등록 -->
 	<form action="/trip/addReply.tripkase" method="post">
+		<input type="hidden" name="page" value="${page }">
 		<input type="hidden" name="repTripNo" value="${trip.tripNo }">
 		<div id="tReply-wrapper">
 			<div id="tReply-background">
@@ -58,6 +65,18 @@
 			</div>
 		</div>
 	</form>
+	<!-- 댓글 목록 -->
+	<br><br>
+	<table align="center" width="500" border="1">
+		<c:forEach items="${rList }" var="tripReply">
+			<tr>
+				<td width="100">${tripReply.tReplyWriter }</td>
+				<td width="100">${tripReply.tReplyContents }</td>
+				<td width="100">${tripReply.tReplyCreate }</td>
+				<td></td>
+			</tr>
+		</c:forEach>
+	</table>
 	<br>
 	<br><br><br><br>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>

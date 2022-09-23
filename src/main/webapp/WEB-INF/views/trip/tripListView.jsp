@@ -37,7 +37,7 @@
 			<c:forEach items="${tList }" var="trip" varStatus="i">
 				<div class="card" id="card-inside" style="width: 280px;">
 					<c:if test="${not empty loginMember}">
-						<a href="/trip/detailView.tripkase?tripNo=${trip.tripNo }">
+						<a href="/trip/detailView.tripkase?tripNo=${trip.tripNo }&page=${currentPage }">
 						<img src="/resources/tuploadFiles/${trip.tripFileRename }" class="card-img-top" alt="리스트 이미지" width="200px" height="280px">
 						</a>
 					</c:if>

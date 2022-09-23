@@ -72,12 +72,20 @@ public class TripStoreLogic implements TripStore{
 		int result = session.delete("TripMapper.deleteTrip", tripNo);
 		return result;
 	}
-
+	
+	// 여행소통 검색 기능
 	@Override
 	public List<Trip> selectSearchTrip(SqlSessionTemplate session, String searchValue, int currentPage, int tripLimit) {
 		int offset = (currentPage-1) * tripLimit;
 		RowBounds rowBounds = new RowBounds(offset, tripLimit);
 		List<Trip> tList = session.selectList("TripMapper.selectSearchTrip", searchValue, rowBounds);
 		return tList;
+	}
+	
+	// 여행소통 게시글 조회 기능
+	@Override
+	public int updateTripCount(SqlSessionTemplate session, int tripNo) {
+		int result = session.update("TripMapper.updateCount", tripNo);
+		return result;
 	}
 }

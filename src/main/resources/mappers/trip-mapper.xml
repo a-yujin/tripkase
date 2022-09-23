@@ -24,12 +24,17 @@
 	</insert>
 	
 	<update id="updateTrip">
-		UPDATE TRIP_TBL SET TRIP_TITLE = #{tripTitle}, TRIP_CONTENTS = #{tripContents}, TRIP_FILENAME = #{tripFileName }, TRIP_RENAME = #{tripFileRename}, TRIP_FILEPATH = #{tripFilePath}, TRIP_UPDATE = DEFAULT WHERE TRIP_NO = #{tripdNo}
+		UPDATE TRIP_TBL SET TRIP_TITLE = #{tripTitle}, TRIP_CONTENTS = #{tripContents}, TRIP_FILENAME = #{tripFileName }, TRIP_FILERENAME = #{tripFileRename}, TRIP_FILEPATH = #{tripFilePath}, TRIP_UPDATE = DEFAULT WHERE TRIP_NO = #{tripNo}
 	</update>
 	
 	<delete id="deleteTrip">
 		DELETE FROM TRIP_TBL WHERE TRIP_NO = #{tripNo}
 	</delete>
+	
+	<!-- 조회수 -->
+	<update id="updateCount">
+		UPDATE TRIP_TBL SET TRIP_COUNT = TRIP_COUNT +1 WHERE TRIP_NO = #{boardNo}
+	</update>
 	
 	<!-- 게시글 전체 조회 -->
 	<select id="selectAllTrip" resultMap="tripResultMap">

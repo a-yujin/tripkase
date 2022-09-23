@@ -41,14 +41,18 @@ public class TripServiceImpl implements TripService {
 	// 여행소통 게시글 댓글 조회
 	@Override
 	public List<TripReply> printAllTripReply(int repTripNo) {
-		List<TripReply> tList = tStore.selectAllReply(session, repTripNo);
-		return null;
+		List<TripReply> rList = tStore.selectAllReply(session, repTripNo);
+		return rList;
 	}
 
 	// 여행소통 게시글 상세페이지 조회
 	@Override
-	public Trip printListOne(int tripNo) {
+	public Trip printListOne(Integer tripNo) {
 		Trip trip = tStore.selectListOne(session, tripNo);
+		int result = 0;
+		if(trip != null) {
+			result = tStore.updateTripCount(session, tripNo);
+		}
 		return trip;
 	}
 	

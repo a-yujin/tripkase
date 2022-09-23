@@ -97,15 +97,16 @@ public class TripController {
 	@RequestMapping(value="/trip/addReply.tripkase", method=RequestMethod.POST)
 	public ModelAndView registerTriptReply(
 			ModelAndView mv,
-			@ModelAttribute TripReply tReply,
+			@ModelAttribute TripReply tripReply,
+			@RequestParam("page") int page,
 			HttpSession session) {
 		Member member = (Member)session.getAttribute("loginMember");
-		String replyWriter = member.getMemberNick();
-		int tripNo = tReply.getRepTripNo();
-		tReply.settReplyWriter(replyWriter);
-		int result = tService.registerReply(tReply);
+		String tReplyWriter = member.getMemberNick();
+		int tripNo = tripReply.getRepTripNo();
+		tripReply.settReplyWriter(tReplyWriter);
+		int result = tService.registerReply(tripReply);
 		if(result > 0) {
-			mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo);
+			mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo+"&page="+page);
 		}
 		return mv;
 	}
@@ -152,6 +153,13 @@ public class TripController {
 		return mv;
 	}
 	
+	/**
+	 * 게시글 검색 기능
+	 * @param mv
+	 * @param searchValue
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping(value="/trip/searchTrip.tripkase", method=RequestMethod.GET)
 	public ModelAndView tripSearchList(
 			ModelAndView mv,
@@ -197,12 +205,16 @@ public class TripController {
 	public ModelAndView tripDetailView(
 			ModelAndView mv,
 			@RequestParam("tripNo") int tripNo,
+			@RequestParam("page") Integer page,
 			HttpSession session) {
 		Trip trip = tService.printListOne(tripNo);
-		// 댓글 List
+		List<TripReply> rList = tService.printAllTripReply(tripNo);
+		// 댓글 List 
 		session.setAttribute("tripNo", trip.getTripNo());
 		// 댓글 List를 jsp에서 사용가능하게 해주는 코드
 		mv.addObject("trip", trip);
+		mv.addObject("rList", rList);
+		mv.addObject("page", page);
 		mv.setViewName("trip/tripDetailView");
 		return mv;
 	} 
@@ -216,9 +228,11 @@ public class TripController {
 	@RequestMapping(value="/trip/tripModifyView.tripkase", method=RequestMethod.GET)
 	public ModelAndView tripModifyView(
 			ModelAndView mv,
-			@RequestParam("tripNo") Integer tripNo) {
+			@RequestParam("tripNo") Integer tripNo,
+			@RequestParam("page") int page) {
 		Trip trip = tService.printListOne(tripNo);
 		mv.addObject("trip", trip);
+		mv.addObject("page", page);
 		mv.setViewName("trip/tripModifyView");
 		return mv;
 	}
@@ -237,6 +251,8 @@ public class TripController {
 			ModelAndView mv,
 			@ModelAttribute Trip trip,
 			@RequestParam(value="reloadFile") MultipartFile reloadFile,
+			@RequestParam("tripNo") Integer tripNo,
+			@RequestParam("page") Integer page,
 			HttpServletRequest request,
 			HttpSession session) {
 		String tripFileName = reloadFile.getOriginalFilename();
@@ -262,7 +278,7 @@ public class TripController {
 			}
 		}
 		int result = tService.modifyTrip(trip);
-		mv.setViewName("redirect:/trip/tripListView.tripkase");
+		mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo+"&page="+page);
 		return mv;
 	}
 	
