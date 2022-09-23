@@ -19,5 +19,7 @@ public interface RestaurantStore {
 
 	public int deleteRestaurant(SqlSession session, Integer resNo);
 
+//	public Restaurant getResData(SqlSessionTemplate session);
+
 	
 }
