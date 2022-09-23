@@ -84,10 +84,10 @@ public class StorageController {
 			List<Storage> resDataList = stoService.getResDataByMemberId(memberId);
 			List<Storage> roomDataList = stoService.getRoomDataByMemberId(memberId);
 			List<Storage> attrDataList = stoService.getAttrDataByMemberId(memberId);
-			System.out.println(resDataList);
-//			mv.addObject("resDataList",resDataList);
-//			mv.addObject("roomDataList",roomDataList);
-//			mv.addObject("attrDataList",attrDataList);
+			//System.out.println(resDataList);
+			mv.addObject("resDataList",resDataList);
+			mv.addObject("roomDataList",roomDataList);
+			mv.addObject("attrDataList",attrDataList);
 			mv.setViewName("storage/storageMainPage");
 		} catch (Exception e) {
 			e.printStackTrace();

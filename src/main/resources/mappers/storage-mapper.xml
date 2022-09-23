@@ -8,8 +8,12 @@
         <id    property="stoNo"          column="STO_NO"/>
         <result property="contentsCode"      column="CONTENTS_CODE"/>
         <result property="contentsNo"      column="CONTENTS_NO"/>
-        <result property="resFileRename"      column="RES_FILERENAME"/>
         <result property="resName"      column="RES_NAME"/>
+        <result property="resFilepath"      column="RES_FILEPATH"/>
+        <result property="attrName"      column="ATTR_NAME"/>
+        <result property="attrFilePath"      column="ATTR_FILEPATH"/>
+        <result property="roomName"      column="ROOM_NAME"/>
+        <result property="roomFilePath"      column="ROOM_FILEPATH"/>
         <result property="memberId"      column="MEMBER_ID"/>
     </resultMap>
 
@@ -20,7 +24,7 @@
 
 
     <!--  보관함 데이터 가져오기 -->
-    <select id="getStorageDatas" resultMap="StorageResultMap">
+<!--     <select id="getStorageDatas" resultMap="StorageResultMap">
     SELECT
             A.STO_NO
             ,A.CONTENTS_CODE
@@ -31,7 +35,7 @@
         FROM STORAGE_TBL A
         JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO)
         WHERE MEMBER_ID = #{memberId}
-    </select>
+    </select> -->
     
     <select id="getResDataByMemberId" resultMap="StorageResultMap">
     	SELECT
