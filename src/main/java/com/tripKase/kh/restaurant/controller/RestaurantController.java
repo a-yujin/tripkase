@@ -157,4 +157,9 @@ public class RestaurantController {
 		}
 		return mv;
 	}
+	
+//	public Restaurant getresData() {
+//		Restaurant restaurant = resService.getResData();
+//		return restaurant;
+//	}
 }

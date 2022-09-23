@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.tripKase.kh.restaurant.domain.Restaurant;
@@ -52,5 +53,11 @@ public class RestaurantStoreLogic implements RestaurantStore{
 		int result = session.update("RestaurantMapper.deleteRestaurant", resNo);
 		return result;
 	}
+
+//	@Override
+//	public Restaurant getResData(SqlSessionTemplate session) {
+//		Restaurant restaurant = session.selectList("RestaurantMapper.getResData");
+//		return restaurant;
+//	}
 
 }

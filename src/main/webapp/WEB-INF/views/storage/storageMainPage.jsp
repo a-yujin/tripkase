@@ -18,7 +18,7 @@
         font-family : 'Noto Sans KR',sans-serif;
     }
 
-    #storagetitle {
+     #storagetitle {
         height: 80px;
     }
     
@@ -53,50 +53,70 @@
 
 </style>
 <body>
-
+<jsp:include page="../common/header.jsp"/>
     <div id="storagetitle">
         <h2>나의 보관함</h2>
     </div>
-    <c:if test="${!empty resList }">
-   		<div class="contents-type">　　#관광지</div>
-   			<c:forEach items="${stoList }" var="attraction" varStatus="i">
+   	<div class="contents-type">　　#관광지</div>
+<%--      	<c:if test="${!empty attrDataList }"> 
+   			<c:forEach items="${attrDataList }" var="attraction"> --%>
 	        <div class="contents-area">
 	            <div class="contents-contents">
 	                <img src="#" class="contents-img" width="150px" height="150px">
-	                <p class="contents-name">${stoList.attrName}</p>
+	                <p class="contents-name">{attraction.attrName}</p>
 	                <a href="#" class="contents-btn">추가</a>
 	                <a href="#" class="contents-btn">삭제</a>
 	            </div>
 	        </div>
-	        </c:forEach>
-	    </div>
-	</c:if>
+<%--  	        </c:forEach>
+		</c:if> 
+	
+ 	<c:if test="${empty attrDataList }">
+ 			<div class="contents-area">
+				추가된 관광지가 없습니다.
+			</div> 
+ 	</c:if> --%>
     <br>
+    
     <div class="contents-type">　　#맛집</div>
-        <c:forEach items="${stoList }" var="attraction" varStatus="i">
+     <c:if test="${!empty resDataList }">
+        <c:forEach items="${resDataList }" var="restaurant">
 	        <div class="contents-area">
 	            <div class="contents-contents">
-	                <img src="#" class="contents-img" width="150px" height="150px">
-	                <p class="contents-name">${stoList.resName }</p>
+	                <img src="#{restaurant.resFilepath }" class="contents-img" width="150px" height="150px">
+	                <p class="contents-name">{restaurant.resName }</p>
 	                <a href="#" class="contents-btn">추가</a>
 	                <a href="#" class="contents-btn">삭제</a>
 	            </div>
 	        </div>
 	     </c:forEach>
-    </div>
+	</c:if> 
+ 	<c:if test="${empty resDataList }">
+			<div class="contents-area">
+				추가된 맛집이 없습니다.
+			</div>
+	</c:if>
+	
+    <br>
     <br>
     <div class="contents-type">　　#숙소</div>
-        <c:forEach items="${stoList }" var="attraction" varStatus="i">
+<%--      <c:if test="${!empty roomDataList }">
+        <c:forEach items="${roomDataList }" var="room"> --%>
 	        <div class="contents-area">
 	            <div class="contents-contents">
 	                <img src="#" class="contents-img" width="150px" height="150px">
-	                <p class="contents-name">${stoList.roomName}</p>
+	                <p class="contents-name">{room.roomName}</p>
 	                <a href="#" class="contents-btn">추가</a>
 	                <a href="#" class="contents-btn">삭제</a>
 	            </div>
 	        </div>
-	     </c:forEach>
-    </div>   
+<%--  	     </c:forEach> 
+	</c:if> -
+	<c:if test="${empty roomDataList }">
+			<div class="contents-area">
+				추가된 숙소가 없습니다.
+			</div>
+	</c:if> --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

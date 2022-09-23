@@ -17,6 +17,7 @@ public class Restaurant {
 	private String resStatus;
 	private String resAddress;
 	private String memberId;
+	
 	public int getResNo() {
 		return resNo;
 	}

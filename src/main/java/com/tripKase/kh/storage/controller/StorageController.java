@@ -11,11 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tripKase.kh.attraction.domain.Attraction;
+import com.tripKase.kh.attraction.service.AttractionService;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.restaurant.service.RestaurantService;
+import com.tripKase.kh.room.domain.Room;
+import com.tripKase.kh.room.service.RoomService;
+import com.tripKase.kh.storage.domain.ResStorage;
 import com.tripKase.kh.storage.domain.Storage;
 import com.tripKase.kh.storage.service.StorageService;
 
@@ -25,23 +31,27 @@ public class StorageController {
 	@Autowired
 	private StorageService stoService;
 	@Autowired
-	private RestaurantService resSerivce;
+	private RestaurantService resService;
+	@Autowired
+	private RoomService rSerivce;
+	@Autowired
+	private AttractionService attrSerivce;
 	
-	/**
-	 * 보관함 데이터 불러오기
-	 * @param session 세션 정보
-	 * @return 보관함데이터 리스트
-	 */
+//	/**
+//	 * 보관함 데이터 불러오기
+//	 * @param session 세션 정보
+//	 * @return 보관함데이터 리스트
+//	 */
 //	@RequestMapping(value = "/storage/getStorageData.tripkase")
 //	public List<Storage> getStorageData(HttpSession session) {
 //		Member member = (Member)session.getAttribute("loginMember");
 //		String memberId = member.getMemberId();
-//		List<Storage> stoList = stoService.getStorageData(memberId);
-//		return stoList;
+//
+//		return  stoService.getStorageData(memberId);
 //	}
-	
+
 	/**
-	 * 상세보기에서 보관함으로 등록
+	 *  보관함 등록
 	 * @param session 세션 정보 / paramMap 컨텐츠코드, 컨텐츠넘버, 멤버아이디
 	 * @return mv > 인서트한 결과값
 	 */
@@ -63,7 +73,32 @@ public class StorageController {
 		return mv;
 	}
 	
+
+
 	
+	@RequestMapping(value = "/storage/storageView.tripkase", method=RequestMethod.GET)
+	public ModelAndView showStorageView(ModelAndView mv, HttpSession session) {
+		try {
+			Member member = (Member)session.getAttribute("loginMember");
+			String memberId = member.getMemberId();
+			List<Storage> resDataList = stoService.getResDataByMemberId(memberId);
+			List<Storage> roomDataList = stoService.getRoomDataByMemberId(memberId);
+			List<Storage> attrDataList = stoService.getAttrDataByMemberId(memberId);
+			System.out.println(resDataList);
+//			mv.addObject("resDataList",resDataList);
+//			mv.addObject("roomDataList",roomDataList);
+//			mv.addObject("attrDataList",attrDataList);
+			mv.setViewName("storage/storageMainPage");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("msg", e.getMessage()).setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+	
+//	내가 만든 겟스토리지데이터 마크원버전
 //	@RequestMapping(value = "/storage/storageView.tripkase", method=RequestMethod.GET)
 //	public ModelAndView getStorageData(ModelAndView mv, HttpSession session) {
 //		Member member = (Member)session.getAttribute("loginMember");
@@ -75,13 +110,5 @@ public class StorageController {
 //		return mv;
 //	}
 
-	
-	
-//	@RequestMapping(value="/storage/storageView.tripkase", method = RequestMethod.GET)
-//	public ModelAndView storageMainView(ModelAndView mv, HttpSession session, List<Storage> stoList) {
-//		Member member = (Member)session.getAttribute("loginMember");
-//		String memberId = member.getMemberId();
-//		List<Storage> = stoService.getStorageData(memberId);
-//		return mv;
-//	}
+
 }

@@ -15,6 +15,8 @@ public interface RestaurantService {
 	public Restaurant printOneByRestaurantNo(Integer resNo);
 
 	public int deleteRestaurant(Integer resNo);
+
+//	public Restaurant getResData();
 	
 	
 }

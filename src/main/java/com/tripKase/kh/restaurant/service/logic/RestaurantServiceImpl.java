@@ -51,4 +51,10 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return result;
 	}
 
+//	@Override
+//	public Restaurant getResData() {
+//		Restaurant restaurant = resStore.getResData(session);
+//		return restaurant;
+//	}
+
 }

@@ -1,5 +1,9 @@
 package com.tripKase.kh.storage.store.logic;
 
+import com.tripKase.kh.attraction.domain.Attraction;
+import com.tripKase.kh.restaurant.domain.Restaurant;
+import com.tripKase.kh.room.domain.Room;
+import com.tripKase.kh.storage.domain.ResStorage;
 import com.tripKase.kh.storage.domain.Storage;
 import com.tripKase.kh.storage.store.StorageStore;
 import org.apache.ibatis.session.SqlSession;
@@ -23,6 +27,24 @@ public class StorageStoreLogic implements StorageStore {
 	public int insertStorage(HashMap<String, Object> paramMap) {
 		int result = session.insert("StorageMapper.insertStorage",paramMap);
 		return result;
+	}
+
+	@Override
+	public List<Storage> getResDataByMemberId(String memberId) {
+		
+		return session.selectList("StorageMapper.getResDataByMemberId", memberId);
+	}
+
+	@Override
+	public List<Storage> getRoomDataByMemberId(String memberId) {
+		
+		return session.selectList("StorageMapper.getRoomDataByMemberId", memberId);
+	}
+
+	@Override
+	public List<Storage> getAttrDataByMemberId(String memberId) {
+		
+		return session.selectList("StorageMapper.getAttrDataByMemberId", memberId);
 	}
 
     
