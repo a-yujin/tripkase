@@ -47,7 +47,7 @@ public class StorageController {
 			String memberId = member.getMemberId();
 			paramMap.put("memberId", memberId);
 			int result = stoService.insertStorage(paramMap);
-			System.out.println(paramMap);
+//			System.out.println(paramMap);
 			if(result > 0) {
 				mv.setViewName("storage/storageMainPage");
 			}
@@ -65,15 +65,17 @@ public class StorageController {
 	 * 
 	 */
 	@RequestMapping(value="/storage/deleteStorage.tripkase", method=RequestMethod.GET)
-	public ModelAndView deleteStorage(ModelAndView mv, HttpSession session) {
-		// DELETE FROM STORAGE_TBL WHERE STO_NO = #{stoNo} ??
+	public ModelAndView deleteStorage(ModelAndView mv, HttpSession session, @RequestParam("stoNo") Integer stoNo) {
 		try {
-			Member member = (Member)session.getAttribute("loginMember");
-			String memberId = member.getMemberId();
-//			Integer stoNo = 
-//			int result = stoService.deleteStorage(stoNo);
+			int result = stoService.deleteStorage(stoNo);
+			System.out.println(stoNo);
+			if(result > 0) {
+				session.removeAttribute("stoNo");
+				mv.setViewName("storage/storageMainPage");				
+			}
 		} catch (Exception e) {
-			
+			e.printStackTrace();
+			mv.addObject("msg", e.getMessage()).setViewName("common/errorPage");
 		}
 		return mv;
 	}

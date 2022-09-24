@@ -30,7 +30,7 @@
 							</button>
 							<ul id="choice-menu" class="dropdown-menu">
 								<li>
-									<a id="choice-menu1" class="dropdown-item" onclick="#"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
+									<a id="choice-menu1" class="dropdown-item" onclick="location.href='/storage/deleteStorage.tripkase?stoNo=${attraction.stoNo}';"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
 								</li>
 								<li>
 									<a id="choice-menu2" class="dropdown-item" onclick="#;"><img src="/resources/images/storage/calendar.png" width="20px" height="20px">   일정 추가</a>
@@ -62,7 +62,7 @@
 							</button>
 							<ul id="choice-menu" class="dropdown-menu">
 								<li>
-									<a id="choice-menu1" class="dropdown-item" onclick="#"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
+									<a id="choice-menu1" class="dropdown-item" onclick="location.href='/storage/deleteStorage.tripkase?stoNo=${restaurant.stoNo}';"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
 								</li>
 								<li>
 									<a id="choice-menu2" class="dropdown-item" onclick="#"><img src="/resources/images/storage/calendar.png" width="21px" height="21px">   일정 추가</a>
@@ -94,7 +94,7 @@
 							</button>
 							<ul id="choice-menu" class="dropdown-menu">
 								<li>
-									<a id="choice-menu1" class="dropdown-item" onclick="#"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
+									<a id="choice-menu1" class="dropdown-item" onclick="location.href='/storage/deleteStorage.tripkase?stoNo=${room.stoNo}';"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
 								</li>
 								<li>
 									<a id="choice-menu2" class="dropdown-item" onclick="#"><img src="/resources/images/storage/calendar.png" width="25px" height="25px">   일정 추가</a>
@@ -114,16 +114,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 </script>
 <script>
-
-        function menutoggle() {
-            var sidemenu = document.querySelector(".menubar");
-            if(sidemenu.style.display == "none"){
-                sidemenu.style.display = "block";
-            } else {
-                sidemenu.style.display = "none";
-            }
-        };
-
 </script>
 </body>
 </html>

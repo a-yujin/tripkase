@@ -1,8 +1,5 @@
 package com.tripKase.kh.storage.service;
 
-import com.tripKase.kh.attraction.domain.Attraction;
-import com.tripKase.kh.restaurant.domain.Restaurant;
-import com.tripKase.kh.room.domain.Room;
 import com.tripKase.kh.storage.domain.Storage;
 
 import java.util.HashMap;
@@ -19,6 +16,8 @@ public interface StorageService {
 	List<Storage> getRoomDataByMemberId(String memberId);
 
 	List<Storage> getAttrDataByMemberId(String memberId);
+
+	int deleteStorage(int stoNo);
 
 	
 }
