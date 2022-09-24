@@ -4,18 +4,52 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ScheduleMapper">
 	<resultMap type="Schedule" id="ScheduleResultMap">
-		<id property="scheSeq" column="SCHEDULE_SEQ"/>
-		<result property="scheDays" column="SCHEDULE_DAYS"/>
-		<result property="scheNo" column="SCHEDULE_NO"/>
-		<result property="contetnsType" column="CONTENTS_TYPE"/>
-		<result property="contetnsNo" column="CONTENTS_NO"/>
-		<result property="scheName" column="SCHEDULE_NAME"/>
-		<result property="schePeriod" column="SCHEDULE_PERIOD"/>
-		<result property="scheCreate" column="SCHEDULE_CREATE"/>
+		<id property="scheduleSeq" column="SCHEDULE_SEQ"/>
+		<id property="scheduleDays" column="SCHEDULE_DAYS"/>
+		<result property="scheduleName" column="SCHEDULE_NAME"/>
+		<result property="scheduleStart" column="SCHEDULE_START"/>
+		<result property="scheduleEnd" column="SCHEDULE_END"/>
+		<result property="scheduleCreate" column="S_CREATE_DATE"/>
 		<result property="memberId" column="MEMBER_ID"/>
 	</resultMap>
-	
+	<resultMap type="ScheduleManage" id="ScheduleManageResultMap">
+		<id property="scheduleDays" column="SCHEDULE_DAYS"/>
+		<id property="scheduleNo" column="SCHEDULE_NO"/>
+		<id property="scheduleSeq" column="SCHEDULE_SEQ"/>
+		<result property="contetnsType" column="CONTENTS_TYPE"/>
+		<result property="contetnsNo" column="CONTENTS_NO"/>
+		<collection property="restaurant" resultMap="RestaurantResultMap"/>
+	</resultMap>
+	 <resultMap type="Restaurant" 			id="RestaurantResultMap">
+	 	<id 	property="resNo" 			column="RES_NO"/>			<!-- 맛집 ID-->
+	 	<result property="resArea" 			column="RES_AREA"/>			<!-- 맛집 지역 -->
+	 	<result property="resType" 			column="RES_TYPE"/>			<!-- 맛집 타입 -->
+	 	<result property="resName" 			column="RES_NAME"/>			<!-- 맛집 가게 이름 -->
+	 	<result property="resTel" 			column="RES_TEL"/> 			<!-- 맛집 연락처 -->
+	 	<result property="resDayoff" 		column="RES_DAYOFF"/>		<!-- 맛집 휴일 -->
+	 	<result property="resMainmenu" 		column="RES_MAINMENU"/> 	<!-- 맛집 대표메뉴 -->
+	 	<result property="resDetail" 		column="RES_DETAIL"/>		<!-- 맛집 상세정보 -->
+	 	<result property="resFilename" 		column="RES_FILENAME"/>		<!-- 맛집 이미지파일 업로드 -->
+	 	<result property="resFileRename" 	column="RES_FILERENAME"/>	<!-- 맛집 이미지파일 업로드 후 -->
+	 	<result property="resFilepath" 		column="RES_FILEPATH"/>		<!-- 맛집 이미지 경로 -->
+	 	<result property="resMap" 			column="RES_MAP"/> 			<!-- 맛집 지도 위치 -->
+	 	<result property="resStatus" 		column="RES_STATUS"/>		<!-- 맛집 게시 여부 (Y/N) -->
+	 	<result property="resAddress" 		column="RES_ADDRESS"/>		<!-- 맛집 주소 -->
+ 	</resultMap>
 	<select id="selectAllSchedule" resultMap="ScheduleResultMap">
-		SELECT * FROM SCHEDULE_TBL
+		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_DAYS = '1일차' AND MEMBER_ID = #{memberId}
 	</select>
+	<select id="selectScheduleBySeq" resultMap="ScheduleResultMap">
+		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_SEQ = #{cheduleSeq}
+	</select>
+	<select id="selectSMBySeq" resultMap="ScheduleManageResultMap">
+		SELECT a.contents_type, b.res_name, b.res_filerename 
+		FROM SCHEDULE_MANAGE a JOIN RESTAURANT_TBL b ON a.CONTENTS_NO = b.RES_NO WHERE SCHEDULE_SEQ = #{cheduleSeq}
+	</select>
+	<insert id="insertSchedule">
+		INSERT INTO SCHEDULE_TBL VALUES(SEQ_SCHENO.NEXTVAL, #{scheduleDays},#{scheduleName}, #{scheduleStart}, #{scheduleEnd}, default, #{memberId})
+	</insert>
+	<insert id="AddDays">
+		INSERT INTO SCHEDULE_TBL VALUES(SEQ_SCHENO.CURRVAL, #{scheduleDays},#{scheduleName}, #{scheduleStart}, #{scheduleEnd}, default, #{memberId})
+	</insert>
 </mapper>

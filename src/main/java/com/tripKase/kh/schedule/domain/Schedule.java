@@ -4,62 +4,41 @@ import java.sql.Date;
 
 public class Schedule {
 	
-	private String scheSeq; 		//일정 순번
-	private String scheDays;		//일차
-	private int scheNo;				//일정 순번
-	private String contetnsType;	//컨텐츠 분류
-	private int contetnsNo;			//컨텐츠 순번
-	private String scheName;		//일정 이름
-	private String schePeriod;		//일정 기간
-	private Date scheCreate;		//일정 생성일
+	private int scheduleSeq; 	//일정 순번
+	private String scheduleDays;	//여행 일차
+	private String scheduleName;	//일정 이름
+	private Date scheduleStart; 	//여행 시작일
+	private Date scheduleEnd;		//여행 마지막일
+	private Date scheduleCreate;	//일정 생성일
 	private String memberId;		//회원 아이디
-	public String getScheSeq() {
-		return scheSeq;
+	
+	
+	
+	public String getScheduleDays() {
+		return scheduleDays;
 	}
-	public void setScheSeq(String scheSeq) {
-		this.scheSeq = scheSeq;
+	public void setScheduleDays(String scheduleDays) {
+		this.scheduleDays = scheduleDays;
 	}
-	public String getScheDays() {
-		return scheDays;
+	public int getScheduleSeq() {
+		return scheduleSeq;
 	}
-	public void setScheDays(String scheDays) {
-		this.scheDays = scheDays;
+	public void setScheduleSeq(int scheduleSeq) {
+		this.scheduleSeq = scheduleSeq;
 	}
-	public int getScheNo() {
-		return scheNo;
+
+	public String getScheduleName() {
+		return scheduleName;
 	}
-	public void setScheNo(int scheNo) {
-		this.scheNo = scheNo;
+	public void setScheduleName(String scheduleName) {
+		this.scheduleName = scheduleName;
 	}
-	public String getContetnsType() {
-		return contetnsType;
+
+	public Date getScheduleCreate() {
+		return scheduleCreate;
 	}
-	public void setContetnsType(String contetnsType) {
-		this.contetnsType = contetnsType;
-	}
-	public int getContetnsNo() {
-		return contetnsNo;
-	}
-	public void setContetnsNo(int contetnsNo) {
-		this.contetnsNo = contetnsNo;
-	}
-	public String getScheName() {
-		return scheName;
-	}
-	public void setScheName(String scheName) {
-		this.scheName = scheName;
-	}
-	public String getSchePeriod() {
-		return schePeriod;
-	}
-	public void setSchePeriod(String schePeriod) {
-		this.schePeriod = schePeriod;
-	}
-	public Date getScheCreate() {
-		return scheCreate;
-	}
-	public void setScheCreate(Date scheCreate) {
-		this.scheCreate = scheCreate;
+	public void setScheduleCreate(Date scheduleCreate) {
+		this.scheduleCreate = scheduleCreate;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -67,13 +46,29 @@ public class Schedule {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	
+	public Date getScheduleEnd() {
+		return scheduleEnd;
+	}
+	public void setScheduleEnd(Date scheduleEnd) {
+		this.scheduleEnd = scheduleEnd;
+	}
+	public Date getScheduleStart() {
+		return scheduleStart;
+	}
+	public void setScheduleStart(Date scheduleStart) {
+		this.scheduleStart = scheduleStart;
+	}
 	@Override
 	public String toString() {
-		return "Schedule [scheSeq=" + scheSeq + ", scheDays=" + scheDays + ", scheNo=" + scheNo + ", contetnsType="
-				+ contetnsType + ", contetnsNo=" + contetnsNo + ", scheName=" + scheName + ", schePeriod=" + schePeriod
-				+ ", scheCreate=" + scheCreate + ", memberId=" + memberId + "]";
+		return "Schedule [scheduleSeq=" + scheduleSeq + ", scheduleName=" + scheduleName + ", scheduleStart="
+				+ scheduleStart + ", scheduleEnd=" + scheduleEnd + ", scheduleCreate=" + scheduleCreate + ", memberId="
+				+ memberId + "]";
 	}
+
+	
+	
+	
+
 
 	
 	
