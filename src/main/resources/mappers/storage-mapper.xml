@@ -4,17 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StorageMapper">
 
-    <resultMap type="Storage"      id="StorageResultMap">
-        <id    property="stoNo"          column="STO_NO"/>
+    <resultMap type="Storage"     			 id="StorageResultMap">
+        <id    property="stoNo"         	 column="STO_NO"/>
         <result property="contentsCode"      column="CONTENTS_CODE"/>
-        <result property="contentsNo"      column="CONTENTS_NO"/>
-        <result property="resName"      column="RES_NAME"/>
-        <result property="resFilepath"      column="RES_FILEPATH"/>
-        <result property="attrName"      column="ATTR_NAME"/>
-        <result property="attrFilePath"      column="ATTR_FILEPATH"/>
-        <result property="roomName"      column="ROOM_NAME"/>
-        <result property="roomFilePath"      column="ROOM_FILEPATH"/>
-        <result property="memberId"      column="MEMBER_ID"/>
+        <result property="contentsNo"      	 column="CONTENTS_NO"/>
+        <result property="resName"     	 	 column="RES_NAME"/>
+        <result property="resFileRename"     column="RES_FILERENAME"/>
+        <result property="attrName"      	 column="ATTR_NAME"/>
+        <result property="attrFileRename"    column="ATTR_FILERENAME"/>
+        <result property="roomName"      	 column="ROOM_NAME"/>
+        <result property="roomFileRename"    column="ROOM_FILERENAME"/>
+        <result property="memberId"      	 column="MEMBER_ID"/>
     </resultMap>
 
 	
@@ -43,7 +43,7 @@
             ,A.CONTENTS_CODE
             ,A.CONTENTS_NO
             ,A.MEMBER_ID
-            ,B.RES_FILEPATH
+            ,B.RES_FILERENAME
             ,B.RES_NAME
         FROM STORAGE_TBL A
         JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO AND A.CONTENTS_CODE = 'restaurant')
@@ -56,7 +56,7 @@
             ,A.CONTENTS_CODE
             ,A.CONTENTS_NO
             ,A.MEMBER_ID
-            ,B.ROOM_FILEPATH
+            ,B.ROOM_FILERENAME
             ,B.ROOM_NAME
         FROM STORAGE_TBL A
         JOIN ROOM_TBL B ON (A.CONTENTS_NO = B.ROOM_NO AND A.CONTENTS_CODE = 'room')
@@ -69,7 +69,7 @@
             ,A.CONTENTS_CODE
             ,A.CONTENTS_NO
             ,A.MEMBER_ID
-            ,B.ATTR_FILEPATH
+            ,B.ATTR_FILERENAME
             ,B.ATTR_NAME
         FROM STORAGE_TBL A
         JOIN ATTRACTION_TBL B ON (A.CONTENTS_NO = B.ATTR_NO AND A.CONTENTS_CODE = 'attraction')

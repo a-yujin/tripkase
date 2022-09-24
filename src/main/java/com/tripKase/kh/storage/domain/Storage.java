@@ -7,152 +7,118 @@ public class Storage {
 	private String contentsCode;
 	private String contentsNo;
 	private String resName;
-	private String resFilepath;
+	private String resFileRename;
 	private String attrName;
-	private String attrFilePath;
+	private String attrFileRename;
 	private String roomName;
-	private String roomFilePath;
+	private String roomFileRename;
 	private String memberId;
 	
+	public Storage() {}
 
-	public Storage(int stoNo, String contentsCode, String contentsNo, String resName, String resFilepath,
-			String attrName, String attrFilePath, String roomName, String roomFilePath, String memberId) {
+	public Storage(int stoNo, String contentsCode, String contentsNo, String resName, String resFileRename,
+			String attrName, String attrFileRename, String roomName, String roomFileRename, String memberId) {
 		super();
 		this.stoNo = stoNo;
 		this.contentsCode = contentsCode;
 		this.contentsNo = contentsNo;
 		this.resName = resName;
-		this.resFilepath = resFilepath;
+		this.resFileRename = resFileRename;
 		this.attrName = attrName;
-		this.attrFilePath = attrFilePath;
+		this.attrFileRename = attrFileRename;
 		this.roomName = roomName;
-		this.roomFilePath = roomFilePath;
+		this.roomFileRename = roomFileRename;
 		this.memberId = memberId;
 	}
-	
+
 	public int getStoNo() {
 		return stoNo;
 	}
+
 	public void setStoNo(int stoNo) {
 		this.stoNo = stoNo;
 	}
+
 	public String getContentsCode() {
 		return contentsCode;
 	}
+
 	public void setContentsCode(String contentsCode) {
 		this.contentsCode = contentsCode;
 	}
+
 	public String getContentsNo() {
 		return contentsNo;
 	}
+
 	public void setContentsNo(String contentsNo) {
 		this.contentsNo = contentsNo;
 	}
+
 	public String getResName() {
 		return resName;
 	}
+
 	public void setResName(String resName) {
 		this.resName = resName;
 	}
-	public String getMemberId() {
-		return memberId;
+
+	public String getResFileRename() {
+		return resFileRename;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+
+	public void setResFileRename(String resFileRename) {
+		this.resFileRename = resFileRename;
 	}
-	public String getResFilepath() {
-		return resFilepath;
-	}
-	public void setResFilepath(String resFilepath) {
-		this.resFilepath = resFilepath;
-	}
+
 	public String getAttrName() {
 		return attrName;
 	}
+
 	public void setAttrName(String attrName) {
 		this.attrName = attrName;
 	}
-	public String getAttrFilePath() {
-		return attrFilePath;
+
+	public String getAttrFileRename() {
+		return attrFileRename;
 	}
-	public void setAttrFilePath(String attrFilePath) {
-		this.attrFilePath = attrFilePath;
+
+	public void setAttrFileRename(String attrFileRename) {
+		this.attrFileRename = attrFileRename;
 	}
+
 	public String getRoomName() {
 		return roomName;
 	}
+
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-	public String getRoomFilePath() {
-		return roomFilePath;
+
+	public String getRoomFileRename() {
+		return roomFileRename;
 	}
-	public void setRoomFilePath(String roomFilePath) {
-		this.roomFilePath = roomFilePath;
+
+	public void setRoomFileRename(String roomFileRename) {
+		this.roomFileRename = roomFileRename;
 	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	@Override
 	public String toString() {
 		return "Storage [stoNo=" + stoNo + ", contentsCode=" + contentsCode + ", contentsNo=" + contentsNo
-				+ ", resName=" + resName + ", resFilepath=" + resFilepath + ", attrName=" + attrName + ", attrFilePath="
-				+ attrFilePath + ", roomName=" + roomName + ", roomFilePath=" + roomFilePath + ", memberId=" + memberId
-				+ "]";
+				+ ", resName=" + resName + ", resFileRename=" + resFileRename + ", attrName=" + attrName
+				+ ", attrFileRename=" + attrFileRename + ", roomName=" + roomName + ", roomFileRename=" + roomFileRename
+				+ ", memberId=" + memberId + "]";
 	}
+	
 	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//package com.tripKase.kh.storage.domain;
-//
-//public class Storage {
-//	
-//	private int stoNo;
-//	private String contentsCode;
-//	private String contentsId;
-//	private String memberId;
-//	
-//	public int getStoNo() {
-//		return stoNo;
-//	}
-//	public void setStoNo(int stoNo) {
-//		this.stoNo = stoNo;
-//	}
-//	public String getContentsCode() {
-//		return contentsCode;
-//	}
-//	public void setContentsCode(String contentsCode) {
-//		this.contentsCode = contentsCode;
-//	}
-//	public String getContentsId() {
-//		return contentsId;
-//	}
-//	public void setContentsId(String contentsId) {
-//		this.contentsId = contentsId;
-//	}
-//	public String getMemberId() {
-//		return memberId;
-//	}
-//	public void setMemberId(String memberId) {
-//		this.memberId = memberId;
-//	}
-//	
-//	
-//	@Override
-//	public String toString() {
-//		return "Storage [stoNo=" + stoNo + ", contentsCode=" + contentsCode + ", contentsId=" + contentsId
-//				+ ", memberId=" + memberId + "]";
-//	}
-//	
-//}

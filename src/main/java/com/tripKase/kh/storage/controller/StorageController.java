@@ -58,6 +58,26 @@ public class StorageController {
 		return mv;
 	}
 	
+	
+	/**
+	 *  보관함에서 컨텐츠 삭제
+	 * 
+	 * 
+	 */
+	@RequestMapping(value="/storage/deleteStorage.tripkase", method=RequestMethod.GET)
+	public ModelAndView deleteStorage(ModelAndView mv, HttpSession session) {
+		// DELETE FROM STORAGE_TBL WHERE STO_NO = #{stoNo} ??
+		try {
+			Member member = (Member)session.getAttribute("loginMember");
+			String memberId = member.getMemberId();
+//			Integer stoNo = 
+//			int result = stoService.deleteStorage(stoNo);
+		} catch (Exception e) {
+			
+		}
+		return mv;
+	}
+	
 
 
 	
