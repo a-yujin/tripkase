@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.admin.domain.NoticeImg;
+import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
 import com.tripKase.kh.notice.service.NoticeService;
@@ -119,7 +120,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지 상세 조회
+	 * 공지 상세 + 댓글 조회
 	 * @param mv
 	 * @param noticeNo
 	 * @param session
@@ -133,9 +134,11 @@ public class NoticeController {
 		try {
 			Notice notice = nService.printOneByNo(noticeNo);
 			List<NoticeImg> nImgList = nService.printImgByNo(noticeNo);
+			List<NoticeReply> nReplyList = nService.printAllnReply(noticeNo);
 			session.setAttribute("noticeNo", notice.getNoticeNo());
 			mv.addObject("notice", notice);
 			mv.addObject("nImgList", nImgList);
+			mv.addObject("nReplyList", nReplyList);
 			mv.setViewName("notice/noticeDetail");
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString());
@@ -152,18 +155,31 @@ public class NoticeController {
 	 * @param session
 	 * @return
 	 */
+	@RequestMapping(value="/notice/replyRegister.tripkase", method=RequestMethod.POST)
 	public ModelAndView registerNoticeReply(
 			ModelAndView mv,
 			@ModelAttribute NoticeReply nReply,
-			@RequestParam("page") int page,
 			HttpSession session) {
-		String nReplyWriter = "test writer";
-		int noticeNo = nReply.getRefNoticeNo();
+		Member member = (Member)session.getAttribute("loginMember");
+		String nReplyWriter = member.getMemberNick();
 		nReply.setnReplyWriter(nReplyWriter);
+		int noticeNo = nReply.getRefNoticeNo();
 		int result = nService.registerNReply(nReply);
 		if(result > 0) {
-			mv.setViewName("redirect:/notice/detail.tripkase?noticeNo="+noticeNo+"&page="+page);
+			mv.setViewName("redirect:/notice/detail.tripkase?noticeNo="+noticeNo);
 		}
 		return mv;
+	}
+	
+	/**
+	 * 공지 댓글 수정
+	 * @param nReply
+	 * @return
+	 */
+	@RequestMapping(value="/notice/replyModify.tripkase", method=RequestMethod.POST)
+	public String modifyNoticeReply(
+			@ModelAttribute NoticeReply nReply) {
+		int result = nService.modifyNReply(nReply);
+		return "redirect:/notice/list.tripkase";
 	}
 }

@@ -57,4 +57,18 @@ public class NoticeStoreLogic implements NoticeStore {
 		return result;
 	}
 
+	// 공지 댓글 조회
+	@Override
+	public List<NoticeReply> selectAllnReply(SqlSession session, Integer noticeNo) {
+		List<NoticeReply> nReplyList = session.selectList("NoticeMapper.selectAllnReply", noticeNo);
+		return nReplyList;
+	}
+
+	// 공지 댓글 수정
+	@Override
+	public int updateNReply(SqlSession session, NoticeReply nReply) {
+		int result = session.update("NoticeMapper.updateNReply", nReply);
+		return result;
+	}
+
 }

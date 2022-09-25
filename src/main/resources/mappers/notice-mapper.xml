@@ -6,14 +6,10 @@
 	<resultMap type="Notice" id="noticeResultMap">
 		<id property="noticeNo" 		column="NOTICE_NO"/>
 		<result property="noticeWriter"	column="NOTICE_WRITER"/>
-<!-- 		<result property="noticeType" 	column="NOTICE_TYPE"/> -->
 		<result property="noticeTitle" 	column="NOTICE_TITLE"/>
 		<result property="nCreateDate" 	column="N_CREATE_DATE"/>
 		<result property="nUpdateDate" 	column="N_UPDATE_DATE"/>
 		<result property="nContents" 	column="N_CONTENTS"/>
-<!-- 		<result property="nFileName" 	column="N_FILENAME"/>
-		<result property="nFileRename"	column="N_FILERENAME"/>
-		<result property="nFilePath" 	column="N_FILEPATH"/> -->
 		<result property="noticeCount" 	column="NOTICE_COUNT"/>
 		<result property="noticeStatus" column="NOTICE_STATUS"/>
 	</resultMap>
@@ -43,8 +39,29 @@
 		SELECT * FROM NOTICE_IMG WHERE NOTICE_NO = #{noticeNo}
 	</select>
 	
+	<resultMap type="NoticeReply" id="nReplyResultMap">
+		<id property="nReplyNo" column="N_REPLY_NO"/>
+		<result property="refNoticeNo" column="REF_NOTICE_NO"/>
+		<result property="nReplyWriter" column="N_REPLY_WRITER"/>
+		<result property="nReplyContents" column="N_REPLY_CONTENTS"/>
+		<result property="nreCreateDate" column="NRE_CREATE_DATE"/>
+		<result property="nreUpdateDate" column="NRE_UPDATE_DATE"/>
+		<result property="nReplyCount" column="N_REPLY_COUNT"/>
+		<result property="nReplyStatus" column="N_REPLY_STATUS"/>
+	</resultMap>
+	
 	<!-- 공지 댓글 등록 -->
 	<insert id="insertNReply">
 		INSERT INTO N_REPLY_TBL VALUES(SEQ_NREPLY_NO.NEXTVAL, #{refNoticeNo}, #{nReplyWriter}, #{nReplyContents}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
+	
+	<!-- 공지 댓글 조회 -->
+	<select id="selectAllnReply" resultMap="nReplyResultMap">
+		SELECT * FROM N_REPLY_TBL WHERE REF_NOTICE_NO = #{refNoticeNo} AND N_REPLY_STATUS = 'Y' ORDER BY N_REPLY_NO DESC
+	</select>
+	
+	<!-- 공지 댓글 수정 -->
+	<update id="updateNReply">
+		UPDATE N_REPLY_TBL SET N_REPLY_CONTENTS = #{nReplyContents}, R_UPDATE_DATE = DEFAULT WHERE N_REPLY_NO = #{nReplyNo}
+	</update>
 </mapper>

@@ -26,5 +26,11 @@ public interface NoticeStore {
 
 	// 공지 댓글 등록
 	public int insertNReply(SqlSession session, NoticeReply nReply);
+
+	// 공지 댓글 조회
+	public List<NoticeReply> selectAllnReply(SqlSession session, Integer noticeNo);
+
+	// 공지 댓글 수정
+	public int updateNReply(SqlSession session, NoticeReply nReply);
 	
 }
