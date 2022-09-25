@@ -36,13 +36,12 @@
 		</tr>
 	</table>
 	<!-- 공지 댓글 등록 -->
-	<form action="" method="">
-		<input type="hidden" name="page" value="${page}">
-		<input type="hidden" name="refBoardNo" value="${notice.noticeNo}">
+	<form action="/notice/replyRegister.tripkase" method="post">
+		<input type="hidden" name="refNoticeNo" value="${notice.noticeNo}">
 		<table id="nReplyRegister" align="center">
 			<tr>
 				<td id="nReplyRegiTd1">
-					<input id="nReplyRegiText" type="text" name="nReplyContents">
+					<textarea id="nReplyRegiText" type="text" name="nReplyContents"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -52,6 +51,47 @@
 			</tr>
 		</table>
 	</form>
+	<!-- 공지 댓글 목록 -->
+	<table id="nReplyList" align="center">
+		<c:forEach items="${nReplyList}" var="nReply">
+			<tr id="nReplyTop">
+				<td id="nReplyWriter">${nReply.nReplyWriter}</td>
+				<td>${nReply.nreUpdateDate}</td>
+			</tr>
+			<tr>
+				<td id="nReplyContents" colspan="2">${nReply.nReplyContents}</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="#" onclick="">수정</a>
+					<a href="#" onclick="">삭제</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<script>
+		function modifyView(obj, nReplyContents, nReplyNo){
+			event.preventDefault();
+			var $tr = $("<tr>");
+			$tr.append("<td colspan='2'><input type='text' size='50' value='"+nReplyContents+"'></td>");
+			$tr.append("<td><button onclick='modifyReply(this, "+nReplyNo+");'>수정</button></td>");
+			$(obj).parent().parent().after($tr);
+		}
+		
+		function modifyReply(obj, nReplyNo) {
+			var inputTag = $(obj).parent().prev().children();
+			console.log(inputTag.val());
+			var nReplyContents = inputTag.val();
+			var $form = $("<form>");
+			$form.attr("action", "/notice/replyModify.tripkase");
+			$form.attr("method", "post");
+			$form.append("<input type='hidden' value='"+nReplyContents+"' name='nReplyContents'>");
+			$form.append("<input type='hidden' value='"+nReplyNo+"' name='nReplyNo'>");
+			console.log($form[0]);
+			$form.appendTo("body");
+			$form.submit();
+		}
+	</script>
 	<br><br><br><br><br>
 </body>
 </html>

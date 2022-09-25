@@ -61,4 +61,18 @@ public class NoticeServiceImpl implements NoticeService{
 		return result;
 	}
 
+	// 공지 댓글 조회
+	@Override
+	public List<NoticeReply> printAllnReply(Integer noticeNo) {
+		List<NoticeReply> nReplyList = nStore.selectAllnReply(session, noticeNo);
+		return nReplyList;
+	}
+
+	// 공지 댓글 수정
+	@Override
+	public int modifyNReply(NoticeReply nReply) {
+		int result = nStore.updateNReply(session, nReply);
+		return result;
+	}
+
 }
