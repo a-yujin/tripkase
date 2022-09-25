@@ -67,8 +67,9 @@ public class ScheduleController {
 			,@RequestParam(value="scheduleDays", required = false) String scheduleDays
 			,HttpSession session) {
 		//스케줄 정보 가져오기
-		String Days = (scheduleDays != null) ? scheduleDays : "1일차";
 		List<Schedule> sList = sService.selectScheduleBySeq(cheduleSeq);
+		//해당 일차 정보 가져오기
+		String Days = (scheduleDays != null) ? scheduleDays : "1일차";
 		List<ScheduleManage> smList = sService.selectSMBySeq(cheduleSeq,Days);
 		mv.addObject("sList",sList);
 		mv.addObject("smList",smList);

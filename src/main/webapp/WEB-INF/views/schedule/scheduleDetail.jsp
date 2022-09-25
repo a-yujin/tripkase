@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+
 	<style>
 		body{
 			font-family: 'Noto Sans KR', sans-serif;
@@ -18,8 +19,34 @@
 		div{
 			padding:20px;
 		}
+		#contentsIMg{
+			border:1px solid;
+		}
 		#days{
 			padding:20px;
+		}
+		#schedule{
+			margin:30px;
+			float:left;
+			width:200px;
+			height:200px;
+			text-align:center;
+		}
+		#icon{
+			margin-top:70px;
+			float:left;
+			width:3px;
+			height:3px;
+			text-align:center;
+		}
+		#addContents{
+			margin-top:70px;
+			margin-left:30px;
+			border:1px solid;
+			float:left;
+			width:150px;
+			height:150px;
+			text-align:center;
 		}
 	</style>
 
@@ -42,23 +69,25 @@
 	</ul>
 	</div>
 	<c:forEach items="${smList }" var="scheduleManage">
-		<div id="schdule">
-			<span>
-				<c:if test="${scheduleManage.contetnsType eq '관광지'}">
-					관광지<br>
-				</c:if>
-				<c:if test="${scheduleManage.contetnsType eq '맛집'}">
-					맛집<br>
-				</c:if>
-				<c:if test="${scheduleManage.contetnsType eq '숙소'}">
-					숙소<br>
-				</c:if>
-				<img src=""/>
-				${scheduleManage.restaurnat.resName}
-				<%-- ${scheduleManage.restaurant.resName} --%>
-				
-			</span>	
+		<div id="schedule">
+			<c:if test="${scheduleManage.contetnsType eq '관광지'}">
+				<span class="glyphicon glyphicon-map-marker"></span>
+			</c:if>
+			<c:if test="${scheduleManage.contetnsType eq '맛집'}">
+				<span class="glyphicon glyphicon-cutlery"></span>
+			</c:if>
+			<c:if test="${scheduleManage.contetnsType eq '숙소'}">
+				<span class="glyphicon glyphicon-bed"></span>
+			</c:if>
+			<img id="contentsIMg" onclick="" width="150" height="150" src="/resources/resUploadFiles/20220921134942.jpg" alt="컨텐츠 이미지"/><br>
+			컨텐츠 이름
+		</div>		
+		<div id="icon">
+				<br><br><br><span class="glyphicon glyphicon-menu-right"></span>
 		</div>
 	</c:forEach>
+	<div id="addContents">
+		<br><br><a href="#">보관함으로</a>
+	</div>
 </body>
 </html>

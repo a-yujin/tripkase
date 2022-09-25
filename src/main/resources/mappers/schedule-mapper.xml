@@ -43,8 +43,13 @@
 		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_SEQ = #{cheduleSeq}
 	</select>
 	<select id="selectSMBySeq" resultMap="ScheduleManageResultMap">
-		SELECT a.contents_type, b.res_name, b.res_filerename 
-		FROM SCHEDULE_MANAGE a JOIN RESTAURANT_TBL b ON a.CONTENTS_NO = b.RES_NO WHERE SCHEDULE_SEQ = #{cheduleSeq}
+		SELECT * FROM SCHEDULE_MANAGE WHERE SCHEDULE_SEQ = #{cheduleSeq} AND SCHEDULE_DAYS = #{Days}
+		<!-- SELECT b.res_name, b.res_filepath FROM SCHEDULE_MANAGE a JOIN RESTAURANT_TBL b ON (a.CONTENTS_NO = b.RES_NO and a.contents_type='맛집') WHERE SCHEDULE_SEQ = 4 and schedule_days= #{Days}
+		UNION ALL
+		SELECT c.room_name, b.ROOM_FILEPATH FROM SCHEDULE_MANAGE a JOIN ROOMIMG_TBL b ON (a.CONTENTS_NO = b.ROOM_NO and a.contents_type='숙소')
+       	JOIN ROOM_TBL C ON(b.ROOM_NO = c.ROOM_NO) WHERE SCHEDULE_SEQ = 4 and ROWNUM = 1 and schedule_days= #{Days}'
+		UNION ALL
+		SELECT b.attr_name, b.attr_FILEPATH FROM SCHEDULE_MANAGE a JOIN attraction_TBL b ON (a.CONTENTS_NO = b.attr_NO and a.contents_type='관광지') WHERE SCHEDULE_SEQ = 4 and schedule_days=#{Days} -->
 	</select>
 	<insert id="insertSchedule">
 		INSERT INTO SCHEDULE_TBL VALUES(SEQ_SCHENO.NEXTVAL, #{scheduleDays},#{scheduleName}, #{scheduleStart}, #{scheduleEnd}, default, #{memberId})
