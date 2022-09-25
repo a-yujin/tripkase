@@ -10,7 +10,8 @@
 <style>
 .course_detail {
     position: relative;
-    width: 100%;
+    width : 100%;
+    height : 200px; 
     margin-top: 24px;
 }
 
@@ -28,41 +29,77 @@ div {
 	folat : left;
 }
 
+.map{
+	 width : 100%;
+    height : 200px; 
+}
 
+#title {
+	clear:both;
+}
+
+#courseSchedule-wapper{
+	height : 50px;
+}
+
+#courseSchedule-inside{
+	float : left;
+}
 
 </style>
 
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<form action="/course/courseDetail.tripkase" method="GET">
-	<div id=contents>
-		<div id="title" align="center">
-			<div id="course_title">
-				<h3>${cOne.courseName }</h3>
+		<div id=contents>
+			<div id="title" align="center">
+				<div id="course_title">
+					<br>
+					<h3>${cOne.courseName }</h3>
+				</div>
+				<div id="course_info">
+					<span>지역 : ${cOne.locationName }</span> <span>코스 총거리 :
+						${cOne.courseDistance }</span>
+				</div>
 			</div>
-			<div id="course_info">
-				<span>지역 : ${cOne.locationName }</span> <span>코스 총거리 : ${cOne.courseDistance }</span>
+			<hr>
+			<div class="course_detail">
+				<div>
+					<p>${cOne.courseInfo }</p>
+				</div>
+				<div class="map">
+				
+				</div>
+				
+				<div id="courseSchedule-wapper">
+					<div id="courseSchedule-inside">1</div>
+					<div id="courseSchedule-inside">2</div>
+					<div id="courseSchedule-inside">3</div>
+					<div id="courseSchedule-inside">4</div>
+				</div>
+
+			<div id=""></div>
+
+
 			</div>
 		</div>
-		<hr>
-		
-		<div class="course_detail">
-			<div>
-				<p >${cOne.courseInfo }</p>
-			</div>
-		</div>
-		
-		<div class="map">
-		</div>
-		
-		<div id="courseSchedule-wapper">
-				<div id="courseSchedule-inside"></div>
-				<div id="courseSchedule-inside"></div>
-				<div id="courseSchedule-inside"></div>
-				<div id="courseSchedule-inside"></div>
-		</div>
-	</div>
 	</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

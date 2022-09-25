@@ -21,27 +21,30 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.course.domain.Course;
+import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.service.CourseService;
+import com.tripKase.kh.member.domain.Member;
+import com.tripKase.kh.notice.domain.Notice;
 @Controller
 public class courseController {
 
 	@Autowired
 	private CourseService cService;
-	
+
 	@RequestMapping(value = "/course/insertCourseView.tripkase", method = RequestMethod.GET) // value = 사용할 url
 	public String insertCourseView() {
 		return "course/insertCourse"; // 스프링의 리턴타입은 String으로 정해져있음
-	} 
+	}
 
 	@RequestMapping(value = "/course/courseMainPage.tripkase", method = RequestMethod.GET) // value = 사용할 url
 	public String courseMainPage() {
 		return "course/courseMainPage"; // 스프링의 리턴타입은 String으로 정해져있음
-	} 
-	
-	@RequestMapping(value = "/course/removeCourseView.tripkase", method = RequestMethod.GET) // value = 사용할 url
+	}
+
+	@RequestMapping(value = "/course/serchCourseByNameView.tripkase", method = RequestMethod.GET) // value = 사용할 url
 	public String removeCourseView() {
-		return "course/removeCourse"; // 스프링의 리턴타입은 String으로 정해져있음
-	} 
+		return "course/serchCourseByName"; // 스프링의 리턴타입은 String으로 정해져있음
+	}
 	
 	
 	// 코스 등록, 다중 이미지 파일 등록
@@ -52,29 +55,36 @@ public class courseController {
 	//		@RequestParam(value="uploadFile", required = false) MultipartFile uploadFile,
 			@RequestParam(value="uploadFile", required = false) List<MultipartFile> uploadFile,
 			HttpServletRequest request,
-			MultipartHttpServletRequest mRequest) {
+			MultipartHttpServletRequest mRequest,
+			@RequestParam("locationName") String locationName) {
 		try {
 			int imgNo = 1;
-			
-		for(MultipartFile mf : uploadFile) {
-			String courseFileName = mf.getOriginalFilename();
-			if(!courseFileName.equals("")) {
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				String savePath = root + "\\cosUploadFiles";
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-				String courseFileRename = sdf.format(new Date(System.currentTimeMillis()))+imgNo+"." + courseFileName.substring(courseFileName.lastIndexOf(".")+1);
-				File file = new File(savePath);
-				if(!file.exists()) {
-					file.mkdir();
+			CourseImg courseImg = null;
+
+			int result = cService.registerCourse(course);
+
+			for (MultipartFile mf : uploadFile) {
+				String courseFileName = mf.getOriginalFilename();
+				if (!courseFileName.equals("")) {
+					String root = request.getSession().getServletContext().getRealPath("resources");
+					String savePath = root + "\\cosUploadFiles";
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					String courseFileRename = sdf.format(new Date(System.currentTimeMillis())) + imgNo + "."
+							+ courseFileName.substring(courseFileName.lastIndexOf(".") + 1);
+					File file = new File(savePath);
+					if (!file.exists()) {
+						file.mkdir();
+					}
+					mf.transferTo(new File(savePath + "\\" + courseFileRename));
+					String courseFilePath = savePath + "\\" + courseFileRename;
+					courseImg = new CourseImg();
+					courseImg.setcFileName(courseFileName);
+					courseImg.setcFileRename(courseFileRename); // 중복 파일 업로드를위해 파일 이름을 업로드 시간으로 설정
+					courseImg.setcFilePath(courseFilePath);
+					courseImg.setLocationName(locationName);
+					imgNo = imgNo + 1;
 				}
-				mf.transferTo(new File(savePath+"\\"+courseFileRename));
-				String courseFilePath = savePath + "\\"+ courseFileRename;
-				course.setCourseFileName(courseFileName);
-				course.setCourseFileRename(courseFileRename); // 중복 파일 업로드를위해 파일 이름을 업로드 시간으로 설정
-				course.setCourseFilePath(courseFilePath);
-				imgNo = imgNo+1;
-				}
-				int result = cService.insertCourse(course);
+				int result2 = cService.registerCourseImg(courseImg);
 				mv.setViewName("course/courseMainPage");
 			}
 		} catch (Exception e) {
@@ -90,16 +100,17 @@ public class courseController {
 				@RequestParam("locationName") String locationName,
 				@RequestParam("locationValue") String locationValue,
 				ModelAndView mv) {
-			
+
 			List<Course> cList = cService.selectCourseAll(locationName);
-			mv.addObject("locationValue",locationValue);
-			mv.addObject("cList",cList);
+			List<CourseImg> cListImg = cService.selectCourseImg(locationName);
+			mv.addObject("locationValue", locationValue);
+			mv.addObject("cList", cList);
+			mv.addObject("cListImg", cListImg);
 			mv.setViewName("course/courseMainPage");
 			return mv;
-	}
+		}
 	
 	// 코스 상세보기
-		
 	@RequestMapping(value="course/courseDetail.tripkase", method = RequestMethod.GET)
 	public ModelAndView courseDetail(ModelAndView mv, @RequestParam("courseNo") int courseNo) {
 		try {
@@ -116,26 +127,76 @@ public class courseController {
 		}
 		return mv;
 	}
-	// 코스 삭제
-	@RequestMapping(value = "course/removeCourse.tripkase", method = RequestMethod.POST)
+	
+	// 이름으로 코스 검색
+	@RequestMapping(value = "course/serchCourseByName.tripkase", method = RequestMethod.POST)
 	public ModelAndView removeCourse(ModelAndView mv, @ModelAttribute Course course,
-			@RequestParam("courseNo") String courseNo) {
+			@RequestParam("courseName") String courseName) {
 		try {
 
-			int result = cService.removeCourse(courseNo);
-			if (result > 0) {
-				mv.setViewName("course/removeCourse");
+			List<Course> cList = cService.serchCourseByName(courseName);
+			if (!cList.isEmpty()) {
+				mv.addObject("cList", cList);
+				mv.setViewName("course/courseList");
 			}
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
 			mv.setViewName("common/errorPage");
 		}
-
 		return mv;
-
+	}
+	
+	//전체 코스 조회
+	@RequestMapping(value="/course/courseAll.tripkase", method=RequestMethod.GET)
+	public ModelAndView selectAllCourse(ModelAndView mv, @RequestParam(value="page", required=false) Integer page) {
+		////////////////////////////////////////////////////
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = cService.getCourseTotalCount();
+		int boardLimit = 10;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int) ((double) totalCount / boardLimit + 0.9);
+		startNavi = ((int) ((double) currentPage / naviLimit + 0.9) - 1) * naviLimit + 1;
+		System.out.println(currentPage + "," + totalCount);
+		endNavi = startNavi + naviLimit - 1;
+		if (maxPage < endNavi) {
+			endNavi = maxPage;
+		}
+		////////////////////////////////////////////////////
+		List<Course> cList = cService.selectAllCourse(currentPage, boardLimit);
+		try {
+			if (!cList.isEmpty()) {
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("startNavi", startNavi);
+				mv.addObject("endNavi", endNavi);
+				mv.addObject("cList", cList);
+				mv.setViewName("course/courseList");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", e.toString());
+			mv.setViewName("/common/errorPage");
+		}
+		return mv;
+	}
+	
+	// 코스삭제
+	@RequestMapping(value="/course/removeCourse.tripkase", method = RequestMethod.GET)
+	public ModelAndView removeCourse(ModelAndView mv, @RequestParam("courseNo") Integer courseNo) {
+		try {
+			int result = cService.removeCourse(courseNo);
+			if (result > 0) {
+				mv.setViewName("course/courseList");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("/common/errorPage");
+		}
+		return mv;
 	}
 }
-
 
 
 

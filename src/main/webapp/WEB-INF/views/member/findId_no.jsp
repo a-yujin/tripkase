@@ -7,7 +7,8 @@
 <title>여행카세 : 아이디 찾기</title>
 </head>
 <body>
-	<h1>회원정보가 없습니다.</h1>
-	<h2>입력하신 이름과 이메일을 다시 확인해주세요.</h2>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<h1 align="center">회원정보가 없습니다.</h1>
+	<h2 align="center">입력하신 이름과 이메일을 다시 확인해주세요.</h2>
 </body>
 </html>

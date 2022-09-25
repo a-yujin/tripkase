@@ -7,6 +7,7 @@
 <title>여행카세 : 비밀번호 찾기</title>
 </head>
 <body>
-	<h3>${Msg }</h3>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<h3 align="center">${Msg }</h3>
 </body>
 </html>

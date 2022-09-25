@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>여행카세 : 아이디 찾기</title>
 <style>
@@ -20,22 +22,31 @@
   border: 1px solid lightgray;
   outline: none;
 }
+
+span{
+	display : inline-block;
+	 width: 100px;
+}
 </style>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<br><br>
 	<h2 align="center">아이디 찾기</h2>
 	<form action="/member/findId.tripkase" method="POST">
 	<div align="center">	
 		<div class="find">
-			<b>이름</b>
-			<input type="text" name="memberName" placeholder="이름을 입력해주세요."> <br>
+			<label for="name"><span><b>이름</b></span></label>
+			<input type="text" id="name" name="memberName" placeholder="이름을 입력해주세요."> <br>
 			
-			<b>이메일 주소</b>
-			<input type="text" name="memberEmail" placeholder="이메일을 입력해주세요."><br>
-			<input type="submit" value="아이디 찾기">
+			<label for="email"><span><b>이메일 주소</b></span></label>
+			<input type="text" id="email" name="memberEmail" placeholder="이메일을 입력해주세요."><br><br>
+			<button type="submit" class="btn btn-outline-primary">아이디 찾기</button>
 		</div>	
 	</div>
 	</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>	
 </body>
 </html>
 

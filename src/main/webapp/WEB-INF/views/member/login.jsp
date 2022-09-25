@@ -38,20 +38,27 @@
   outline: none;
 }
 
+span{
+	display : inline-block;
+	 width: 100px;
+}
+
 </style>
 
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<div>
 	<form action="/member/login.tripkase" method="POST">
+	<br><br>
 			<h2 align="center">로그인</h2>
 	<div align="center">
 		<div class="login_id"   style="position:relative; left:70;">
-			<b>아이디</b>
+			<label for="login"><span><b>아이디</b></span></label>
 			 <input type="text" id="login" class="fadeIn second" name="memberId" placeholder="login"><br>
 		</div>
 		<div class="login_pw" style="position:relative; left:10;">
-			<b>비밀번호</b>
+			<label for="password"><span><b>비밀번호</b></span></label>
 			<input type="password" id="password" class="fadeIn third" name="memberPwd" placeholder="password"><br><br>
 			
 			<button type="submit" class="btn btn-outline-primary">로그인</button>

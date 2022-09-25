@@ -8,6 +8,7 @@
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<h1 align="center">코스 등록  페이지</h1>
 	<form action="/course/insertCourse.tripkase" method="post" enctype="multipart/form-data">
 	<div class="register">

@@ -40,6 +40,7 @@ table {
 
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<h1 align="center">마이페이지</h1>
 	<div align="center" class="">
 		<form  action="/member/modify.tripkase" method="POST">

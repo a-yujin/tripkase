@@ -44,6 +44,7 @@ border-spacing: 0 20px;
 
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<h1 align="center">회원정보 수정</h1>
 	<div class="">
 		<form  action="/member/modify.tripkase" method="GET">

@@ -30,17 +30,23 @@
             border-radius: 100%;
         }
         
-    .photo {
+    .image-box {
 		   float : left;
 	       text-align : center;
 	       width : 15%;
 	       height : 100%;
+	       overflow:hidden;
+    		margin:0 auto;
+    		
+    		
 		}		
 
 	.image {
             width : 100%;
             height : 100%;
-            display : inline-block;
+            display : table-cell;
+            object-fit:cover;
+            
         }
         
    .textarea{
@@ -58,7 +64,7 @@
 </head>
 <link href="../resources/css/.css" rel="stylesheet">
 <body>
-
+	<jsp:include page="../common/header.jsp"></jsp:include>
 	<h2><b>#지역</b></h2>
 	 	<label class="box-radio-input">
 		<input type="radio"   id="cosArea1" 	onclick="selectCourse(this, 'all');"> <span>전체보기</span>
@@ -83,23 +89,21 @@
 			<c:forEach items="${cList }" var="course">
 				<hr>
 				<li class="courseList">
-						<div class="photo">
-							<a href="/course/courseDetail.tripkase?courseNo=${course.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/${course.courseFileRename }">
+			<c:forEach items="${cListImg }" var="courseImg">
+						<div class="image-box">
+							<a href="/course/courseDetail.tripkase?courseNo=${courseImg.courseNo }"> 
+							<img class="image" src="/resources/cosUploadFiles/${courseImg.cFileRename }">
 							</a>
 						</div>
+			</c:forEach>
 						<div class="textarea">
 							<br>
 							<span>여행 이름 : ${course.courseName }</span>
-							<br><br><br><br>
+							<br><br><br>
 							<span>여행 테마 : ${course.courseThema }</span>
 					</div>	
 					<br><br>
 				</li>
-				
-			
-						
-				
 			</c:forEach>
 		</ul>
 					

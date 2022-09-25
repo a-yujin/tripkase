@@ -8,12 +8,13 @@
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-	<h1 align="center">코스 삭제  페이지</h1>
-	<form action="/course/removeCourse.tripkase" method="post">
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<h1 align="center">이름으로 코스 검색</h1>
+	<form action="/course/serchCourseByName.tripkase" method="post">
 	<div class="register">
 		<table align="center" border="1">
 			<tr>
-				<td>삭제할 코스 이름</td>
+				<td>검색할 코스 이름</td>
 				<td><input type="text" name="courseName"></td>
 			</tr>
 			<tr>

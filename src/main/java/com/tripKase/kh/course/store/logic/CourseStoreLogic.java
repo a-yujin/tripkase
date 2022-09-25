@@ -2,90 +2,21 @@ package com.tripKase.kh.course.store.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.tripKase.kh.course.domain.Course;
+import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.store.CourseStore;
+import com.tripKase.kh.member.domain.Member;
 
 @Repository
 public class CourseStoreLogic implements CourseStore {
 
 	@Override
-	public int insertCourse(SqlSession session, Course course) {
-		int result = session.insert("CourseMapper.insertCourse", course);
-		return result;
-	}
-
-	@Override
 	public List<Course> selectCourseAll(SqlSession session, String locationName) {
 		List<Course> cList = session.selectList("CourseMapper.selectCourseAll", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseSeoul(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseSeoul", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseGyeonggi(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseGyeonggi", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseIncheon(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseIncheon", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseKangwon(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseKangwon", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseChungbuk(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseChungbuk", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseChungnam(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseChungnam", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseGyeongbuk(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseGyeongbuk", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseGyeongnam(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseGyeongnam", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseJeonbuk(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseJeonbuk", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseJeonnam(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseJeonnam", locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseJeju(SqlSession session, String locationName) {
-		List<Course> cList = session.selectList("CourseMapper.selectCourseJeju", locationName);
 		return cList;
 	}
 
@@ -96,8 +27,46 @@ public class CourseStoreLogic implements CourseStore {
 	}
 
 	@Override
-	public int removeCourse(SqlSession session, String courseNo) {
-		int result = session.update("CourseMapper.removeCourse", courseNo);
+	public List<Course> serchCourseByName(SqlSession session, String courseName) {
+		List<Course> cList = session.selectList("CourseMapper.serchCourseByName", courseName );
+		return cList;
+	}
+
+	@Override
+	public int getCourseTotalCount(SqlSession session) {
+		int result = session.selectOne("CourseMapper.getCourseTotalCount");
+		return result;
+	}
+
+	@Override
+	public List<Course> selectAllCourse(SqlSession session, int currentPage, int limit) {
+		int offset = (currentPage-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Course> cList = session.selectList("CourseMapper.selectAllCourse", null, rowBounds);
+		return cList;
+	}
+
+	@Override
+	public int registerCourse(SqlSession session, Course course) {
+		int result = session.insert("CourseMapper.registerCourse",course);
+		return result;
+	}
+
+	@Override
+	public int registerCourseImg(SqlSession session, CourseImg courseImg) {
+		int result = session.insert("CourseMapper.registerCourseImg",courseImg);
+		return result;
+	}
+
+	@Override
+	public List<CourseImg> selectCourseImg(SqlSession session, String locationName) {
+		List<CourseImg> cListImg = session.selectList("CourseMapper.selectCourseImg", locationName);
+		return cListImg;
+	}
+
+	@Override
+	public int removeCourse(SqlSession session, int courseNo) {
+		int result = session.delete("CourseMapper.removeCourse", courseNo);
 		return result;
 	}
 

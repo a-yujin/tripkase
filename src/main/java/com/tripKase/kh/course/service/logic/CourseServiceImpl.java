@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tripKase.kh.course.domain.Course;
+import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.service.CourseService;
 import com.tripKase.kh.course.store.CourseStore;
+import com.tripKase.kh.member.domain.Member;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -18,84 +20,14 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private CourseStore cStore;
 	
-	@Override
-	public int insertCourse(Course course) {
-		int result = cStore.insertCourse(session, course);
-		return result;
-	}
-
+	
 	@Override
 	public List<Course> selectCourseAll(String locationName) {
 		List<Course> cList = cStore.selectCourseAll(session, locationName);
 		return cList;
 	}
 
-	@Override
-	public List<Course> selectCourseSeoul(String locationName) {
-		List<Course> cList = cStore.selectCourseSeoul(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseGyeonggi(String locationName) {
-		List<Course> cList = cStore.selectCourseGyeonggi(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseIncheon(String locationName) {
-		List<Course> cList = cStore.selectCourseIncheon(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseKangwon(String locationName) {
-		List<Course> cList = cStore.selectCourseKangwon(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseChungbuk(String locationName) {
-		List<Course> cList = cStore.selectCourseChungbuk(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseChungnam(String locationName) {
-		List<Course> cList = cStore.selectCourseChungnam(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseGyeongbuk(String locationName) {
-		List<Course> cList = cStore.selectCourseGyeongbuk(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseGyeongnam(String locationName) {
-		List<Course> cList = cStore.selectCourseGyeongnam(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseJeonbuk(String locationName) {
-		List<Course> cList = cStore.selectCourseJeonbuk(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseJeonnam(String locationName) {
-		List<Course> cList = cStore.selectCourseJeonnam(session, locationName);
-		return cList;
-	}
-
-	@Override
-	public List<Course> selectCourseJeju(String locationName) {
-		List<Course> cList = cStore.selectCourseJeju(session, locationName);
-		return cList;
-	}
-
+	
 	@Override
 	public Course courseByNo(int courseNo) {
 		Course cOne = cStore.courseByNo(session, courseNo);
@@ -103,40 +35,47 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public int removeCourse(String courseNo) {
-		int result = cStore.removeCourse(session, courseNo);
+	public List<Course> serchCourseByName(String courseName) {
+		List<Course> cList = cStore.serchCourseByName(session, courseName);
+		return cList;
+	}
+
+	@Override
+	public int getCourseTotalCount() {
+		int result = cStore.getCourseTotalCount(session);
 		return result;
 	}
 
+	@Override
+	public List<Course> selectAllCourse(int currentPage, int boardLimit) {
+		List<Course> cList = cStore.selectAllCourse(session,currentPage,boardLimit);
+		return cList;
+	}
 
+	@Override
+	public int registerCourse(Course course) {
+		int result = cStore.registerCourse(session,course);
+		return result;
+	}
 
-	
+	@Override
+	public int registerCourseImg(CourseImg courseImg) {
+		int result = cStore.registerCourseImg(session,courseImg);
+		return result;
+	}
+
+	@Override
+	public List<CourseImg> selectCourseImg(String locationName) {
+		List<CourseImg> cListImg = cStore.selectCourseImg(session,locationName);
+		return cListImg;
+	}
+
+	@Override
+	public int removeCourse(int courseNo) {
+		int result = cStore.removeCourse(session, courseNo);
+		return result;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -5,9 +5,6 @@ public class Course {
 	private String courseName;
 	private String courseThema;
 	private String courseDistance;
-	private String courseFileName;
-	private String courseFileRename;
-	private String courseFilePath;
 	private String locationName;
 	private String cStatus;
 	private String courseInfo;
@@ -35,24 +32,6 @@ public class Course {
 	public void setCourseDistance(String courseDistance) {
 		this.courseDistance = courseDistance;
 	}
-	public String getCourseFileName() {
-		return courseFileName;
-	}
-	public void setCourseFileName(String courseFileName) {
-		this.courseFileName = courseFileName;
-	}
-	public String getCourseFileRename() {
-		return courseFileRename;
-	}
-	public void setCourseFileRename(String courseFileRename) {
-		this.courseFileRename = courseFileRename;
-	}
-	public String getCourseFilePath() {
-		return courseFilePath;
-	}
-	public void setCourseFilePath(String courseFilePath) {
-		this.courseFilePath = courseFilePath;
-	}
 	public String getLocationName() {
 		return locationName;
 	}
@@ -72,13 +51,11 @@ public class Course {
 		this.courseInfo = courseInfo;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Course [courseNo=" + courseNo + ", courseName=" + courseName + ", courseThema=" + courseThema
-				+ ", courseDistance=" + courseDistance + ", courseFileName=" + courseFileName + ", courseFileRename="
-				+ courseFileRename + ", courseFilePath=" + courseFilePath + ", locationName=" + locationName
-				+ ", cStatus=" + cStatus + ", courseInfo=" + courseInfo + "]";
+				+ ", courseDistance=" + courseDistance + ", locationName=" + locationName + ", cStatus=" + cStatus
+				+ ", courseInfo=" + courseInfo + "]";
 	}
 	
 }

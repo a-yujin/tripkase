@@ -9,21 +9,19 @@
 	 		<result property="courseName" 			column="COURSE_NAME"/>
 	 		<result property="courseThema" 			column="COURSE_THEMA"/>
 	 		<result property="courseDistance" 		column="COURSE_DISTANCE"/>
-	 		<result property="courseFileName" 		column="COURSE_FILENAME"/>
-	 		<result property="courseFileRename" 	column="COURSE_FILERENAME"/>
-	 		<result property="courseFilePath" 		column="COURSE_FILEPATH"/>
 	 		<result property="locationCode" 		column="LOCATION_CODE"/>
 	 		<result property="locationName" 		column="LOCATION_NAME"/>
 	 		<result property="cStatus" 				column="C_STATUS"/>
 	 		<result property="courseInfo" 			column="COURSE_INFO"/>
  			</resultMap>
- 			
- 		<insert id="insertCourse">
- 		INSERT INTO COURSE_TBL
- 		VALUES(SEQ_COS_NO.NEXTVAL, #{courseName}, #{courseThema}, #{courseDistance}, #{courseFileName}, #{courseFileRename}, #{courseFilePath},
- 			 #{locationName}, DEFAULT, #{courseInfo})
- 		</insert>
- 		
+		 	<resultMap type="CourseImg" 	id="courseImgResultMap">
+			<id property="imgNo" 			column="IMG_NO"/>
+			<result property="courseNo"		column="COURSE_NO"/>
+			<result property="cFileName" 	column="COURSE_FILENAME"/>
+			<result property="cFileRename" 	column="COURSE_FILERENAME"/>
+			<result property="cFilePath" 	column="COURSE_FILEPATH"/>
+		</resultMap>
+		
  		<select id="selectCourseAll" resultMap="courseResultMap">
  		SELECT * FROM COURSE_TBL
  		 <if test='!locationName.equals("all")'>
@@ -36,11 +34,39 @@
  		WHERE COURSE_NO = #{courseNo}
  		</select>
  		
- 		<delete id="removeCourse">
- 		DELETE FROM COURSE_TBL
- 		WHERE COURSE_NO = #{courseNo}
- 		</delete>
+ 		<select id="serchCourseByName" resultMap="courseResultMap">
+ 		SELECT *  FROM COURSE_TBL 
+ 		WHERE COURSE_NAME = #{courseName}
+ 		</select>
  		
+ 		<select id="getCourseTotalCount" resultType="_int">
+ 		SELECT COUNT(*) FROM COURSE_TBL
+ 		</select>
+ 	
+ 		<select id="selectAllCourse" resultMap="courseResultMap">
+ 		SELECT * FROM COURSE_TBL WHERE C_STATUS = 'Y'
+ 		</select>
+ 		
+ 		<insert id="registerCourse">
+		INSERT INTO COURSE_TBL
+		VALUES(SEQ_COURSE_NO.NEXTVAL, #{courseName}, #{courseThema}, #{courseDistance}, #{locationName}, DEFAULT, #{courseInfo})
+		</insert>
+ 		
+ 		<insert id="registerCourseImg">
+		INSERT INTO COURSE_IMG
+		VALUES(SEQ_C_IMG_NO.NEXTVAL, SEQ_COURSE_NO.CURRVAL, #{cFileName}, #{cFileRename}, #{cFilePath}, #{locationName})
+		</insert>
+	
+		<select id="selectCourseImg" resultMap="courseImgResultMap">
+ 		SELECT * FROM COURSE_IMG A JOIN COURSE_TBL B ON A.COURSE_NO = B.COURSE_NO  
+ 		 <if test='!locationName.equals("all")'>
+ 		WHERE ROWNUM = 1
+ 		</if>
+ 		</select>
+ 		
+ 		<update id="removeCourse">
+		UPDATE COURSE_TBL SET C_STATUS = 'N' WHERE COURSE_NO = #{courseNo}
+		</update>
 </mapper>
 
 

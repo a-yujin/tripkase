@@ -12,6 +12,7 @@
 		<typeAlias type="com.tripKase.kh.admin.domain.NoticeImg" alias="NoticeImg"/>
 		<typeAlias type="com.tripKase.kh.attraction.domain.Attraction" alias="Attraction"/>
 		<typeAlias type="com.tripKase.kh.course.domain.Course" alias="Course"/>
+		<typeAlias type="com.tripKase.kh.course.domain.CourseImg" alias="CourseImg"/>
 		<typeAlias type="com.tripKase.kh.grade.domain.Grade" alias="Grade"/>
 		<typeAlias type="com.tripKase.kh.member.domain.Member" alias="Member"/>
 		<typeAlias type="com.tripKase.kh.notice.domain.Notice" alias="Notice"/>
@@ -19,6 +20,7 @@
 		<typeAlias type="com.tripKase.kh.qna.domain.QnA" alias="QnA"/>
 		<typeAlias type="com.tripKase.kh.restaurant.domain.Restaurant" alias="Restaurant"/>
 		<typeAlias type="com.tripKase.kh.room.domain.Room" alias="Room"/>
+		<typeAlias type="com.tripKase.kh.room.domain.RoomImg" alias="RoomImg"/>
 		<typeAlias type="com.tripKase.kh.schedule.domain.Schedule" alias="Schedule"/>
 		<typeAlias type="com.tripKase.kh.storage.domain.Storage" alias="Storage"/>
 		<typeAlias type="com.tripKase.kh.trip.domain.Trip" alias="Trip"/>
