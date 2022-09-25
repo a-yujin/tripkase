@@ -76,16 +76,25 @@
 				<a class="function" href="#" onclick="location.href='/course/insertCourseView.tripkase'">코스 등록</a>
 			</li>
 			<li>
+				<a class="function" href="#" onclick="location.href='/course/insertCourseView.tripkase'">코스 조회</a>
+			</li>
+			<li>
 				<a class="function" href="#" onclick="location.href='/admin/reportList.tripkase'">관광지 등록</a>
+			</li>
+			<li>
+				<a class="function" href="#" onclick="location.href='/admin/reportList.tripkase'">관광지 조회</a>
 			</li>
 			<li>
 				<a class="function" href="#" onclick="location.href='/restaurant/restaurantInsertPage.tripkase'">맛집 등록</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/room/registerRoom.tripkase'">숙소 등록</a>
+				<a class="function" href="#" onclick="location.href='/restaurant/restaurantInsertPage.tripkase'">맛집 조회</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/admin/reportList.tripkase'">컨텐츠 수정/삭제</a><br><br>
+				<a class="function" href="#" onclick="location.href='/room/roomDataPush.tripkase'">숙소 등록</a>
+			</li>
+			<li>
+				<a class="function" href="#" onclick="location.href='/room/roomDataList.tripkase'">숙소 조회</a>
 			</li>
 		</ul>
 		<br><br><br><br><br><br><br><br><br><br><br><br>

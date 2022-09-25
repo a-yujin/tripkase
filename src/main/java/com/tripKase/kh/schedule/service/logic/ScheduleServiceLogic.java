@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tripKase.kh.schedule.domain.Schedule;
+import com.tripKase.kh.schedule.domain.ScheduleManage;
 import com.tripKase.kh.schedule.service.ScheduleService;
 import com.tripKase.kh.schedule.store.ScheduleStore;
 
@@ -19,9 +20,39 @@ public class ScheduleServiceLogic implements ScheduleService {
 	private ScheduleStore sStore;
 	
 	@Override
-	public List<Schedule> selectAllSchedule() {
-		List<Schedule> sList = sStore.selectAllSchedule(session);
+	public List<Schedule> selectAllSchedule(String memberId) {
+		List<Schedule> sList = sStore.selectAllSchedule(session, memberId);
 		return sList;
+	}
+
+	@Override
+	public int insertSchedule(Schedule schedule) {
+		int result = sStore.insertSchedule(session,schedule);
+		return result;
+	}
+
+	@Override
+	public int AddDays(Schedule schedule) {
+		int result = sStore.AddDays(session,schedule);
+		return result;
+	}
+
+	@Override
+	public List<Schedule> selectScheduleBySeq(int cheduleSeq) {
+		List<Schedule> sList = sStore.selectScheduleBySeq(session,cheduleSeq);
+		return sList;
+	}
+
+	@Override
+	public List<ScheduleManage> selectSMBySeq(Integer chedulesSeq, String Days) {
+		List<ScheduleManage> smList = sStore.selectSMBySeq(session,chedulesSeq, Days);
+		return smList;
+	}
+
+	@Override
+	public int getTotalDays(int cheduleSeq) {
+		int result = sStore.getTotalDays(session,cheduleSeq);
+		return result;
 	}
 
 }
