@@ -1,8 +1,5 @@
 package com.tripKase.kh.storage.store.logic;
 
-import com.tripKase.kh.attraction.domain.Attraction;
-import com.tripKase.kh.restaurant.domain.Restaurant;
-import com.tripKase.kh.room.domain.Room;
 import com.tripKase.kh.storage.domain.Storage;
 import com.tripKase.kh.storage.store.StorageStore;
 import org.apache.ibatis.session.SqlSession;
@@ -44,6 +41,12 @@ public class StorageStoreLogic implements StorageStore {
 	public List<Storage> getAttrDataByMemberId(String memberId) {
 		
 		return session.selectList("StorageMapper.getAttrDataByMemberId", memberId);
+	}
+
+	@Override
+	public int deleteStorage(int stoNo) {
+		
+		return session.selectOne("StorageMapper.deleteStorage", stoNo);
 	}
 
     
