@@ -67,18 +67,19 @@
 	</form>
 	<!-- 댓글 목록 -->
 	<br><br>
-	<table align="center" width="500" border="1">
+	<div id="reply-list">
 		<c:forEach items="${rList }" var="tripReply">
-			<tr>
-				<td width="100">${tripReply.tReplyWriter }</td>
-				<td width="100">${tripReply.tReplyContents }</td>
-				<td width="100">${tripReply.tReplyCreate }</td>
-				<td></td>
-			</tr>
+			<div id="profile-wrapper">
+				<div id="profile-user"></div>
+			</div>
+			<div id="user-wrapper">
+				<span id="user-content">${tripReply.tReplyWriter } | </span>
+				<span>${tripReply.tReplyCreate } | </span>
+			</div>
+			<p id="user-comment">${tripReply.tReplyContents }</p>
+			<br><hr>
 		</c:forEach>
-	</table>
-	<br>
-	<br><br><br><br>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 	<script>
 		function tripOneRemove() {

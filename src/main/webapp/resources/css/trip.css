@@ -181,32 +181,32 @@ body {
 		background-color : white;
 	}
 /* 댓글 목록 */
-#trList-wrapper {
-	width : 60%;
-	margin : 0 auto;
+#reply-list {
+	width : 900px;
 	height : 150px;
-	border : solid 1px;
+	margin : 0 auto;
 }
-	#trlist-contents {
-		width : 90%;
-		margin : 15px 30px 10px 30px;
-		height : 120px;
-		border : solid 1px;
+	#profile-wrapper {
+		width : 1%;
+		margin-top : 50px;
 	}
-	#profile-img {
-		width : 80px;
-		height : 80px;
-		float : left;
-		margin-top : 20px;
-		border : solid 1px gray;
-		border-radius : 50%;
-		background-color : gray;
+		#profile-user {
+			width : 80px;
+			height : 80px;
+			margin-left : 20px;
+			float : left;
+			border : solid 1px gray;
+			border-radius : 50%;
+		}
+	#user-wrapper {
+		width : 60%;
+		margin-left : 120px;
 	}
-	#reply-writer {
-		font-size : 14px;
-		margin-left : 100px;
+	#user-comment {
+		margin-top : 10px;
+		margin-top : 10px;
+		margin-left : 120px;
 	}
-
 /* tripListView.jsp */
 #back-img {
 	width : 100%;
