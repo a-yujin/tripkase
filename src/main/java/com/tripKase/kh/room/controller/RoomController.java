@@ -132,7 +132,7 @@ public class RoomController {
 			
 		List<Room> rList = rService.printAllRoom(currentPage, roomLimit);
 		if(!rList.isEmpty()) {
-			mv.addObject("urlVal", "roomList"); // 검색 후 페이징 사용 시 url값이 list에서 search로 변경되지 않는 것을 해결
+			mv.addObject("urlValue", "roomDataList"); // 검색 후 페이징 사용 시 url값이 list에서 search로 변경되지 않는 것을 해결
 			mv.addObject("maxPage", maxPage);
 			mv.addObject("currentPage", currentPage); // [이전], [다음] 페이징 처리 하기 위해 작성	
 			mv.addObject("startNavi", startNavi);
@@ -144,7 +144,7 @@ public class RoomController {
 	}
 	
 	/**
-	 * 숙소 정보 상세 페이지
+	 * 숙소 정보 상세 페이지(관리자)
 	 * @param mv
 	 * @param roomNo
 	 * @param page
@@ -196,7 +196,8 @@ public class RoomController {
 	public ModelAndView roomDataModifyView(
 			ModelAndView mv,
 			@RequestParam("roomNo") Integer roomNo,
-			@RequestParam("page") int page) {
+			@RequestParam(value="page", required=false) Integer page) {
+		int currentPage = (page != null) ? page : 1;
 		Room room = rService.printOneData(roomNo);
 		List<RoomImg> riList = rService.roomImgDetail(roomNo);
 		mv.addObject("room", room);
@@ -220,11 +221,17 @@ public class RoomController {
 	public ModelAndView updateRoomData(
 			ModelAndView mv,
 			@ModelAttribute Room room,
+			@RequestParam("roomNo") Integer roomNo,
+			@RequestParam("page") Integer page,
 			@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile,
 			@RequestParam("roomImgNo") int[] roomImgNoArray,
 			@RequestParam("roomFileRename") String[] roomFileRenameArray,
+			@RequestParam("roomAddress1") String address1,
+			@RequestParam("roomAddress2") String address2,
 			HttpServletRequest request) {
 		int num = 0;
+		int currentPage = (page != null) ? page : 1;
+		room.setRoomAddress(address1 + "," + address2);
 		RoomImg roomImg = null;
 		int result1 = rService.updateRoomData(room);
 		for(MultipartFile mf : reloadFile) {
@@ -259,6 +266,60 @@ public class RoomController {
 				mv.setViewName("redirect:/room/roomDataList.tripkase");
 			}
 		}
+		return mv;
+	}
+	
+	/**
+	 * 숙소 검색 리스트 (사용자)
+	 * @param mv
+	 * @param searchValue
+	 * @param areaValue
+	 * @param typeValue
+	 * @param personValue
+	 * @param petValue
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping(value="/room/roomSearch.tripkase", method=RequestMethod.GET)
+	public ModelAndView roomSearchList(
+			ModelAndView mv,
+			// searchValue에는 값이 없을 수도 있으니깐 required=false 사용 required 사용시 value 필수!
+			@RequestParam(value="searchValue", required=false) String searchValue,
+			@RequestParam("areaValue") String areaValue,
+			@RequestParam("typeValue") String [] typeValue,
+			@RequestParam("personValue") int personValue,
+			@RequestParam("petValue") String petValue,
+			// page값이 없을땐 기본값 1로 설정하기위해서 defaultValue 작성, defaultValue 사용하기 위해선 int currentPage 필수
+			@RequestParam(value="page", required=false, defaultValue="1") int currentPage) {
+		int totalCount = rService.getRoomCount(searchValue, areaValue, typeValue, personValue, petValue);
+		int roomsLimit = 5;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int)((double)totalCount/roomsLimit+0.95);
+		startNavi = ((int)((double)currentPage/naviLimit+0.95)-1)*naviLimit+1;
+		endNavi = startNavi + naviLimit -1;
+		if(maxPage < endNavi) {
+			endNavi = maxPage;
+		}
+		List<Room> rList = rService.printSearchRoom(searchValue, areaValue, typeValue, personValue, petValue, currentPage, roomsLimit);
+		if(!rList.isEmpty()) {
+			mv.addObject("rList", rList);
+		}else {
+			mv.addObject("rList", null);
+		}
+		mv.addObject("urlValue", "roomSearch");
+		mv.addObject("searchValue", searchValue);
+		mv.addObject("areaValue", areaValue);
+		mv.addObject("typeValue", typeValue);
+		mv.addObject("personValue", personValue);
+		mv.addObject("petValue", petValue);
+		mv.addObject("maxPage", maxPage);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("startNavi", startNavi);
+		mv.addObject("endNavi", endNavi);
+		mv.setViewName("/room/roomSearchList");
 		return mv;
 	}
 }

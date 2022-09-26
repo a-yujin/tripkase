@@ -83,15 +83,15 @@
 			<br>
 			<div>
 				<p>주차 정보</p>
-				<textarea id="roomCar" name="roomCar"></textarea>
+				<textarea id="roomCar" name="roomCar" spellcheck="false"></textarea>
 			</div>
 			<div>
 				<p>대중교통 정보</p>
-				<textarea id="roomLocation" name="roomLocation"></textarea>
+				<textarea id="roomLocation" name="roomLocation" spellcheck="false"></textarea>
 			</div>
 			<div>
 				<p>숙소정보</p>
-				<textarea id="roomGuide" name="roomGuide"></textarea>
+				<textarea id="roomGuide" name="roomGuide" spellcheck="false"></textarea>
 			</div>
 			<table>
 				<tr class="fileTr">

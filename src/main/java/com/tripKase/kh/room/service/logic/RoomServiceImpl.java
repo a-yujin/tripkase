@@ -2,6 +2,7 @@ package com.tripKase.kh.room.service.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,5 +72,17 @@ public class RoomServiceImpl implements RoomService{
 	public int updateRoomImg(RoomImg roomImg) {
 		int result = rStore.updateRoomImg(session, roomImg);
 		return result;
+	}
+	// 숙소 검색 리스트 페이징처리
+	@Override
+	public int getRoomCount(String searchValue, String areaValue, String[] typeValue, int personValue, String petValue) {
+		int result = rStore.getRoomCount(session, searchValue, areaValue, typeValue, personValue, petValue);
+		return result;
+	}
+	// 숙소 검색 리스트
+	@Override
+	public List<Room> printSearchRoom(String searchValue, String areaValue, String[] typeValue, int personValue, String petValue, int currentPage, int roomsLimit) {
+		List<Room> rList = rStore.selectSearchRoom(session, searchValue, areaValue, typeValue, personValue, petValue, currentPage, roomsLimit);
+		return rList;
 	}
 }
