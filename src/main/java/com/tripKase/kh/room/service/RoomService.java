@@ -24,4 +24,8 @@ public interface RoomService {
 	public int updateRoomData(Room room);
 	// 숙소 수정 이미지 관련
 	public int updateRoomImg(RoomImg roomImg);
+	// 숙소 검색 리스트 페이징처리
+	public int getRoomCount(String searchValue, String areaValue, String[] typeValue, int personValue, String petValue);
+	// 숙소 검색 리스트
+	public List<Room> printSearchRoom(String searchValue, String areaValue, String[] typeValue, int personValue, String petValue, int currentPage, int roomsLimit);
 }

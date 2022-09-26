@@ -1,5 +1,6 @@
 package com.tripKase.kh.room.store.logic;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -66,5 +67,31 @@ public class RoomStoreLogic implements RoomStore{
 	public int updateRoomImg(SqlSessionTemplate session, RoomImg roomImg) {
 		int result = session.update("RoomMapper.updateRoomImg", roomImg);
 		return result;
+	}
+	// 숙소 검색 리스트 페이징처리
+	@Override
+	public int getRoomCount(SqlSessionTemplate session, String searchValue, String areaValue, String[] typeValue, int personValue, String petValue) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("personValue", personValue);
+		paramMap.put("petValue", petValue);
+		return session.selectOne("RoomMapper.selectSearchCount", paramMap);
+	}
+	// 숙소 검색 리스트
+	@Override
+	public List<Room> selectSearchRoom(SqlSessionTemplate session, String searchValue, String areaValue,
+			String[] typeValue, int personValue, String petValue, int currentPage, int roomsLimit) {
+		int offset = (currentPage-1)*roomsLimit;
+		RowBounds rowBounds = new RowBounds(offset, roomsLimit);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("personValue", personValue);
+		paramMap.put("petValue", petValue);
+		List<Room> rList = session.selectList("RoomMapper.selectSearchRoom", paramMap, rowBounds);
+		return rList;
 	}
 }

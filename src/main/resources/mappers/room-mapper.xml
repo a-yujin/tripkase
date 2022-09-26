@@ -39,7 +39,7 @@
 	</delete>
 	<!-- 숙소 수정 기능 -->
 	<update id="updateRoomData">
-		UPDATE ROOM_TBL SET ROOM_TYPE = #{roomType}, ROOM_NAME = #{roomName}, ROOM_PRICE = #{roomPrice}, ROOM_AREA = #{roomArea}, ROOM_ADDRESS = #{roomAddress}, ROOM_TEL = #{roomTel}, ROOM_PERSON = #{roomPerson}, ROOM_PET = #{roomPet}, ROOM_CAR = #{roomCar}, ROOM_LOCATION = #{roomLocation}, ROOM_GUIDE = #{roomGuide} WHERE ROOM_NO = #{roomNo}
+		UPDATE ROOM_TBL SET ROOM_PRICE = #{roomPrice}, ROOM_AREA = #{roomArea}, ROOM_ADDRESS = #{roomAddress}, ROOM_TEL = #{roomTel}, ROOM_PERSON = #{roomPerson}, ROOM_PET = #{roomPet}, ROOM_CAR = #{roomCar}, ROOM_LOCATION = #{roomLocation}, ROOM_GUIDE = #{roomGuide} WHERE ROOM_NO = #{roomNo}
 	</update>
 	<!-- 숙소 수정 이미지 -->
 	<update id="updateRoomImg">
@@ -61,4 +61,6 @@
 	<select id="roomImgDetail" resultMap="roomImgResultMap">
 		SELECT * FROM ROOMIMG_TBL WHERE ROOM_NO = #{roomNo}
 	</select>
+	<!-- 숙소 검색 페이징 처리 -->
+	
 </mapper>

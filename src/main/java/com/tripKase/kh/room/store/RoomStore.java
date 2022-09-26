@@ -26,4 +26,8 @@ public interface RoomStore {
 	public int updateRoomData(SqlSessionTemplate session, Room room);
 	// 숙소 수정 이미지
 	public int updateRoomImg(SqlSessionTemplate session, RoomImg roomImg);
+	// 숙소 검색 리스트 페이징처리
+	public int getRoomCount(SqlSessionTemplate session, String searchValue, String areaValue, String[] typeValue, int personValue, String petValue);
+	// 숙소 검색 리스트
+	public List<Room> selectSearchRoom(SqlSessionTemplate session, String searchValue, String areaValue, String[] typeValue, int personValue, String petValue, int currentPage, int roomsLimit);
 }

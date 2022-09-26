@@ -226,8 +226,39 @@ body {
 /* roomDataList.jsp */
 #rdata-list {
 	width : 1400px;
-	padding-left : 300px;
+	padding-left : 280px;
 	margin : 0 auto;
+}
+#roombody {
+	height : 45px;
+	line-height : 45px;
+}
+/* 페이징 처리 */
+#rdata-page {
+	width : 1500px;
+	padding-top : 50px;
+	padding-left : 900px;
+	text-align : center;
+}
+#pageback {
+	float : left;
+	margin-left : 20xpx;
+	margin-right : 20px;
+}
+#pagecurrent {
+	float : left;
+	margin-left : 5px;
+	margin-right : 5px;
+}
+#pageother {
+	float : left;
+	margin-left : 5px;
+	margin-right : 5px;
+}
+#pagenext {
+	float : left;
+	padding-left : 20px;
+	margin-right : 20px;
 }
 /* roomDataDetail.jsp */
 .detail-button {
@@ -242,3 +273,35 @@ body {
 #roomimg-area {
 	margin-left : 0px;
 }
+/* roomDataModify.jsp */
+#updateRoom {
+	width : 1000px;
+	margin-left : 400px;
+	text-align : center;
+}
+	#first-text {
+		font-size : 20px;
+	}
+	#second-text {
+		font-size : 16px;
+		color : #206aa1;
+	} 
+	.update-text {
+		display : inline-block;
+	}
+		#update-price {
+			width : 100px;
+			margin-left : 20px;
+		}
+		#uptext {
+			padding-top : -10px;
+			color : #206aa1;
+			font-size : 15px;
+		}
+		#uAddress1 {
+			width : 220px;
+		}
+		#uAddress2 {
+			width : 220px;
+		}
+		

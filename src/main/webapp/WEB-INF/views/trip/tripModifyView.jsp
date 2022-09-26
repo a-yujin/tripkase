@@ -18,7 +18,6 @@
 	<form action="/trip/tripModify.tripkase" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="page" value="${page }">
 		<input type="hidden" name="tripNo" value="${trip.tripNo }">
-		<input type="hidden" name="tripFileName" value="${trip.tripFileName }">
 		<input type="hidden" name="tripFileRename" value="${trip.tripFileRename }">
 
 		<!-- 게시글 제목, 내용 작성 영역 -->
