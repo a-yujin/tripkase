@@ -31,7 +31,7 @@ public class RestaurantController {
 	private  RestaurantService resService;
 	
 	/**
-	 * 맛집 등록 기능 (관리자)
+	 * 맛집 등록 페이지 (관리자)
 	 * @return String
 	 */
 	@RequestMapping(value="/restaurant/restaurantInsertPage.tripkase", method=RequestMethod.GET)
@@ -89,8 +89,10 @@ public class RestaurantController {
 				mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 		}
 		return mv;
-	}	
-	//맛집 삭제 페이지
+	}
+	
+	
+	//맛집 삭제
 	@RequestMapping(value="/restaurant/deleteRestaurant.tripkase", method=RequestMethod.GET)
 	public String deleteRestaurant(HttpSession session) {
 		try {
@@ -175,4 +177,134 @@ public class RestaurantController {
 		return mv;
 	}
 	
+	/** 관리자 맛집 검색 필터 페이지
+	 * 
+	 *	 
+	 */
+	@RequestMapping(value="/restaurant/resAdminSearchPage.tripkase", method=RequestMethod.GET)
+	public String restaurantAdminSearchPage() {
+		return "restaurant/resAdminSearchView";
+	}
+	
+	
+	/** 관리자 맛집 검색 조회
+	 *	 
+	 * 
+	 */
+		@RequestMapping(value="/restaurant/restaurantAdminSearchView.tripkase", method=RequestMethod.GET)
+		public ModelAndView restaurantAdminSearch(
+				ModelAndView mv
+				, @RequestParam(value="searchValue", required = false) String searchValue
+				, @RequestParam("areaValue") String areaValue		
+				, @RequestParam("typeValue") String [] typeValue							
+				, @RequestParam(value="page", required = false , defaultValue="1") int currentPage
+				) {
+			try {
+				int totalCount = resService.getRestaurantCount(searchValue, areaValue, typeValue);
+				int boardLimit = 10;
+				int naviLimit = 5;
+				int maxPage;
+				int startNavi;
+				int endNavi;
+				maxPage = (int)((double)totalCount/boardLimit + 0.9);
+				startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+				endNavi = startNavi + naviLimit - 1;
+				if(maxPage < endNavi) {
+					endNavi = maxPage;
+				}
+				List<Restaurant> resList = resService.printRestaurantByValue(
+						searchValue ,areaValue, typeValue, currentPage, boardLimit);
+				if(!resList.isEmpty()) {
+					mv.addObject("resList", resList);
+				}else {
+					mv.addObject("resList", null);
+				}
+				mv.addObject("urlVal", "restaurantSearch")
+					.addObject("searchValue", searchValue)
+					.addObject("areaValue", areaValue)
+					.addObject("typeValue", typeValue)
+					.addObject("maxPage", maxPage)
+					.addObject("currentPage", currentPage)
+					.addObject("startNavi", startNavi)
+					.addObject("endNavi", endNavi)
+					.setViewName("/restaurant/resAdminListView");
+			} catch (Exception e) {
+				e.printStackTrace();
+				mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+			}
+			return mv;
+		}
+		
+		
+		/** 관리자 수정 / 삭제 페이지
+		 * 	
+		 */
+		@RequestMapping(value="/restaurant/modifyRestaurantView.tripkase", method=RequestMethod.GET)
+		public ModelAndView restaurantModifyView(ModelAndView mv,
+				@RequestParam("resNo") Integer resNo,
+				@RequestParam("page") int page) {
+			try {
+				Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
+				mv.addObject("restaurant",restaurant)
+					.addObject("page",page)
+					.setViewName("restaurant/restaurantUpdatePage");
+			} catch (Exception e) {
+				e.printStackTrace();
+				mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+			}
+		return mv;
+		}
+		
+		
+		/**
+		 * 맛집 수정 기능 (관리자)
+		 * @param mv
+		 * @param restaurant
+		 * @param uploadFile
+		 * @param request
+		 * @param multipartRequest
+		 * @return ModelAndView
+		 */
+		@RequestMapping(value="/restaurant/updateRestaurantData.tripkase", method=RequestMethod.POST)
+		public ModelAndView updateRestaurant(
+				ModelAndView mv
+				, @ModelAttribute Restaurant restaurant
+				, @RequestParam(value="uploadFile", required=false) List<MultipartFile> uploadFile
+				,HttpServletRequest request, MultipartHttpServletRequest multipartRequest) {
+			try {
+				int imgNo = 1;
+				ResImg resImg = null;
+				int result = resService.updateRestaurant(restaurant);
+				for(MultipartFile mf : uploadFile) {
+					String resFileName = mf.getOriginalFilename();
+					if(!resFileName.equals("")) {
+						String root = request.getSession().getServletContext().getRealPath("resources");
+						String savePath = root + "\\resUploadFiles";
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
+						String resFileRename = sdf.format(new Date(System.currentTimeMillis()))+"."
+								+ resFileName.substring(resFileName.lastIndexOf(".")+1);
+						File file = new File(savePath);
+						if(!file.exists()) {
+							file.mkdir();
+						}
+						mf.transferTo(new File(savePath+"\\"+resFileRename));
+						String resFilePath = savePath + "\\" + resFileRename;
+						resImg = new ResImg();
+						resImg.setResFileName(resFileName);
+						resImg.setResFileRename(resFileRename);
+						resImg.setResFilePath(resFilePath);
+						imgNo = imgNo + 1;
+					}
+						int result2 = resService.updateRestaurantImg(resImg);
+						mv.setViewName("redirect:/restaurant/restaurantMainPage.tripkase");
+				}
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+			}
+			return mv;
+		}
 }

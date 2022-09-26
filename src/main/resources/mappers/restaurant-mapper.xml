@@ -32,10 +32,20 @@
 		INSERT INTO RESTAURANT_TBL VALUES(SEQ_RES_NO.NEXTVAL, #{resArea}, #{resType}, #{resName}, #{resTel}, #{resDayoff} ,#{resMainmenu}, #{resDetail}, #{resMap}, DEFAULT, #{resAddress})
 	</insert>
 	
+	<!-- 맛집 정보 수정 -->
+	<update id="updateRestaurant">
+		UPDATE RESTAURANT_TBL SET RES_AREA = #{resArea}, RES_TYPE = #{resType} , RES_NAME= #{resName}, RES_TEL = #{resTel}, RES_DAYOFF = #{resDayoff}  WHERE RES_NO = #{resNo}
+	</update>
+	
 	<!-- 맛집 사진 등록 -->
 	<insert id="insertResImg">
 		INSERT INTO RESIMG_TBL VALUES(SEQ_RES_IMG_NO.NEXTVAL, SEQ_RES_NO.CURRVAL, #{resFilePath},#{resFileRename},#{resFileName})
 	</insert>
+	
+	<!-- 맛집 사진 등록 -->
+	<update id="updateResImg">
+		UPDATE RESIMG_TBL SET RES_FILEPATH = #{resFilePath}, RES_FILERENAME = #{resFileRename}, RES_FILENAME = #{resFileName})
+	</update>
 	
 	<!-- 대표이미지 하나 선택 -->
 	<select id="SelectOneByResImg" resultMap="ResImgResultMap">
@@ -65,19 +75,39 @@
 		</foreach>
 	</select>
 	
-	<!-- 맛집 필터 검색 매퍼 -->
-	<select id="printRestaurantByValue" resultMap="RestaurantResultMap" parameterType="map">
-		<!-- 검색값을 와일드카드로 감싼 후 가게 이름과 비교해서 동일하고 게시여부가 Y인 맛집만 -->
-		SELECT * FROM RESTAURANT_TBL A 
+<!-- 	 맛집 필터 검색 매퍼 
+	<select id="printRestaurantByValue" resultMap="ResImgResultMap" parameterType="map">
+		검색값을 와일드카드로 감싼 후 가게 이름과 비교해서 동일하고 게시여부가 Y인 맛집만
+		SELECT * FROM RESTAURANT_TBL
 		WHERE RES_NAME LIKE '%'||#{searchValue}||'%' AND RES_STATUS = 'Y'
-		 <!-- 지역값이 전체보기(insertPage에 지역 전체보기의 값을 ""으로 넣음)가 아니거나 지역값이 널이 아닌경우는 선택한 지역값을 조회하게 -->
+		 지역값이 전체보기(insertPage에 지역 전체보기의 값을 ""으로 넣음)가 아니거나 지역값이 널이 아닌경우는 선택한 지역값을 조회하게
 		 <if test='!areaValue.equals("") and areaValue !=null'>
             AND RES_AREA = #{areaValue}
         </if>
-        <!-- 맛집 종류인 타입밸류를 포이치 통해서 선택해서 선택된 값만 비교 -->
+        맛집 종류인 타입밸류를 포이치 통해서 선택해서 선택된 값만 비교
 			AND RES_TYPE IN
 		<foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
 			#{resType}
 		</foreach>
+	</select> -->
+	
+	<!-- 맛집 필터 검색 매퍼  -->
+	<select id="printRestaurantByValue" resultMap="RestaurantResultMap" parameterType="map">
+		WITH RES AS ( SELECT A.RES_NO, B.RES_NAME, B.RES_DETAIL, B.RES_AREA, B.RES_TYPE, B.RES_ADDRESS, B.RES_STATUS, A.RES_FILERENAME, ROW_NUMBER()
+	    OVER(PARTITION BY A.RES_NO ORDER BY A.RES_NO DESC) AS RES_NUM
+	    FROM RESIMG_TBL A JOIN RESTAURANT_TBL B ON A.RES_NO = B.RES_NO ORDER BY RES_NO)
+	    <!-- 	검색값을 와일드카드로 감싼 후 가게 이름과 비교해서 동일하고 게시여부가 Y인 맛집만 -->
+	    SELECT * FROM RES WHERE RES_NUM = 1 AND RES_NAME LIKE '%'||#{searchValue}||'%' AND RES_STATUS = 'Y'
+	    <!-- 지역값이 전체보기(insertPage에 지역 전체보기의 값을 ""으로 넣음)가 아니거나 지역값이 널이 아닌경우는 선택한 지역값을 조회하게 -->
+		<if test='!areaValue.equals("") and areaValue !=null'>	    
+	    	AND RES_AREA = #{areaValue}
+	    </if>
+	    AND RES_TYPE IN
+		<!--        맛집 종류인 타입밸류를 포이치 통해서 선택해서 선택된 값만 비교	  -->
+	    <foreach item="resType" collection="typeValue" open="(" close=")" separator="," >
+			#{resType}
+		</foreach>
 	</select>
+	
+	
 </mapper>

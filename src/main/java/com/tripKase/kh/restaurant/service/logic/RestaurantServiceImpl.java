@@ -57,6 +57,17 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return result;
 	}
 
-	
+	@Override
+	public int updateRestaurant(Restaurant restaurant) {
+		int result = resStore.updateRestaurant(session, restaurant);
+		return result;
+	}
+
+	@Override
+	public int updateRestaurantImg(ResImg resImg) {
+		int result = resStore.updateRestaurantImg(session, resImg);
+		return result;
+	}
+
 
 }
