@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="/resources/js/jquery-3.6.1.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 </head>
 <style>
     body {
@@ -16,7 +18,9 @@
 </style>
 <!-- 테스트용 jsp -->
 <body>
-	<form action="/restaurant/insertRestaurant.tripkase" method="post" enctype="multipart/form-data">
+ <jsp:include page="../common/header.jsp"></jsp:include>
+ <jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	<form action="/restaurant/insertRestaurantData.tripkase" method="post" enctype="multipart/form-data">
 		
 		<br><br>종류 선택
 		<input type="radio" id="resType" name="resType" value="korean"> 한식
@@ -42,8 +46,17 @@
 		<br><br>이름
 		<input type="text" name="resName">
 		
-		<br><br>이미지 파일
-		<input type="file" name="resUploadFile">
+		<br><br>
+		<table>
+			<tr class="fileTr">
+				<td>첨부파일</td>
+				<td>
+					<button class="btn btn-default" type="button" onclick="addFile();">추가</button>
+					<button class="btn btn-default" type="button" onclick="removeFile();">삭제</button>
+					<input multiple="multiple" type="file" name="uploadFile">
+				</td>
+			</tr>		
+		</table>
 		
 		<br><br>상세정보
 		<textarea name="resDetail">
@@ -67,5 +80,20 @@
 		<br><br>
 		<input type="submit" value="등록">
 	</form>
+<script>
+	function addFile(){
+		var number = 2;
+		var trTag = $(".fileTr");
+		$(trTag).children('td').eq(1).append("<br><input multiple='multiple' type='file' name='uploadFile' />");
+		number = number + 1;
+	}
+	function removeFile(){
+		var trTag = $(".fileTr");
+	 	if($(trTag).children('td').eq(1).children('input').length > 1) {
+		 	$(trTag).children('td').eq(1).children('input:last').remove();
+		 	$(trTag).children('td').eq(1).children('br:last').remove();
+		} 
+	}
+</script>
 </body>
 </html>

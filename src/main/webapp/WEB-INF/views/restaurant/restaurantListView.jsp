@@ -17,6 +17,7 @@
     }
 </style>
 <body>
+<jsp:include page="../common/header.jsp"></jsp:include>
 	<h1 align="center">맛집 목록</h1>
 <br><br>
 <table align="center" border="1">
@@ -29,18 +30,18 @@
 		<th>상세내용</th>
 	</tr>
 	<c:if test="${!empty resList }">
-		<c:forEach items="${resList }" var="restaurant" varStatus="i">
+		<c:forEach items="${resList }" var="resList" varStatus="i">
 			<tr>
 				<td>
-					<img src="/resources/resUploadFiles/${restaurant.resFileRename }" width="150" height="150">
+					<img src="/resources/resUploadFiles/${resList.resFileRename }" width="150" height="150">
 				</td>
-				<td><a href="/restaurant/restaurantDetailView.tripkase?resNo=${restaurant.resNo }&page=${currentPage}">${restaurant.resName }</a></td>
+				<td><a href="/restaurant/restaurantDetailView.tripkase?resNo=${resList.resNo }&page=${currentPage}">${resList.resName }</a></td>
 				<td>${restaurant.resAddress }</td>
 				<td></td>
 				<td></td>
-<%-- 				<td>${restaurant.resGrade }</td> --%>
-<%-- 				<td>${restaurant.resComentCount }</td> --%>
-				<td>${restaurant.resDetail }</td>
+<%-- 				<td>${resList.resGrade }</td> --%>
+<%-- 				<td>${resList.resComentCount }</td> --%>
+				<td>${resList.resDetail }</td>
 			</tr>
 		</c:forEach>
 	</c:if>
@@ -79,10 +80,6 @@
 			</c:if>
 		</td>
 	</tr>
-		<c:forEach items="${typeValue}" var="list">
-				${list}
-		</c:forEach>
-		<%-- 참고한 포이치를 통한 배열 인덱스값 추출--%>
 </table>
 </body>
 </html>

@@ -2,11 +2,11 @@ package com.tripKase.kh.restaurant.service.logic;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tripKase.kh.restaurant.domain.ResImg;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.restaurant.service.RestaurantService;
 import com.tripKase.kh.restaurant.store.RestaurantStore;
@@ -23,6 +23,12 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public int insertRestaurant(Restaurant restaurant) {
 		int result = resStore.insertRestaurant(session, restaurant);
+		return result;
+	}
+	
+	@Override
+	public int insertRestaurantImg(ResImg resImg) {
+		int result = resStore.insertRestaurantImg(session, resImg);
 		return result;
 	}
 
@@ -51,10 +57,6 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return result;
 	}
 
-//	@Override
-//	public Restaurant getResData() {
-//		Restaurant restaurant = resStore.getResData(session);
-//		return restaurant;
-//	}
+	
 
 }
