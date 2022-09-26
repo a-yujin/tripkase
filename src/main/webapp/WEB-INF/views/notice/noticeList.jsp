@@ -25,7 +25,7 @@
 					<td>${notice.noticeWriter}</td>
 				</tr>
 				<tr>
-					<td id="bottomLine" colspan="2"></td>
+					<td class="bottomLine" colspan="2"></td>
 				</tr>
 			</c:forEach>
 			<!-- 페이징 처리 -->

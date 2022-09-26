@@ -21,7 +21,7 @@
 			<td>${notice.nCreateDate}</td>
 		</tr>
 		<tr>
-			<td id="bottomLine2" colspan="2"></td>
+			<td class="bottomLine" colspan="2"></td>
 		</tr>
 		<!-- 공지 내용, 사진 보이는 하단 -->
 		<tr height="100">
@@ -41,7 +41,7 @@
 		<table id="nReplyRegister" align="center">
 			<tr>
 				<td id="nReplyRegiTd1">
-					<textarea id="nReplyRegiText" type="text" name="nReplyContents"></textarea>
+					<input id="nReplyRegiText" type="text" name="nReplyContents"/>
 				</td>
 			</tr>
 			<tr>
@@ -57,40 +57,26 @@
 			<tr id="nReplyTop">
 				<td id="nReplyWriter">${nReply.nReplyWriter}</td>
 				<td>${nReply.nreUpdateDate}</td>
+				<td class="menuTk" rowspan="2">
+					<input id="checkBtnTk" type="checkbox"/>
+					<label for="checkBtnTk">
+						<img class="dotIconTk" src="/resources/images/trip/dot.png">
+					</label>
+					<ul class="menuListTk">
+						<li><a href="#">수정</a></li>
+						<li><a href="#">삭제</a></li>
+					</ul>
+				</td>
 			</tr>
 			<tr>
 				<td id="nReplyContents" colspan="2">${nReply.nReplyContents}</td>
 			</tr>
 			<tr>
-				<td>
-					<a href="#" onclick="">수정</a>
-					<a href="#" onclick="">삭제</a>
-				</td>
+			<td class="bottomLine" colspan="3"></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<script>
-		function modifyView(obj, nReplyContents, nReplyNo){
-			event.preventDefault();
-			var $tr = $("<tr>");
-			$tr.append("<td colspan='2'><input type='text' size='50' value='"+nReplyContents+"'></td>");
-			$tr.append("<td><button onclick='modifyReply(this, "+nReplyNo+");'>수정</button></td>");
-			$(obj).parent().parent().after($tr);
-		}
-		
-		function modifyReply(obj, nReplyNo) {
-			var inputTag = $(obj).parent().prev().children();
-			console.log(inputTag.val());
-			var nReplyContents = inputTag.val();
-			var $form = $("<form>");
-			$form.attr("action", "/notice/replyModify.tripkase");
-			$form.attr("method", "post");
-			$form.append("<input type='hidden' value='"+nReplyContents+"' name='nReplyContents'>");
-			$form.append("<input type='hidden' value='"+nReplyNo+"' name='nReplyNo'>");
-			console.log($form[0]);
-			$form.appendTo("body");
-			$form.submit();
-		}
 	</script>
 	<br><br><br><br><br>
 </body>

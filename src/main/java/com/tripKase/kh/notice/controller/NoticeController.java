@@ -1,11 +1,7 @@
 package com.tripKase.kh.notice.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.io.File;
-import java.sql.Date;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.admin.domain.NoticeImg;
@@ -27,58 +22,6 @@ import com.tripKase.kh.notice.service.NoticeService;
 public class NoticeController {
 	@Autowired
 	private NoticeService nService;
-	
-	/**
-	 * 공지 작성(테스트용)
-	 * @return
-	 */
-	@RequestMapping(value="/notice/write.tripkase", method=RequestMethod.GET)
-	public String showNoticeWrite() {
-		return "notice/noticeWrite";
-	}
-	
-	/**
-	 * 공지 등록(테스트용)
-	 * @param mv
-	 * @param notice
-	 * @param uploadFile
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value="/notice/register.tripkase", method=RequestMethod.POST)
-	public ModelAndView registerNotice(
-			ModelAndView mv,
-			@ModelAttribute Notice notice,
-			@RequestParam(value="uploadFile", required=false) MultipartFile uploadFile, // value -> jsp name
-			HttpServletRequest request) {
-		try {
-			String noticeFileName = uploadFile.getOriginalFilename();
-			if(!noticeFileName.equals("")) {
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				String savePath = root + "\\nUploadFiles";
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-				String noticeFileRename = sdf.format(new Date(System.currentTimeMillis()))+"."+noticeFileName.substring(noticeFileName.lastIndexOf(".")+1);
-				File file = new File(savePath);
-				if(!file.exists()) {
-					file.mkdir();
-				}
-				uploadFile.transferTo(new File(savePath+"\\"+noticeFileRename));
-				String noticeFilePath = savePath+"\\"+noticeFileRename;
-//				notice.setnFileName(noticeFileName);
-//				notice.setnFileRename(noticeFileRename);
-//				notice.setnFilePath(noticeFilePath);
-			}
-			int result = nService.registerNotice(notice);
-			// 성공 시 테스트용 페이지로 이동
-			mv.addObject("testMsg", "테스트 성공");
-			mv.setViewName("common/testPage");
-		} catch (Exception e) {
-			e.printStackTrace();
-			mv.addObject("msg", e.getMessage());
-			mv.setViewName("common/errorPage");
-		}
-		return mv;
-	}
 	
 	/**
 	 * 공지 목록 조회
