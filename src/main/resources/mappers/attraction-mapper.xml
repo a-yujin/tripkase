@@ -2,6 +2,56 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AttractionMapper">
-
+<mapper namespace="AttrMapper">
+	<resultMap type="Attraction" id="attrResultMap">
+		<id property="attrNo" 				column="ATTR_NO"/>
+		<result property="attrLocation" 	column="ATTR_LOCATION"/>
+		<result property="attrName" 		column="ATTR_NAME"/>
+		<result property="attrTripType" 	column="ATTR_TRIP_TYPE"/>
+		<result property="attrInfo" 		column="ATTR_INFO"/>
+		<result property="attrMap" 			column="ATTR_MAP"/>
+		<result property="attrTel" 			column="ATTR_TEL"/>
+		<result property="attrWebsite" 		column="ATTR_WEBSITE"/>
+		<result property="attrAddress" 		column="ATTR_ADDRESS"/>
+		<result property="attrHours" 		column="ATTR_HOURS"/>
+		<result property="attrFee" 			column="ATTR_FEE"/>
+		<result property="attrCar" 			column="ATTR_CAR"/>
+		<result property="attrPet" 			column="ATTR_PET"/>
+		<result property="attrShortInfo" 	column="ATTR_SHORT_INFO"/>
+		<result property="attrStatus" 		column="ATTR_STATUS"/>
+	</resultMap>
+	<resultMap type="AttrImg" id="attrImgResultMap">
+		<id property="attrImgNo" 			column="ATTR_IMG_NO"/>
+		<result property="refAttrNo" 		column="REF_ATTR_NO"/>
+		<result property="attrFileName" 	column="ATTR_FILENAME"/>
+		<result property="attrFileRename"	column="ATTR_FILERENAME"/>
+		<result property="attrFilePath" 	column="ATTR_FILEPATH"/>
+	</resultMap>
+	
+	<!-- 관광지 등록 -->
+	<insert id="insertAttr">
+		INSERT INTO ATTRACTION_TBL VALUES(SEQ_ATTR_NO.NEXTVAL, #{attrLocation}, #{attrName}, #{attrTripType}, #{attrInfo}, #{attrMap}, #{attrTel}, #{attrWebsite}, #{attrAddress}, #{attrHours}, #{attrFee}, #{attrCar}, #{attrPet}, #{attrShortInfo}, DEFAULT)
+	</insert>
+	<!-- 관광지-이미지 등록 -->
+	<insert id="insertAttrImg">
+		INSERT INTO ATTRACTION_IMG VALUES(SEQ_ATTR_IMG_NO.NEXTVAL, #{refAttrNo}, #{attrFileName}, #{attrFileRename}, #{attrFilePath})
+	</insert>
+	
+	<!-- 총 게시글 수 가져오기 -->
+	<select id="selectTotalCount" resultType="_int">
+		SELECT COUNT(*) FROM ATTRACTION_TBL WHERE ATTR_STATUS = 'Y'
+	</select>
+	
+	<!-- 관광지 목록(관리자) 조회 -->
+	<select id="selectAllAttr" resultMap="attrResultMap">
+		SELECT * FROM ATTRACTION_TBL WHERE ATTR_STATUS = 'Y' ORDER BY ATTR_NO DESC
+	</select>
+	
+	<!-- 관광지 상세(관리자) 조회 + 수정 화면 -->
+	<select id="selectOneByNo" resultMap="attrResultMap">
+		SELECT * FROM ATTRACTION_TBL WHERE ATTR_NO = ${attrNo} AND ATTR_STATUS = 'Y'
+	</select>
+	<select id="selectImgByNo" resultMap="attrImgResultMap">
+		SELECT * FROM ATTRACTION_IMG WHERE REF_ATTR_NO = #{attrNo}
+	</select>
 </mapper>

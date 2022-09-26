@@ -22,18 +22,18 @@
 				<div>
 					<input type="radio" name="attrLocation" class="attrLocation" id="radioAll"><label for="radioAll">전체</label>
 					<input type="radio" name="attrLocation" class="attrLocation" id="seoul"><label for="seoul">서울</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="ggd"><label for="ggd">경기</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="gg"><label for="gg">경기</label>
 					<input type="radio" name="attrLocation" class="attrLocation" id="incheon"><label for="incheon">인천</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="gwd"><label for="gwd">강원</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="chNorth"><label for="chNorth">충북</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="chSouth"><label for="chSouth">충남</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="gsNorth"><label for="gsNorth">경북</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="gsSouth"><label for="gsSouth">경남</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="jrNorth"><label for="jrNorth">전북</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="jrSouth"><label for="jrSouth">전남</label>
-					<input type="radio" name="attrLocation" class="attrLocation" id="jejudo"><label for="jejudo">제주</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="gw"><label for="gw">강원</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="cb"><label for="cb">충북</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="cn"><label for="cn">충남</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="gb"><label for="gb">경북</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="gn"><label for="gn">경남</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="jb"><label for="jb">전북</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="jn"><label for="jn">전남</label>
+					<input type="radio" name="attrLocation" class="attrLocation" id="jeju"><label for="jeju">제주</label>
 				</div>
-					<select name="tripType">
+					<select name="attrTripType">
 						<option selected value="tripType">여행 유형</option>
 						<option value="couple">커플 여행</option>
 						<option value="friends">우정 여행</option>
@@ -44,8 +44,8 @@
 				</div>
 				<div>
 					<h6>반려동물 동반 여부</h6>
-					<label><input type="radio" name="animal" value="Y">네</label><br>
-					<label><input type="radio" name="animal" value="N" checked>아니오</label>
+					<label><input type="radio" name="attrPet" value="yesAnimal">예</label><br>
+					<label><input type="radio" name="attrPet" value="noAnimal" checked>아니요</label>
 				</div>
 				<div>
 					<input type="submit" value="조회하기">
