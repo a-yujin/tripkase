@@ -19,7 +19,7 @@
 		        <div id="login">
 		        	<table align="right">
 			           <tr>
-			              <td><a href="/member/loginView.tripkase"><b>로그인</b></a></td>
+			              <td class="tk_h_item" id="tk_menu4"><a href="/member/loginView.tripkase"><b>로그인</b></a></td>
 			           </tr>
 		        	</table>
 		        </div>

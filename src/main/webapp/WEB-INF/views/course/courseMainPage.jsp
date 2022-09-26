@@ -86,21 +86,19 @@
 
 	<div id=contents>
 		<ul>
-			<c:forEach items="${cList }" var="course">
+			<c:forEach items="${cmList }" var="courseMain">
 				<hr>
 				<li class="courseList">
-			<c:forEach items="${cListImg }" var="courseImg">
 						<div class="image-box">
-							<a href="/course/courseDetail.tripkase?courseNo=${courseImg.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/${courseImg.cFileRename }">
+							<a href="/course/courseDetail.tripkase?courseNo=${courseMain.courseNo }"> 
+							<img class="image" src="/resources/cosUploadFiles/'20220921145739.PNG">
 							</a>
 						</div>
-			</c:forEach>
 						<div class="textarea">
 							<br>
-							<span>여행 이름 : ${course.courseName }</span>
+							<span>여행 이름 : ${courseMain.courseName }</span>
 							<br><br><br>
-							<span>여행 테마 : ${course.courseThema }</span>
+							<span>여행 테마 : ${courseMain.courseThema }</span>
 					</div>	
 					<br><br>
 				</li>

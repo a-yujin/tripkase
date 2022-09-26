@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
+import com.tripKase.kh.course.domain.CourseMainPage;
 import com.tripKase.kh.course.service.CourseService;
 import com.tripKase.kh.course.store.CourseStore;
 import com.tripKase.kh.member.domain.Member;
@@ -75,6 +76,28 @@ public class CourseServiceImpl implements CourseService {
 		int result = cStore.removeCourse(session, courseNo);
 		return result;
 	}
+
+
+	@Override
+	public Course courseAdmin(int courseNo) {
+		Course course = cStore.courseAdmin(session, courseNo);
+		return course;
+	}
+
+
+	@Override
+	public List<CourseMainPage> selectCourseMain(String locationName) {
+		List<CourseMainPage> cmList = cStore.courseMainPage(session, locationName);
+		return cmList;
+	}
+
+
+	@Override
+	public List<CourseImg> courseImgByNo(int courseNo) {
+		List<CourseImg> courseImg = cStore.coursImgByNo(session, courseNo);
+		return courseImg;
+	}
+	
 }
 
 

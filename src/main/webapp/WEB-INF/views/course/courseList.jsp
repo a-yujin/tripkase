@@ -32,7 +32,7 @@
 							<th>코스테마</th>
 							<th>코스거리</th>
 							<th>코스지역</th>
-							<th>코스삭제</th>
+							<th>코스상세보기</th>
 						</tr>
 						<c:forEach items="${cList }" var="course">
 						<tr>
@@ -41,7 +41,7 @@
 							<td>${ course.courseThema}</td>
 							<td>${ course.courseDistance}</td>
 							<td>${ course.locationName}</td>
-							<td><button onclick="location.href='/course/removeCourse.tripkase?courseNo=${course.courseNo}';">삭제하기</button></td>
+							<td><button onclick="location.href='/course/courseAdmin.tripkase?courseNo=${course.courseNo}';">상세조회</button></td>
 						</tr>
 						</c:forEach> 
 						<tr>

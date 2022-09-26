@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
+import com.tripKase.kh.course.domain.CourseMainPage;
 
 public interface CourseStore {
 
@@ -27,5 +28,10 @@ public interface CourseStore {
 	
 	public int removeCourse(SqlSession session, int courseNo);
 
+	public Course courseAdmin(SqlSession session, int courseNo);
+	
+	public List<CourseMainPage> courseMainPage(SqlSession session, String locationName);
+	
+	public List<CourseImg> coursImgByNo(SqlSession session, int courseNo);
 	
 }

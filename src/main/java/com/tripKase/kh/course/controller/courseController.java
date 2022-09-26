@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -22,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
+import com.tripKase.kh.course.domain.CourseMainPage;
+import com.tripKase.kh.course.domain.CourseReply;
 import com.tripKase.kh.course.service.CourseService;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
@@ -101,11 +104,13 @@ public class courseController {
 				@RequestParam("locationValue") String locationValue,
 				ModelAndView mv) {
 
-			List<Course> cList = cService.selectCourseAll(locationName);
-			List<CourseImg> cListImg = cService.selectCourseImg(locationName);
+//			List<Course> cList = cService.selectCourseAll(locationName);
+//			List<CourseImg> cListImg = cService.selectCourseImg(locationName);
+			List<CourseMainPage> cmList = cService.selectCourseMain(locationName);
+			mv.addObject("cmList", cmList);
 			mv.addObject("locationValue", locationValue);
-			mv.addObject("cList", cList);
-			mv.addObject("cListImg", cListImg);
+//			mv.addObject("cList", cList);
+//			mv.addObject("cListImg", cListImg);
 			mv.setViewName("course/courseMainPage");
 			return mv;
 		}
@@ -115,9 +120,12 @@ public class courseController {
 	public ModelAndView courseDetail(ModelAndView mv, @RequestParam("courseNo") int courseNo) {
 		try {
 			Course course = cService.courseByNo(courseNo);
-			System.out.println(courseNo);
-			if (course != null) {
+			List<CourseImg> courseImg = cService.courseImgByNo(courseNo);
+			System.out.println(course);
+			System.out.println(courseImg);
+			if (course != null && !courseImg.isEmpty()) {
 				mv.addObject("cOne", course);
+				mv.addObject("cImg", courseImg);
 				mv.setViewName("/course/courseDetail");
 			}
 
@@ -182,13 +190,22 @@ public class courseController {
 		return mv;
 	}
 	
+	// 코스 수정 삭제 페이지
+		@RequestMapping(value="/course/courseAdmin.tripkase")
+		public ModelAndView courseAdmin(ModelAndView mv, @RequestParam("courseNo") Integer courseNo ) {
+			Course course = cService.courseAdmin(courseNo);
+			mv.addObject("course", course);
+			mv.setViewName("course/courseAdmin");
+			return mv;
+		}
+	
 	// 코스삭제
 	@RequestMapping(value="/course/removeCourse.tripkase", method = RequestMethod.GET)
 	public ModelAndView removeCourse(ModelAndView mv, @RequestParam("courseNo") Integer courseNo) {
 		try {
 			int result = cService.removeCourse(courseNo);
 			if (result > 0) {
-				mv.setViewName("course/courseList");
+				mv.setViewName("redirect:/course/courseAll.tripkase");
 			}
 		} catch (Exception e) {
 			mv.addObject("msg", e.getMessage());
@@ -196,6 +213,20 @@ public class courseController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/course/addReply.tripkase", method = RequestMethod.POST)
+	public ModelAndView registerReply(
+			ModelAndView mv,
+			@ModelAttribute CourseReply courseReply,
+			@RequestParam("page") int page,
+			HttpSession session) {
+		
+		
+		
+		
+		return mv;
+	}
+	
 }
 
 

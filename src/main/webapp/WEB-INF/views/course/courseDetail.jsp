@@ -1,51 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>여행카세 : 코스 상세페이지</title>
 <style>
 .course_detail {
-    position: relative;
-    width : 100%;
-    height : 200px; 
-    margin-top: 24px;
+	position: relative;
+	width: 100%;
+	height: 200px;
+	margin-top: 24px;
 }
 
 #contents {
-    width: 980px;
-    margin: 0 auto;
-    padding: 0 20px 27px 20px;
+	width: 980px;
+	margin: 0 auto;
+	padding: 0 20px 27px 20px;
 }
 
 div {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-#course{
-	folat : left;
+#course {
+	folat: left;
 }
 
-.map{
-	 width : 100%;
-    height : 200px; 
+.map {
+	width: 100%;
+	height: 200px;
 }
 
 #title {
-	clear:both;
+	clear: both;
 }
 
-#courseSchedule-wapper{
-	height : 50px;
+#courseSchedule-wapper {
+	height: 50px;
 }
 
-#courseSchedule-inside{
+#courseSchedule-inside {
+	float: left;
+}
+
+#courseSchedule-wapper {
+	width: 100%;
+	height: 150px;
+	margin: 0 auto;
+}
+
+#courseSchedule-inside {
+	width: 25%;
+	height: 150px;
+	margin: 0 auto;
 	float : left;
 }
 
+.image {
+	width: 90%;
+	height: 150px;
+	margin: 0 auto;
+}
+
+#courseDetail-wapper {
+	width: 100%;
+	height: 500px;
+	margin: 0 auto;
+}
+
+#courseDetail-inside{
+	width: 50%;
+	height: 50%;
+	margin: 0 auto;
+	float : left;
+}
+
+
+#Detailimage {
+	width: 50%;
+	height: 50%;
+	margin: 0 auto;
+}
+
+#courseDetail-wapper{
+	width: 100%;
+	height: 700px;
+	margin: 0 auto;
+}
+
+#courseDetail-inside{
+	width: 50%;
+	height: 45%;
+}
+
+.detailImage{
+	width: 90%;
+	height: 90%;
+}
 </style>
 
 </head>
@@ -59,33 +119,50 @@ div {
 					<h3>${cOne.courseName }</h3>
 				</div>
 				<div id="course_info">
-					<span>지역 : ${cOne.locationName }</span> <span>코스 총거리 :
-						${cOne.courseDistance }</span>
+					<span>지역 : ${cOne.locationName }</span> <span>코스 총거리 : ${cOne.courseDistance }</span>
 				</div>
 			</div>
 			<hr>
 			<div class="course_detail">
 				<div>
-					<p>${cOne.courseInfo }</p>
+					<p align="center">${cOne.courseInfo }</p>
 				</div>
-				<div class="map">
 				
-				</div>
+				<div class="map"></div>
 				
 				<div id="courseSchedule-wapper">
-					<div id="courseSchedule-inside">1</div>
-					<div id="courseSchedule-inside">2</div>
-					<div id="courseSchedule-inside">3</div>
-					<div id="courseSchedule-inside">4</div>
+					<c:forEach items="${cImg}" var="cImg">
+						<div id="courseSchedule-inside">
+							<img class="image" src="/resources/cosUploadFiles/${cImg.cFileRename}">
+						</div>
+					</c:forEach>
 				</div>
-
-			<div id=""></div>
-
-
+				<br><br><br><br><br><br>
+				<div id="courseDetail-wapper">
+					<c:forEach items="${cImg}" var="cImg">
+						<div id="courseDetail-inside">
+							<img class="detailImage" src="/resources/cosUploadFiles/${cImg.cFileRename}">
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	
+	<form action="/trip/addReply.tripkase" method="post">
+		<input type="hidden" name="page" value="${page }">
+		<input type="hidden" name="repTripNo" value="${trip.tripNo }">
+		<div id="tReply-wrapper">
+			<div id="tReply-background">
+				<textarea id="tReply-write" name="tReplyContents"></textarea>
+				<input type="submit" id="tReply-writebt" value="등록하기">		
+			</div>
+		</div>
+	</form>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
 </body>
 </html>
 

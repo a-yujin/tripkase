@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
+import com.tripKase.kh.course.domain.CourseMainPage;
 import com.tripKase.kh.course.store.CourseStore;
 import com.tripKase.kh.member.domain.Member;
 
@@ -68,6 +69,24 @@ public class CourseStoreLogic implements CourseStore {
 	public int removeCourse(SqlSession session, int courseNo) {
 		int result = session.delete("CourseMapper.removeCourse", courseNo);
 		return result;
+	}
+
+	@Override
+	public Course courseAdmin(SqlSession session, int courseNo) {
+		Course course = session.selectOne("CourseMapper.courseAdmin", courseNo);
+		return course;
+	}
+
+	@Override
+	public List<CourseMainPage> courseMainPage(SqlSession session, String locationName) {
+		List<CourseMainPage> cmList = session.selectList("CourseMapper.courseMainPage", locationName);
+		return cmList;
+	}
+
+	@Override
+	public List<CourseImg> coursImgByNo(SqlSession session, int courseNo) {
+		List<CourseImg> courseImg = session.selectList("CourseMapper.courseImgByNo", courseNo);
+		return courseImg;
 	}
 
 }

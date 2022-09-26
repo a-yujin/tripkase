@@ -7,6 +7,7 @@ public class CourseImg {
 	private String cFileRename;
 	private String cFilePath;
 	private String locationName;
+	
 	public int getImgNo() {
 		return imgNo;
 	}

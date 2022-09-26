@@ -14,13 +14,34 @@
 	 		<result property="cStatus" 				column="C_STATUS"/>
 	 		<result property="courseInfo" 			column="COURSE_INFO"/>
  			</resultMap>
-		 	<resultMap type="CourseImg" 	id="courseImgResultMap">
-			<id property="imgNo" 			column="IMG_NO"/>
-			<result property="courseNo"		column="COURSE_NO"/>
-			<result property="cFileName" 	column="COURSE_FILENAME"/>
-			<result property="cFileRename" 	column="COURSE_FILERENAME"/>
-			<result property="cFilePath" 	column="COURSE_FILEPATH"/>
-		</resultMap>
+		 	<resultMap type="CourseImg" 			id="courseImgResultMap">
+			<id property="imgNo" 					column="IMG_NO"/>
+			<result property="courseNo"				column="COURSE_NO"/>
+			<result property="cFileName" 			column="COURSE_FILENAME"/>
+			<result property="cFileRename" 			column="COURSE_FILERENAME"/>
+			<result property="cFilePath" 			column="COURSE_FILEPATH"/>
+			</resultMap>
+			<resultMap 	type="CourseMainPage" 		id="courseMainPageResultMap">
+	 		<id 	property="imgNo" 				column="IMG_NO"/>
+	 		<result property="courseNo" 			column="COURSE_NO"/>
+	 		<result property="courseName" 			column="COURSE_NAME"/>
+	 		<result property="courseThema" 			column="COURSE_THEMA"/>
+	 		<result property="courseDistance" 		column="COURSE_DISTANCE"/>
+	 		<result property="locationName" 		column="LOCATION_NAME"/>
+	 		<result property="cStatus" 				column="C_STATUS"/>
+	 		<result property="courseInfo" 			column="COURSE_INFO"/>
+	 		<result property="cFileName" 			column="COURSE_FILENAME"/>
+	 		<result property="cFileRename" 			column="COURSE_FILERENAME"/>
+	 		<result property="cFilePath" 			column="COURSE_FILEPATH"/>
+ 			</resultMap>
+		
+		<select id="courseMainPage" resultMap="courseMainPageResultMap">
+		WITH TRIP AS (SELECT A.COURSE_NO, B.COURSE_NAME, B.COURSE_THEMA, A.COURSE_FILENAME, A.COURSE_FILERENAME, A.LOCATION_NAME, ROW_NUMBER() OVER(PARTITION BY A.COURSE_NO ORDER BY A.COURSE_NO DESC) AS C_NUM FROM COURSE_IMG A JOIN COURSE_TBL B ON A.COURSE_NO = B.COURSE_NO ORDER BY COURSE_NO)
+		SELECT * FROM TRIP WHERE C_NUM = 1 
+		<if test='!locationName.equals("all")'>
+		AND LOCATION_NAME = #{locationName}
+		</if>
+		</select>
 		
  		<select id="selectCourseAll" resultMap="courseResultMap">
  		SELECT * FROM COURSE_TBL
@@ -31,6 +52,11 @@
  		
  		<select id="courseByNo" resultMap="courseResultMap">
  		SELECT * FROM COURSE_TBL
+ 		WHERE COURSE_NO = #{courseNo}
+ 		</select>
+ 		
+ 		<select id="courseImgByNo" resultMap="courseImgResultMap">
+ 		SELECT * FROM COURSE_IMG
  		WHERE COURSE_NO = #{courseNo}
  		</select>
  		
@@ -58,7 +84,8 @@
 		</insert>
 	
 		<select id="selectCourseImg" resultMap="courseImgResultMap">
- 		SELECT * FROM COURSE_IMG A JOIN COURSE_TBL B ON A.COURSE_NO = B.COURSE_NO  
+ 		WITH TRIP AS (SELECT A.COURSE_NO, B.COURSE_NAME, B.COURSE_THEMA, A.COURSE_FILENAME, A.COURSE_FILERENAME, A.LOCATION_NAME, ROW_NUMBER() OVER(PARTITION BY A.COURSE_NO ORDER BY A.COURSE_NO DESC) AS C_NUM FROM COURSE_IMG A JOIN COURSE_TBL B ON A.COURSE_NO = B.COURSE_NO ORDER BY COURSE_NO)
+		SELECT * FROM TRIP WHERE C_NUM = 1  
  		 <if test='!locationName.equals("all")'>
  		WHERE ROWNUM = 1
  		</if>
@@ -67,6 +94,11 @@
  		<update id="removeCourse">
 		UPDATE COURSE_TBL SET C_STATUS = 'N' WHERE COURSE_NO = #{courseNo}
 		</update>
+		
+		<select id="courseAdmin" resultMap="courseResultMap">
+		SELECT * FROM COURSE_TBL
+		WHERE COURSE_NO = #{courseNo}
+		</select>
 </mapper>
 
 
