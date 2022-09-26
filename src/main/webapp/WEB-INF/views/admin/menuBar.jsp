@@ -13,6 +13,7 @@
 			font-family: 'Noto Sans KR', sans-serif;
 		}
 		ul{
+			padding:0;
 			list-style : none;
 		}
 		a{
@@ -23,8 +24,9 @@
 			width : 20%;
 			border-right : 1px solid lightgray;
 			padding-left : 20px;
+			font-size: 20px;
 		}
-		#body{
+		#mainPage{
 			float : left;
 			width : 75%;
 			padding-left : 20px;
@@ -91,13 +93,13 @@
 				<a class="function" href="#" onclick="location.href='/restaurant/restaurantInsertPage.tripkase'">맛집 조회</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/room/roomDataPush.tripkase'">숙소 등록</a>
+				<a class="function" href="#" onclick="location.href='/room/registerRoom.tripkase'">숙소 등록</a>
 			</li>
 			<li>
 				<a class="function" href="#" onclick="location.href='/room/roomDataList.tripkase'">숙소 조회</a>
 			</li>
 		</ul>
-		<br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br>
 	</div>
 </body>
 </html>

@@ -41,7 +41,8 @@
 		}
 		#addContents{
 			margin-top:70px;
-			margin-left:30px;
+			margin-left:50px;
+			
 			border:1px solid;
 			float:left;
 			width:150px;
