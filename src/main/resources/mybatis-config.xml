@@ -19,6 +19,7 @@
 		<typeAlias type="com.tripKase.kh.notice.domain.NoticeReply" alias="NoticeReply"/>
 		<typeAlias type="com.tripKase.kh.qna.domain.QnA" alias="QnA"/>
 		<typeAlias type="com.tripKase.kh.restaurant.domain.Restaurant" alias="Restaurant"/>
+		<typeAlias type="com.tripKase.kh.restaurant.domain.ResImg" alias="ResImg"/>
 		<typeAlias type="com.tripKase.kh.room.domain.Room" alias="Room"/>
 		<typeAlias type="com.tripKase.kh.room.domain.RoomImg" alias="RoomImg"/>
 		<typeAlias type="com.tripKase.kh.schedule.domain.Schedule" alias="Schedule"/>

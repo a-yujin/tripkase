@@ -10,14 +10,37 @@ public class Restaurant {
 	private String resDayoff;
 	private String resMainmenu;
 	private String resDetail;
-	private String resFilename;
-	private String resFileRename;
-	private String resFilepath;
 	private String resMap;
 	private String resStatus;
 	private String resAddress;
+	private String resFileName;
+	private String resFileRename;
+	private String resFilePath;
 	private String memberId;
 	
+	
+	public Restaurant() {}
+	
+	public Restaurant(int resNo, String resName, String resType, String resArea, String resTel, String resDayoff,
+			String resMainmenu, String resDetail, String resMap, String resStatus, String resAddress,
+			String resFileName, String resFileRename, String resFilePath, String memberId) {
+		super();
+		this.resNo = resNo;
+		this.resName = resName;
+		this.resType = resType;
+		this.resArea = resArea;
+		this.resTel = resTel;
+		this.resDayoff = resDayoff;
+		this.resMainmenu = resMainmenu;
+		this.resDetail = resDetail;
+		this.resMap = resMap;
+		this.resStatus = resStatus;
+		this.resAddress = resAddress;
+		this.resFileName = resFileName;
+		this.resFileRename = resFileRename;
+		this.resFilePath = resFilePath;
+		this.memberId = memberId;
+	}
 	public int getResNo() {
 		return resNo;
 	}
@@ -66,24 +89,6 @@ public class Restaurant {
 	public void setResDetail(String resDetail) {
 		this.resDetail = resDetail;
 	}
-	public String getResFilename() {
-		return resFilename;
-	}
-	public void setResFilename(String resFilename) {
-		this.resFilename = resFilename;
-	}
-	public String getResFileRename() {
-		return resFileRename;
-	}
-	public void setResFileRename(String resFileRename) {
-		this.resFileRename = resFileRename;
-	}
-	public String getResFilepath() {
-		return resFilepath;
-	}
-	public void setResFilepath(String resFilepath) {
-		this.resFilepath = resFilepath;
-	}
 	public String getResMap() {
 		return resMap;
 	}
@@ -108,14 +113,34 @@ public class Restaurant {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	public String getResFileName() {
+		return resFileName;
+	}
+	public void setResFileName(String resFileName) {
+		this.resFileName = resFileName;
+	}
+	public String getResFileRename() {
+		return resFileRename;
+	}
+	public void setResFileRename(String resFileRename) {
+		this.resFileRename = resFileRename;
+	}
+	public String getResFilePath() {
+		return resFilePath;
+	}
+	public void setResFilePath(String resFilePath) {
+		this.resFilePath = resFilePath;
+	}
 	@Override
 	public String toString() {
 		return "Restaurant [resNo=" + resNo + ", resName=" + resName + ", resType=" + resType + ", resArea=" + resArea
 				+ ", resTel=" + resTel + ", resDayoff=" + resDayoff + ", resMainmenu=" + resMainmenu + ", resDetail="
-				+ resDetail + ", resFilename=" + resFilename + ", resFileRename=" + resFileRename + ", resFilepath="
-				+ resFilepath + ", resMap=" + resMap + ", resStatus=" + resStatus + ", resAddress=" + resAddress
+				+ resDetail + ", resMap=" + resMap + ", resStatus=" + resStatus + ", resAddress=" + resAddress
+				+ ", resFileName=" + resFileName + ", resFileRename=" + resFileRename + ", resFilePath=" + resFilePath
 				+ ", memberId=" + memberId + "]";
 	}
+	
+	
 	
 
 	

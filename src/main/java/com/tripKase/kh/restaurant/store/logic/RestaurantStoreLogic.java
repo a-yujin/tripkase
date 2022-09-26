@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.tripKase.kh.restaurant.domain.ResImg;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 import com.tripKase.kh.restaurant.store.RestaurantStore;
 
@@ -17,6 +18,12 @@ public class RestaurantStoreLogic implements RestaurantStore{
 	@Override
 	public int insertRestaurant(SqlSession session, Restaurant restaurant) {
 		int result = session.insert("RestaurantMapper.insertRestaurant", restaurant);
+		return result;
+	}
+	
+	@Override
+	public int insertRestaurantImg(SqlSessionTemplate session, ResImg resImg) {
+		int result = session.insert("RestaurantMapper.insertResImg", resImg);
 		return result;
 	}
 
@@ -54,10 +61,6 @@ public class RestaurantStoreLogic implements RestaurantStore{
 		return result;
 	}
 
-//	@Override
-//	public Restaurant getResData(SqlSessionTemplate session) {
-//		Restaurant restaurant = session.selectList("RestaurantMapper.getResData");
-//		return restaurant;
-//	}
+	
 
 }

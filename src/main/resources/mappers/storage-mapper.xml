@@ -47,12 +47,13 @@
             ,A.CONTENTS_CODE
             ,A.CONTENTS_NO
             ,A.MEMBER_ID
-            ,B.RES_FILERENAME
             ,B.RES_NAME
             <!-- 보관함 테이블과 맛집테이블의 얻어와야할 정보 선택 -->
+            ,C.RES_FILERENAME
         FROM STORAGE_TBL A
         JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO AND A.CONTENTS_CODE = 'restaurant')
         <!-- 컨텐츠 넘버와 맛집 넘버 , 컨텐츠코드와  CONTESNTS_CODE로 비교 -->
+        JOIN RESIMG_TBL C ON (A.CONTENTS_NO = C.RES_NO)
         WHERE MEMBER_ID = #{memberId}
     </select>
     

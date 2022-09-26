@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.tripKase.kh.restaurant.domain.ResImg;
 import com.tripKase.kh.restaurant.domain.Restaurant;
 
 public interface RestaurantStore {
@@ -19,7 +20,8 @@ public interface RestaurantStore {
 
 	public int deleteRestaurant(SqlSession session, Integer resNo);
 
-//	public Restaurant getResData(SqlSessionTemplate session);
+	public int insertRestaurantImg(SqlSessionTemplate session, ResImg resImg);
 
 	
+
 }
