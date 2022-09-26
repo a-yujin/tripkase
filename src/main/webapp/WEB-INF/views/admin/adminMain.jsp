@@ -10,13 +10,15 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	
-	<div id="body">
+	<div id="mainPage">
 		<div>
 			<h1>관리자 페이지</h1>
 		</div>
 		<div class="mainImg">
-			<img width="700" height="400" src="/resources/images/logo_tripkase.png"/>
+			<img align="left" width="700" height="400" src="/resources/images/logo_tripkase.png"/>
 		</div>
 	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

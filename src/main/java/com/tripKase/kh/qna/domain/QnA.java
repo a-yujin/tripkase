@@ -3,19 +3,18 @@ package com.tripKase.kh.qna.domain;
 import java.sql.Date;
 
 public class QnA {
-	private int questionNo; // 질문 번호
-	private String questionWriter; // 질문 작성자
-	private String questionType; // 질문 유형
-	private String questionTitle; // 질문 제목
-	private String qContents; // 질문 내용
-	private Date qCreateDate; // 질문 등록일
-	private String answerYN; // 답변 여부
-	private String qFileName; // 질문 파일 이름
-	private String qFileRename; // 질문 파일 변경된 이름
-	private String qFilePath; // 질문 파일 경로
-	private String answerWriter; // 답변 작성자
-	private String aContents; // 답변 내용
-	private Date aCreateDate; // 답변 등록일
+	private int questionNo; 		// 질문 번호
+	private String questionWriter; 	// 질문 작성자
+	private String questionType; 	// 질문 유형
+	private String questionTitle; 	// 질문 제목
+	private String qContents; 		// 질문 내용
+	private Date qCreateDate; 		// 질문 등록일
+	private String qFileName; 		// 질문 파일 이름
+	private String qFileRename; 	// 질문 파일 변경된 이름
+	private String qFilePath; 		// 질문 파일 경로
+	private String answerWriter; 	// 답변 작성자
+	private String aContents; 		// 답변 내용
+	private Date aCreateDate; 		// 답변 등록일
 	
 	public int getQuestionNo() {
 		return questionNo;
@@ -46,12 +45,6 @@ public class QnA {
 	}
 	public void setqCreateDate(Date qCreateDate) {
 		this.qCreateDate = qCreateDate;
-	}
-	public String getAnswerYN() {
-		return answerYN;
-	}
-	public void setAnswerYN(String answerYN) {
-		this.answerYN = answerYN;
 	}
 	public String getqContents() {
 		return qContents;
@@ -99,8 +92,7 @@ public class QnA {
 	@Override
 	public String toString() {
 		return "QnA [questionNo=" + questionNo + ", questionWriter=" + questionWriter + ", questionType=" + questionType
-				+ ", questionTitle=" + questionTitle + ", qCreateDate=" + qCreateDate + ", answerYN=" + answerYN
-				+ ", qContents=" + qContents + ", qFileName=" + qFileName + ", qFileRename=" + qFileRename
+				+ ", questionTitle=" + questionTitle + ", qCreateDate=" + qCreateDate + ", qContents=" + qContents + ", qFileName=" + qFileName + ", qFileRename=" + qFileRename
 				+ ", qFilePath=" + qFilePath + ", answerWriter=" + answerWriter + ", aCreateDate=" + aCreateDate
 				+ ", aContents=" + aContents + "]";
 	}

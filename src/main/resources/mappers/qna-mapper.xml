@@ -3,5 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="QnAMapper">
-
+	<resultMap type="QnA" id="QnAResultMan">
+		<id property="questionNo" column="QUESTION_NO"/>
+		<result property="questionWriter" column="QUESTION_WRITER"/>
+		<result property="questionType" column="QUESTION_TYPE"/>
+		<result property="questionTitle" column="QUESTION_TITLE"/>
+		<result property="qContents" column="QUESTION_CONTENTS"/>
+		<result property="qCreateDate" column="Q_CREATE_DATE"/>
+		<result property="qFileName" column="Q_FILENAME"/>
+		<result property="qFileRename" column="Q_FILERENAME"/>
+		<result property="qFilePath" column="Q_FILEPATH"/>
+		<result property="answerWriter" column="ANSWER_WRITER"/>
+		<result property="aContents" column="ANSWER_CONTENTS"/>
+		<result property="aCreateDate" column="A_CREATE_DATE"/>
+	</resultMap>
+	
+	<select id="getQnATotalCount">
+		SELECT COUNT(*) FROM QNA_TBL WHERE QUESTION_WRITER = #{memberId}
+	</select>
+	<insert id="insertQna">
+		INSERT INTO QNA_TBL VALUES(SEQ_QNANO.NEXTVAL, #{questionWriter},#{questionType},#{questionTitle},#{qContents},DEFAULT,#{qFileName},#{qFileRename},#{qFilePath},#{answerWriter},#{aContents},#{aCreateDate})
+	</insert>
 </mapper>

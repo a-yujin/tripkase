@@ -11,9 +11,20 @@
 	body{
 		font-family: 'Noto Sans KR', sans-serif;
 	}
+	#body{
+		height: 700px;
+	}
+	
+	
 </style>
 </head>
 <body>
 	<jsp:include page="../views/common/header.jsp"/>
+
+	<div id="body">
+	
+	</div>
+	
+	<jsp:include page="../views/common/footer.jsp"/>
 </body>
 </html>
