@@ -59,8 +59,7 @@ public class AttractionController {
 			ModelAndView mv,
 			@ModelAttribute Attraction attr,
 			@RequestParam(value="attrFile", required=false) List<MultipartFile> attrFile, // value -> jsp name
-			HttpServletRequest request,
-			MultipartHttpServletRequest mRequest) {
+			HttpServletRequest request) {
 		try {
 			int attrImgNo = 1;
 			AttractionImg attrImg = null;
