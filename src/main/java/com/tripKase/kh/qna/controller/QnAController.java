@@ -44,9 +44,19 @@ public class QnAController {
 			endNavi = maxPage;
 			}
 			////////////////////////////////////////////////////
-		List<QnA> qList = qService.selectAllQna(memberId);
-		mv.addObject("qList",qList);
-		mv.setViewName("/qna/qnaMainView");
+		List<QnA> qList = qService.selectAllQna(memberId,currentPage,boardLimit);
+		try {
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("maxPage", maxPage);
+			mv.addObject("startNavi", startNavi);
+			mv.addObject("endNavi", endNavi);
+			mv.addObject("qList",qList);
+			mv.setViewName("/qna/qnaMainView");
+		} catch (Exception e) {
+			// TODO: handle exception
+			mv.addObject("msg",e.toString());
+			mv.setViewName("/common/errorPage");
+		}
 		return mv;
 	}
 	
@@ -70,5 +80,27 @@ public class QnAController {
 		return mv;
 	}
 	
+	//문의 상세
+	@RequestMapping("/qna/qnaDetail.tripkase")
+	public ModelAndView qnaDetail(
+			ModelAndView mv
+			,@RequestParam("qnaNo") int qnaNo
+			) {
+		QnA qna = qService.selectByNo(qnaNo);
+		mv.addObject("qna",qna);
+		mv.setViewName("/qna/qnaDetail");
+		return mv;
+	}
+	
+	//문의 삭제
+	@RequestMapping("/qna/deleteQna.tripkase")
+	public ModelAndView deleteQna(
+			ModelAndView mv
+			,@RequestParam("qnaNo") int qnaNo
+			) {
+		int result = qService.deleteQnaByNo(qnaNo);
+		mv.setViewName("redirect:/qna/qnaMainView.tripkase");
+		return mv;
+	}
 	
 }

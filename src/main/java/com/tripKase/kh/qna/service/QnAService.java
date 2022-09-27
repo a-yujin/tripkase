@@ -8,8 +8,12 @@ public interface QnAService {
 
 	int insertQna(QnA qna);
 
-	List<QnA> selectAllQna(String memberId);
+	List<QnA> selectAllQna(String memberId, int currentPage, int boardLimit );
 
 	int getQnATotalCount(String memberId);
+
+	QnA selectByNo(int qnaNo);
+
+	int deleteQnaByNo(int qnaNo);
 
 }

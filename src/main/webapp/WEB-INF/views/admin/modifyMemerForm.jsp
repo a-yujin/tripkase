@@ -60,8 +60,7 @@
 							<td><input type="text" name="mRegisterDate" value="${member.mRegisterDate }" readonly/></td></tr>
 						<tr align="center">
 							<td colspan="2">
-							<button>수정</button>
-							<button type="button" onclick="location.href='/admin/deleteMember.tripkase?memberId=${member.memberId}'">삭제</button>
+							<button>수정 등록</button>
 						</td>
 					</table>
 					<input type="hidden" name="mPfpName" value="${member.mPfpName }" /><br>

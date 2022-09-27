@@ -9,29 +9,54 @@
 		body{
 			padding:20px;
 		}
+		h1{
+			padding-left: 100px; 
+		}
+		#qnaForm{
+			margin: auto;
+			width: 800px;
+			padding-left: 100px;
+		}
 	</style>
 	
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	
-	<h1>질문등록</h1>
-	<hr>
-	<h3>질문유형</h3>
-	<form action="/qna/RegisterQna.tripkase" method="post">
-		<input type="radio" name="questionType" value="course"/>코스 &nbsp;
-		<input type="radio" name="questionType" value="attr"/>관광지 &nbsp;
-		<input type="radio" name="questionType" value="res"/>맛집 &nbsp;
-		<input type="radio" name="questionType" value="room"/>숙소 &nbsp;
-		<input type="radio" name="questionType" value="other"/>기타
-		<br><br>
-		제목<br>
-		<input size="50" type="text" name="questionTitle" placeholder="제목을 입력해주세요" required="required"/><br><br>
-		내용<br>
-		<textarea cols="52" rows="10" name="qContents" placeholder="내용을 입력해주세요" required="required"></textarea><br>
-		<input type="file" name="uploadFile"/><br>
-		<input type="submit" value="등록">
-	</form>
-	
+	<br>
+	<div id="qnaForm">
+		<h3>질문유형</h3>
+		<form action="/qna/RegisterQna.tripkase" method="post">
+					코스 <input type="radio" name="questionType" value="course"/> &nbsp;
+					관광지 <input type="radio" name="questionType" value="attr"/> &nbsp;
+					맛집 <input type="radio" name="questionType" value="res"/> &nbsp;
+					숙소 <input type="radio" name="questionType" value="room"/> &nbsp;
+					기타 <input type="radio" name="questionType" value="other"/>
+					<br><br>
+			<table>
+				<tr>
+					<td>제목</td>
+				</tr>
+				<tr>
+					<td><input size="80" type="text" name="questionTitle" placeholder="제목을 입력해주세요" required="required"/></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+				</tr>
+				<tr>
+					<td><textarea cols="82" rows="15" name="qContents" placeholder="내용을 입력해주세요" required="required"></textarea></td>
+				</tr>
+				<tr>
+					<td><input type="file" name="uploadFile"/></td>
+				</tr>
+				<tr align="center">
+					<td >
+						<button class="btn btn-primary" type="submit">등록</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

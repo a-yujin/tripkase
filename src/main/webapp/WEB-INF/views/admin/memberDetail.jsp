@@ -10,21 +10,24 @@
 <meta charset="UTF-8">
 <title>여행카세 : 회원 상세 조회</title>
 	<style>
-		.memberTable{
+		.memberDiv{
 			float:left;
 			padding-left:100px;
-			width:700px;
+			width:600px;
+		}
+		#memberTable{
+			text-align: center;
 		}
 	</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
-	<div class="memberTable">
+	<div class="memberDiv">
 		<h2 align="center">회원 상세 조회</h2>
-				<table class="table table-hover" border="1" align="center">
+				<table id="memberTable" class="table table-hover" border="1">
 					<tr>
-						<th>아이디</th>
+						<th width="100px" >아이디</th>
 						<td>${member.memberId }</td>
 					</tr>
 					<tr>

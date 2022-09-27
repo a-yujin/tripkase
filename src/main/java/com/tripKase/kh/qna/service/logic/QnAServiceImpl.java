@@ -26,14 +26,26 @@ public class QnAServiceImpl implements QnAService{
 	}
 
 	@Override
-	public List<QnA> selectAllQna(String memberId) {
-		List<QnA> qList = qStore.selectAllQna(session, memberId);
+	public List<QnA> selectAllQna(String memberId,int currentPage, int boardLimit) {
+		List<QnA> qList = qStore.selectAllQna(session, memberId, currentPage, boardLimit);
 		return qList;
 	}
 
 	@Override
 	public int getQnATotalCount(String memberId) {
 		int result = qStore.getQnATotalCount(session, memberId);
+		return result;
+	}
+
+	@Override
+	public QnA selectByNo(int qnaNo) {
+		QnA qna = qStore.selectByNo(session, qnaNo);
+		return qna;
+	}
+
+	@Override
+	public int deleteQnaByNo(int qnaNo) {
+		int result = qStore.deleteQnaByNo(session, qnaNo);
 		return result;
 	}
 	

@@ -90,7 +90,7 @@
 				<a class="function" href="#" onclick="location.href='/restaurant/restaurantInsertPage.tripkase'">맛집 등록</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/restaurant/restaurantInsertPage.tripkase'">맛집 조회</a>
+				<a class="function" href="#" onclick="location.href='/restaurant/resAdminSearchPage.tripkase'">맛집 조회</a>
 			</li>
 			<li>
 				<a class="function" href="#" onclick="location.href='/room/registerRoom.tripkase'">숙소 등록</a>

@@ -60,7 +60,8 @@
 							</ul>	
 						</td>
 						<td>
-							<button class="btn btn-default" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
+							<br>
+							<button class="btn btn-primary" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
 						</td>
 					</tr>
 			</table>

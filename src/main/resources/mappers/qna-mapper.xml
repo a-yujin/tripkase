@@ -18,10 +18,20 @@
 		<result property="aCreateDate" column="A_CREATE_DATE"/>
 	</resultMap>
 	
-	<select id="getQnATotalCount">
+	<select id="getQnATotalCount" resultType="_int">
 		SELECT COUNT(*) FROM QNA_TBL WHERE QUESTION_WRITER = #{memberId}
 	</select>
+	<select id="selectAllQna" resultMap="QnAResultMan">
+		SELECT * FROM QNA_TBL WHERE QUESTION_WRITER = #{memberId} order by QUESTION_NO desc
+	</select>
+	<select id="selectByNo" resultMap="QnAResultMan">
+		SELECT * FROM QNA_TBL WHERE QUESTION_NO = #{qnaNo}
+	</select>
 	<insert id="insertQna">
-		INSERT INTO QNA_TBL VALUES(SEQ_QNANO.NEXTVAL, #{questionWriter},#{questionType},#{questionTitle},#{qContents},DEFAULT,#{qFileName},#{qFileRename},#{qFilePath},#{answerWriter},#{aContents},#{aCreateDate})
+		INSERT INTO QNA_TBL
+		VALUES(SEQ_QNANO.NEXTVAL, #{questionWriter}, #{questionType}, #{questionTitle}, #{qContents}, DEFAULT, #{qFileName}, #{qFileRename}, #{qFilePath}, #{answerWriter}, #{aContents},#{aCreateDate})
 	</insert>
+	<delete id="deleteQnaByNo">
+		DELETE FROM QNA_TBL WHERE QUESTION_NO = #{qnaNo}
+	</delete>
 </mapper>
