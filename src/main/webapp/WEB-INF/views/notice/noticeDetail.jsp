@@ -7,10 +7,11 @@
 <meta charset="UTF-8">
 <title>여행카세: 공지 상세</title>
 <link href="/resources/css/notice.css" rel="stylesheet">
+<script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
-	<br><br><br><br><br>
+	<br><br><br>
 	<table id="nDetailTable" align="center">
 		<!-- 공지 제목, 작성자, 작성일 보이는 상단 -->
 		<tr>
@@ -54,30 +55,37 @@
 	<!-- 공지 댓글 목록 -->
 	<table id="nReplyList" align="center">
 		<c:forEach items="${nReplyList}" var="nReply">
+			<tr>
+				<td class="nreMargin" colspan="3"></td>
+			</tr>
 			<tr id="nReplyTop">
 				<td id="nReplyWriter">${nReply.nReplyWriter}</td>
 				<td>${nReply.nreUpdateDate}</td>
-				<td class="menuTk" rowspan="2">
-					<input id="checkBtnTk" type="checkbox"/>
-					<label for="checkBtnTk">
-						<img class="dotIconTk" src="/resources/images/trip/dot.png">
-					</label>
-					<ul class="menuListTk">
-						<li><a href="#">수정</a></li>
-						<li><a href="#">삭제</a></li>
-					</ul>
+				<td class="menuTk">
+					<a href="#" onclick="removeNReply(${nReply.nReplyNo});">삭제</a>
 				</td>
 			</tr>
 			<tr>
 				<td id="nReplyContents" colspan="2">${nReply.nReplyContents}</td>
 			</tr>
 			<tr>
-			<td class="bottomLine" colspan="3"></td>
+				<td class="bottomLine" colspan="3"></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<script>
+		function removeNReply(nReplyNo){
+			event.preventDefault();
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				var $delForm = $("<form>");
+				$delForm.attr("action", "/notice/replyRemove.tripkase");
+				$delForm.attr("method", "post");
+				$delForm.append("<input type='hidden' name='nReplyNo' value='"+nReplyNo+"'>");
+				$delForm.appendTo("body");
+				$delForm.submit();
+			}
+		}
 	</script>
-	<br><br><br><br><br>
+	<br><br><br>
 </body>
 </html>

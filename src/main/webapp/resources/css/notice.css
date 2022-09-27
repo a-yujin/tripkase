@@ -11,7 +11,7 @@
 }
 
 #nListContents1{
-	padding-top: 10px;
+	padding-top: 15px;
 	padding-bottom: 5px;
 }
 
@@ -27,7 +27,7 @@
 }
 
 #nListDate{
-	width: 13%;
+	width: 12%;
 }
 
 #nListPage{
@@ -83,7 +83,7 @@
 }
 
 #nDetailWriter{
-	width: 12%;
+	width: 10%;
 }
 
 #nDetailImg{
@@ -94,7 +94,7 @@
 #nReplyRegister{
 	width: 600px;
 	background-color: #f5f5f5;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 #nReplyRegiTd1{
@@ -167,4 +167,8 @@
 	float: right;
 	width: 5px;
 	height: 15px;
+}
+
+.nreMargin{
+	padding-bottom: 12px;
 }

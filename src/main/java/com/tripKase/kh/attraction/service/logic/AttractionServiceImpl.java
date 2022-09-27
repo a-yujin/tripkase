@@ -58,5 +58,40 @@ public class AttractionServiceImpl implements AttractionService {
 		List<AttractionImg> attrImgList = attrStore.selectImgByNo(session, attrNo);
 		return attrImgList;
 	}
+	
+	// 관광지 삭제
+	@Override
+	public int removeOneByNo(int attrNo) {
+		int result = attrStore.deleteOneByNo(session, attrNo);
+		return result;
+	}
+	
+	// 관광지 수정
+	@Override
+	public int modifyAttr(Attraction attr) {
+		int result = attrStore.updateAttr(session, attr);
+		return result;
+	}
+	// 관광지-이미지 수정
+	@Override
+	public int modifyAttrImg(AttractionImg attrImg) {
+		int result = attrStore.updateAttrImg(session, attrImg);
+		return result;
+	}
+	
+	// 관광지 검색 게시글 수 가져오기
+	@Override
+	public int getSearchCount(String searchValue, String areaValue, String typeValue, String petValue) {
+		int result = attrStore.getSearchCount(session, searchValue, areaValue, typeValue, petValue);
+		return result;
+	}
+	
+	// 관광지 검색 게시글 목록 조회
+	@Override
+	public List<Attraction> printSearchAttr(String searchValue, String areaValue, String typeValue, String petValue,
+			int currentPage, int attrLimit) {
+		List<Attraction> attrList = attrStore.selectSearchAttr(session, searchValue, areaValue, typeValue, petValue, currentPage, attrLimit);
+		return attrList;
+	}
 
 }

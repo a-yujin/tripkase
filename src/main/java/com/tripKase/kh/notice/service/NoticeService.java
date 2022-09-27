@@ -27,7 +27,7 @@ public interface NoticeService {
 	// 공지 댓글 조회
 	public List<NoticeReply> printAllnReply(Integer noticeNo);
 
-	// 공지 댓글 수정
-	public int modifyNReply(NoticeReply nReply);
+	// 공지 댓글 삭제
+	public int deleteNReply(Integer nReplyNo);
 
 }
