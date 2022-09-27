@@ -58,7 +58,7 @@ public class StorageController {
 			System.out.println(stoNo);
 			if(result > 0) {
 				session.removeAttribute("stoNo");
-				mv.setViewName("storage/storageMainPage");				
+				mv.setViewName("redirect:/storage/storageView.tripkase");				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

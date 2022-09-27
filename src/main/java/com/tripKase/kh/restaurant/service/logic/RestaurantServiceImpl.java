@@ -69,5 +69,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 		return result;
 	}
 
+	@Override
+	public List<ResImg> selectResImgByNo(Integer resNo) {
+		List<ResImg> resImg = resStore.selectResImgByNo(session, resNo);
+		return resImg;
+	}
+
 
 }

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 맛집 목록 페이지</title>
-<!-- 테스트용 jsp  -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +13,11 @@
 <style>
     body {
         font-family : 'Noto Sans KR',sans-serif;
+        text-align : center;
+    }
+    
+    .restitle {
+    	text-align : center;
     }
 </style>
 <body>
@@ -21,14 +25,14 @@
 <jsp:include page="../admin/menuBar.jsp"/>
 	<h1 align="center">맛집 목록</h1>
 <br><br>
-<table align="center" border="1">
+<table align="center" border="1" width="1100px">
 	<tr>
-		<th>이미지</th>
-		<th>제목</th>
-		<th>주소</th>
-		<th>상세내용</th>
-		<th></th>
-		<th></th>
+		<th class="restitle">이미지</th>
+		<th class="restitle" width="80px">제목</th>
+		<th class="restitle">주소</th>
+		<th class="restitle">상세내용</th>
+		<th class="restitle" width="50px">수정</th>
+		<th class="restitle" width="50px">삭제</th>
 	</tr>
 	<c:if test="${!empty resList }">
 		<c:forEach items="${resList }" var="restaurant" varStatus="i">
@@ -36,9 +40,9 @@
 				<td>
 					<img src="/resources/resUploadFiles/${restaurant.resFileRename }" width="150" height="150">
 				</td>
-				<td><a href="/restaurant/restaurantDetailView.tripkase?resNo=${restaurant.resNo }&page=${currentPage}">${restaurant.resName }</a></td>
+				<td><a href="/restaurant/resAdminDetailView.tripkase?resNo=${restaurant.resNo }">${restaurant.resName }</a></td>
 				<td>${restaurant.resAddress }</td>
-				<td>${restaurant.resDetail }</td>
+				<td class="resDetail">${restaurant.resDetail }</td>
 				<td><a href="/restaurant/modifyRestaurantView.tripkase?resNo=${restaurant.resNo }">수정</a></td>
 				<td><a href="/restaurant/deleteRestaurant.tripkase?resNo=${restaurant.resNo }">삭제</a></td>
 			</tr>
@@ -79,10 +83,6 @@
 			</c:if>
 		</td>
 	</tr>
-		<c:forEach items="${typeValue}" var="list">
-				${list}
-		</c:forEach>
-		<%-- 참고한 포이치를 통한 배열 인덱스값 추출--%>
 </table>
 </body>
 </html>

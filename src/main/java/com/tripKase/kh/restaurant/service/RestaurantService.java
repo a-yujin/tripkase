@@ -23,6 +23,8 @@ public interface RestaurantService {
 
 	public int updateRestaurantImg(ResImg resImg);
 
+	public List<ResImg> selectResImgByNo(Integer resNo);
+
 	
 	
 }

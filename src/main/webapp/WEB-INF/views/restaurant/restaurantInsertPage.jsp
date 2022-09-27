@@ -59,8 +59,7 @@
 		</table>
 		
 		<br><br>상세정보
-		<textarea name="resDetail">
-		</textarea>
+		<textarea name="resDetail"></textarea>
 		
 		<br><br>지도
 		<input type="text" name="resMap">

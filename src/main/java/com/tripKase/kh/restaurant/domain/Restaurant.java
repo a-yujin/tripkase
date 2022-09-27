@@ -10,7 +10,6 @@ public class Restaurant {
 	private String resDayoff;
 	private String resMainmenu;
 	private String resDetail;
-	private String resMap;
 	private String resStatus;
 	private String resAddress;
 	private String resFileName;
@@ -22,7 +21,7 @@ public class Restaurant {
 	public Restaurant() {}
 	
 	public Restaurant(int resNo, String resName, String resType, String resArea, String resTel, String resDayoff,
-			String resMainmenu, String resDetail, String resMap, String resStatus, String resAddress,
+			String resMainmenu, String resDetail, String resStatus, String resAddress,
 			String resFileName, String resFileRename, String resFilePath, String memberId) {
 		super();
 		this.resNo = resNo;
@@ -33,7 +32,6 @@ public class Restaurant {
 		this.resDayoff = resDayoff;
 		this.resMainmenu = resMainmenu;
 		this.resDetail = resDetail;
-		this.resMap = resMap;
 		this.resStatus = resStatus;
 		this.resAddress = resAddress;
 		this.resFileName = resFileName;
@@ -89,12 +87,6 @@ public class Restaurant {
 	public void setResDetail(String resDetail) {
 		this.resDetail = resDetail;
 	}
-	public String getResMap() {
-		return resMap;
-	}
-	public void setResMap(String resMap) {
-		this.resMap = resMap;
-	}
 	public String getResStatus() {
 		return resStatus;
 	}
@@ -135,7 +127,7 @@ public class Restaurant {
 	public String toString() {
 		return "Restaurant [resNo=" + resNo + ", resName=" + resName + ", resType=" + resType + ", resArea=" + resArea
 				+ ", resTel=" + resTel + ", resDayoff=" + resDayoff + ", resMainmenu=" + resMainmenu + ", resDetail="
-				+ resDetail + ", resMap=" + resMap + ", resStatus=" + resStatus + ", resAddress=" + resAddress
+				+ resDetail + ", resStatus=" + resStatus + ", resAddress=" + resAddress
 				+ ", resFileName=" + resFileName + ", resFileRename=" + resFileRename + ", resFilePath=" + resFilePath
 				+ ", memberId=" + memberId + "]";
 	}

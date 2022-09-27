@@ -73,6 +73,12 @@ public class RestaurantStoreLogic implements RestaurantStore{
 		return result;
 	}
 
+	@Override
+	public List<ResImg> selectResImgByNo(SqlSessionTemplate session, Integer resNo) {
+		List<ResImg> resImgList = session.selectList("RestaurantMapper.selectResImgByNo",resNo);
+		return resImgList;
+	}
+
 	
 
 }

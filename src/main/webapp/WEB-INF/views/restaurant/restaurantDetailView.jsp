@@ -36,8 +36,6 @@
 			</tr>		
 			<input type="submit" value="보관">
 	</form>
-		<a href="/restaurant/deleteRestaurant.tripkase">삭제</a>
-		<a href="/restaurant/updateRestaurantData.tripkase?resNo=${restaurant.resNo }&page=${page}">수정</a>
 	</table>
 </body>
 </html>

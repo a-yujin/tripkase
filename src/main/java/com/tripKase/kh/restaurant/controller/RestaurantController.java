@@ -104,7 +104,7 @@ public class RestaurantController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/restaurant/restaurantMainPage.tripkase";
+		return "redirect:/restaurant/resAdminSearchPage.tripkase";
 	}
 	
 
@@ -201,7 +201,7 @@ public class RestaurantController {
 				) {
 			try {
 				int totalCount = resService.getRestaurantCount(searchValue, areaValue, typeValue);
-				int boardLimit = 10;
+				int boardLimit = 100;
 				int naviLimit = 5;
 				int maxPage;
 				int startNavi;
@@ -236,17 +236,21 @@ public class RestaurantController {
 		}
 		
 		
-		/** 관리자 수정 / 삭제 페이지
+		/** 맛집 수정 페이지로 이동(관리자)
 		 * 	
 		 */
 		@RequestMapping(value="/restaurant/modifyRestaurantView.tripkase", method=RequestMethod.GET)
 		public ModelAndView restaurantModifyView(ModelAndView mv,
-				@RequestParam("resNo") Integer resNo,
-				@RequestParam("page") int page) {
+				@RequestParam("resNo") Integer resNo) {
 			try {
 				Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
+				List<ResImg> resImgList = resService.selectResImgByNo(resNo);
+				for(int i=0; i<resImgList.size(); i++) {
+					System.out.println(resImgList.get(i));					
+				}
+			
 				mv.addObject("restaurant",restaurant)
-					.addObject("page",page)
+					.addObject("resImgList", resImgList)
 					.setViewName("restaurant/restaurantUpdatePage");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -254,6 +258,32 @@ public class RestaurantController {
 			}
 		return mv;
 		}
+		
+		
+		/**
+		 * 맛집 상세 조회
+		 * @param mv
+		 * @param session
+		 * @param resNo
+		 * @param page
+		 * @return
+		 */
+		@RequestMapping(value="/restaurant/resAdminDetailView.tripkase", method=RequestMethod.GET)
+		public ModelAndView resAdminDetailView(ModelAndView mv, HttpSession session,
+								@RequestParam("resNo") Integer resNo) {
+			try {
+				Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
+				List<ResImg> resImgList = resService.selectResImgByNo(resNo);
+				mv.addObject("restaurant" , restaurant);
+				mv.addObject("resImgList", resImgList);
+				mv.setViewName("restaurant/resAdminDetailView");
+			} catch (Exception e) {
+				mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+			}
+			return mv;
+		}
+		
+		
 		
 		
 		/**
@@ -269,40 +299,55 @@ public class RestaurantController {
 		public ModelAndView updateRestaurant(
 				ModelAndView mv
 				, @ModelAttribute Restaurant restaurant
-				, @RequestParam(value="uploadFile", required=false) List<MultipartFile> uploadFile
-				,HttpServletRequest request, MultipartHttpServletRequest multipartRequest) {
-			try {
-				int imgNo = 1;
+				, @RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile
+				, @RequestParam("resImgNo") int [] imgNoArr
+				, @RequestParam("resFileRename") String [] resFileRenameArr
+				,HttpServletRequest request) {
+				int num = 0;
 				ResImg resImg = null;
+				System.out.println("restaurant : " + restaurant.toString());
+				System.out.println("imgNoArr : " + imgNoArr[0]);
+				System.out.println("ddd1 : " + reloadFile.toString());
+				System.out.println("ddd2 : " + resFileRenameArr[0]);
+			
+				
 				int result = resService.updateRestaurant(restaurant);
-				for(MultipartFile mf : uploadFile) {
-					String resFileName = mf.getOriginalFilename();
-					if(!resFileName.equals("")) {
-						String root = request.getSession().getServletContext().getRealPath("resources");
-						String savePath = root + "\\resUploadFiles";
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
-						String resFileRename = sdf.format(new Date(System.currentTimeMillis()))+"."
-								+ resFileName.substring(resFileName.lastIndexOf(".")+1);
-						File file = new File(savePath);
-						if(!file.exists()) {
-							file.mkdir();
-						}
-						mf.transferTo(new File(savePath+"\\"+resFileRename));
-						String resFilePath = savePath + "\\" + resFileRename;
-						resImg = new ResImg();
-						resImg.setResFileName(resFileName);
-						resImg.setResFileRename(resFileRename);
-						resImg.setResFilePath(resFilePath);
-						imgNo = imgNo + 1;
+				try {
+					for(MultipartFile mf : reloadFile) {
+						String resFileName = mf.getOriginalFilename();
+						if(!resFileName.equals("")) {
+							String root = request.getSession().getServletContext().getRealPath("resources");
+							String savePath = root + "\\resUploadFiles";
+							SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
+							//기존 파일 삭제
+							String rFileRename = resFileRenameArr[num];
+							File file = new File(savePath + "\\" + rFileRename);
+							if(!file.exists()) {
+								file.delete();
+							}
+							//새로운 파일 등록
+							String resFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+"."+resFileName.substring(resFileName.lastIndexOf(".")+1);
+							file = new File(savePath);
+							mf.transferTo(new File(savePath+"\\"+resFileRename));
+							String resFilePath = savePath + "\\" + resFileRename;
+							resImg = new ResImg();
+							resImg.setResFileName(resFileName);
+							resImg.setResFileRename(resFileRename);
+							resImg.setResFilePath(resFilePath);
+							int imgNo = imgNoArr[num];
+							resImg.setResImgNo(imgNo);
+							num = num + 1;
 					}
 						int result2 = resService.updateRestaurantImg(resImg);
-						mv.setViewName("redirect:/restaurant/restaurantMainPage.tripkase");
+						System.out.println("test2");
+						mv.setViewName("redirect:/restaurant/resAdminSearchPage.tripkase");
 				}
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (Exception e) {
+					e.printStackTrace();
 					mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 			}
 			return mv;
