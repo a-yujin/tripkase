@@ -6,7 +6,6 @@ public class Attraction {
 	private String attrName; // 관광지 이름
 	private String attrTripType; // 관광지 여행 유형
 	private String attrInfo; // 관광지 설명
-	private String attrMap; // 관광지 지도
 	private String attrTel; // 관광지 전화번호
 	private String attrWebsite; // 관광지 홈페이지
 	private String attrAddress; // 관광지 주소
@@ -49,12 +48,6 @@ public class Attraction {
 	}
 	public void setAttrInfo(String attrInfo) {
 		this.attrInfo = attrInfo;
-	}
-	public String getAttrMap() {
-		return attrMap;
-	}
-	public void setAttrMap(String attrMap) {
-		this.attrMap = attrMap;
 	}
 	public String getAttrTel() {
 		return attrTel;
@@ -132,8 +125,8 @@ public class Attraction {
 	@Override
 	public String toString() {
 		return "Attraction [attrNo=" + attrNo + ", attrLocation=" + attrLocation + ", attrName=" + attrName
-				+ ", attrTripType=" + attrTripType + ", attrInfo=" + attrInfo + ", attrMap=" + attrMap + ", attrTel="
-				+ attrTel + ", attrWebsite=" + attrWebsite + ", attrAddress=" + attrAddress + ", attrHours=" + attrHours
+				+ ", attrTripType=" + attrTripType + ", attrInfo=" + attrInfo + ", attrTel=" + attrTel
+				+ ", attrWebsite=" + attrWebsite + ", attrAddress=" + attrAddress + ", attrHours=" + attrHours
 				+ ", attrFee=" + attrFee + ", attrCar=" + attrCar + ", attrPet=" + attrPet + ", attrFileName="
 				+ attrFileName + ", attrFileRename=" + attrFileRename + ", attrFilePath=" + attrFilePath
 				+ ", attrShortInfo=" + attrShortInfo + ", attrStatus=" + attrStatus + "]";

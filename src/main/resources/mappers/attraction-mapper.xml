@@ -9,7 +9,6 @@
 		<result property="attrName" 		column="ATTR_NAME"/>
 		<result property="attrTripType" 	column="ATTR_TRIP_TYPE"/>
 		<result property="attrInfo" 		column="ATTR_INFO"/>
-		<result property="attrMap" 			column="ATTR_MAP"/>
 		<result property="attrTel" 			column="ATTR_TEL"/>
 		<result property="attrWebsite" 		column="ATTR_WEBSITE"/>
 		<result property="attrAddress" 		column="ATTR_ADDRESS"/>
@@ -30,11 +29,11 @@
 	
 	<!-- 관광지 등록 -->
 	<insert id="insertAttr">
-		INSERT INTO ATTRACTION_TBL VALUES(SEQ_ATTR_NO.NEXTVAL, #{attrLocation}, #{attrName}, #{attrTripType}, #{attrInfo}, #{attrMap}, #{attrTel}, #{attrWebsite}, #{attrAddress}, #{attrHours}, #{attrFee}, #{attrCar}, #{attrPet}, #{attrShortInfo}, DEFAULT)
+		INSERT INTO ATTRACTION_TBL VALUES(SEQ_ATTR_NO.NEXTVAL, #{attrLocation}, #{attrName}, #{attrTripType}, #{attrInfo}, #{attrTel}, #{attrWebsite}, #{attrAddress}, #{attrHours}, #{attrFee}, #{attrCar}, #{attrPet}, #{attrShortInfo}, DEFAULT)
 	</insert>
 	<!-- 관광지-이미지 등록 -->
 	<insert id="insertAttrImg">
-		INSERT INTO ATTRACTION_IMG VALUES(SEQ_ATTR_IMG_NO.NEXTVAL, #{refAttrNo}, #{attrFileName}, #{attrFileRename}, #{attrFilePath})
+		INSERT INTO ATTRACTION_IMG VALUES(SEQ_ATTR_IMG_NO.NEXTVAL, SEQ_ATTR_NO.CURRVAL, #{attrFileName}, #{attrFileRename}, #{attrFilePath})
 	</insert>
 	
 	<!-- 총 게시글 수 가져오기 -->
@@ -53,5 +52,42 @@
 	</select>
 	<select id="selectImgByNo" resultMap="attrImgResultMap">
 		SELECT * FROM ATTRACTION_IMG WHERE REF_ATTR_NO = #{attrNo}
+	</select>
+	
+	<!-- 관광지 수정 -->
+	<update id="updateAttr">
+		UDPATE ATTRACTION_TBL
+		SET ATTR_LOCATION = #{attrLocation},
+			ATTR_NAME = #{attrName},
+			ATTR_TRIP_TYPE = #{attrTripType},
+			ATTR_INFO = #{attrInfo},
+			ATTR_TEL = #{attrTel},
+			ATTR_WEBSITE = #{attrWebsite},
+			ATTR_ADDRESS = #{attrAddress},
+			ATTR_HOURS = #{attrHours},
+			ATTR_FEE = #{attrFee},
+			ATTR_CAR = #{attrCar},
+			ATTR_PET = #{attrPet},
+			ATTR_SHORT_INFO = #{attrShortInfo},
+		WHERE ATTR_NO = #{attrNo}
+	</update>
+	<!-- 관광지-이미지 수정 -->
+	<update id="updateAttrImg">
+		UPDATE ATTRACTION_IMG SET ATTR_FILENAME = #{attrFileName}, ATTR_FILERENAME = #{attrFileRename}, ATTR_FILEPATH = #{attrFilePath} WHERE ATTR_IMG_NO = #{attrImgNo}
+	</update>
+	
+	<!-- 관광지 삭제 -->
+	<delete id="deleteAttr">
+		DELETE FROM ATTRACTION_TBL WHERE ATTR_NO = #{attrNo}
+	</delete>
+	
+	<!-- 관광지 검색 게시글 수 -->
+	<select id="getSearchCount" resultType="_int">
+		
+	</select>
+	
+	<!-- 관광지 검색 게시글 목록 조회 -->
+	<select id="selectSearchAttr" resultMap="attrResultMap">
+	
 	</select>
 </mapper>

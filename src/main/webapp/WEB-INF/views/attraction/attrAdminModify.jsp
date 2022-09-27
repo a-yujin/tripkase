@@ -5,12 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행카세: 관광지 상세(수정/삭제)</title>
+<title>여행카세: 관광지 상세</title>
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-<!-- 	<form action="/attraction/modify.tripkase" method="post" enctype="multipart/form-data"> -->
-	<form>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	<h1 align="center">관광지 상세</h1>
+	<form action="/attraction/modify.tripkase" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="attrNo" value="${attr.attrNo}">
 		<table align="center" border="1">
 			<tr>
@@ -57,10 +59,6 @@
 				<td><textarea cols="50" rows="10" name="attrInfo">${attr.attrInfo}</textarea></td>
 			</tr>
 			<tr>
-				<td>관광지 지도</td>
-				<td><input type="text" name="attrMap" value="${attr.attrMap}"></td>
-			</tr>
-			<tr>
 				<td>관광지 전화번호</td>
 				<td><input type="text" name="attrTel" value="${attr.attrTel}"></td>
 			</tr>
@@ -103,13 +101,13 @@
 				<td>
 					<button type="button" onclick="addFile();">추가</button>
 					<button type="button" onclick="removeFile();">삭제</button><br>
-					<input multiple="multiple" type="file" name="attrFile">
+					<input multiple="multiple" type="file" name="reloadFile">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="수정">
-					<input type="reset" value="취소">
+					<input type="button" onclick="attrRemove(${page});" value="삭제">
 				</td>
 			</tr>
 		</table>
@@ -118,7 +116,7 @@
 		function addFile(){
 			var number = 2;
 			var trTag = $(".fileTr");
-			$(trTag).children('td').eq(1).append("<br><input multiple='multiple' type='file' name='attrFile' />");
+			$(trTag).children('td').eq(1).append("<br><input multiple='multiple' type='file' name='uploadFile' />");
 			number = number + 1;
 		}
 		
@@ -130,6 +128,14 @@
 			} 
 			
 		}
+		
+		function attrRemove(page) {
+			event.preventDefault();
+			if(confirm("등록된 관광지를 삭제하시겠습니까?")) {
+				location.href="/attraction/remove.tripkase?page="+page;
+			}
+		}
 	</script>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

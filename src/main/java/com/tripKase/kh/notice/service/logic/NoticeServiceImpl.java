@@ -68,10 +68,10 @@ public class NoticeServiceImpl implements NoticeService{
 		return nReplyList;
 	}
 
-	// 공지 댓글 수정
+	// 공지 댓글 삭제
 	@Override
-	public int modifyNReply(NoticeReply nReply) {
-		int result = nStore.updateNReply(session, nReply);
+	public int deleteNReply(Integer nReplyNo) {
+		int result = nStore.deleteNReply(session, nReplyNo);
 		return result;
 	}
 

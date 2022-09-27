@@ -115,14 +115,14 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지 댓글 수정
-	 * @param nReply
+	 * 공지 댓글 삭제
+	 * @param nReplyNo
 	 * @return
 	 */
-	@RequestMapping(value="/notice/replyModify.tripkase", method=RequestMethod.POST)
-	public String modifyNoticeReply(
-			@ModelAttribute NoticeReply nReply) {
-		int result = nService.modifyNReply(nReply);
+	@RequestMapping(value="/notice/replyRemove.tripkase", method=RequestMethod.POST)
+	public String removeNoticeReply(
+			@RequestParam("nReplyNo") Integer nReplyNo) {
+		int result = nService.deleteNReply(nReplyNo);
 		return "redirect:/notice/list.tripkase";
 	}
 }

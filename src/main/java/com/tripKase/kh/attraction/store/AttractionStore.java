@@ -23,5 +23,20 @@ public interface AttractionStore {
 	Attraction selectOneByNo(SqlSession session, Integer attrNo);
 	// 관광지 상세-이미지 조회
 	List<AttractionImg> selectImgByNo(SqlSession session, Integer attrNo);
+	
+	// 관광지 삭제
+	int deleteOneByNo(SqlSession session, int attrNo);
+	
+	// 관광지 수정
+	int updateAttr(SqlSession session, Attraction attr);
+	// 관광지-이미지 수정
+	int updateAttrImg(SqlSession session, AttractionImg attrImg);
+	
+	// 관광지 검색 게시글 수 가져오기
+	int getSearchCount(SqlSession session, String searchValue, String areaValue, String typeValue, String petValue);
+	
+	// 관광지 검색 게시글 목록 조회
+	List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String typeValue,
+			String petValue, int currentPage, int attrLimit);
 
 }

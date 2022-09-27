@@ -20,12 +20,12 @@
 	</insert>
 	
 	<!-- 공지 댓글 조회 -->
-	<select id="selectAllnReply" resultMap="nReplyResultMap">
-		SELECT * FROM N_REPLY_TBL WHERE REF_NOTICE_NO = #{refNoticeNo} AND N_REPLY_STATUS = 'Y' ORDER BY N_REPLY_NO DESC
+	<select id="selectAllNReply" resultMap="nReplyResultMap">
+		SELECT * FROM N_REPLY_TBL WHERE REF_NOTICE_NO = #{noticeNo} AND N_REPLY_STATUS = 'Y' ORDER BY N_REPLY_NO DESC
 	</select>
-	
-	<!-- 공지 댓글 수정 -->
-	<update id="updateNReply">
-		UPDATE N_REPLY_TBL SET N_REPLY_CONTENTS = #{nReplyContents}, R_UPDATE_DATE = DEFAULT WHERE N_REPLY_NO = #{nReplyNo}
-	</update>
+
+	<!-- 공지 댓글 삭제 -->
+	<delete id="deleteNReply">
+		DELETE FROM N_REPLY_TBL WHERE N_REPLY_NO = #{nReplyNo}
+	</delete>
 </mapper>

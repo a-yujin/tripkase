@@ -1,5 +1,6 @@
 package com.tripKase.kh.attraction.store.logic;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -52,6 +53,54 @@ public class AttractionStoreLogic implements AttractionStore {
 	public List<AttractionImg> selectImgByNo(SqlSession session, Integer attrNo) {
 		List<AttractionImg> attrImgList = session.selectList("AttrMapper.selectImgByNo", attrNo);
 		return attrImgList;
+	}
+	
+	// 관광지 삭제
+	@Override
+	public int deleteOneByNo(SqlSession session, int attrNo) {
+		int result = session.delete("AttrMapper.deleteAttr", attrNo);
+		return result;
+	}
+	
+	// 관광지 수정
+	@Override
+	public int updateAttr(SqlSession session, Attraction attr) {
+		int result = session.update("AttrMapper.updateAttr", attr);
+		return result;
+	}
+	// 관광지-이미지 수정
+	@Override
+	public int updateAttrImg(SqlSession session, AttractionImg attrImg) {
+		int result = session.update("AttrMapper.updateAttrImg", attrImg);
+		return result;
+	}
+	
+	// 관광지 검색 게시글 수 가져오기
+	@Override
+	public int getSearchCount(SqlSession session, String searchValue, String areaValue, String typeValue,
+			String petValue) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("petValue", petValue);
+		int searchCount = session.selectOne("AttrMapper.getSearchCount", paramMap);
+		return searchCount;
+	}
+	
+	// 관광지 검색 게시글 목록 조회
+	@Override
+	public List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String typeValue,
+			String petValue, int currentPage, int attrLimit) {
+		int offset = (currentPage-1)*attrLimit;
+		RowBounds rowBounds = new RowBounds(offset, attrLimit);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("petValue", petValue);
+		List<Attraction> attrList = session.selectList("AttrMapper.selectSearchAttr", paramMap, rowBounds);
+		return attrList;
 	}
 
 }

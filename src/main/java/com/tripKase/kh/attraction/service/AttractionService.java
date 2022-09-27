@@ -21,5 +21,20 @@ public interface AttractionService {
 	Attraction printOneByNo(Integer attrNo);
 	// 관광지 상세-이미지 조회
 	List<AttractionImg> printImgByNo(Integer attrNo);
+	
+	// 관광지 삭제
+	int removeOneByNo(int attrNo);
+	
+	// 관광지 수정
+	int modifyAttr(Attraction attr);
+	// 관광지-이미지 수정
+	int modifyAttrImg(AttractionImg attrImg);
+	
+	// 관광지 검색 게시글 수 가져오기
+	int getSearchCount(String searchValue, String areaValue, String typeValue, String petValue);
+	
+	// 관광지 검색 게시글 목록 조회
+	List<Attraction> printSearchAttr(String searchValue, String areaValue, String typeValue, String petValue,
+			int currentPage, int attrLimit);
 
 }

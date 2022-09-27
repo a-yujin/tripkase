@@ -8,6 +8,8 @@
 <title>여행카세: 관광지 목록</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<h1 align="center">관광지 목록</h1>
 	<table align="center" border="1">
 		<tr>
@@ -21,11 +23,10 @@
 			<c:forEach items="${attrList}" var="attr" varStatus="i">
 				<tr>
 					<td>${attr.attrNo}</td>
-					<td><a href="/attraction/modifyView.tripkase?attrNo=${attr.attrNo}&page=${currentPage}">${attr.attrName}</a></td>
+					<td>${attr.attrName}</td>
 					<td>${attr.attrLocation}</td>
 					<td>
-						<input type="button" value="수정">
-						<input type="button" value="삭제">
+						<input type="button" onclick="location.href = '/attraction/modifyView.tripkase?attrNo=${attr.attrNo}&page=${currentPage}'" value="수정/삭제">
 					</td>
 				</tr>
 			</c:forEach>
@@ -59,5 +60,6 @@
 			</tr>
 		</c:if>
 	</table>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

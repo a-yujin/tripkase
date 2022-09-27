@@ -3,7 +3,6 @@ package com.tripKase.kh.notice.store;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 
 import com.tripKase.kh.admin.domain.NoticeImg;
 import com.tripKase.kh.notice.domain.Notice;
@@ -30,7 +29,7 @@ public interface NoticeStore {
 	// 공지 댓글 조회
 	public List<NoticeReply> selectAllnReply(SqlSession session, Integer noticeNo);
 
-	// 공지 댓글 수정
-	public int updateNReply(SqlSession session, NoticeReply nReply);
+	// 공지 댓글 삭제
+	public int deleteNReply(SqlSession session, Integer nReplyNo);
 	
 }

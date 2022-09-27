@@ -52,21 +52,21 @@ public class NoticeStoreLogic implements NoticeStore {
 	// 공지 댓글 등록
 	@Override
 	public int insertNReply(SqlSession session, NoticeReply nReply) {
-		int result = session.insert("NoticeMapper.insertNReply", nReply);
+		int result = session.insert("NReplyMapper.insertNReply", nReply);
 		return result;
 	}
 
 	// 공지 댓글 조회
 	@Override
 	public List<NoticeReply> selectAllnReply(SqlSession session, Integer noticeNo) {
-		List<NoticeReply> nReplyList = session.selectList("NoticeMapper.selectAllnReply", noticeNo);
+		List<NoticeReply> nReplyList = session.selectList("NReplyMapper.selectAllNReply", noticeNo);
 		return nReplyList;
 	}
 
-	// 공지 댓글 수정
+	// 공지 댓글 삭제
 	@Override
-	public int updateNReply(SqlSession session, NoticeReply nReply) {
-		int result = session.update("NoticeMapper.updateNReply", nReply);
+	public int deleteNReply(SqlSession session, Integer nReplyNo) {
+		int result = session.delete("NReplyMapper.deleteNReply", nReplyNo);
 		return result;
 	}
 
