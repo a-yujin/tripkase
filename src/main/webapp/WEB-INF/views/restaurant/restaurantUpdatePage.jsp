@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,8 @@
 <body>
  <jsp:include page="../common/header.jsp"></jsp:include>
  <jsp:include page="../admin/menuBar.jsp"></jsp:include>
-	<form action="/restaurant/insertRestaurantData.tripkase" method="post" enctype="multipart/form-data">
+	<form action="/restaurant/updateRestaurantData.tripkase" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="resNo" value="${restaurant.resNo}">
 		
 		<br><br>종류 선택
 		<input type="radio" id="resType" name="resType" value="korean"> 한식
@@ -44,37 +46,39 @@
 		<br><br>
 		
 		<br><br>이름
-		<input type="text" name="resName">
+		<input type="text" name="resName" value="${restaurant.resName}">
 		
 		<br><br>
 		<table>
 			<tr class="fileTr">
 				<td>첨부파일</td>
 				<td>
-					<button class="btn btn-default" type="button" onclick="addFile();">추가</button>
-					<button class="btn btn-default" type="button" onclick="removeFile();">삭제</button>
-					<input multiple="multiple" type="file" name="uploadFile">
+					<c:forEach items="${resImgList}" var="img">
+						<input type="hidden" value="${img.resImgNo}" name="resImgNo">
+						<input type="hidden" value="${img.resFileRename}" name="resFileRename">
+					</c:forEach>
+						<button class="btn btn-default" type="button" onclick="addFile();">추가</button>
+						<button class="btn btn-default" type="button" onclick="removeFile();">삭제</button>
+						<input type="file" name="reloadFile">
+					
 				</td>
 			</tr>		
 		</table>
 		
 		<br><br>상세정보
-		<textarea name="resDetail"></textarea>
-		
-		<br><br>지도
-		<input type="text" name="resMap">
+		<textarea name="resDetail">${restaurant.resDetail}</textarea>
 		
 		<br><br>문의
-		<input type="text" name="resTel">
+		<input type="text" name="resTel" value="${restaurant.resTel}">
 		
 		<br><br>주소
-		<input type="text" name="resAddress">
+		<input type="text" name="resAddress" value="${restaurant.resAddress}">
 		
 		<br><br>휴일
-		<input type="text" name="resDayoff">
+		<input type="text" name="resDayoff" value="${restaurant.resDayoff}">
 		
 		<br><br>대표메뉴
-		<input type="text" name="resMainmenu">
+		<input type="text" name="resMainmenu" value="${restaurant.resMainmenu}">
 		
 		<br><br>
 		<input type="submit" value="등록">

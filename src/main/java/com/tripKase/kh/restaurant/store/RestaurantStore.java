@@ -22,6 +22,12 @@ public interface RestaurantStore {
 
 	public int insertRestaurantImg(SqlSessionTemplate session, ResImg resImg);
 
+	public int updateRestaurantImg(SqlSessionTemplate session, ResImg resImg);
+
+	public int updateRestaurant(SqlSessionTemplate session, Restaurant restaurant);
+
+	public List<ResImg> selectResImgByNo(SqlSessionTemplate session, Integer resNo);
+
 	
 
 }

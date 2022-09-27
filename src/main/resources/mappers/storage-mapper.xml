@@ -25,63 +25,47 @@
 	<delete id="deleteStorage">
 		DELETE FROM STORAGE_TBL WHERE STO_NO = #{stoNo}
 	</delete>
-
-
-    <!--  보관함 데이터 가져오기 -->
-<!--     <select id="getStorageDatas" resultMap="StorageResultMap">
-    SELECT
+    
+ <!--    <select id="getResDataByMemberId" resultMap="StorageResultMap">
+    	SELECT
             A.STO_NO
             ,A.CONTENTS_CODE
             ,A.CONTENTS_NO
             ,A.MEMBER_ID
-            ,B.RES_FILEPATH
             ,B.RES_NAME
+            보관함 테이블과 맛집테이블의 얻어와야할 정보 선택
+            ,C.RES_FILERENAME
         FROM STORAGE_TBL A
-        JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO)
+        JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO AND A.CONTENTS_CODE = 'restaurant')
+        컨텐츠 넘버와 맛집 넘버 , 컨텐츠코드와  CONTESNTS_CODE로 비교
+        JOIN RESIMG_TBL C ON (A.CONTENTS_NO = C.RES_NO)
         WHERE MEMBER_ID = #{memberId}
     </select> -->
     
     <select id="getResDataByMemberId" resultMap="StorageResultMap">
-    	SELECT
-            A.STO_NO
-            ,A.CONTENTS_CODE
-            ,A.CONTENTS_NO
-            ,A.MEMBER_ID
-            ,B.RES_NAME
-            <!-- 보관함 테이블과 맛집테이블의 얻어와야할 정보 선택 -->
-            ,C.RES_FILERENAME
-        FROM STORAGE_TBL A
-        JOIN RESTAURANT_TBL B ON (A.CONTENTS_NO = B.RES_NO AND A.CONTENTS_CODE = 'restaurant')
-        <!-- 컨텐츠 넘버와 맛집 넘버 , 컨텐츠코드와  CONTESNTS_CODE로 비교 -->
-        JOIN RESIMG_TBL C ON (A.CONTENTS_NO = C.RES_NO)
-        WHERE MEMBER_ID = #{memberId}
+	    WITH STO AS ( SELECT A.STO_NO, A.CONTENTS_CODE, A.CONTENTS_NO, A.MEMBER_ID, B.RES_NAME, C.RES_FILERENAME, ROW_NUMBER()
+	    OVER(PARTITION BY A.STO_NO ORDER BY A.STO_NO DESC) AS STO_NUM
+	    FROM STORAGE_TBL A JOIN RESTAURANT_TBL B ON A.CONTENTS_NO = B.RES_NO
+	                      JOIN RESIMG_TBL C ON A.CONTENTS_NO = C.RES_NO
+	                      			ORDER BY CONTENTS_CODE)
+	    SELECT * FROM STO WHERE STO_NUM = 1 AND MEMBER_ID = #{memberId} AND CONTENTS_CODE ='restaurant'
     </select>
     
     <select id="getRoomDataByMemberId" resultMap="StorageResultMap">
-    	SELECT
-            A.STO_NO
-            ,A.CONTENTS_CODE
-            ,A.CONTENTS_NO
-            ,A.MEMBER_ID
-            ,B.ROOM_FILERENAME
-            ,B.ROOM_NAME
-        FROM STORAGE_TBL A
-        JOIN ROOM_TBL B ON (A.CONTENTS_NO = B.ROOM_NO AND A.CONTENTS_CODE = 'room')
-        WHERE MEMBER_ID = #{memberId}
+    	WITH STO AS ( SELECT A.STO_NO, A.CONTENTS_CODE, A.CONTENTS_NO, A.MEMBER_ID, B.ROOM_NAME, C.ROOM_FILERENAME, ROW_NUMBER()
+	    OVER(PARTITION BY A.STO_NO ORDER BY A.STO_NO DESC) AS STO_NUM
+	    FROM STORAGE_TBL A JOIN ROOM_TBL B ON A.CONTENTS_NO = B.ROOM_NO
+	                      JOIN ROOMIMG_TBL C ON A.CONTENTS_NO = C.ROOM_NO
+	                      			ORDER BY CONTENTS_CODE)
+	    SELECT * FROM STO WHERE STO_NUM = 1 AND MEMBER_ID = #{memberId} AND CONTENTS_CODE ='room'
     </select>
     
     <select id="getAttrDataByMemberId" resultMap="StorageResultMap">
-    	SELECT
-            A.STO_NO
-            ,A.CONTENTS_CODE
-            ,A.CONTENTS_NO
-            ,A.MEMBER_ID
-            ,B.ATTR_FILERENAME
-            ,B.ATTR_NAME
-        FROM STORAGE_TBL A
-        JOIN ATTRACTION_TBL B ON (A.CONTENTS_NO = B.ATTR_NO AND A.CONTENTS_CODE = 'attraction')
-        WHERE MEMBER_ID = #{memberId}
+    	WITH STO AS ( SELECT A.STO_NO, A.CONTENTS_CODE, A.CONTENTS_NO, A.MEMBER_ID, B.ATTR_NAME, C.ATTR_FILERENAME, ROW_NUMBER()
+	    OVER(PARTITION BY A.STO_NO ORDER BY A.STO_NO DESC) AS STO_NUM
+	    FROM STORAGE_TBL A JOIN ATTRACTION_TBL B ON A.CONTENTS_NO = B.ATTR_NO
+	                      JOIN ATTRACTION_IMG C ON A.CONTENTS_NO = C.REF_ATTR_NO
+	                      			ORDER BY CONTENTS_CODE)
+	    SELECT * FROM STO WHERE STO_NUM = 1 AND MEMBER_ID = #{memberId} AND CONTENTS_CODE ='attraction'
     </select>
-    
-    
 </mapper>

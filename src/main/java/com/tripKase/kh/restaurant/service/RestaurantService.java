@@ -19,6 +19,12 @@ public interface RestaurantService {
 
 	public int deleteRestaurant(Integer resNo);
 
+	public int updateRestaurant(Restaurant restaurant);
+
+	public int updateRestaurantImg(ResImg resImg);
+
+	public List<ResImg> selectResImgByNo(Integer resNo);
+
 	
 	
 }

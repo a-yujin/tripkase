@@ -46,7 +46,7 @@ public class StorageStoreLogic implements StorageStore {
 	@Override
 	public int deleteStorage(int stoNo) {
 		
-		return session.selectOne("StorageMapper.deleteStorage", stoNo);
+		return session.delete("StorageMapper.deleteStorage", stoNo);
 	}
 
     

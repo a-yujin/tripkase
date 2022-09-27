@@ -61,6 +61,24 @@ public class RestaurantStoreLogic implements RestaurantStore{
 		return result;
 	}
 
+	@Override
+	public int updateRestaurantImg(SqlSessionTemplate session, ResImg resImg) {
+		int result = session.update("RestaurantMapper.updateResImg", resImg);
+		return result;
+	}
+
+	@Override
+	public int updateRestaurant(SqlSessionTemplate session, Restaurant restaurant) {
+		int result = session.update("RestaurantMapper.updateRestaurant" ,restaurant);
+		return result;
+	}
+
+	@Override
+	public List<ResImg> selectResImgByNo(SqlSessionTemplate session, Integer resNo) {
+		List<ResImg> resImgList = session.selectList("RestaurantMapper.selectResImgByNo",resNo);
+		return resImgList;
+	}
+
 	
 
 }
