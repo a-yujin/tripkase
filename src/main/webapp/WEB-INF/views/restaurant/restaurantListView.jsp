@@ -34,7 +34,7 @@
 			</thead>
 			<c:if test="${!empty resList }">
 				<c:forEach items="${resList }" var="resList" varStatus="i">
-					<tbody onclick="/restaurant/restaurantDetailView.tripkase?resNo=${resList.resNo }&page=${currentPage}" id="resbody">
+					<tbody onclick="location.href='/restaurant/restaurantDetailView.tripkase?resNo=${resList.resNo }&page=${currentPage}'" id="resbody">
 						<tr>
 							<td><img src="/resources/resUploadFiles/${resList.resFileRename }" width="150" height="150"></td>
 							<td>${resList.resName }</td>

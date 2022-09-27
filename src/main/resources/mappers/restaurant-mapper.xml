@@ -48,19 +48,20 @@
 	
 	<!-- 대표이미지 하나 선택 -->
 	<select id="SelectOneByResImg" resultMap="ResImgResultMap">
- 		SELECT * FROM RESIMG_TBL A JOIN RESTAURANT_TBL B ON A.RES_NO = B.RES_NO
+ 		SELECT * FROM RESIMG_TBL A JOIN RESTAURANT_TBL B ON A.RES_NO = B.RES_NO WHERE B.RES_NO= #{resNo} AND ROWNUM =1;
  	</select>
 	
 	<!-- 맛집 삭제 (게시 여부를 N으로) -->
 	<update id="deleteRestaurant">
-		UPDATE RESTAURANT_TBL SET RES_STATUS = 'N' WHERE RES_NO = #{resNo}
+		DELETE FROM RESTAURANT_TBL WHERE RES_NO = #{resNo}
 	</update>
 	
 	<!-- 맛집 ID값으로 하나 선택하는 매퍼 -->
 	<select id="printOneByRestaurantNo" resultMap="RestaurantResultMap">
-		SELECT * FROM RESTAURANT_TBL WHERE RES_STATUS = 'N' AND RES_NO = #{resNo}
+		SELECT * FROM RESTAURANT_TBL WHERE RES_STATUS = 'Y' AND RES_NO = #{resNo}
 	</select>
 	
+	<!-- RES_NO 으로 이미지들만 가져오기 -->
 	<select id="selectResImgByNo" resultMap="ResImgResultMap">
 		SELECT * FROM RESIMG_TBL WHERE RES_NO = #{resNo}
 	</select>

@@ -11,12 +11,89 @@
 			text-align:center
 		}
 		#memberDiv{
-			width:50%;
+			text-align: left;
+			width: 720px;
+			height: 220px;
 		}
-		#mypage{
-			border:1px solid;
-			width:50%;
-			text-align:left	
+		#subTitle{
+			text-align: center;
+		}
+		#mystorage{
+			background-color : #e1f5fe;
+			border-radius: 10px;
+			width: 720px;
+			height: 220px;
+			text-align:center;
+		}
+		#mystorage:hover{
+			width: 720px;
+			height: 220px;
+			box-shadow : 5px 5px 5px;
+		}
+		#mySchedule{
+			background-color : #e1f5fe;
+			border-radius: 10px;
+			width: 720px;
+			height: 300px;
+			text-align:center;
+		}
+		#mySchedule:hover{
+			width: 720px;
+			height: 300px;
+			box-shadow : 5px 5px 5px;
+		}
+		#myinfo{
+			background-color : #e1f5fe;
+			border-radius: 10px;
+			width: 720px;
+			height: 300px;
+			text-align:center;
+		}
+		#myinfo:hover{
+			width: 720px;
+			height: 300px;
+			box-shadow : 5px 5px 5px;
+		}
+		#myQNA{
+			background-color : #e1f5fe;
+			border-radius: 10px;
+			width: 720px;
+			height: 300px;
+			text-align:center;
+		}
+		#myQNA:hover{
+			width: 720px;
+			height: 300px;
+			box-shadow : 5px 5px 5px;
+		}
+		#imgStobox{
+			position: relative;
+		}
+		#imgSchbox{
+			position: relative;
+		}
+		.storageImg{
+			margin: 3%;
+			display: inline-block;
+			text-align:center;
+		}
+		.scheImg{
+			margin: 3%;
+			display: inline-block;
+			height: 180px;
+			text-align:center;
+		}
+		.myQNAImg{
+			height: 200px;
+			width: 400px;
+			display: inline-block;
+			text-align:center;
+		}
+		#memberinfo1{
+			width: 300px;
+		}
+		#memberinfo2{
+			width: 300px;
 		}
 	</style>
 </head>
@@ -24,34 +101,49 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<h1 align="center">마이페이지</h1>
-	<div align="center" class="">
+	<br><br>
+	<div align="center">
 		<div id="memberDiv">
 		닉네임
 		<input id= "memberinfo1" class="form-control" type="text" placeholder="${mOne.memberNick }" aria-label="Disabled input example" disabled>
-		<br>
+		<br><br>
 		회원 등급 
 		<input id= "memberinfo2" class="form-control" type="text" placeholder="${mOne.memberGrade }" aria-label="Disabled input example" disabled>
 		</div><br><br>
 		
-		<div id="mypage" onclick="location.href='/storage/storageView.tripkase';">
-			<b>보관함</b><br>
-			내가 보관한 관광지, 맛집, 숙소를 조회하세요!
+		<div id="mystorage" onclick="location.href='/storage/storageView.tripkase';">
+			<b class="subTitle"><br>보관함</b><br>
+			내가 보관한 관광지, 맛집, 숙소를 조회하세요!<br>
+			<div id="imgStobox">
+				<img class="storageImg" src="/resources/images/mypage/resimg.jpg" width="100" height="100">
+				<img class="storageImg" src="/resources/images/mypage/roomimg.png" width="100" height="100">
+				<img class="storageImg" src="/resources/images/mypage/attrimg.png" width="100" height="100">
+			</div>
 		</div><br><br>
 		
-		<div id="mypage" onclick="location.href='/schedule/scheduleView.tripkase';">
-			<b>여행일정관리</b><br>
+		<div id="mySchedule" onclick="location.href='/schedule/scheduleView.tripkase';">
+			<b class="subTitle"><br>여행 일정 관리</b><br>
 			일정을 등록하고 여행일정을 채워보세요!
+			<div id="imgSchbox">
+				<img class="scheImg" src="/resources/images/mypage/scheduleimg.jpg">
+			</div>
 		</div><br><br>
 		
-		<div id="mypage" onclick="location.href='/member/myinfo.tripkase';">
-			<b>내정보관리</b><br>
+		<div id="myinfo" onclick="location.href='/member/myinfo.tripkase';">
+			<b class="subTitle"><br>내 정보 관리</b><br>
 			내 정보를 조회하고 필요하다면 수정하세요!
+			<div id="imginfobox">
+				<img class="scheImg" src="/resources/images/mypage/myinfo.jpg">
+			</div>
 		</div><br><br>
 
 		
-		<div id="mypage" onclick="location.href='/qna/qnaMainView.tripkase'">
-			<b>Q&A</b><br>
+		<div id="myQNA" onclick="location.href='/qna/qnaMainView.tripkase'">
+			<b class="subTitle"><br>Q&A</b><br>
 			질문을 작성하고 답변을 받으세요!
+			<div id="imgQnAbox">
+				<img class="myQNAImg" src="/resources/images/mypage/QNA.jpg">
+			</div>
 		</div>
 	</div>
 </body>

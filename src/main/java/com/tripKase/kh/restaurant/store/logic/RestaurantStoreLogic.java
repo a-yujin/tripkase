@@ -57,7 +57,7 @@ public class RestaurantStoreLogic implements RestaurantStore{
 
 	@Override
 	public int deleteRestaurant(SqlSession session, Integer resNo) {
-		int result = session.update("RestaurantMapper.deleteRestaurant", resNo);
+		int result = session.delete("RestaurantMapper.deleteRestaurant", resNo);
 		return result;
 	}
 
