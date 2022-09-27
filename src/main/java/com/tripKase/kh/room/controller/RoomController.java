@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.room.domain.Room;
 import com.tripKase.kh.room.domain.RoomImg;
+import com.tripKase.kh.room.domain.RoomJoin;
 import com.tripKase.kh.room.service.RoomService;
 import com.tripKase.kh.trip.domain.Trip;
 
@@ -65,8 +66,7 @@ public class RoomController {
 			@RequestParam("roomAddress1") String address1,
 			@RequestParam("roomAddress2") String address2,
 			MultipartHttpServletRequest multipartRequest,
-			HttpServletRequest request,
-			HttpSession session) {
+			HttpServletRequest request) {
 		room.setRoomAddress(address1 + "," + address2);
 		int imgNo = 1;
 		RoomImg roomImg = null;
@@ -103,7 +103,7 @@ public class RoomController {
 	}
 	
 	/**
-	 * 숙소 정보 리스트 기능 화면
+	 * 숙소 정보 리스트 기능 화면 (관리자)
 	 * @param mv
 	 * @param room
 	 * @param page
@@ -270,28 +270,19 @@ public class RoomController {
 	}
 	
 	/**
-	 * 숙소 검색 리스트 (사용자)
+	 * 숙소 이름 검색 리스트 (사용자)
 	 * @param mv
 	 * @param searchValue
-	 * @param areaValue
-	 * @param typeValue
-	 * @param personValue
-	 * @param petValue
 	 * @param currentPage
 	 * @return
 	 */
-	@RequestMapping(value="/room/roomSearch.tripkase", method=RequestMethod.GET)
-	public ModelAndView roomSearchList(
+	@RequestMapping(value="/room/roomNameSearch.tripkase", method=RequestMethod.GET)
+	public ModelAndView roomNameSearch(
 			ModelAndView mv,
-			// searchValue에는 값이 없을 수도 있으니깐 required=false 사용 required 사용시 value 필수!
-			@RequestParam(value="searchValue", required=false) String searchValue,
-			@RequestParam("areaValue") String areaValue,
-			@RequestParam("typeValue") String [] typeValue,
-			@RequestParam("personValue") int personValue,
-			@RequestParam("petValue") String petValue,
-			// page값이 없을땐 기본값 1로 설정하기위해서 defaultValue 작성, defaultValue 사용하기 위해선 int currentPage 필수
-			@RequestParam(value="page", required=false, defaultValue="1") int currentPage) {
-		int totalCount = rService.getRoomCount(searchValue, areaValue, typeValue, personValue, petValue);
+			@RequestParam("searchValue") String searchValue,
+			@RequestParam(value="page", required=false, defaultValue="1") int currentPage,
+			HttpSession session) {
+		int totalCount = rService.getRoomNameCount(searchValue);
 		int roomsLimit = 5;
 		int naviLimit = 5;
 		int maxPage;
@@ -303,23 +294,18 @@ public class RoomController {
 		if(maxPage < endNavi) {
 			endNavi = maxPage;
 		}
-		List<Room> rList = rService.printSearchRoom(searchValue, areaValue, typeValue, personValue, petValue, currentPage, roomsLimit);
-		if(!rList.isEmpty()) {
-			mv.addObject("rList", rList);
+		List<RoomJoin> rjList = rService.printSearchName(searchValue, currentPage, roomsLimit);
+		if(!rjList.isEmpty()) {
+			mv.addObject("rjList", rjList);
 		}else {
-			mv.addObject("rList", null);
+			mv.addObject("rjList", null);
 		}
-		mv.addObject("urlValue", "roomSearch");
 		mv.addObject("searchValue", searchValue);
-		mv.addObject("areaValue", areaValue);
-		mv.addObject("typeValue", typeValue);
-		mv.addObject("personValue", personValue);
-		mv.addObject("petValue", petValue);
 		mv.addObject("maxPage", maxPage);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("startNavi", startNavi);
 		mv.addObject("endNavi", endNavi);
-		mv.setViewName("/room/roomSearchList");
+		mv.setViewName("room/roomSearchList");
 		return mv;
 	}
 }

@@ -13,10 +13,14 @@
 	<jsp:include page="../common/header.jsp"/>
 		<div id="search-wrapper">
 		<!-- 검색 영역 -->
-			<div id="search-area" class="input-group">
-			<input type="search" id="search-input" class="form-control rounded" placeholder="게시글 제목 또는 작성자 이름으로 검색 가능합니다." aria-label="Search" aria-describedby="search-addon" />
-			<button type="button" id="searchBt" class="btn btn-outline-primary">검색하기</button>
-				<!-- 지역 선택 영역 -->
+		<form action="/room/roomNameSearch.tripkase" method="get" enctype="multipart/form-data">
+			<div id="search-area" class="input-group">				
+				<input type="search" id="search-input" class="form-control rounded" name="searchValue" placeholder="게시글 제목 또는 작성자 이름으로 검색 가능합니다." aria-label="Search" aria-describedby="search-addon" value="${searchValue }" />
+				<button type="submit" id="searchBt" class="btn btn-outline-primary">검색하기</button>
+			</div>	<!-- 지역 선택 영역 -->
+		</form>
+		<form action="/room/roomNameSearch.tripkase" method="get" enctype="multipart/form-data">
+			<div>
 				<div id="choice-area">
 					<button class="areaBt-first">전체보기</button>
 					<button class="areaBt">서울</button>
@@ -56,11 +60,12 @@
 					</div>
 				</div>
 			</div>
-			<br><br>
-			<div id="search-button">
-				<button type="submit" id="sbutton">조회하기</button>
-			</div>
-		</div>		
+		</form>
+		<br><br>
+		<div id="search-button">
+			<button type="submit" id="sbutton">조회하기</button>
+		</div>
+	</div>		
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

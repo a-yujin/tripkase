@@ -304,4 +304,11 @@ body {
 		#uAddress2 {
 			width : 220px;
 		}
-		
+/* roomSearchList.jsp */
+#roomlist {
+	margin-top : 100px;
+}
+#roomlist-outside {
+	width : 1000px;
+	margin : 0 auto;
+}

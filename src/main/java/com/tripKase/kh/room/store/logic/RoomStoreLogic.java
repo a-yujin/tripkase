@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tripKase.kh.room.domain.Room;
 import com.tripKase.kh.room.domain.RoomImg;
+import com.tripKase.kh.room.domain.RoomJoin;
 import com.tripKase.kh.room.store.RoomStore;
 
 @Repository
@@ -68,17 +69,6 @@ public class RoomStoreLogic implements RoomStore{
 		int result = session.update("RoomMapper.updateRoomImg", roomImg);
 		return result;
 	}
-	// 숙소 검색 리스트 페이징처리
-	@Override
-	public int getRoomCount(SqlSessionTemplate session, String searchValue, String areaValue, String[] typeValue, int personValue, String petValue) {
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("searchValue", searchValue);
-		paramMap.put("areaValue", areaValue);
-		paramMap.put("typeValue", typeValue);
-		paramMap.put("personValue", personValue);
-		paramMap.put("petValue", petValue);
-		return session.selectOne("RoomMapper.selectSearchCount", paramMap);
-	}
 	// 숙소 검색 리스트
 	@Override
 	public List<Room> selectSearchRoom(SqlSessionTemplate session, String searchValue, String areaValue,
@@ -93,5 +83,33 @@ public class RoomStoreLogic implements RoomStore{
 		paramMap.put("petValue", petValue);
 		List<Room> rList = session.selectList("RoomMapper.selectSearchRoom", paramMap, rowBounds);
 		return rList;
+	}
+	// 숙소 검색 리스트 페이징처리
+	@Override
+	public int getRoomCount(SqlSessionTemplate session, String searchValue, String areaValue, String[] typeValue, int personValue, String petValue) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("searchValue", searchValue);
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("personValue", personValue);
+		paramMap.put("petValue", petValue);
+		return session.selectOne("RoomMapper.selectSearchCount", paramMap);
+	}
+	@Override
+	public int getRoomNameCount(SqlSessionTemplate session, String searchValue) {
+		int nameCount = session.selectOne("RoomMapper.selectNameCount", searchValue);
+		return nameCount;
+	}
+	@Override
+	public List<RoomJoin> selectSearchName(SqlSessionTemplate session, String searchValue, int currentPage, int roomsLimit) {
+		int offset = (currentPage-1) * roomsLimit;
+		RowBounds rowBounds = new RowBounds(offset, roomsLimit);
+		List<RoomJoin> rjList = session.selectList("RoomMapper.selectSearchName", searchValue, rowBounds);
+		return rjList;
+	}
+	@Override
+	public List<RoomImg> selectAllRoomImg(SqlSessionTemplate session, int roomNo) {
+		List<RoomImg> riList = session.selectList("RoomMapper.selectAllRoomImg", roomNo);
+		return riList;
 	}
 }
