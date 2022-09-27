@@ -18,6 +18,7 @@
 		<result property="roomGuide" column="ROOM_GUIDE" />
 		<result property="roomStatus" column="ROOM_STATUS" />
 	</resultMap>
+	
 	<resultMap type="RoomImg" id="roomImgResultMap">
 		<id property="roomImgNo" column="ROOM_IMG_NO" />
 		<result property="roomNo" column="ROOM_NO" />
@@ -25,11 +26,32 @@
 		<result property="roomFileRename" column="ROOM_FILERENAME" />
 		<result property="roomFilePath" column="ROOM_FILEPATH" />
 	</resultMap>
+	
+	<resultMap type="RoomJoin" id="roomJoinResultMap">
+		<id property="roomImgNo" column="ROOM_IMG_NO"/>
+		<result property="roomNo" column="ROOM_NO"/>
+		<result property="roomType" column="ROOM_TYPE"/>
+		<result property="roomArea" column="ROOM_AREA"/>
+		<result property="roomName" column="ROOM_NAME"/>
+		<result property="roomAddress" column="ROOM_ADDRESS"/>
+		<result property="roomPrice" column="ROOM_PRICE"/>
+		<result property="roomTel" column="ROOM_TEL"/>
+		<result property="roomPerson" column="ROOM_PERSON"/>
+		<result property="roomPet" column="ROOM_PET"/>
+		<result property="roomCar" column="ROOM_CAR"/>
+		<result property="roomLocation" column="ROOM_LOCATION"/>
+		<result property="roomGuide" column="ROOM_GUIDE"/>
+		<result property="roomStatus" column="ROOM_STATUS"/>
+		<result property="roomFileName" column="ROOM_FILENAME"/>
+		<result property="roomFileRename" column="ROOM_FILERENAME"/>
+		<result property="roomFilePath" column="ROOM_FILEPATH"/>
+	</resultMap>
+	
 	<!-- 숙소 정보 등록 -->
 	<insert id="insertRoom">
 		INSERT INTO ROOM_TBL VALUES(SEQ_ROOM_NO.NEXTVAL, #{roomType}, #{roomArea}, #{roomName}, #{roomAddress}, #{roomPrice}, #{roomTel}, DEFAULT, DEFAULT, #{roomCar}, #{roomLocation}, #{roomGuide}, DEFAULT)
 	</insert>
-	<!-- 숙소 사진 등록 -->
+	<!-- 숙소 이미지 등록 -->
 	<insert id="insertRoomImg">
 		INSERT INTO ROOMIMG_TBL VALUES(SEQ_ROOM_IMG_NO.NEXTVAL, SEQ_ROOM_NO.CURRVAL, #{roomFileName}, #{roomFileRename}, #{roomFilePath})
 	</insert>
@@ -39,11 +61,7 @@
 	</delete>
 	<!-- 숙소 수정 기능 -->
 	<update id="updateRoomData">
-		UPDATE ROOM_TBL SET ROOM_PRICE = #{roomPrice}, ROOM_AREA = #{roomArea}, ROOM_ADDRESS = #{roomAddress}, ROOM_TEL = #{roomTel}, ROOM_PERSON = #{roomPerson}, ROOM_PET = #{roomPet}, ROOM_CAR = #{roomCar}, ROOM_LOCATION = #{roomLocation}, ROOM_GUIDE = #{roomGuide} WHERE ROOM_NO = #{roomNo}
-	</update>
-	<!-- 숙소 수정 이미지 -->
-	<update id="updateRoomImg">
-		UPDATE ROOMIMG_TBL SET ROOM_FILENAME = #{roomFileName}, ROOM_FILERENAME = #{roomFileRename}, ROOM_FILEPATH = #{roomFilePath} WHERE ROOM_IMG_NO = #{roomImgNo}
+		UPDATE ROOM_TBL SET ROOM_PRICE = #{roomPrice}, ROOM_AREA = #{roomArea}, ROOM_ADDRESS = #{roomAddress}, ROOM_TEL = #{roomTel}, ROOM_PERSON = #{roomPerson}, ROOM_PET = #{roomPet}, ROOM_CAR = #{roomCar}, ROOM_LOCATION = #{roomLocation}, ROOM_GUIDE = #{roomGuide} ROOM_FILENAME = #{roomFileName}, ROOM_FILERENAME = #{roomFileRename}, ROOM_FILEPATH = #{roomFilePath} WHERE ROOM_NO = #{roomNo}
 	</update>
 	<!-- 숙소 정보 리스트 전체 조회 -->
 	<select id="selectAllRoom" resultMap="roomResultMap">
@@ -53,14 +71,24 @@
 	<select id="selectTotalCount" resultType="_int">
 		SELECT COUNT(*) FROM ROOM_TBL WHERE ROOM_STATUS = 'Y'
 	</select>
-	<!-- 게시글 상세 조회 -->
+	<!-- 숙소 정보 상세 조회 -->
 	<select id="selectDataListOne" resultMap="roomResultMap">
 		SELECT * FROM ROOM_TBL WHERE ROOM_NO = #{roomNo} AND ROOM_STATUS = 'Y'
 	</select>
-	<!-- 숙소 사진 조회 -->
+	<!-- 숙소 정보 이미지 상세 조회 -->
 	<select id="roomImgDetail" resultMap="roomImgResultMap">
 		SELECT * FROM ROOMIMG_TBL WHERE ROOM_NO = #{roomNo}
 	</select>
-	<!-- 숙소 검색 페이징 처리 -->
 	
+	<!-- 게시글 이름으로 검색 -->
+	<select id="selectNameCount" resultType="_int">
+		SELECT COUNT(*) FROM ROOM_TBL
+		WHERE ROOM_STATUS = 'Y' AND
+		ROOM_NAME LIKE '%' || #{searchValue} || '%'
+	</select>
+	<select id="selectSearchName" resultMap="roomResultMap">
+		WITH ROOMS AS (SELECT A.ROOM_NO, B.ROOM_NAME, A.ROOM_FILENAME, A.ROOM_FILERENAME, ROW_NUMBER() OVER(PARTITION BY A.ROOM_NO ORDER BY A.ROOM_NO DESC) AS C_NUM FROM ROOMIMG_TBL A JOIN ROOM_TBL B ON A.ROOM_NO = B.ROOM_NO ORDER BY ROOM_NO)
+		SELECT * FROM ROOMS WHERE C_NUM = 1 
+		AND ROOM_NAME LIKE '%' || #{searchValue} || '%'
+	</select>
 </mapper>

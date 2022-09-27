@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tripKase.kh.room.domain.Room;
 import com.tripKase.kh.room.domain.RoomImg;
+import com.tripKase.kh.room.domain.RoomJoin;
 import com.tripKase.kh.room.service.RoomService;
 import com.tripKase.kh.room.store.RoomStore;
 
@@ -84,5 +85,23 @@ public class RoomServiceImpl implements RoomService{
 	public List<Room> printSearchRoom(String searchValue, String areaValue, String[] typeValue, int personValue, String petValue, int currentPage, int roomsLimit) {
 		List<Room> rList = rStore.selectSearchRoom(session, searchValue, areaValue, typeValue, personValue, petValue, currentPage, roomsLimit);
 		return rList;
+	}
+	
+	// 숙소 이름 검색 리스트 페이징 처리
+	@Override
+	public int getRoomNameCount(String searchValue) {
+		int result = rStore.getRoomNameCount(session, searchValue);
+		return result;
+	}
+	// 숙소 이름 검색
+	@Override
+	public List<RoomJoin> printSearchName(String searchValue, int currentPage, int roomsLimit) {
+		List<RoomJoin> rjList = rStore.selectSearchName(session, searchValue, currentPage, roomsLimit);
+		return rjList;
+	}
+	@Override
+	public List<RoomImg> printSearchImg(int roomNo) {
+		List<RoomImg> riList = rStore.selectAllRoomImg(session, roomNo);
+		return riList;
 	}
 }

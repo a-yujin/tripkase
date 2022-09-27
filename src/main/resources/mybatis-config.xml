@@ -24,6 +24,7 @@
 		<typeAlias type="com.tripKase.kh.restaurant.domain.ResImg" alias="ResImg"/>
 		<typeAlias type="com.tripKase.kh.room.domain.Room" alias="Room"/>
 		<typeAlias type="com.tripKase.kh.room.domain.RoomImg" alias="RoomImg"/>
+		<typeAlias type="com.tripKase.kh.room.domain.RoomJoin" alias="RoomJoin"/>
 		<typeAlias type="com.tripKase.kh.schedule.domain.Schedule" alias="Schedule"/>
 		<typeAlias type="com.tripKase.kh.schedule.domain.ScheduleManage" alias="ScheduleManage"/>
 		<typeAlias type="com.tripKase.kh.storage.domain.Storage" alias="Storage"/>
@@ -37,6 +38,7 @@
 		<mapper resource="mappers/grade-mapper.xml"/>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/noticeReply-mapper.xml"/>
 		<mapper resource="mappers/qna-mapper.xml"/>
 		<mapper resource="mappers/restaurant-mapper.xml"/>
 		<mapper resource="mappers/room-mapper.xml"/>
