@@ -125,6 +125,6 @@
 		INSERT INTO SCHEDULE_MANAGE VALUES(SEQ_SMNO.NEXTVAL, #{scheduleSeq},#{scheduleDays},#{contentsType},#{contentsNo})
 	</insert>
 	<delete id="deleteSchedule">
-		DELETE FROM SCHEDULE_TBL WEHRE SCHEDULE_SEQ = #{scheduleSeq}
+		DELETE FROM SCHEDULE_TBL WHERE SCHEDULE_SEQ = #{scheduleSeq}
 	</delete>
 </mapper>

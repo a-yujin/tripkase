@@ -67,7 +67,6 @@
 			<br>
 			<div id="calendar">
 				<form action="/schedule/RegisteSchedule.tripkase">
-					<div></div>
 					제목<br>
 					<input size="28" type="text" name="scheduleName" placeholder="일정 제목을 입력해주세요."/><br><br>
 					일정<br>
@@ -84,7 +83,7 @@
 					${schedule.scheduleStart }~${schedule.scheduleEnd } <br>
 					</div>
 					<div class="delteSchedule">
-					<button type="button" class="btn btn-primary" onclick="location.href='/schedule/deleteSchedule.tripkase?scheduleSeq=${schedule.scheduleSeq}'">일정삭제</button><br>
+						<button type="button" class="btn btn-primary" onclick="removeSchedule(${schedule.scheduleSeq});">일정삭제</button><br> 
 					</div>
 				</c:forEach>
 		</div>
@@ -97,6 +96,10 @@
 	}
 	function hideCalendar(){
 		$("#calendar").hide();
+	}
+	function removeSchedule(scheduleSeq) {
+		console.log(scheduleSeq);
+		location.href="/schedule/deleteSchedule.tripkase?scheduleSeq="+scheduleSeq;
 	}
 </script>
 </body>

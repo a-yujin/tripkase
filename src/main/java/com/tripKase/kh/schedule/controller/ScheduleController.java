@@ -119,7 +119,7 @@ public class ScheduleController {
 	public ModelAndView deleteSchedule(
 			ModelAndView mv
 			,@RequestParam("scheduleSeq") int scheduleSeq
-			,HttpSession session) {
+			) {
 			int result = sService.deleteSchedule(scheduleSeq);
 			mv.setViewName("redirect:/schedule/scheduleView.tripkase");
 		return mv;
