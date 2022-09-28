@@ -45,10 +45,11 @@
  		WHERE MEMBER_ID =#{memberId} -->
  	</select>
  	
- 	<delete id="removeMember">
- 	DELETE FROM MEMBER_TBL
+ 	<update id="removeMember">
+ 	UPDATE MEMBER_TBL
+ 	SET MEMBER_STATUS = 'N'
  	WHERE MEMBER_ID = #{memberId}
- 	</delete>
+ 	</update>
  
  	<update id="updateMember">
  		UPDATE MEMBER_TBL

@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>여행카세 : 코스등록 </title>
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <style>
 	.courseTable{
 		padding-left:100px;
@@ -23,6 +24,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="courseTable">
 	<br><br>
 	<h1 align="center">코스 등록  페이지</h1>
@@ -32,15 +34,15 @@
 		<table id="table" align="center" border="1">
 			<tr>
 				<td>이름</td>
-				<td><input size="97" type="text" name="courseName"></td>
+				<td><input size="108" type="text" name="courseName"></td>
 			</tr>
 			<tr>
 				<td>코스 테마</td>
-				<td><input size="97" type="text" name="courseThema"></td>
+				<td><input size="108" type="text" name="courseThema"></td>
 			</tr>
 			<tr>
 				<td>코스 거리</td>
-				<td><input size="97" type="text" name="courseDistance"></td>
+				<td><input size="108" type="text" name="courseDistance"></td>
 			</tr>
 			<tr class="fileTr">
 				<td>코스 이미지</td>
@@ -52,11 +54,11 @@
 			</tr>
 			<tr>
 				<td>코스 지역</td>
-				<td><input type="text" size="97" name="locationName" placeholder = "영어로 입력해주세요"></td>
+				<td><input type="text" size="108" name="locationName" placeholder = "영어로 입력해주세요"></td>
 			</tr>
 			<tr>
 				<td>코스 설명</td>
-				<td><textarea cols="97" rows="20" name=courseInfo> </textarea></td>
+				<td><textarea cols="112" rows="20" name=courseInfo> </textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -85,6 +87,7 @@ function removeFile(){
 	
 }
 </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

@@ -215,7 +215,7 @@ public class MemberController {
 		try {
 			int result = mService.modifyMember(member);
 			if (result > 0) {
-				mv.setViewName("redirect:/member/mypage.tripkase");
+				mv.setViewName("redirect:/member/myPage.tripkase");
 			} else {
 				mv.addObject("msg", "회원 정보가 수정되지 않았습니다.");
 				mv.setViewName("common/errorPage");

@@ -12,17 +12,19 @@ body{
 	width: 250px;
 	height: 55px;
 }
+#tk_wrapper {
+   position : fixed;
+}
 #tk_header{
-	background-color: white;
-	list-style-type: none;
-	position: fixed;
-	top: 0px;
-	width: 100%;
-
-	height: 50px;
-	margin:0;
-	padding: 10px;
-	padding-left: 0;
+   background-color: white;
+   list-style-type: none;
+   position: fixed;
+   top: 0px;
+   width: 100%;
+   height: 80px;
+   margin:0;
+   padding-top : 10px;
+   padding-left: 0;
 }
 #tk_menu1{
 	line-height: 50px;

@@ -4,13 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
 <meta charset="UTF-8">
 <title>여행카세 : 코스 상세페이지</title>
 <style>
@@ -37,7 +35,7 @@ div {
 
 .map {
 	width: 100%;
-	height: 200px;
+	height: 100px;
 }
 
 #title {
@@ -93,13 +91,13 @@ div {
 
 #courseDetail-wapper{
 	width: 100%;
-	height: 700px;
+	height: 1000px;
 	margin: 0 auto;
 }
 
 #courseDetail-inside{
 	width: 50%;
-	height: 45%;
+	height: 33%;
 }
 
 .detailImage{
@@ -112,7 +110,9 @@ div {
 	margin : 0 auto;
 	padding-top : 1000px;
 }
-
+#footer{
+	margin-top : 100%;
+}
 </style>
 
 </head>
@@ -125,11 +125,14 @@ div {
 					<br>
 					<h3>${cOne.courseName }</h3>
 				</div>
+				<br>
 				<div id="course_info">
 					<span>지역 : ${cOne.locationName }</span> <span>코스 총거리 : ${cOne.courseDistance }</span>
 				</div>
+				<br>
 			</div>
 			<hr>
+			<br>
 			<div class="course_detail">
 				<div>
 					<p align="center">${cOne.courseInfo }</p>
@@ -155,7 +158,7 @@ div {
 			</div>
 		</div>
 	</form>
-	<jsp:include page="../common/footer.jsp"/>
+<jsp:include page="../common/footer.jsp"/>	
 </body>
 </html>
 

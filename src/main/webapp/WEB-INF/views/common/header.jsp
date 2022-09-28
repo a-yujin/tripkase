@@ -11,7 +11,10 @@
 <link href="/resources/css/header.css" rel="stylesheet">
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 <style>
-
+	#member-pfp{
+		margin-right : 20px;
+		margin-
+	}
 </style>
 </head>
 <body>
@@ -31,10 +34,17 @@
 		        </div>
 	        </c:if>
 	      	<c:if test="${sessionScope.loginMember ne null }"> <!-- ne : not equal -->
-			        	<div id="member-img"><img id="member-pfp" class="image" src="/resources/muploadFiles/${sessionScope.loginMember.mPfpReName}" width ="30px" height="20px"></div>
 	      		<table align="right">
+			        <tr>
+			        	<td rowspan="3">	
+			        		<img id="member-pfp" class="image" src="/resources/muploadFiles/${sessionScope.loginMember.mPfpReName}" width ="60px" height="60px">
+		        		</td>
+		        		<td></td>
+		        		<td></td>
+		        	</tr>
 		        	<tr>
 			            <td colspan="2"><b>${sessionScope.loginMember.memberName }</b>님 환영합니다!</td>
+			            <td></td>
 			            <td></td>
 		        	</tr>
 		         	<tr>

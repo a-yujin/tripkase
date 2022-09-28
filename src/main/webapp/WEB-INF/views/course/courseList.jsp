@@ -40,7 +40,7 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="courseTable">
-	<br><br>
+	<br>
 		<h2 align="center">코스 전체 리스트</h2>
 		<br>	
 		<c:if test="${cList ne null }">
