@@ -29,7 +29,7 @@
  	<br><br>
 	<h2 align="center">회원가입</h2>
 	<div align="center">
-		<form action="/member/register.tripkase" method="post">
+		<form action="/member/register.tripkase" method="post" enctype="multipart/form-data">
 		<div class="register">
 		<table>
 			<tr>
@@ -80,6 +80,12 @@
 					<input type="text" name="memberEmail">
 				</td>
 			</tr>	
+			<tr>
+				<td> * 프로필 사진 </td>
+				<td>
+					<input multiple="multiple" type="file" name="uploadFile">
+				</td>
+			</tr>	
 				<tr>
 					<td align="center" colspan="30">
 					<br>
@@ -92,5 +98,7 @@
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>	
+<br><br><br><br><br><br>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

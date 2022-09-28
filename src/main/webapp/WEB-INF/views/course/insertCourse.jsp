@@ -6,40 +6,57 @@
 <meta charset="UTF-8">
 <title>여행카세 : 코스등록 </title>
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
+
+<style>
+	.courseTable{
+		padding-left:100px;
+		width:1000px;
+		margin : 0 auto;
+	}
+	
+	#table{
+		width : 800px;
+	}
+	
+</style>
+
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<div class="courseTable">
+	<br><br>
 	<h1 align="center">코스 등록  페이지</h1>
+	<br>
 	<form action="/course/insertCourse.tripkase" method="post" enctype="multipart/form-data">
 	<div class="register">
-		<table align="center" border="1">
+		<table id="table" align="center" border="1">
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="courseName"></td>
+				<td><input size="97" type="text" name="courseName"></td>
 			</tr>
 			<tr>
 				<td>코스 테마</td>
-				<td><input type="text" name="courseThema"></td>
+				<td><input size="97" type="text" name="courseThema"></td>
 			</tr>
 			<tr>
 				<td>코스 거리</td>
-				<td><input type="text" name="courseDistance"></td>
+				<td><input size="97" type="text" name="courseDistance"></td>
 			</tr>
 			<tr class="fileTr">
 				<td>코스 이미지</td>
 				<td>
-					<input multiple="multiple" type="file" name="uploadFile">
 					<button type="button" onclick="addFile();">추가</button>
 					<button type="button" onclick="removeFile();">삭제</button>
+					<input multiple="multiple" type="file" name="uploadFile">
 				</td>
 			</tr>
 			<tr>
 				<td>코스 지역</td>
-				<td><input type="text" name="locationName" placeholder = "영어로 입력해주세요"></td>
+				<td><input type="text" size="97" name="locationName" placeholder = "영어로 입력해주세요"></td>
 			</tr>
 			<tr>
 				<td>코스 설명</td>
-				<td><textarea cols="50" rows="50" name=courseInfo> </textarea></td>
+				<td><textarea cols="97" rows="20" name=courseInfo> </textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -50,6 +67,8 @@
 		</table>
 	</div>
 	</form>
+	</div>
+	<br><br><br><br><br>
 <script>
 function addFile(){
 	var number = 2;
@@ -66,5 +85,6 @@ function removeFile(){
 	
 }
 </script>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

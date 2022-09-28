@@ -5,10 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>회원정보수정</title>
 
 <style>
-	#fw1 { font-weight: bold;}
+	#fw1 { 
+	font-weight: bold;
+	width : 150px;
+	}
 	#btn1 {
   color: white;
   line-height: 35px;
@@ -45,8 +48,9 @@ border-spacing: 0 20px;
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<br><br>
 	<h1 align="center">회원정보 수정</h1>
-	<div class="">
+	<br><br>
 		<form  action="/member/modify.tripkase" method="GET">
 		<table align="center">
 			
@@ -104,12 +108,15 @@ border-spacing: 0 20px;
 			</c:if>
 			<tr>
 				<td colspan="2" align="center">
+				<br><br>
 					<input type="submit" value="수정하기" id="btn1">
 					<button type="button" onclick="removeMember();" id="btn2">탈퇴하기</button>
 				</td>
 			</tr>
 		</table>
 	</form>
+	<br><br><br><br><br><br><br><br><br><br>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

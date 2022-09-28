@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link href="/resources/css/header.css" rel="stylesheet">
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
+<style>
+
+</style>
 </head>
 <body>
 	<div id="tk_wrap">
@@ -28,6 +31,7 @@
 		        </div>
 	        </c:if>
 	      	<c:if test="${sessionScope.loginMember ne null }"> <!-- ne : not equal -->
+			        	<div id="member-img"><img id="member-pfp" class="image" src="/resources/muploadFiles/${sessionScope.loginMember.mPfpReName}" width ="30px" height="20px"></div>
 	      		<table align="right">
 		        	<tr>
 			            <td colspan="2"><b>${sessionScope.loginMember.memberName }</b>님 환영합니다!</td>
@@ -46,7 +50,7 @@
 	</div>
 	<div id="tripMenu">
 		<ul id="trip_menu">
-			<li class="menu_item"><a href="/course/courseMainPage.tripkase">코스</a></li>
+			<li class="menu_item"><a href="/course/selectCourse.tripkase?locationName=all&locationValue=전체보기">코스</a></li>
 			<li class="menu_item"><a href="/attraction/searchView.tripkase">관광지</a></li>		
 			<li class="menu_item"><a href="/restaurant/restaurantMainPage.tripkase">맛집</a></li>		
 			<li class="menu_item"><a href="/room/searchView.tripkase">숙소</a></li>		

@@ -20,6 +20,7 @@ public class Member {
 	private String mStatus;			// 회원 상태
 	private String adminYN;			// 관리자 상태
 	private String writerPost;		// 게시물 작성수
+	private int imgNo;			// 이미지 넘버
 	
 	
 	
@@ -222,6 +223,19 @@ public class Member {
 	}
 
 
+
+	public int getImgNo() {
+		return imgNo;
+	}
+
+
+
+	public void setImgNo(int imgNo) {
+		this.imgNo = imgNo;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberEmail=" + memberEmail
@@ -229,7 +243,9 @@ public class Member {
 				+ ", memberGrade=" + memberGrade + ", memberGender=" + memberGender + ", memberPhone=" + memberPhone
 				+ ", mPfpName=" + mPfpName + ", mPfpReName=" + mPfpReName + ", mPfpPath=" + mPfpPath
 				+ ", mRegisterDate=" + mRegisterDate + ", mStatus=" + mStatus + ", adminYN=" + adminYN + ", writerPost="
-				+ writerPost + "]";
+				+ writerPost + ", imgNo=" + imgNo + "]";
 	}
-	
+
+
+
 }

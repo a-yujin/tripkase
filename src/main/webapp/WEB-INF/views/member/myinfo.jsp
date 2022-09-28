@@ -7,20 +7,27 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <style>
-	#fw1 { font-weight: bold;}
-
-	
+	#fw1 { 
+		font-weight: bold;
+		width : 150px;
+	}
 table {
 	border-collapse: separate;
 	border-spacing: 0 20px;
 }
+	input type{
+		width : 150px;
+		align : center;
+	}
 </style>
 
 
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<br><br>
 	<h1 align="center">마이페이지</h1>
+	<br><br>
 	<div align="center" class="">
 		<form  action="/member/modify.tripkase" method="POST">
 		<table>
@@ -80,7 +87,7 @@ table {
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-				<br>
+				<br><br>
 					<button type="button" class="btn btn-outline-primary" onclick="checkPassword();">수정페이지로 이동</button>
 					<button type="button" class="btn btn-outline-primary" onclick="removeMember();">탈퇴하기</button>
 				</td>
@@ -111,9 +118,10 @@ table {
 			}
 		}
 	</script>
-	
+	<br><br><br><br><br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>	
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

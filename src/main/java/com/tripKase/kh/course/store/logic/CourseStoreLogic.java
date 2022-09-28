@@ -96,4 +96,15 @@ public class CourseStoreLogic implements CourseStore {
 		return result;
 	}
 
+	@Override
+	public int modifyCourse(SqlSession session, Course course) {
+		int result = session.update("CourseMapper.modifyCourse", course);
+		return result;
+	}
+
+	@Override
+	public int updateCourseImg(SqlSession session, CourseImg courseImg) {
+		int result = session.update("CourseMapper.updateCourseImg",courseImg);
+		return result;
+	}
 }

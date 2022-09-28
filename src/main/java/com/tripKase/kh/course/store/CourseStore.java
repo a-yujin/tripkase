@@ -36,4 +36,9 @@ public interface CourseStore {
 	public List<CourseImg> coursImgByNo(SqlSession session, int courseNo);
 	
 	public int registerCourseReply(SqlSession session, CourseReply courseReply);
+	
+	public int modifyCourse(SqlSession session, Course course);
+
+	public int updateCourseImg(SqlSession session, CourseImg courseImg);
+
 }

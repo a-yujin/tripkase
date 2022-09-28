@@ -8,6 +8,9 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<br><br>
 	<h3 align="center">${Msg }</h3>
+	<br><br><br><br><br><br>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

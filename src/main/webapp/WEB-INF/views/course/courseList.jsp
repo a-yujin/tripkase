@@ -5,34 +5,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>여행카세 : 코스 조회</title>
+<title>여행카세 : 코스 전체 리스트</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 <style>
 	.courseTable{
-		float:left;
 		padding-left:100px;
-		width:700px;
+		width:1000px;
+		margin : 0 auto;
 	}
 	td{
 		text-align:center;
 	}
+	 body {
+        font-family : 'Noto Sans KR',sans-serif;
+        text-align : center;
+    }
+     .costitle {
+    	text-align : center;
+    }
+    
+    #th1 {
+    	width:10%;
+    }
+    #th6 {
+    	width:15%;
+    }
+    
 </style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<div class="courseTable">
-		<h2 align="center">코스 조회</h2>	
+	<br><br>
+		<h2 align="center">코스 전체 리스트</h2>
+		<br>	
 		<c:if test="${cList ne null }">
-					<table class="table table-hover" align="center" border="1">
+					<table id="course-wrapper" class="table table-hover" align="center" border="1" >
 						<tr>
-							<th>코스번호</th>
-							<th>코스이름</th>
-							<th>코스테마</th>
-							<th>코스거리</th>
-							<th>코스지역</th>
-							<th>코스상세보기</th>
+							<th id="th1" class="costitle">코스번호</th>
+							<th id="th2" class="costitle">코스이름</th>
+							<th id="th3" class="costitle">코스테마</th>
+							<th id="th4" class="costitle">코스거리</th>
+							<th id="th5" class="costitle">코스지역</th>
+							<th id="th6" class="costitle">코스상세보기</th>
 						</tr>
 						<c:forEach items="${cList }" var="course">
 						<tr>
@@ -68,6 +86,8 @@
 				</table>
 		</c:if>
 	</div>
+	<br><br><br>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

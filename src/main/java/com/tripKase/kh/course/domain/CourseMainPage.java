@@ -12,6 +12,8 @@ public class CourseMainPage {
 	private String cFileName;
 	private String cFileRename;
 	private String cFilePath;
+	
+	
 	public int getImgNo() {
 		return imgNo;
 	}

@@ -1,5 +1,8 @@
 package com.tripKase.kh.member.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tripKase.kh.member.domain.Member;
@@ -49,17 +53,38 @@ public class MemberController {
 
 	// 회원가입 o
 	@RequestMapping(value = "/member/register.tripkase", method = RequestMethod.POST)
-	public ModelAndView register(ModelAndView mv, @ModelAttribute Member member) {
-		int result = mService.registMember(member);
-		if (result > 0) {
+	public ModelAndView register(
+			ModelAndView mv, 
+			@ModelAttribute Member member,
+			@RequestParam(value="uploadFile", required=false)  MultipartFile uploadFile,
+			HttpServletRequest request) {
+		try {
+			String memberFilename = uploadFile.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메서드
+			if (!memberFilename.equals("")) {
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				String savePath = root + "\\muploadFiles";
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				String memberFileRename = sdf.format(new Date(System.currentTimeMillis())) + "."
+						+ memberFilename.substring(memberFilename.lastIndexOf(".") + 1);
+				// 1.png, img.png
+				File file = new File(savePath);
+				if (!file.exists()) {
+					file.mkdir();
+				}
+				uploadFile.transferTo(new File(savePath + "\\" + memberFileRename)); // 파일을 buploadFile 경로에 저장하는 메소드
+				String memberFilepath = savePath + "\\" + memberFileRename;
+				member.setmPfpName(memberFilename);
+				member.setmPfpReName(memberFileRename); // 중복 파일 업로드를위해 파일 이름을 업로드 시간으로 설정
+				member.setmPfpPath(memberFilepath);
+			}
+			int result = mService.registMember(member);
 			mv.setViewName("redirect:/home.tripkase");
-		} else {
+		} catch (Exception e) {
 			mv.addObject("msg", "회원가입을 실패했습니다.");
 			mv.setViewName("redirect:home.tripkase");
 		}
 		return mv;
-	}
-
+		}
 	// 로그인 o
 	@RequestMapping(value = "/member/login.tripkase", method = RequestMethod.POST)
 	public ModelAndView memberLogin(ModelAndView mv, @RequestParam("memberId") String memberId,
@@ -158,13 +183,13 @@ public class MemberController {
 			int countReply = mService.countReply(memberNick);		
 			if(countPost <1 && countReply < 1 ) {
 				memberGrade = "뚜벅이";
-			} else if (countPost >= 2 && countReply >= 2 ) {
+			} else if (countPost >= 1 && countReply >=3  ) {
 				memberGrade = "자전거";
-			} else if (countPost >= 20 && countReply >= 30 ) {
+			} else if (countPost >= 3 && countReply >= 5 ) {
 				memberGrade = "자동차";
-			} else if (countPost >= 30 && countReply >= 40 ) {
+			} else if (countPost >= 5 && countReply >= 7 ) {
 				memberGrade = "기차";
-			} else if (countPost >= 40 && countReply >= 50 ) {
+			} else if (countPost >= 7 && countReply >= 9 ) {
 				memberGrade = "비행기";
 			} 
 			int result = mService.memberGrade(memberGrade, memberId);	// 멤버등급 업데이트

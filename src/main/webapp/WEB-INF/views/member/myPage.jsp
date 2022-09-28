@@ -95,20 +95,36 @@
 		#memberinfo2{
 			width: 300px;
 		}
+		#member-info{
+			width : 48%;
+			float : left;
+		}
+		#member-img{
+			width : 48%;
+			float : left;
+		}
+		#member-pfp{
+			width : 100%;
+		}
 	</style>
 </head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <body>
 	<jsp:include page="../common/header.jsp"/>
-	<h1 align="center">마이페이지</h1>
+	<h2 align="center">마이페이지</h2>
 	<br><br>
 	<div align="center">
 		<div id="memberDiv">
-		닉네임
-		<input id= "memberinfo1" class="form-control" type="text" placeholder="${mOne.memberNick }" aria-label="Disabled input example" disabled>
-		<br><br>
-		회원 등급 
-		<input id= "memberinfo2" class="form-control" type="text" placeholder="${mOne.memberGrade }" aria-label="Disabled input example" disabled>
+			<div id="member-info">
+				닉네임
+				<input id= "memberinfo1" class="form-control" type="text" placeholder="${mOne.memberNick }" aria-label="Disabled input example" disabled>
+				<br><br>
+				회원 등급 
+				<input id= "memberinfo2" class="form-control" type="text" placeholder="${mOne.memberGrade }" aria-label="Disabled input example" disabled>
+			</div>
+			<div id="member-img">
+				<img id="member-pfp" class="image" src="/resources/muploadFiles/${mOne.mPfpReName}" width ="300px" height="150px">
+			</div>
 		</div><br><br>
 		
 		<div id="mystorage" onclick="location.href='/storage/storageView.tripkase';">
@@ -146,6 +162,7 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>

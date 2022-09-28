@@ -35,4 +35,7 @@ public interface CourseService {
 	
 	public int registerReply(CourseReply courseReply);
 	
+	public int modifyCourse(Course course);
+
+	public int updateCourseImg(CourseImg courseImg);
 }

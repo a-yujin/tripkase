@@ -21,13 +21,14 @@
 	 		<result property="mStatus" 			column="MEMBER_STATUS"/>
 	 		<result property="adminYN" 			column="ADMIN_YN"/>
 	 		<result property="writerPost" 		column="WRITE_POST"/>
+	 		<result property="imgNo" 			column="IMG_NO"/>
  			</resultMap>
  
  
 	 <insert id="registerMember">
 	 		INSERT INTO MEMBER_TBL
 	 		VALUES(#{memberId}, #{memberPwd}, #{memberEmail}, #{memberName}, #{memberNick}, #{memberBd},  
-	 		DEFAULT, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+	 		DEFAULT, #{memberGender}, #{memberPhone}, #{mPfpName}, #{mPfpReName}, #{mPfpPath}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, SEQ_M_IMG_NO.NEXTVAL)
 	 </insert>
  
  	<select id="selectLoginMember" resultMap="MemberResultMap">

@@ -65,7 +65,7 @@ div {
 	float : left;
 }
 
-.image {
+.imagee {
 	width: 90%;
 	height: 150px;
 	margin: 0 auto;
@@ -140,7 +140,7 @@ div {
 				<div id="courseSchedule-wapper">
 					<c:forEach items="${cImg}" var="cImg">
 						<div id="courseSchedule-inside">
-							<img class="image" src="/resources/cosUploadFiles/${cImg.cFileRename}">
+							<img class="imagee" src="/resources/cosUploadFiles/${cImg.cFileRename}">
 						</div>
 					</c:forEach>
 				</div>
@@ -155,6 +155,7 @@ div {
 			</div>
 		</div>
 	</form>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

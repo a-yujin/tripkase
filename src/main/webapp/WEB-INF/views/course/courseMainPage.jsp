@@ -41,7 +41,7 @@
     		
 		}		
 
-	.image {
+	.imagee {
             width : 100%;
             height : 100%;
             display : table-cell;
@@ -65,6 +65,7 @@
 <link href="../resources/css/.css" rel="stylesheet">
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<br>
 	<h2><b>#지역</b></h2>
 	 	<label class="box-radio-input">
 		<input type="radio"   id="cosArea1" 	onclick="selectCourse(this, 'all');"> <span>전체보기</span>
@@ -81,9 +82,9 @@
 		<input type="radio"   id="cosArea12" 	onclick="selectCourse(this, 'jeju');"> <span>제주</span>
 		</label>
 	
-	
+	<br><br><br>
 	<h3><b>#${locationValue }</b></h3>
-
+	<br>
 	<div id=contents>
 		<ul>
 			<c:forEach items="${cmList }" var="courseMain">
@@ -91,7 +92,7 @@
 				<li class="courseList">
 						<div class="image-box">
 							<a href="/course/courseDetail.tripkase?courseNo=${courseMain.courseNo }"> 
-							<img class="image" src="/resources/cosUploadFiles/'20220921145739.PNG">
+							<img class="imagee" src="/resources/cosUploadFiles/${courseMain.cFileRename }">
 							</a>
 						</div>
 						<div class="textarea">
@@ -104,7 +105,6 @@
 				</li>
 			</c:forEach>
 		</ul>
-					
 				
 	</div>
 	<script>
@@ -114,6 +114,6 @@
 			location.href='/course/selectCourse.tripkase?locationName='+area+"&locationValue="+value;
 		}
 	</script>
-
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

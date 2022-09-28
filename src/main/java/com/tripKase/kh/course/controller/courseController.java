@@ -28,6 +28,7 @@ import com.tripKase.kh.course.domain.CourseReply;
 import com.tripKase.kh.course.service.CourseService;
 import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.notice.domain.Notice;
+import com.tripKase.kh.room.domain.RoomImg;
 @Controller
 public class courseController {
 
@@ -49,6 +50,25 @@ public class courseController {
 		return "course/serchCourseByName"; // 스프링의 리턴타입은 String으로 정해져있음
 	}
 	
+	@RequestMapping(value = "/course/modifyCourseView.tripkase", method = RequestMethod.GET) // value = 사용할 url
+	public ModelAndView modifyCourseView(@RequestParam("courseNo")Integer courseNo, ModelAndView mv) {
+		try {
+			Course course = cService.courseByNo(courseNo);
+			List<CourseImg> courseImg = cService.courseImgByNo(courseNo);
+			System.out.println(course);
+			System.out.println(courseImg);
+			if (course != null && !courseImg.isEmpty()) {
+				mv.addObject("cOne", course);
+				mv.addObject("cImg", courseImg);
+				mv.setViewName("/course/modifyCourse");
+			}
+
+		} catch (Exception e) {
+			mv.addObject("msg", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	
 	// 코스 등록, 다중 이미지 파일 등록
 	@RequestMapping(value="/course/insertCourse.tripkase", method = RequestMethod.POST)
@@ -103,7 +123,7 @@ public class courseController {
 				@RequestParam("locationName") String locationName,
 				@RequestParam("locationValue") String locationValue,
 				ModelAndView mv) {
-
+			
 //			List<Course> cList = cService.selectCourseAll(locationName);
 //			List<CourseImg> cListImg = cService.selectCourseImg(locationName);
 			List<CourseMainPage> cmList = cService.selectCourseMain(locationName);
@@ -194,6 +214,8 @@ public class courseController {
 		@RequestMapping(value="/course/courseAdmin.tripkase")
 		public ModelAndView courseAdmin(ModelAndView mv, @RequestParam("courseNo") Integer courseNo ) {
 			Course course = cService.courseAdmin(courseNo);
+			List<CourseImg> cImg = cService.courseImgByNo(courseNo);
+			mv.addObject("cImg",cImg);
 			mv.addObject("course", course);
 			mv.setViewName("course/courseAdmin");
 			return mv;
@@ -215,27 +237,53 @@ public class courseController {
 	}
 	
 
-	// 코스수정
-//	@RequestMapping(value="/course/modifyCourse.tripkase", method = RequestMethod.GET)
-//	public ModelAndView modifyCourse (
-//			ModelAndView mv,
-//			@ModelAttribute Course course,
-//			@RequestParam(value="uploadFile", required = false) List<MultipartFile> uploadFile,
-//			HttpServletRequest request,
-//			MultipartHttpServletRequest mRequest,
-//			@RequestParam("locationName") String locationName,
-//			@RequestParam("courseNo") Integer courseNo) {
-//		
-//		int result = cService.modifyCourse(course);
-//		if(result > 0) {
-//			mv.setViewName("redirect:/course/modifyCourse.tripkase");
-//		}
-//		
-//		return mv;
-//	}
-}
-
-
+	 //코스수정
+	@RequestMapping(value="/course/modifyCourse.tripkase", method = RequestMethod.POST)
+	public ModelAndView modifyCourse (
+			ModelAndView mv,
+			@ModelAttribute Course course,
+			@RequestParam(value="reloadFile") List<MultipartFile> reloadFile,
+			@RequestParam("imgNo") int[] courseNoArr,
+			@RequestParam("cFileRename") String[] cFileRenameArr,
+			HttpServletRequest request){
+		int num = 0;
+		CourseImg courseImg = null;
+		int result = cService.modifyCourse(course);
+		try {
+			for(MultipartFile mf : reloadFile ) {
+				String courseFileName = mf.getOriginalFilename();
+				if(!courseFileName.equals("")) {
+					String root = request.getSession().getServletContext().getRealPath("resources");
+					String savePath = root + "\\cosUploadFiles";
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					//기존 파일 삭제
+					String cFileRename = cFileRenameArr[num];
+					File file = new File(savePath + "\\" + cFileRename);
+					if(file.exists()) {
+						file.delete();
+					}
+					//새로운 파일 등록
+					String courseFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+"."+courseFileName.substring(courseFileName.lastIndexOf(".")+1);
+					file = new File(savePath);
+					mf.transferTo(new File(savePath+"\\"+courseFileRename));
+					String courseFilePath = savePath+"\\"+courseFileRename;
+					courseImg = new CourseImg();
+					courseImg.setcFileName(courseFileName);
+					courseImg.setcFileRename(courseFileRename);
+					courseImg.setcFilePath(courseFilePath);
+					int imgNo = courseNoArr[num];
+					courseImg.setImgNo(imgNo);
+					num = num +1;
+					}
+					int result2 = cService.updateCourseImg(courseImg);
+					mv.setViewName("redirect:/course/courseAll.tripkase");
+					}
+				}catch (Exception e) {
+						mv.setViewName("/common/errorPage");
+					}
+					return mv;
+						}
+					}
 
 
 

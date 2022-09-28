@@ -114,6 +114,20 @@
 		INSERT INTO C_REPLY_TBL 
 		VALUES(SEQ_T_REPLY_NO.NEXTVAL, #{repCourseNo}, #{cReplyContents}, #{cReplyWriter}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 		</insert>
+		
+		<!-- 코스 정보 수정 -->
+		<update id="modifyCourse">
+		UPDATE COURSE_TBL 
+		SET COURSE_NAME = #{courseName}, COURSE_THEMA = #{courseThema}, COURSE_DISTANCE = #{courseDistance}, LOCATION_NAME = #{locationName}, COURSE_INFO = #{courseInfo}
+		WHERE COURSE_NO = #{courseNo} 
+		</update>
+		
+		<!-- 코스 사진 수정 -->
+		<update id="updateCourseImg">
+		UPDATE COURSE_IMG 
+		SET COURSE_FILENAME = #{cFileName}, COURSE_FILERENAME = #{cFileRename}, COURSE_FILEPATH = #{cFilePath} 
+		WHERE IMG_NO = #{imgNo }
+	</update>
 </mapper>
 
 

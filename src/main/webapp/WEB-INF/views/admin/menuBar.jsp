@@ -78,7 +78,7 @@
 				<a class="function" href="#" onclick="location.href='/course/insertCourseView.tripkase'">코스 등록</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/course/insertCourseView.tripkase'">코스 조회</a>
+				<a class="function" href="#" onclick="location.href='/course/courseAll.tripkase'">코스 조회</a>
 			</li>
 			<li>
 				<a class="function" href="#" onclick="location.href='/attraction/write.tripkase'">관광지 등록</a>

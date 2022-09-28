@@ -105,6 +105,21 @@ public class CourseServiceImpl implements CourseService {
 		int result = cStore.registerCourseReply(session, courseReply);
 		return result;
 	}
+
+
+	@Override
+	public int modifyCourse(Course course) {
+		int result = cStore.modifyCourse(session, course);
+		return result;
+	}
+
+
+	@Override
+	public int updateCourseImg(CourseImg courseImg) {
+		int result = cStore.updateCourseImg(session, courseImg);
+		return result;
+	}
+
 	
 }
 
