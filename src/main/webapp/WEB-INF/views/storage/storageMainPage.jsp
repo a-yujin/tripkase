@@ -33,7 +33,7 @@
 									<a id="choice-menu1" class="dropdown-item" onclick="location.href='/storage/deleteStorage.tripkase?stoNo=${attraction.stoNo}';"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
 								</li>
 								<li>
-									<a id="choice-menu2" class="dropdown-item" onclick="choiceSchedule();"><img src="/resources/images/storage/calendar.png" width="20px" height="20px">   일정 추가</a>
+									<a id="choice-menu2" class="dropdown-item" onclick="choiceSchedule('${attraction.contentsCode}',${attraction.contentsNo});"><img src="/resources/images/storage/calendar.png" width="20px" height="20px">   일정 추가</a>
 								</li>
 							</ul>
 						</div>
@@ -97,7 +97,7 @@
 									<a id="choice-menu1" class="dropdown-item" onclick="location.href='/storage/deleteStorage.tripkase?stoNo=${room.stoNo}';"><img src="/resources/images/storage/trash.png" width="20px" height="20px">   보관 삭제</a>
 								</li>
 								<li>
-									<a id="choice-menu2" class="dropdown-item" onclick="choiceSchedule();"><img src="/resources/images/storage/calendar.png" width="25px" height="25px">   일정 추가</a>
+									<a id="choice-menu2" class="dropdown-item" onclick="choiceSchedule('${room.contentsCode}',${room.contentsNo})"><img src="/resources/images/storage/calendar.png" width="25px" height="25px">   일정 추가</a>
 								</li>
 							</ul>
 						</div>
@@ -111,6 +111,7 @@
 			</div>
 	</c:if>
 	</div>
+	<jsp:include page="../common/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 </script>
 <script>

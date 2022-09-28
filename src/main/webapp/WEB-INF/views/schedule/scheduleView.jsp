@@ -29,14 +29,18 @@
         display:block;
     }
     #schedule{
+    	padding-top:10px;
     	border:1px solid;
-    	margin:30px;
+    	margin:30px auto;
+    	text-align:center;
+    	width: 300px;
+    	height: 100px;
     }
     #calendar{
     	display:none;
     	padding-left:15px;
     	border:1px solid;
-    	margin:30px auto;
+    	margin:0 auto;
     	padding:30px;
     	width:300px;
     	
@@ -45,7 +49,13 @@
 		width:100px;
 		height:50px;
         margin:auto;
-	}	
+	}
+	.delteSchedule{
+		margin:auto;
+    	text-align:center;
+    	width: 300px;
+    	height: 100px;
+	}
 	</style>
 	
 </head>
@@ -71,7 +81,10 @@
 				<c:forEach items="${sList }" var="schedule">
 					<div id="schedule" style="cursor : pointer" onclick="location.href='/schedule/scheduleDetail.tripkase?scheduleSeq=${schedule.scheduleSeq}'">
 					${schedule.scheduleName }<br>
-					${schedule.scheduleStart }~${schedule.scheduleEnd }<br>
+					${schedule.scheduleStart }~${schedule.scheduleEnd } <br>
+					</div>
+					<div class="delteSchedule">
+					<button type="button" class="btn btn-primary" onclick="location.href='/schedule/deleteSchedule.tripkase?scheduleSeq=${schedule.scheduleSeq}'">일정삭제</button><br>
 					</div>
 				</c:forEach>
 		</div>

@@ -33,4 +33,6 @@ public interface ScheduleService {
 
 	int insertScheduleData(HashMap<String, String> param);
 
+	int deleteSchedule(int scheduleSeq);
+
 }

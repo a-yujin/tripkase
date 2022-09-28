@@ -33,4 +33,6 @@ public interface ScheduleStore {
 
 	int insertScheduleData(SqlSession session, HashMap<String, String> param);
 
+	int deleteSchedule(SqlSession session, int scheduleSeq);
+
 }

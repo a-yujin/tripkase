@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>여행카세 : 일정 추가</title>
 </head>
 <body>
-	일정등록완료
+
 	<script>
 		window.onload=function(){
+			alert("일정에 추가 되었습니다.");
 			window.close();
 		}
 	</script>
