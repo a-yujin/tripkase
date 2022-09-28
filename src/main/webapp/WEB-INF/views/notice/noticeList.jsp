@@ -16,9 +16,16 @@
 		<!-- 공지 목록에 데이터가 있을 때 -->
 		<c:if test="${!empty nList}">
 			<c:forEach items="${nList}" var="notice" varStatus="i">
-				<tr height="20">
-					<td id="nListContents1" colspan="2"><a href="/notice/detail.tripkase?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
-				</tr>
+				<c:if test="${sessionScope.loginMember ne null}">
+					<tr height="20">
+						<td id="nListContents1" colspan="2"><a href="/notice/detail.tripkase?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
+					</tr>
+				</c:if>
+				<c:if test="${sessionScope.loginMember eq null}">
+					<tr height="20">
+						<td id="nListContents1" colspan="2"><a onclick="alertLogin();">${notice.noticeTitle}</a></td>
+					</tr>
+				</c:if>
 				<tr id="nListContents2" height="20">
 					<td id="nListDate"><fmt:formatDate pattern="yyyy.MM.dd" value="${notice.nCreateDate}"/></td>
 					<td>${notice.noticeWriter}</td>
@@ -58,6 +65,11 @@
 			</tr>
 		</c:if>
 	</table>
+	<script>
+		function alertLogin(){
+			alert("회원만 볼 수 있는 게시물입니다.");
+		}
+	</script>
 	<br><br><br>
 	<jsp:include page="../common/footer.jsp"/>
 </body>

@@ -62,7 +62,12 @@
 				<td id="nReplyWriter">${nReply.nReplyWriter}</td>
 				<td>${nReply.nreUpdateDate}</td>
 				<td class="menuTk">
-					<a href="#" onclick="removeNReply(${nReply.nReplyNo});">삭제</a>
+					<c:if test="${member.memberNick eq nReply.nReplyWriter}">
+						<a href="#" onclick="removeNReply(${nReply.nReplyNo});">삭제</a>
+					</c:if>
+					<c:if test="${member.memberNick ne nReply.nReplyWriter}">
+						<a href="#">신고</a>
+					</c:if>
 				</td>
 			</tr>
 			<tr>

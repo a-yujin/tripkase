@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tripKase.kh.attraction.domain.AttrImgDomain;
 import com.tripKase.kh.attraction.domain.Attraction;
 import com.tripKase.kh.attraction.domain.AttractionImg;
 import com.tripKase.kh.attraction.service.AttractionService;
@@ -151,9 +152,9 @@ public class AttractionController {
 			@RequestParam("page") int page) {
 		try {
 			Attraction attr = attrService.printOneByNo(attrNo);
-			List<AttractionImg> attrImgList = attrService.printImgByNo(attrNo);
+//			List<AttractionImg> attrImgList = attrService.printImgByNo(attrNo);
 			mv.addObject("attr", attr);
-			mv.addObject("attrImgList", attrImgList);
+//			mv.addObject("attrImgList", attrImgList);
 			mv.addObject("page", page);
 			mv.setViewName("attraction/attrAdminModify");
 		} catch (Exception e) {
@@ -176,44 +177,44 @@ public class AttractionController {
 	public ModelAndView modifyAttr(
 			@ModelAttribute Attraction attr,
 			ModelAndView mv,
-			@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile,
-			@RequestParam("attrImgNo") int[] aImgNoArr,
-			@RequestParam("attrFileRename") String[] aFileRenameArr,
+//			@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile,
+//			@RequestParam("attrImgNo") int[] aImgNoArr,
+//			@RequestParam("attrFileRename") String[] aFileRenameArr,
 			@RequestParam("page") Integer page,
 			HttpServletRequest request) {
-		int num = 0;
-		AttractionImg attrImg = null;
+//		int num = 0;
+//		AttractionImg attrImg = null;
 		int result = attrService.modifyAttr(attr);
 		try {
-			for(MultipartFile mf: reloadFile) {
-				String aFileName = mf.getOriginalFilename();
-				if(!aFileName.equals("")) {
-					String root = request.getSession().getServletContext().getRealPath("resources");
-					String savedPath = root + "\\attrUploadFiles";
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-					
-					String attrFileRename = aFileRenameArr[num];
-					File file = new File(savedPath + "\\" + attrFileRename);
-					if(file.exists()) {
-						file.delete();
-					}
-					
-					String aFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+ "." + aFileName.substring(aFileName.lastIndexOf(".")+1);
-					file = new File(savedPath);
-					
-					mf.transferTo(new File(savedPath + "\\" + aFileRename));
-					String aFilePath = savedPath + "\\" + aFileRename;
-					attrImg = new AttractionImg();
-					attrImg.setAttrFileName(aFileName);
-					attrImg.setAttrFileRename(aFileRename);
-					attrImg.setAttrFilePath(aFilePath);
-					int attrImgNo = aImgNoArr[num];
-					attrImg.setAttrImgNo(attrImgNo);
-					num = num + 1;
-				}
-				int result2 = attrService.modifyAttrImg(attrImg);
+//			for(MultipartFile mf: reloadFile) {
+//				String aFileName = mf.getOriginalFilename();
+//				if(!aFileName.equals("")) {
+//					String root = request.getSession().getServletContext().getRealPath("resources");
+//					String savedPath = root + "\\attrUploadFiles";
+//					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+//					
+//					String attrFileRename = aFileRenameArr[num];
+//					File file = new File(savedPath + "\\" + attrFileRename);
+//					if(file.exists()) {
+//						file.delete();
+//					}
+//					
+//					String aFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+ "." + aFileName.substring(aFileName.lastIndexOf(".")+1);
+//					file = new File(savedPath);
+//					
+//					mf.transferTo(new File(savedPath + "\\" + aFileRename));
+//					String aFilePath = savedPath + "\\" + aFileRename;
+//					attrImg = new AttractionImg();
+//					attrImg.setAttrFileName(aFileName);
+//					attrImg.setAttrFileRename(aFileRename);
+//					attrImg.setAttrFilePath(aFilePath);
+//					int attrImgNo = aImgNoArr[num];
+//					attrImg.setAttrImgNo(attrImgNo);
+//					num = num + 1;
+//				}
+//				int result2 = attrService.modifyAttrImg(attrImg);
 				mv.setViewName("redirect:/attraction/list.tripkase?page="+page);
-			}
+//			}
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 		}
@@ -260,23 +261,24 @@ public class AttractionController {
 			@RequestParam(value="searchValue", required = false) String searchValue,
 			@RequestParam("areaValue") String areaValue,
 			@RequestParam("typeValue") String [] typeValue,
-			@RequestParam(value="page", required=false, defaultValue="1") int currentPage) {
+			@RequestParam(value="page", required=false) Integer page) {
 		try {
+			int currentPage = (page != null) ? page : 1;
 			int searchCount = attrService.getSearchCount(searchValue, areaValue, typeValue);
-			int attrLimit = 5; // 한 페이지에 보여줄 게시글 수
+			int attrLimit = 6; // 한 페이지에 보여줄 게시글 수
 			int naviLimit = 5; // 한 화면에서 보여줄 페이지 수
 			int maxPage; // 마지막 페이지 번호
 			int startNavi; // 페이징 시작 번호 ex. (6) 7 8 9 10
 			int endNavi; // 페이징 끝 번호 ex. 6 7 8 9 (10)
 			
 			maxPage = (int)((double)searchCount/attrLimit+0.95);
-			startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+			startNavi = ((int)((double)currentPage/naviLimit+0.95)-1)*naviLimit+1;
 			endNavi = startNavi + naviLimit - 1;
 			if(maxPage < endNavi) {
 				endNavi = maxPage;
 			}
 			
-			List<Attraction> attrList = attrService.printSearchAttr(searchValue, areaValue, typeValue, currentPage, attrLimit);
+			List<AttrImgDomain> attrList = attrService.printSearchAttr(searchValue, areaValue, typeValue, currentPage, attrLimit);
 			if(!attrList.isEmpty()) {
 				mv.addObject("attrList", attrList);
 			} else {
@@ -298,6 +300,14 @@ public class AttractionController {
 		return mv;
 	}
 	
+	/**
+	 * 관광지 상세 조회
+	 * @param mv
+	 * @param session
+	 * @param attrNo
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping(value="/attraction/detail.tripkase", method=RequestMethod.GET)
 	public ModelAndView showAttrDetail(
 			ModelAndView mv,
@@ -306,7 +316,11 @@ public class AttractionController {
 			@RequestParam("page") Integer page) {
 		try {
 			Attraction attr = attrService.printOneByNo(attrNo);
+			List<AttractionImg> attrImg = attrService.printImgByNo(attrNo);
+//			List<AttrImgDomain> attrImgList = attrService.printOneAttr(attrNo);
 			mv.addObject("attr", attr);
+			mv.addObject("attrImg", attrImg);
+//			mv.addObject("attrImgList", attrImgList);
 			mv.addObject("page", page);
 			mv.setViewName("attraction/attrDetail");
 		} catch (Exception e) {

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.tripKase.kh.attraction.domain.AttrImgDomain;
 import com.tripKase.kh.attraction.domain.Attraction;
 import com.tripKase.kh.attraction.domain.AttractionImg;
 import com.tripKase.kh.attraction.store.AttractionStore;
@@ -69,11 +70,11 @@ public class AttractionStoreLogic implements AttractionStore {
 		return result;
 	}
 	// 관광지-이미지 수정
-	@Override
-	public int updateAttrImg(SqlSession session, AttractionImg attrImg) {
-		int result = session.update("AttrMapper.updateAttrImg", attrImg);
-		return result;
-	}
+//	@Override
+//	public int updateAttrImg(SqlSession session, AttractionImg attrImg) {
+//		int result = session.update("AttrMapper.updateAttrImg", attrImg);
+//		return result;
+//	}
 	
 	// 관광지 검색 게시글 수 가져오기
 	@Override
@@ -88,7 +89,7 @@ public class AttractionStoreLogic implements AttractionStore {
 	
 	// 관광지 검색 게시글 목록 조회
 	@Override
-	public List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String [] typeValue,
+	public List<AttrImgDomain> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String [] typeValue,
 			int currentPage, int attrLimit) {
 		int offset = (currentPage-1)*attrLimit;
 		RowBounds rowBounds = new RowBounds(offset, attrLimit);
@@ -96,8 +97,15 @@ public class AttractionStoreLogic implements AttractionStore {
 		paramMap.put("searchValue", searchValue);
 		paramMap.put("areaValue", areaValue);
 		paramMap.put("typeValue", typeValue);
-		List<Attraction> attrList = session.selectList("AttrMapper.selectSearchAttr", paramMap, rowBounds);
+		List<AttrImgDomain> attrList = session.selectList("AttrMapper.selectSearchAttr", paramMap, rowBounds);
 		return attrList;
+	}
+	
+	// 관광지 검색 게시글 상세 조회
+	@Override
+	public List<AttrImgDomain> selectOneAttr(SqlSession session, Integer attrNo) {
+		List<AttrImgDomain> attrImgList = session.selectList("AttrMapper.selectOneAttr", attrNo);
+		return attrImgList;
 	}
 
 }
