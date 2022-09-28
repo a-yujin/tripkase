@@ -68,7 +68,6 @@
 					<img src="../resources/ruploadFiles/${roomImg.roomFileRename }" id="roomimg-area" width="300px" height="150px">
 				</c:forEach>
 			</c:if>
-			<img src="../resources/ruploadFiles/${riList[0].roomFileRename }">
 			<c:if test="${riList eq null }">
 				<p>첨부파일이 없습니다.</p>
 			</c:if>

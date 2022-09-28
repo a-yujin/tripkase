@@ -306,9 +306,69 @@ body {
 		}
 /* roomSearchList.jsp */
 #roomlist {
-	margin-top : 100px;
+	width : 100%;
+	margin : 0 auto;
+	padding-top : 50px;
 }
 #roomlist-outside {
-	width : 1000px;
+	margin : 0 auto;
+	width : 800px;
+	padding-top : 50px;
+	padding-bottom : 300px;
+}
+	#roomlist-left {
+		width : 20%;
+		float : left;
+	}
+	#roomlist-right {
+		width : 70%;
+		padding-top : 20px;
+		padding-left : 150px;
+		float : left;
+	}
+	#roomlist-price {
+		float : right;
+		padding-top : 140px;
+	}
+		#roomlist-img {
+			width : 250px;
+			height : 250px;
+		}
+#roomlist-hr {
+	width : 800px;
+}
+
+/* roomSearchDetail.jsp */
+#top-wrapper {
+	width : 1200px;
 	margin : 0 auto;
 }
+	#top-text{
+		text-align : center;
+		margin-top : 80px;
+		margin-bottom : 80px;
+	}
+		#top-name {
+			font-size : 18px;
+			font-weight : bold;
+		}
+		#top-price {
+			font-size : 16px;
+		}
+	#top-picture {
+		width : 1200px;
+		margin : 0 auto;
+	}
+		#pic-left {
+			width : 50%;
+			float : left;
+		}
+		#pic-right {
+			width : 50%;
+			float : right;
+		}
+		#right-top {
+			float : left;
+		}
+		.right-pic {
+		}

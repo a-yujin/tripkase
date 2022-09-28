@@ -308,4 +308,74 @@ public class RoomController {
 		mv.setViewName("room/roomSearchList");
 		return mv;
 	}
+	
+	/**
+	 * 숙소 유형 검색 리스트 (사용자)
+	 * @param mv
+	 * @param areaValue
+	 * @param typeValue
+	 * @param personValue
+	 * @param petValue
+	 * @param currentPage
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/room/roomTypeSearch.tripkase", method=RequestMethod.GET)
+	public ModelAndView roomTypeSearch(
+			ModelAndView mv,
+			@RequestParam("areaValue") String areaValue,
+			@RequestParam("typeValue") String typeValue,
+			@RequestParam("personValue") int personValue,
+			@RequestParam("petValue") String petValue,
+			@RequestParam(value="page", required=false, defaultValue="1") int currentPage,
+			HttpSession session) {
+		int totalCount = rService.getRoomTypeCount(areaValue, typeValue, personValue, petValue);
+		int roomsLimit = 5;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		maxPage = (int)((double)totalCount/roomsLimit+0.95);
+		startNavi = ((int)((double)currentPage/naviLimit+0.95)-1)*naviLimit+1;
+		endNavi = startNavi + naviLimit -1;
+		if(maxPage < endNavi) {
+			endNavi = maxPage;
+		}
+		List<RoomJoin> rjList = rService.printSearchType(areaValue, typeValue, personValue, petValue, currentPage, roomsLimit);
+		if(!rjList.isEmpty()) {
+			mv.addObject("rjList", rjList);
+		}else {
+			mv.addObject("rjList", null);
+		}
+		mv.addObject("areaValue", areaValue);
+		mv.addObject("typeValue", typeValue);
+		mv.addObject("personValue", personValue);
+		mv.addObject("petValue", petValue);
+		mv.addObject("maxPage", maxPage);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("startNavi", startNavi);
+		mv.addObject("endNavi", endNavi);
+		mv.setViewName("room/roomSearchList");
+		return mv;
+	}
+	
+	/**
+	 * 숙소 상세 페이지 (사용자)
+	 * @param mv
+	 * @param roomNo
+	 * @return
+	 */
+	@RequestMapping(value="/room/roomDetailView.tripkase", method=RequestMethod.GET)
+	public ModelAndView roomSearchDetail(
+			ModelAndView mv,
+			@RequestParam("roomNo") int roomNo,
+			HttpSession session) {
+		Room room = rService.printOneData(roomNo);
+		List<RoomImg> riList = rService.roomImgDetail(roomNo);
+		session.setAttribute("roomNo", room.getRoomNo());
+		mv.addObject("room", room);
+		mv.addObject("riList", riList);
+		mv.setViewName("/room/roomSearchDetail");
+		return mv;
+	}
 }
