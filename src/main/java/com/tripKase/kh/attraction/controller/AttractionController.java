@@ -233,7 +233,7 @@ public class AttractionController {
 			Model model,
 			@RequestParam("page") Integer page) {
 		try {
-			int attrNo = (int)session.getAttribute("attrNo");
+			int attrNo = (Integer)session.getAttribute("attrNo");
 			int result = attrService.removeOneByNo(attrNo);
 			if(result > 0) {
 				session.removeAttribute("attrNo");
