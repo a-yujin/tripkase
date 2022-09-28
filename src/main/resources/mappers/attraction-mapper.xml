@@ -69,7 +69,7 @@
 	
 	<!-- 관광지 상세(관리자) 조회 + 수정 화면 -->
 	<select id="selectOneByNo" resultMap="attrResultMap">
-		SELECT * FROM ATTRACTION_TBL WHERE ATTR_NO = ${attrNo} AND ATTR_STATUS = 'Y'
+		SELECT * FROM ATTRACTION_TBL WHERE ATTR_NO = #{attrNo} AND ATTR_STATUS = 'Y'
 	</select>
 	<select id="selectImgByNo" resultMap="attrImgResultMap">
 		SELECT * FROM ATTRACTION_IMG WHERE ATTR_NO = #{attrNo}
@@ -77,12 +77,12 @@
 	
 	<!-- 관광지 수정 -->
 	<update id="updateAttr">
-		UDPATE ATTRACTION_TBL SET ATTR_LOCATION = #{attrLocation}, ATTR_NAME = #{attrName}, ATTR_TRIP_TYPE = #{attrTripType}, ATTR_INFO = #{attrInfo}, ATTR_TEL = #{attrTel}, ATTR_WEBSITE = #{attrWebsite}, ATTR_ADDRESS = #{attrAddress}, ATTR_HOURS = #{attrHours}, ATTR_FEE = #{attrFee}, ATTR_CAR = #{attrCar}, ATTR_PET = #{attrPet}, ATTR_SHORT_INFO = #{attrShortInfo} WHERE ATTR_NO = #{attrNo}
+		UPDATE ATTRACTION_TBL SET ATTR_NAME = #{attrName}, ATTR_LOCATION = #{attrLocation}, ATTR_TRIP_TYPE = #{attrTripType}, ATTR_SHORT_INFO = #{attrShortInfo}, ATTR_INFO = #{attrInfo}, ATTR_TEL = #{attrTel}, ATTR_WEBSITE = #{attrWebsite}, ATTR_ADDRESS = #{attrAddress}, ATTR_HOURS = #{attrHours}, ATTR_FEE = #{attrFee}, ATTR_CAR = #{attrCar}, ATTR_PET = #{attrPet} WHERE ATTR_NO = #{attrNo}
 	</update>
 	<!-- 관광지-이미지 수정 -->
-<!-- 	<update id="updateAttrImg">
+	<update id="updateAttrImg">
 		UPDATE ATTRACTION_IMG SET ATTR_FILENAME = #{attrFileName}, ATTR_FILERENAME = #{attrFileRename}, ATTR_FILEPATH = #{attrFilePath} WHERE ATTR_IMG_NO = #{attrImgNo}
-	</update> -->
+	</update>
 	
 	<!-- 관광지 삭제 -->
 	<delete id="deleteAttr">

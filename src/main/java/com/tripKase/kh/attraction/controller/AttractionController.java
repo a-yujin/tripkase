@@ -1,6 +1,7 @@
 package com.tripKase.kh.attraction.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -66,7 +67,7 @@ public class AttractionController {
 			
 			int result = attrService.registerAttr(attr);
 			
-			for(MultipartFile mf: uploadFile) {
+			for(MultipartFile mf : uploadFile) {
 				String attrFileName = mf.getOriginalFilename();
 				if(!attrFileName.equals("")) {
 					String root = request.getSession().getServletContext().getRealPath("resources");
@@ -152,9 +153,9 @@ public class AttractionController {
 			@RequestParam("page") int page) {
 		try {
 			Attraction attr = attrService.printOneByNo(attrNo);
-//			List<AttractionImg> attrImgList = attrService.printImgByNo(attrNo);
+			List<AttractionImg> attrImgList = attrService.printImgByNo(attrNo);
 			mv.addObject("attr", attr);
-//			mv.addObject("attrImgList", attrImgList);
+			mv.addObject("attrImgList", attrImgList);
 			mv.addObject("page", page);
 			mv.setViewName("attraction/attrAdminModify");
 		} catch (Exception e) {
@@ -175,48 +176,50 @@ public class AttractionController {
 	 */
 	@RequestMapping(value="/attraction/modify.tripkase", method=RequestMethod.POST)
 	public ModelAndView modifyAttr(
-			@ModelAttribute Attraction attr,
 			ModelAndView mv,
-//			@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile,
-//			@RequestParam("attrImgNo") int[] aImgNoArr,
-//			@RequestParam("attrFileRename") String[] aFileRenameArr,
+			@ModelAttribute Attraction attr,
+			@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile,
+			@RequestParam("attrImgNo") int[] attrImgNoArr,
+			@RequestParam("attrFileRename") String[] attrFileRenameArr,
 			@RequestParam("page") Integer page,
 			HttpServletRequest request) {
-//		int num = 0;
-//		AttractionImg attrImg = null;
-		int result = attrService.modifyAttr(attr);
-		try {
-//			for(MultipartFile mf: reloadFile) {
-//				String aFileName = mf.getOriginalFilename();
-//				if(!aFileName.equals("")) {
-//					String root = request.getSession().getServletContext().getRealPath("resources");
-//					String savedPath = root + "\\attrUploadFiles";
-//					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-//					
-//					String attrFileRename = aFileRenameArr[num];
-//					File file = new File(savedPath + "\\" + attrFileRename);
-//					if(file.exists()) {
-//						file.delete();
-//					}
-//					
-//					String aFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+ "." + aFileName.substring(aFileName.lastIndexOf(".")+1);
-//					file = new File(savedPath);
-//					
-//					mf.transferTo(new File(savedPath + "\\" + aFileRename));
-//					String aFilePath = savedPath + "\\" + aFileRename;
-//					attrImg = new AttractionImg();
-//					attrImg.setAttrFileName(aFileName);
-//					attrImg.setAttrFileRename(aFileRename);
-//					attrImg.setAttrFilePath(aFilePath);
-//					int attrImgNo = aImgNoArr[num];
-//					attrImg.setAttrImgNo(attrImgNo);
-//					num = num + 1;
-//				}
-//				int result2 = attrService.modifyAttrImg(attrImg);
-				mv.setViewName("redirect:/attraction/list.tripkase?page="+page);
-//			}
-		} catch (Exception e) {
-			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+			int num = 0;
+			AttractionImg attrImg = null;
+			int result1 = attrService.modifyAttr(attr);
+			try {
+				for(MultipartFile mf : reloadFile) {
+					String attrFileName = mf.getOriginalFilename();
+					if(!attrFileName.equals("")) {
+						String root = request.getSession().getServletContext().getRealPath("resources");
+						String savePath = root + "\\resUploadFiles";
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
+						String aFileRename = attrFileRenameArr[num];
+						File file = new File(savePath + "\\" + aFileRename);
+						if(!file.exists()) {
+							file.delete();
+						}
+						String attrFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+"."+attrFileName.substring(attrFileName.lastIndexOf(".")+1);
+						file = new File(savePath);
+						mf.transferTo(new File(savePath+"\\"+attrFileRename));
+						String attrFilePath = savePath + "\\" + attrFileRename;
+						attrImg = new AttractionImg();
+						attrImg.setAttrFileName(attrFileName);
+						attrImg.setAttrFileRename(attrFileRename);
+						attrImg.setAttrFilePath(attrFilePath);
+						int attrImgNo = attrImgNoArr[num];
+						attrImg.setAttrImgNo(attrImgNo);
+						num = num + 1;
+				}
+					int result2 = attrService.modifyAttrImg(attrImg);
+					mv.setViewName("redirect:/attraction/list.tripkase?page="+page);
+			}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+				mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 		}
 		return mv;
 	}
@@ -231,14 +234,14 @@ public class AttractionController {
 	public String removeAttr(
 			HttpSession session,
 			Model model,
-			@RequestParam("page") Integer page) {
+			@RequestParam("page") Integer page,
+			@RequestParam("attrNo") Integer attrNo) {
 		try {
-			int attrNo = (Integer)session.getAttribute("attrNo");
 			int result = attrService.removeOneByNo(attrNo);
 			if(result > 0) {
 				session.removeAttribute("attrNo");
 			}
-			return "redirect:/attraction/list.tripkase?page="+page;
+			return "redirect:/attraction/list.tripkase?attrNo="+attrNo+"&page="+page;
 		} catch (Exception e) {
 			model.addAttribute("msg", e.toString());
 			return "common/errorPage";

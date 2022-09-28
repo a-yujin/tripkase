@@ -1,8 +1,4 @@
 @charset "UTF-8";
-body{
-	font-family : 'Noto Sans KR',sans-serif;
-}
-
 /* 관광지 검색 화면 */
 #attrSearchWrap{
 	width : 100%;
@@ -77,4 +73,75 @@ body{
 
 .searchBtnDiv{
 	margin-left: 310px;
+}
+
+/* 관광지 목록 화면 */
+.bottomLine{
+	padding-bottom: 20px;
+	border-bottom: 1px solid lightgray;
+}
+
+.oneImg{
+	padding-top: 20px;
+	width: 200px;
+	height: 200px;
+}
+
+.oneImg img{
+	width: 100%;
+	height: 100%;
+}
+
+.attrName{
+	padding-top: 15px;
+	padding-left: 30px;
+	font-weight: bold;
+	font-size: 20px;
+	height: 75px;
+}
+
+.attrAddr{
+	font-size: 11px;
+	padding-left: 30px;
+}
+
+.attrSInfo{
+	font-size: 13px;
+	padding-left: 30px;
+	font-weight: bold;
+}
+
+.attrPage{
+	padding-top: 40px;
+	
+}
+.attrPage a{
+	color: black;
+}
+.attrPage a:hover{
+	text-decoration: none;
+	color: #A8D1F0;
+}
+
+.attrCurrent{
+	color: #A8D1F0;
+	padding-right: 10px;
+}
+
+.prevBtn{
+	padding-right: 20px;
+}
+
+.nextBtn{
+	padding-left: 15px;
+}
+
+.otherPage{
+	padding-right: 10px;
+}
+
+/* 관광지 상세 화면 */
+#detailWrap{
+	width: 700px;
+	align: center;
 }
