@@ -81,10 +81,10 @@
 				<a class="function" href="#" onclick="location.href='/course/insertCourseView.tripkase'">코스 조회</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/admin/reportList.tripkase'">관광지 등록</a>
+				<a class="function" href="#" onclick="location.href='/attraction/write.tripkase'">관광지 등록</a>
 			</li>
 			<li>
-				<a class="function" href="#" onclick="location.href='/admin/reportList.tripkase'">관광지 조회</a>
+				<a class="function" href="#" onclick="location.href='/attraction/list.tripkase'">관광지 조회</a>
 			</li>
 			<li>
 				<a class="function" href="#" onclick="location.href='/restaurant/restaurantInsertPage.tripkase'">맛집 등록</a>

@@ -33,10 +33,10 @@ public interface AttractionStore {
 	int updateAttrImg(SqlSession session, AttractionImg attrImg);
 	
 	// 관광지 검색 게시글 수 가져오기
-	int getSearchCount(SqlSession session, String searchValue, String areaValue, String typeValue, String petValue);
+	int getSearchCount(SqlSession session, String searchValue, String areaValue, String [] typeValue);
 	
 	// 관광지 검색 게시글 목록 조회
-	List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String typeValue,
-			String petValue, int currentPage, int attrLimit);
+	List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String [] typeValue,
+			int currentPage, int attrLimit);
 
 }

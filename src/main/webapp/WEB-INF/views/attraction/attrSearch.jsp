@@ -6,46 +6,46 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세: 관광지 검색</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link href="/resources/css/attraction.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="../resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<div id="attrSearchWrap">
 		<br><br><br><br><br>
 		<div id="attrSearchArea">
-			<!-- <form action="/attr/search.tripkase" method="post"> -->
-			<form>
+			<form action="/attraction/searchList.tripkase" method="get">
 				<div>
 					<div id="searchTextDiv">
-						<input id="searchText" type="text" placeholder="가고 싶은 관광지를 입력하세요">
+						<input id="searchText" type="text" placeholder="원하는 관광지를 입력하세요 !" name="searchValue">
 					</div>
 					<div>
-						<input type="radio" name="attrLocation" class="attrLocation" id="radioAll"><label for="radioAll">전체</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="seoul"><label for="seoul">서울</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="gg"><label for="gg">경기</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="incheon"><label for="incheon">인천</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="gw"><label for="gw">강원</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="cb"><label for="cb">충북</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="cn"><label for="cn">충남</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="gb"><label for="gb">경북</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="gn"><label for="gn">경남</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="jb"><label for="jb">전북</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="jn"><label for="jn">전남</label>
-						<input type="radio" name="attrLocation" class="attrLocation" id="jeju"><label for="jeju">제주</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="radioAll" value="" checked><label for="radioAll">전체</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="seoul" value="seoul"><label for="seoul">서울</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="gg" value="gyeonggi"><label for="gg">경기</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="incheon" value="incheon"><label for="incheon">인천</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="kw" value="kangwon"><label for="kw">강원</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="cb" value="chungbuk"><label for="cb">충북</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="cn" value="chungnam"><label for="cn">충남</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="gb" value="gyeongbuk"><label for="gb">경북</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="gn" value="gyeongnam"><label for="gn">경남</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="jb" value="jeonbuk"><label for="jb">전북</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="jn" value="jeonnam"><label for="jn">전남</label>
+						<input type="radio" name="areaValue" class="attrLocation" id="jeju" value="jeju"><label for="jeju">제주</label>
 					</div>
 					<div class="searchChkDiv">
-						<select class="TripType" name="attrTripType">
-							<option selected value="tripType">여행 유형</option>
-							<option value="couple">커플 여행</option>
-							<option value="friends">우정 여행</option>
-							<option value="solo">홀로 여행</option>
-							<option value="family">가족 여행</option>
-							<option value="parents">효도 여행</option>
-						</select>
-						<label>반려동물 동반 여부
-							<label>예<input type="radio" name="attrPet" value="yesAnimal"></label>
-							<label>아니요<input type="radio" name="attrPet" value="noAnimal" checked></label>
+						<label>누구와 함께 하나요?
+						  	<!-- 모두 선택 추가 -->
+							<label>연인과<input type="checkbox" value="couple" name="typeValue"></label>
+							<label>친구와<input type="checkbox" value="friend" name="typeValue"></label>
+							<label>혼자<input type="checkbox" value="alone" name="typeValue"></label>
+							<label>가족과<input type="checkbox" value="family" name="typeValue"></label>
+							<label>부모님과<input type="checkbox" value="parents" name="typeValue"></label>
+							<label>반려동물과<input type="checkbox" value="pet" name="typeValue"></label>
 						</label>
 					</div>
 					<div class="searchBtnDiv">

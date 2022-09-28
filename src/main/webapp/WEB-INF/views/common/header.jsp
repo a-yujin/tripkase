@@ -46,8 +46,8 @@
 	</div>
 	<div id="tripMenu">
 		<ul id="trip_menu">
-			<li class="menu_item"><a href="#">코스</a></li>		
-			<li class="menu_item"><a href="#">관광지</a></li>		
+			<li class="menu_item"><a href="/course/courseMainPage.tripkase">코스</a></li>
+			<li class="menu_item"><a href="/attraction/searchView.tripkase">관광지</a></li>		
 			<li class="menu_item"><a href="/restaurant/restaurantMainPage.tripkase">맛집</a></li>		
 			<li class="menu_item"><a href="/room/searchView.tripkase">숙소</a></li>		
 		</ul>
