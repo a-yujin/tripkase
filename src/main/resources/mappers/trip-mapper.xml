@@ -16,11 +16,12 @@
  		<result property="tripCount" column="TRIP_COUNT" />
  		<result property="tripLike" column="TRIP_LIKE" />
  		<result property="tripShow" column="TRIP_SHOW" />
+ 		<result property="tripProfile" column="TRIP_PROFILE" />
  	</resultMap>
  	
 	<!-- 게시글 작성 -->
 	<insert id="insertTrip">
-		INSERT INTO TRIP_TBL VALUES(SEQ_TRIP_NO.NEXTVAL, #{tripTitle}, #{tripContents}, #{tripWriter}, DEFAULT, DEFAULT, #{tripFileName}, #{tripFileRename}, #{tripFilePath}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO TRIP_TBL VALUES(SEQ_TRIP_NO.NEXTVAL, #{tripTitle}, #{tripContents}, #{tripWriter}, DEFAULT, DEFAULT, #{tripFileName}, #{tripFileRename}, #{tripFilePath}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{tripProfile})
 	</insert>
 	
 	<update id="updateTrip">

@@ -12,15 +12,21 @@
 		<result property="tReplyUpdate" column="T_REPLY_UPDATE" />
 		<result property="tReplyCount" column="T_REPLY_COUNT" />
 		<result property="tReplyStatus" column="T_REPLY_STAUTS" />
+		<result property="tReplyProfile" column="T_REPLY_PROFILE" />
 	</resultMap>
 	
 	<!-- 댓글 작성 -->
 	<insert id="insertTripReply">
-		INSERT INTO T_REPLY_TBL VALUES(SEQ_T_REPLY_NO.NEXTVAL, #{repTripNo}, #{tReplyContents}, #{tReplyWriter}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO T_REPLY_TBL VALUES(SEQ_T_REPLY_NO.NEXTVAL, #{repTripNo}, #{tReplyContents}, #{tReplyWriter}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{tReplyProfile})
 	</insert>
 	
 	<!-- 댓글 전체 조회 -->
 	<select id="selectAllTripReply" resultMap="tripReplyResultMap">
 		SELECT * FROM T_REPLY_TBL WHERE REP_TRIP_NO = #{repTripNo} AND T_REPLY_STATUS = 'Y'
 	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		DELETE FROM T_REPLY_TBL WHERE T_REPLY_NO = #{tReplyNo}
+	</delete>
 </mapper>

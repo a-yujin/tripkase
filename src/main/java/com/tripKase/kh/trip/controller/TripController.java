@@ -57,10 +57,11 @@ public class TripController {
 		try {
 			String tripFileName = uploadFile.getOriginalFilename();
 			if(!tripFileName.equals("")) {
-				// 로그인 유저 닉네임 가져오기
 				Member member = (Member)session.getAttribute("loginMember");
 				String tripWriter = member.getMemberNick();
 				trip.setTripWriter(tripWriter);
+				String tripProfile = member.getmPfpReName();
+				trip.setTripProfile(tripProfile);
 				// 사진 저장 경로
 				String root = request.getSession().getServletContext().getRealPath("resources");
 				String savePath = root + "\\tuploadFiles";
@@ -102,8 +103,10 @@ public class TripController {
 			HttpSession session) {
 		Member member = (Member)session.getAttribute("loginMember");
 		String tReplyWriter = member.getMemberNick();
-		int tripNo = tripReply.getRepTripNo();
 		tripReply.settReplyWriter(tReplyWriter);
+		String tReplyProfile = member.getmPfpReName();
+		tripReply.settReplyProfile(tReplyProfile);
+		int tripNo = tripReply.getRepTripNo();
 		int result = tService.registerReply(tripReply);
 		if(result > 0) {
 			mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo+"&page="+page);
@@ -204,6 +207,7 @@ public class TripController {
 	@RequestMapping(value="/trip/detailView.tripkase", method=RequestMethod.GET)
 	public ModelAndView tripDetailView(
 			ModelAndView mv,
+			@ModelAttribute TripReply tripReply,
 			@RequestParam("tripNo") int tripNo,
 			@RequestParam("page") Integer page,
 			HttpSession session) {
@@ -300,6 +304,18 @@ public class TripController {
 		if(result > 0) {
 			session.removeAttribute("tripNo");
 		}
+		return "redirect:/trip/tripList.tripkase";
+	}
+	
+	/**
+	 * 댓글 삭제
+	 * @param tReplyNo
+	 * @return
+	 */
+	@RequestMapping(value="/tirp/removeReply.tripkase", method=RequestMethod.POST)
+	public String removeBoardReply(
+			@RequestParam("tReplyNo") Integer tReplyNo) {
+		int result = tService.deleteReply(tReplyNo);
 		return "redirect:/trip/tripList.tripkase";
 	}
 }

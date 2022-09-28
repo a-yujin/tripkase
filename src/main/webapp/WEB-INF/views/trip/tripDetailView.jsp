@@ -13,7 +13,10 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	<div id="member-inf">
-		<p>${trip.tripWriter }</p>
+		<div id="inf-left">
+			<img src="/resources/muploadFiles/${trip.tripProfile }" id="trip-profile">
+			<p>${trip.tripWriter }</p>
+		</div>
 	</div>
 	<!-- 게시글 상세 -->
 	<br><br><br><br>
@@ -77,26 +80,22 @@
 		<c:forEach items="${rList }" var="tripReply">
 			<div id="profile-wrapper">
 				<div id="profile-user">
-					
+					<img src="../resources/muploadFiles/${tripReply.tReplyProfile }" id="user-profile">
 				</div>
 			</div>
 			<div id="user-wrapper">
 				<span id="user-content">${tripReply.tReplyWriter } | </span>
 				<span>${tripReply.tReplyCreate } | </span>
 				<div id="choice-drop" class="btn-group dropstart">
-					<button type="button" id="replyBt" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="/resources/images/trip/dot.png" id="dot-select">
-					</button>
-					<c:if test="${member.memberNick eq tReply.tripWriter }">
-						<ul id="choice-menu" class="dropdown-menu">
-							<li><a id="choice-menu1" class="dropdown-item" onclick="location.href='/trip/tripModifyView.tripkase?tripNo=${trip.tripNo }&page=${page }';">수정하기</a></li>
-							<li><a id="choice-menu2" class="dropdown-item" onclick="removeReply(${tripReply.tReplyNo });">삭제하기</a></li>
-						</ul>
+					<c:if test="${member.memberNick eq tripReply.tReplyWriter }">
+						<div id="choice-menu">
+							<button class="replyBtn" onclick="removeReply(${tripReply.tReplyNo });">삭제</button>
+						</div>
 					</c:if>
-					<c:if test="${member.memberNick ne tReply.tripWriter }">
-						<ul id="choice-menu" class="dropdown-menu">
-							<li><a id="choice-menu1" class="dropdown-item" onclick="goAdmin()">신고하기</a></li>
-						</ul>
+					<c:if test="${member.memberNick ne tripReply.tReplyWriter }">
+						<div id="choice-menu">
+							<button class="replyBtn" onclick="goAdmin();">신고</button>
+						</div>
 					</c:if>
 				</div>
 			</div>
@@ -104,6 +103,7 @@
 			<br><hr>
 		</c:forEach>
 	</div>
+	<jsp:include page="../common/footer.jsp"/>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 	<script>
 		function tripOneRemove() {
@@ -138,7 +138,7 @@
 			event.preventDefault(); // alert창이 현재 자리에서 뜨게 해주는 것
 			if(confirm("댓글을 삭제하시겠습니까?")) {
 				var $delForm = $("<form>");
-				$delForm.attr("action", "/tirp/removeReply.kh");
+				$delForm.attr("action", "/tirp/removeReply.tripkase");
 				$delForm.attr("method", "post");
 				$delForm.append("<input type='hidden' name='tReplyNo' value='"+tReplyNo+"'>");
 				$delForm.appendTo("body");

@@ -82,4 +82,10 @@ public class TripServiceImpl implements TripService {
 		List<Trip> tList = tStore.selectSearchTrip(session, searchValue, currentPage, tripLimit);
 		return tList;
 	}
+
+	@Override
+	public int deleteReply(Integer tReplyNo) {
+		int result = tStore.deleteReply(session, tReplyNo);
+		return result;
+	}
 }
