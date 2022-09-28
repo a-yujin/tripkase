@@ -24,4 +24,6 @@ public interface TripService {
 	public int removeListOne(int tripNo);
 	// 여행소통 게시글 검색 리스트
 	public List<Trip> printSearchTrip(String searchValue, int currentPage, int tripLimit);
+	
+	public int deleteReply(Integer tReplyNo);
 }

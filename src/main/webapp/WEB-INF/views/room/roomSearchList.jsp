@@ -10,6 +10,13 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
+	
+	<br><br>
+	
+	<center>
+	<h4>숙 소 조 회</h4>
+	</center>
+	
 	<div id="roomlist">
 		<c:forEach items="${rjList }" var="roomJoin">
 			<div id="roomlist-outside" onclick="location.href='/room/roomDetailView.tripkase?roomNo=${roomJoin.roomNo}';">

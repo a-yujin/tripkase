@@ -27,6 +27,34 @@ public class TripStoreLogic implements TripStore{
 		return result;
 	}
 
+	// 여행소통 게시글 삭제 기능
+	@Override
+	public int deleteListOne(SqlSessionTemplate session, int tripNo) {
+		int result = session.delete("TripMapper.deleteTrip", tripNo);
+		return result;
+	}
+	
+	// 여행소통 댓글 삭제 기능
+	@Override
+	public int deleteReply(SqlSessionTemplate session, Integer tReplyNo) {
+		int result = session.delete("TripReplyMapper.deleteReply", tReplyNo);
+		return result;
+	}
+
+	// 여행소통 게시글 수정 기능
+	@Override
+	public int updateTrip(SqlSessionTemplate session, Trip trip) {
+		int result = session.update("TripMapper.updateTrip", trip);
+		return result;
+	}
+
+	// 여행소통 게시글 조회 기능
+	@Override
+	public int updateTripCount(SqlSessionTemplate session, int tripNo) {
+		int result = session.update("TripMapper.updateCount", tripNo);
+		return result;
+	}
+
 	// 여행소통 게시판 전체 조회
 	@Override
 	public List<Trip> selectAllTrip(SqlSessionTemplate session, int currentPage, int triplimit) {
@@ -43,13 +71,6 @@ public class TripStoreLogic implements TripStore{
 		return tList;
 	}
 
-	// 여행소통 게시글 상세 조회
-	@Override
-	public Trip selectListOne(SqlSessionTemplate session, int tripNo) {
-		Trip trip = session.selectOne("TripMapper.selectListOne", tripNo);
-		return trip;
-	}
-	
 	// 여행소통 게시판 리스트 페이징,검색 기능
 	@Override
 	public int selectTotalCount(SqlSessionTemplate session, String searchValue) {
@@ -58,19 +79,12 @@ public class TripStoreLogic implements TripStore{
 		int totalCount = session.selectOne("TripMapper.selectTotalCount", paramMap);
 		return totalCount;
 	}
-	
-	// 여행소통 게시글 수정 기능
-	@Override
-	public int updateTrip(SqlSessionTemplate session, Trip trip) {
-		int result = session.update("TripMapper.updateTrip", trip);
-		return result;
-	}
 
-	// 여행소통 게시글 삭제 기능
+	// 여행소통 게시글 상세 조회
 	@Override
-	public int deleteListOne(SqlSessionTemplate session, int tripNo) {
-		int result = session.delete("TripMapper.deleteTrip", tripNo);
-		return result;
+	public Trip selectListOne(SqlSessionTemplate session, int tripNo) {
+		Trip trip = session.selectOne("TripMapper.selectListOne", tripNo);
+		return trip;
 	}
 	
 	// 여행소통 검색 기능
@@ -80,12 +94,5 @@ public class TripStoreLogic implements TripStore{
 		RowBounds rowBounds = new RowBounds(offset, tripLimit);
 		List<Trip> tList = session.selectList("TripMapper.selectSearchTrip", searchValue, rowBounds);
 		return tList;
-	}
-	
-	// 여행소통 게시글 조회 기능
-	@Override
-	public int updateTripCount(SqlSessionTemplate session, int tripNo) {
-		int result = session.update("TripMapper.updateCount", tripNo);
-		return result;
 	}
 }

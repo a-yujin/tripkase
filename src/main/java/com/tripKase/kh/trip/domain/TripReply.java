@@ -11,11 +11,12 @@ public class TripReply {
 	private Date tReplyUpdate; // 여행소통 댓글 수정일
 	private int tReplyCount; // 여행소통 댓글수
 	private String tReplyStatus; // 여행소통 댓글 존재여부
+	private String tReplyProfile;
 	
 	public TripReply() {}
 
 	public TripReply(int tReplyNo, int repTripNo, String tReplyContents, String tReplyWriter, Date tReplyCreate,
-			Date tReplyUpdate, int tReplyCount, String tReplyStatus) {
+			Date tReplyUpdate, int tReplyCount, String tReplyStatus, String tReplyProfile) {
 		super();
 		this.tReplyNo = tReplyNo;
 		this.repTripNo = repTripNo;
@@ -25,6 +26,7 @@ public class TripReply {
 		this.tReplyUpdate = tReplyUpdate;
 		this.tReplyCount = tReplyCount;
 		this.tReplyStatus = tReplyStatus;
+		this.tReplyProfile = tReplyProfile;
 	}
 
 	public int gettReplyNo() {
@@ -91,10 +93,19 @@ public class TripReply {
 		this.tReplyStatus = tReplyStatus;
 	}
 
+	public String gettReplyProfile() {
+		return tReplyProfile;
+	}
+
+	public void settReplyProfile(String tReplyProfile) {
+		this.tReplyProfile = tReplyProfile;
+	}
+
 	@Override
 	public String toString() {
 		return "TripReply [tReplyNo=" + tReplyNo + ", repTripNo=" + repTripNo + ", tReplyContents=" + tReplyContents
 				+ ", tReplyWriter=" + tReplyWriter + ", tReplyCreate=" + tReplyCreate + ", tReplyUpdate=" + tReplyUpdate
-				+ ", tReplyCount=" + tReplyCount + ", tReplyStatus=" + tReplyStatus + "]";
+				+ ", tReplyCount=" + tReplyCount + ", tReplyStatus=" + tReplyStatus + ", tReplyProfile=" + tReplyProfile
+				+ "]";
 	}
 }

@@ -16,13 +16,13 @@
 		<form action="/room/roomNameSearch.tripkase" method="get" enctype="multipart/form-data">
 			<div id="search-area" class="input-group">				
 				<input type="search" id="search-input" class="form-control rounded" name="searchValue" placeholder="숙소 이름으로 검색 가능합니다. 전체 조회를 원하시면 공백으로 조회하기 버튼을 눌러주세요." aria-label="Search" aria-describedby="search-addon" value="${searchValue }" />
-				<button type="submit" id="searchBt" class="btn btn-outline-primary">조회하기</button>
+				<button type="submit" id="searchBt">조회하기</button>
 			</div>	<!-- 지역 선택 영역 -->
 		</form>
 		<form action="/room/roomTypeSearch.tripkase" method="get" enctype="multipart/form-data">
-			<div>
+			<div id="area-wrapper">
 				<div id="choice-area" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-					<input type="radio" class="btn-check" id="btnradio1" name="areaValue" autocomplete="off" checked value="">
+					<input type="radio" class="btn-check" id="btnradio1" name="areaValue" autocomplete="off" value="">
 					<label class="btn btn-outline-primary" for="btnradio1">전체보기</label>
 					
 					<input type="radio" class="btn-check" id="btnradio2" name="areaValue" autocomplete="off" value="서울">
@@ -62,9 +62,11 @@
 					<input type="date" id="check-in" class="room-check">
 					<input type="date" id="check-out" class="room-check">
 				</div>
+			</div>
+			<div id="choice-wrapper">
 				<div id="choice-place" >
 					<div id="choice-type" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-						<span>숙소 종류</span>
+						<span id="type-text">숙소 종류</span>
 						<input type="radio" name="typeValue" value="모텔"> 모텔
 						<input type="radio" name="typeValue" value="호텔"> 호텔
 						<input type="radio" name="typeValue" value="펜션"> 펜션
@@ -72,7 +74,7 @@
 					</div>
 					<div id="choice-person">
 						<span id="person-text">입실 인원</span>
-						<input type="number" name="personValue">
+						<input type="number" id="person-in" name="personValue">
 					</div>
 					<div id="choice-pet">
 						<span id="pet-text">반려견 동반 여부</span>
@@ -83,7 +85,7 @@
 					</div>
 				</div>
 			</div>
-		<br><br>
+		<br><br><br>
 		<div id="search-button">
 			<button type="submit" id="sbutton">조회하기</button>
 		</div>

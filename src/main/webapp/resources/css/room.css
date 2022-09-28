@@ -8,6 +8,12 @@ li {
 }
 
 /* roomSearchView.jsp */
+#room-header {
+	width : 100%;
+	height : 50px;
+	background-color : #A8D1F0;
+	position : fixed;
+}
 #search-wrapper {
 	width : 100%;
 	height : 660px;
@@ -31,6 +37,24 @@ li {
 		margin : 0 auto;
 		padding-top : 120px;
 		padding-bottom : 20px;
+	}
+		#search-input {
+			width : 1100px;
+		}
+		#searchBt {
+			width : 100px;
+			height : 35px;
+			border : solid 1px #0080ff;
+			background-color : #0080ff;
+			color : white;
+		}
+	#area-wrapper {
+		width : 1200px;
+		margin : 0 auto;
+	}
+	#choice-wrapper {
+		width : 1000px;
+		margin : 0 auto;
 	}
 	#choice-area {
 		width : 1200px;
@@ -56,11 +80,12 @@ li {
 #search-button {
 	width : 100%;
 	text-align : center;
+	margin-top : 100px;
 }
 	#sbutton {
 		width : 100px;
 		height : 40px;
-		border : solid 2px lightgray;
+		border : none;
 		border-radius : 15px;
 		background-color : white;
 	}
@@ -92,26 +117,34 @@ li {
 		padding-top : 60px;
 		padding-left : 40px;
 	}
+	#type-text {
+		margin-right : 30px;
+	}
 	/* 숙소 인원 선택 */
 	#choice-person {
-		width : 30%;
+		width : 20%;
 		float : left;
 		padding-top : 60px;
-		margin-left : 40px;
 	}
 		#person-text {
 			float : left;
+			margin-left : -20px;
+		}
+		#person-in {
+			width : 100px;
+			margin-top : -10px;
+			margin-left : -40px;
 		}
 	/* 반려견 동반 여부 선택 */
 	#choice-pet {
-		width : 30%;
-		float : right;
-		margin-top : -30px;
+		width : 20%;
+		float : left;
+		margin-top : 60px;
 	}
 		#pet-text {
 			float : left;
 			margin-left : 60px;
-			margin-right : 80px;
+			margin-right : 40px;
 		}
 /* roomCreateForm.jsp */
 .first-text {
@@ -120,9 +153,10 @@ li {
 }
 /* 숙소 정보 입력 */
 #plus-wrapper {
-	width : 800px;
+	width : 1000px;
 	margin : 0 auto;
-	padding-left : 600px;
+	padding-top : 40px;
+	padding-left : 400px;
 }
 	/* 카테고리 */
 	#category-text {
@@ -130,7 +164,6 @@ li {
 	}
 	#category-choice {
 		width : 80px;
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	/* 이름 */
@@ -138,7 +171,6 @@ li {
 		float : left
 	}
 	#name-input {
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	/* 가격 */
@@ -146,7 +178,6 @@ li {
 		float : left;
 	}
 	#room-price {
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	/* 지역 */
@@ -155,15 +186,14 @@ li {
 	}
 	#area-choice {
 		width : 80px;
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	/* 주소 */
 	#address-text {
 		float : left;
+		padding-right : 20px;
 	}
 	#address-search {
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	#rAddress1 {
@@ -180,24 +210,19 @@ li {
 		float : left
 	}
 	#roomTel {
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	/* 입실 가능 인원 */
 	#person-text {
-		float : left;
+		margin-left : 0px;
 	}
 	#roomPerson {
-		margin-top : 20px;
 		margin-left : 20px;
 	}
 	/* 애견동반 가능여부 */
 	#pet-text {
 		margin-left : 0px;
 		margin-right : 30px;
-	}
-	#roomPet {
-		margin-top : 20px;
 	}
 	/* 주차 정보, 대중교통 정보, 숙소 정보 */
 	#roomCar {
@@ -218,7 +243,7 @@ li {
 /* 등록 버튼 */
 #room-button {
 	width : 100%;
-	padding-left : 170px;
+	padding-left : 300px;
 	text-align : center;
 }
 #rbutton {
