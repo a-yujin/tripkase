@@ -87,7 +87,7 @@
      <c:if test="${!empty roomDataList }">
         <c:forEach items="${roomDataList }" var="room">
 	            <div class="contents-contents">
-	                <img src="/resources/rUploadFiles/${room.roomFileRename }" class="contents-img" width="150px" height="150px">
+	                <img src="/resources/ruploadFiles/${room.roomFileRename }" class="contents-img" width="150px" height="150px">
                         <div id="choice-drop" class="btn-group dropstart">
 							<button type="button" class="FAB-btn" id="choiceBt" data-bs-toggle="dropdown" aria-expanded="false">
 								<img class="fab-btn-img" src="/resources/images/storage/fab.png">
