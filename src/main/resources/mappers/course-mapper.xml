@@ -34,6 +34,16 @@
 	 		<result property="cFileRename" 			column="COURSE_FILERENAME"/>
 	 		<result property="cFilePath" 			column="COURSE_FILEPATH"/>
  			</resultMap>
+ 			<resultMap type="CourseReply" 			id="courseReplyResultMap">
+			<id property="cReplyNo" 				column="T_REPLY_NO" />
+			<result property="repCourseNo" 			column="REP_TRIP_NO" />
+			<result property="cReplyContents" 		column="T_REPLY_CONTENTS" />
+			<result property="cReplyWriter" 		column="T_REPLY_WRITER" />
+			<result property="cReplyCreate" 		column="T_REPLY_CREATE" />
+			<result property="cReplyUpdate" 		column="T_REPLY_UPDATE" />
+			<result property="cReplyCount" 			column="T_REPLY_COUNT" />
+			<result property="cReplyStatus" 		column="T_REPLY_STAUTS" />
+			</resultMap>	
 		
 		<select id="courseMainPage" resultMap="courseMainPageResultMap">
 		WITH TRIP AS (SELECT A.COURSE_NO, B.COURSE_NAME, B.COURSE_THEMA, A.COURSE_FILENAME, A.COURSE_FILERENAME, A.LOCATION_NAME, ROW_NUMBER() OVER(PARTITION BY A.COURSE_NO ORDER BY A.COURSE_NO DESC) AS C_NUM FROM COURSE_IMG A JOIN COURSE_TBL B ON A.COURSE_NO = B.COURSE_NO ORDER BY COURSE_NO)
@@ -99,6 +109,11 @@
 		SELECT * FROM COURSE_TBL
 		WHERE COURSE_NO = #{courseNo}
 		</select>
+		
+		<insert id="registerReply">
+		INSERT INTO C_REPLY_TBL 
+		VALUES(SEQ_T_REPLY_NO.NEXTVAL, #{repCourseNo}, #{cReplyContents}, #{cReplyWriter}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		</insert>
 </mapper>
 
 

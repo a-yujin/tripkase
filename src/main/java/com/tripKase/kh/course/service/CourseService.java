@@ -5,6 +5,7 @@ import java.util.List;
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.domain.CourseMainPage;
+import com.tripKase.kh.course.domain.CourseReply;
 
 public interface CourseService {
 
@@ -31,5 +32,7 @@ public interface CourseService {
 	public List<CourseMainPage> selectCourseMain(String locationName);
 	
 	public List<CourseImg> courseImgByNo(int courseNo);
+	
+	public int registerReply(CourseReply courseReply);
 	
 }

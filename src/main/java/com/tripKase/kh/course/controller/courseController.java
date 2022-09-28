@@ -214,15 +214,20 @@ public class courseController {
 		return mv;
 	}
 	
+	// 댓글등록
 	@RequestMapping(value="/course/addReply.tripkase", method = RequestMethod.POST)
 	public ModelAndView registerReply(
 			ModelAndView mv,
 			@ModelAttribute CourseReply courseReply,
-			@RequestParam("page") int page,
 			HttpSession session) {
-		
-		
-		
+		Member member = (Member)session.getAttribute("loginMember");
+		String cReplyWriter = member.getMemberNick();
+		int cosNo = courseReply.getcReplyNo();
+		courseReply.setcReplyWriter(cReplyWriter);
+		int result = cService.registerReply(courseReply);
+		if( result > 0 ) {
+			mv.setViewName("redirect:/course/courseDetail.tripkase?courseNo="+cosNo);
+		}
 		
 		return mv;
 	}
