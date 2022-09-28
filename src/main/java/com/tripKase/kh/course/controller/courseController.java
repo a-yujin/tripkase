@@ -214,19 +214,25 @@ public class courseController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/course/addReply.tripkase", method = RequestMethod.POST)
-	public ModelAndView registerReply(
-			ModelAndView mv,
-			@ModelAttribute CourseReply courseReply,
-			@RequestParam("page") int page,
-			HttpSession session) {
-		
-		
-		
-		
-		return mv;
-	}
-	
+
+	// 코스수정
+//	@RequestMapping(value="/course/modifyCourse.tripkase", method = RequestMethod.GET)
+//	public ModelAndView modifyCourse (
+//			ModelAndView mv,
+//			@ModelAttribute Course course,
+//			@RequestParam(value="uploadFile", required = false) List<MultipartFile> uploadFile,
+//			HttpServletRequest request,
+//			MultipartHttpServletRequest mRequest,
+//			@RequestParam("locationName") String locationName,
+//			@RequestParam("courseNo") Integer courseNo) {
+//		
+//		int result = cService.modifyCourse(course);
+//		if(result > 0) {
+//			mv.setViewName("redirect:/course/modifyCourse.tripkase");
+//		}
+//		
+//		return mv;
+//	}
 }
 
 

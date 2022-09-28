@@ -22,7 +22,7 @@
 }
 
 #contents {
-	width: 980px;
+	width: 1000px;
 	margin: 0 auto;
 	padding: 0 20px 27px 20px;
 }
@@ -59,7 +59,7 @@ div {
 }
 
 #courseSchedule-inside {
-	width: 25%;
+	width: 20%;
 	height: 150px;
 	margin: 0 auto;
 	float : left;
@@ -79,7 +79,7 @@ div {
 
 #courseDetail-inside{
 	width: 50%;
-	height: 50%;
+	height: 30%;
 	margin: 0 auto;
 	float : left;
 }
@@ -106,6 +106,13 @@ div {
 	width: 90%;
 	height: 90%;
 }
+
+#cosReply-wrapper {
+	width : 1000px;
+	margin : 0 auto;
+	padding-top : 1000px;
+}
+
 </style>
 
 </head>
@@ -148,21 +155,6 @@ div {
 			</div>
 		</div>
 	</form>
-	
-	<form action="/trip/addReply.tripkase" method="post">
-		<input type="hidden" name="page" value="${page }">
-		<input type="hidden" name="repTripNo" value="${trip.tripNo }">
-		<div id="tReply-wrapper">
-			<div id="tReply-background">
-				<textarea id="tReply-write" name="tReplyContents"></textarea>
-				<input type="submit" id="tReply-writebt" value="등록하기">		
-			</div>
-		</div>
-	</form>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-		crossorigin="anonymous"></script>
 </body>
 </html>
 

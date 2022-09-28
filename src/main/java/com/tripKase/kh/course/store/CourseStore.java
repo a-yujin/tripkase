@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.domain.CourseMainPage;
+import com.tripKase.kh.course.domain.CourseReply;
 
 public interface CourseStore {
 
@@ -34,4 +35,5 @@ public interface CourseStore {
 	
 	public List<CourseImg> coursImgByNo(SqlSession session, int courseNo);
 	
+	public int registerCourseReply(SqlSession session, CourseReply courseReply);
 }

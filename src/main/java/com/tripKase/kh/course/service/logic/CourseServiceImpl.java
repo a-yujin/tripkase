@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.domain.CourseMainPage;
+import com.tripKase.kh.course.domain.CourseReply;
 import com.tripKase.kh.course.service.CourseService;
 import com.tripKase.kh.course.store.CourseStore;
 import com.tripKase.kh.member.domain.Member;
@@ -96,6 +97,13 @@ public class CourseServiceImpl implements CourseService {
 	public List<CourseImg> courseImgByNo(int courseNo) {
 		List<CourseImg> courseImg = cStore.coursImgByNo(session, courseNo);
 		return courseImg;
+	}
+
+
+	@Override
+	public int registerReply(CourseReply courseReply) {
+		int result = cStore.registerCourseReply(session, courseReply);
+		return result;
 	}
 	
 }

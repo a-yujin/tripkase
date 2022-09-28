@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.tripKase.kh.course.domain.Course;
 import com.tripKase.kh.course.domain.CourseImg;
 import com.tripKase.kh.course.domain.CourseMainPage;
+import com.tripKase.kh.course.domain.CourseReply;
 import com.tripKase.kh.course.store.CourseStore;
 import com.tripKase.kh.member.domain.Member;
 
@@ -87,6 +88,12 @@ public class CourseStoreLogic implements CourseStore {
 	public List<CourseImg> coursImgByNo(SqlSession session, int courseNo) {
 		List<CourseImg> courseImg = session.selectList("CourseMapper.courseImgByNo", courseNo);
 		return courseImg;
+	}
+
+	@Override
+	public int registerCourseReply(SqlSession session, CourseReply courseReply) {
+		int result = session.insert("CourseMapper.registerReply", courseReply);
+		return result;
 	}
 
 }
