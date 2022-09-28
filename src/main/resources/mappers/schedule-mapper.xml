@@ -18,9 +18,37 @@
 		<id property="scheduleSeq" column="SCHEDULE_SEQ"/>
 		<result property="contetnsType" column="CONTENTS_TYPE"/>
 		<result property="contetnsNo" column="CONTENTS_NO"/>
+		<collection property="attraction" resultMap="attrResultMap"/>
+		<collection property="attractionImg" resultMap="attrImgResultMap"/>
 		<collection property="restaurant" resultMap="RestaurantResultMap"/>
+		<collection property="resImg" resultMap="ResImgResultMap"/>
+		<collection property="room" resultMap="roomResultMap"/>
+		<collection property="roomImg" resultMap="roomImgResultMap"/>
 	</resultMap>
-	 <resultMap type="Restaurant" 			id="RestaurantResultMap">
+	<resultMap type="Attraction" id="attrResultMap">
+		<id property="attrNo" 				column="ATTR_NO"/>
+		<result property="attrLocation" 	column="ATTR_LOCATION"/>
+		<result property="attrName" 		column="ATTR_NAME"/>
+		<result property="attrTripType" 	column="ATTR_TRIP_TYPE"/>
+		<result property="attrInfo" 		column="ATTR_INFO"/>
+		<result property="attrTel" 			column="ATTR_TEL"/>
+		<result property="attrWebsite" 		column="ATTR_WEBSITE"/>
+		<result property="attrAddress" 		column="ATTR_ADDRESS"/>
+		<result property="attrHours" 		column="ATTR_HOURS"/>
+		<result property="attrFee" 			column="ATTR_FEE"/>
+		<result property="attrCar" 			column="ATTR_CAR"/>
+		<result property="attrPet" 			column="ATTR_PET"/>
+		<result property="attrShortInfo" 	column="ATTR_SHORT_INFO"/>
+		<result property="attrStatus" 		column="ATTR_STATUS"/>
+	</resultMap>
+	<resultMap type="AttrImg" id="attrImgResultMap">
+		<id property="attrImgNo" 			column="ATTR_IMG_NO"/>
+		<result property="attrNo" 		column="ATTR_NO"/>
+		<result property="attrFileName" 	column="ATTR_FILENAME"/>
+		<result property="attrFileRename"	column="ATTR_FILERENAME"/>
+		<result property="attrFilePath" 	column="ATTR_FILEPATH"/>
+	</resultMap>
+	 	 <resultMap type="Restaurant" 			id="RestaurantResultMap">
 	 	<id 	property="resNo" 			column="RES_NO"/>			<!-- 맛집 ID-->
 	 	<result property="resArea" 			column="RES_AREA"/>			<!-- 맛집 지역 -->
 	 	<result property="resType" 			column="RES_TYPE"/>			<!-- 맛집 타입 -->
@@ -29,13 +57,42 @@
 	 	<result property="resDayoff" 		column="RES_DAYOFF"/>		<!-- 맛집 휴일 -->
 	 	<result property="resMainmenu" 		column="RES_MAINMENU"/> 	<!-- 맛집 대표메뉴 -->
 	 	<result property="resDetail" 		column="RES_DETAIL"/>		<!-- 맛집 상세정보 -->
-	 	<result property="resFilename" 		column="RES_FILENAME"/>		<!-- 맛집 이미지파일 업로드 -->
-	 	<result property="resFileRename" 	column="RES_FILERENAME"/>	<!-- 맛집 이미지파일 업로드 후 -->
-	 	<result property="resFilepath" 		column="RES_FILEPATH"/>		<!-- 맛집 이미지 경로 -->
-	 	<result property="resMap" 			column="RES_MAP"/> 			<!-- 맛집 지도 위치 -->
 	 	<result property="resStatus" 		column="RES_STATUS"/>		<!-- 맛집 게시 여부 (Y/N) -->
 	 	<result property="resAddress" 		column="RES_ADDRESS"/>		<!-- 맛집 주소 -->
+ 		<result property="resFileName"		column="RES_FILENAME"/>
+ 		<result property="resFileRename"	column="RES_FILERENAME"/>
+ 		<result property="resFilePath"		column="RES_FILEPATH"/>
  	</resultMap>
+ 	<resultMap type="ResImg" id="ResImgResultMap">
+ 		<id property="resImgNo"				column="RES_IMG_NO"/>
+ 		<result property="resNo"			column="RES_NO"/>
+ 		<result property="resFileName"		column="RES_FILENAME"/>
+ 		<result property="resFileRename"	column="RES_FILERENAME"/>
+ 		<result property="resFilePath"		column="RES_FILEPATH"/>
+ 	</resultMap>
+ 		<resultMap type="Room" id="roomResultMap">
+		<id property="roomNo" column="ROOM_NO" />
+		<result property="roomType" column="ROOM_TYPE" />
+		<result property="roomArea" column="ROOM_AREA" />
+		<result property="roomName" column="ROOM_NAME" />
+		<result property="roomAddress" column="ROOM_ADDRESS" />
+		<result property="roomPrice" column="ROOM_PRICE" />
+		<result property="roomTel" column="ROOM_TEL" />
+		<result property="roomPerson" column="ROOM_PERSON" />
+		<result property="roomPet" column="ROOM_PET" />
+		<result property="roomCar" column="ROOM_CAR" />
+		<result property="roomLocation" column="ROOM_LOCATION" />
+		<result property="roomGuide" column="ROOM_GUIDE" />
+		<result property="roomStatus" column="ROOM_STATUS" />
+	</resultMap>
+	<resultMap type="RoomImg" id="roomImgResultMap">
+		<id property="roomImgNo" column="ROOM_IMG_NO" />
+		<result property="roomNo" column="ROOM_NO" />
+		<result property="roomFileName" column="ROOM_FILENAME" />
+		<result property="roomFileRename" column="ROOM_FILERENAME" />
+		<result property="roomFilePath" column="ROOM_FILEPATH" />
+	</resultMap>
+	
 	<select id="selectAllSchedule" resultMap="ScheduleResultMap">
 		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_DAYS = '1일차' AND MEMBER_ID = #{memberId}
 	</select>
@@ -46,13 +103,14 @@
 		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_SEQ = #{cheduleSeq}
 	</select>
 	<select id="selectSMBySeq" resultMap="ScheduleManageResultMap">
-		SELECT * FROM SCHEDULE_MANAGE WHERE SCHEDULE_SEQ = #{cheduleSeq} AND SCHEDULE_DAYS = #{Days}
-		<!-- SELECT b.res_name, b.res_filepath FROM SCHEDULE_MANAGE a JOIN RESTAURANT_TBL b ON (a.CONTENTS_NO = b.RES_NO and a.contents_type='맛집') WHERE SCHEDULE_SEQ = 4 and schedule_days= #{Days}
+		SELECT RES_NAME, RES_FILERENAME, CONTENTS_TYPE, CONTENTS_NO FROM (SELECT b.RES_NAME, c.RES_FILERENAME, a.CONTENTS_TYPE, a.CONTENTS_NO, ROW_NUMBER() OVER(PARTITION BY b.RES_NAME ORDER BY c.RES_FILERENAME) AS RANK FROM SCHEDULE_MANAGE a JOIN RESTAURANT_TBL b ON (a.CONTENTS_NO = b.RES_NO and a.contents_type='restaurant')
+		JOIN RESIMG_TBL c ON(b.RES_NO = C.RES_NO) WHERE SCHEDULE_SEQ = #{cheduleSeq} and schedule_days= #{Days}) WHERE RANK = 1
 		UNION ALL
-		SELECT c.room_name, b.ROOM_FILEPATH FROM SCHEDULE_MANAGE a JOIN ROOMIMG_TBL b ON (a.CONTENTS_NO = b.ROOM_NO and a.contents_type='숙소')
-       	JOIN ROOM_TBL C ON(b.ROOM_NO = c.ROOM_NO) WHERE SCHEDULE_SEQ = 4 and ROWNUM = 1 and schedule_days= #{Days}'
+		SELECT ATTR_NAME, ATTR_FILERENAME,CONTENTS_TYPE, CONTENTS_NO FROM (SELECT b.ATTR_NAME, c.ATTR_FILERENAME, a.CONTENTS_TYPE,a.CONTENTS_NO,ROW_NUMBER() OVER(PARTITION BY b.ATTR_NAME ORDER BY c.ATTR_FILERENAME) AS RANK FROM SCHEDULE_MANAGE a JOIN ATTRACTION_TBL b ON (a.CONTENTS_NO = b.ATTR_NO and a.contents_type='attraction')
+		JOIN ATTRACTION_IMG c ON(b.ATTR_NO = C.ATTR_NO) WHERE SCHEDULE_SEQ = #{cheduleSeq} and schedule_days= #{Days}) WHERE RANK = 1
 		UNION ALL
-		SELECT b.attr_name, b.attr_FILEPATH FROM SCHEDULE_MANAGE a JOIN attraction_TBL b ON (a.CONTENTS_NO = b.attr_NO and a.contents_type='관광지') WHERE SCHEDULE_SEQ = 4 and schedule_days=#{Days} -->
+		SELECT ROOM_NAME, ROOM_FILERENAME,CONTENTS_TYPE, CONTENTS_NO FROM (SELECT b.ROOM_NAME, c.ROOM_FILERENAME, a.CONTENTS_TYPE, a.CONTENTS_NO,ROW_NUMBER() OVER(PARTITION BY b.ROOM_NAME ORDER BY c.ROOM_FILERENAME) AS RANK FROM SCHEDULE_MANAGE a JOIN ROOM_TBL b ON (a.CONTENTS_NO = b.ROOM_NO and a.contents_type='room')
+		JOIN ROOMIMG_TBL c ON(b.ROOM_NO = C.ROOM_NO) WHERE SCHEDULE_SEQ = #{cheduleSeq} and schedule_days= #{Days}) WHERE RANK = 1
 	</select>
 	<select id="dayCount" resultType="_int">
 		SELECT COUNT(*) FROM SCHEDULE_TBL WHERE MEMBER_ID = #{memberId} GROUP BY SCHEDULE_SEQ 
@@ -66,4 +124,7 @@
 	<insert id="insertScheduleData">
 		INSERT INTO SCHEDULE_MANAGE VALUES(SEQ_SMNO.NEXTVAL, #{scheduleSeq},#{scheduleDays},#{contentsType},#{contentsNo})
 	</insert>
+	<delete id="deleteSchedule">
+		DELETE FROM SCHEDULE_TBL WEHRE SCHEDULE_SEQ = #{scheduleSeq}
+	</delete>
 </mapper>

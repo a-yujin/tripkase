@@ -87,4 +87,10 @@ public class ScheduleServiceLogic implements ScheduleService {
 		return result;
 	}
 
+	@Override
+	public int deleteSchedule(int scheduleSeq) {
+		int result = sStore.deleteSchedule(session, scheduleSeq);
+		return result;
+	}
+
 }

@@ -31,6 +31,7 @@
     #schedule{
     	border:1px solid;
     	margin:30px;
+    	
     }
     #calendar{
     	display:none;
@@ -51,21 +52,12 @@
 </head>
 <body>
 		<div id="scheduleReg">
-			<button id="btnSubmit" type="button" class="btn btn-default" onclick="showCalendar();">일정 등록</button>
+			<button id="btnSubmit" type="button" class="btn btn-default">나의 일정</button>
 			<br>
-			<div id="calendar">
-				<form action="/schedule/RegisteSchedule.tripkase">
-					<div></div>
-					제목<br>
-					<input size="28" type="text" name="scheduleName" placeholder="일정 제목을 입력해주세요."/><br><br>
-					일정<br>
-					<input type="date" name="scheduleStart"/><input type="date" name="scheduleEnd"/><br><br>
-					<div id="CalendarBtn">
-					<button type="submit" onclick="return confirm('일정을 등록하시겠습니까?');">확인</button>
-					<button type="button" onclick="hideCalendar();">닫기</button>
-					</div>
-				</form>
-			</div>
+				<c:if test="${empty sList}">
+					여행일정 페이지에서 여행일정을 등록해주세요!
+				</c:if>
+				
 				<c:forEach items="${sList }" var="schedule" varStatus="i">
 					<form action="/schedule/insertSchedule.tripkase">
 						<div id="schedule" style="cursor : pointer">
