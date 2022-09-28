@@ -76,18 +76,18 @@
 		<div id="schedule">
 			<c:if test="${scheduleManage.contetnsType eq 'attraction'}">
 				<span class="glyphicon glyphicon-map-marker"></span>
-				<img class="img" id="contentsIMg" onclick="location.href='/attraction/detail.tripkase?attrNo=${scheduleManage.contetnsNo}&page=1'" width="150" height="150" src="/resources/attrUploadFiles/${scheduleManage.resImg.resFileRename}" alt="컨텐츠 이미지"/><br>
+				<img class="img" id="contentsIMg" onclick="location.href='/attraction/detail.tripkase?attrNo=${scheduleManage.contetnsNo}&page=1'" width="160" height="160" src="/resources/attrUploadFiles/${scheduleManage.resImg.resFileRename}" alt="컨텐츠 이미지"/><br>
 			</c:if>
 			<c:if test="${scheduleManage.contetnsType eq 'restaurant'}">
 				<span class="glyphicon glyphicon-cutlery"></span>
-				<img class="img" id="contentsIMg" onclick="location.href='/restaurant/restaurantDetailView.tripkase?resNo=${scheduleManage.contetnsNo}&page=1'" width="150" height="150" src="/resources/resUploadFiles/${scheduleManage.resImg.resFileRename}" alt="컨텐츠 이미지"/><br>
+				<img class="img" id="contentsIMg" onclick="location.href='/restaurant/restaurantDetailView.tripkase?resNo=${scheduleManage.contetnsNo}&page=1'" width="160" height="160" src="/resources/resUploadFiles/${scheduleManage.resImg.resFileRename}" alt="컨텐츠 이미지"/><br>
 			</c:if>
 			<c:if test="${scheduleManage.contetnsType eq 'room'}">
 				<span class="glyphicon glyphicon-bed"></span>
-				<img class="img" id="contentsIMg" onclick="location.href='/room/roomDetailView.tripkase?roomNo=${scheduleManage.contetnsNo}&page=1'" width="150" height="150" src="/resources/ruploadFiles/${scheduleManage.resImg.resFileRename}" alt="컨텐츠 이미지"/><br>
+				<img class="img" id="contentsIMg" onclick="location.href='/room/roomDetailView.tripkase?roomNo=${scheduleManage.contetnsNo}&page=1'" width="160" height="160" src="/resources/ruploadFiles/${scheduleManage.resImg.resFileRename}" alt="컨텐츠 이미지"/><br>
 			</c:if>
-			${scheduleManage.restaurant.resName}
-
+			${scheduleManage.restaurant.resName}<br>
+			<button onclick="location.href='/schedule/deleteScheduleData.tripkase?scheduleNo=${scheduleManage.scheduleNo}&scheduleSeq=${scheduleManage.scheduleSeq }'">일정에서 제거</button>
 		</div>		
 		<div id="icon">
 				<br><br><br><span class="glyphicon glyphicon-menu-right"></span>

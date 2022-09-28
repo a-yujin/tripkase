@@ -35,4 +35,6 @@ public interface ScheduleStore {
 
 	int deleteSchedule(SqlSession session, int scheduleSeq);
 
+	int deleteScheduleData(SqlSession session, int scheduleNo);
+
 }

@@ -18,6 +18,7 @@
     <div id="storagetitle">
         <h2>나의 보관함</h2>
     </div>
+ 	<hr id="storage-hr">
    	<div class="contents-type">　　#관광지</div><br>
    	<div class="contents-box">
 		<c:if test="${!empty attrDataList }">
@@ -48,8 +49,9 @@
 	 	</c:if>
  	</div>
     <br>
-    <br>
-    
+  	<br>
+	<hr id="storage-hr">
+ 
     <div class="contents-type">　　#맛집</div><br>
     <div class="contents-box">
      <c:if test="${!empty resDataList }">
@@ -81,6 +83,7 @@
 	</div>
     <br>
     <br>
+    <hr id="storage-hr">
     
     <div class="contents-type">　　#숙소</div><br>
     <div class="contents-box">

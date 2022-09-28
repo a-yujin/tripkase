@@ -91,4 +91,10 @@ public class ScheduleStoreLogic implements ScheduleStore{
 		return result;
 	}
 
+	@Override
+	public int deleteScheduleData(SqlSession session, int scheduleNo) {
+		int result = session.delete("ScheduleMapper.deleteScheduleData", scheduleNo);
+		return result;
+	}
+
 }

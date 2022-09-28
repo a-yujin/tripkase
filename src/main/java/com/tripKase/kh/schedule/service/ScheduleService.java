@@ -35,4 +35,6 @@ public interface ScheduleService {
 
 	int deleteSchedule(int scheduleSeq);
 
+	int deleteScheduleData(int scheduleNo);
+
 }

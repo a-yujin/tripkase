@@ -125,4 +125,16 @@ public class ScheduleController {
 		return mv;
 	}
 	
+	@RequestMapping("/schedule/deleteScheduleData.tripkase")
+	public ModelAndView deleteScheduleData(
+			ModelAndView mv
+			,@RequestParam("scheduleNo") int scheduleNo
+			,@RequestParam("scheduleSeq") int scheduleSeq
+			) {
+			int result = sService.deleteScheduleData(scheduleNo);
+			mv.addObject("scheduleSeq",scheduleSeq);
+			mv.setViewName("redirect:/schedule/scheduleDetail.tripkase");
+		return mv;
+	}
+	
 }
