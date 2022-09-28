@@ -15,11 +15,11 @@
 		<!-- 검색 영역 -->
 		<form action="/room/roomNameSearch.tripkase" method="get" enctype="multipart/form-data">
 			<div id="search-area" class="input-group">				
-				<input type="search" id="search-input" class="form-control rounded" name="searchValue" placeholder="게시글 제목 또는 작성자 이름으로 검색 가능합니다." aria-label="Search" aria-describedby="search-addon" value="${searchValue }" />
-				<button type="submit" id="searchBt" class="btn btn-outline-primary">검색하기</button>
+				<input type="search" id="search-input" class="form-control rounded" name="searchValue" placeholder="숙소 이름으로 검색 가능합니다. 전체 조회를 원하시면 공백으로 조회하기 버튼을 눌러주세요." aria-label="Search" aria-describedby="search-addon" value="${searchValue }" />
+				<button type="submit" id="searchBt" class="btn btn-outline-primary">조회하기</button>
 			</div>	<!-- 지역 선택 영역 -->
 		</form>
-		<form action="/room/roomNameSearch.tripkase" method="get" enctype="multipart/form-data">
+		<form action="/room/roomTypeSearch.tripkase" method="get" enctype="multipart/form-data">
 			<div>
 				<div id="choice-area" class="btn-group" role="group" aria-label="Basic radio toggle button group">
 					<input type="radio" class="btn-check" id="btnradio1" name="areaValue" autocomplete="off" checked value="">

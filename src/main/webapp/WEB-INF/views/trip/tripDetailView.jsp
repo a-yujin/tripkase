@@ -26,10 +26,17 @@
 				<button type="button" id="choiceBt" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="/resources/images/trip/dot.png" id="dot-select">
 				</button>
+				<c:if test="${member.memberNick eq trip.tripWriter }">
 					<ul id="choice-menu" class="dropdown-menu">
 						<li><a id="choice-menu1" class="dropdown-item" onclick="location.href='/trip/tripModifyView.tripkase?tripNo=${trip.tripNo }&page=${page }';">수정하기</a></li>
 						<li><a id="choice-menu2" class="dropdown-item" onclick="tripOneRemove()">삭제하기</a></li>
 					</ul>
+				</c:if>
+				<c:if test="${member.memberNick ne trip.tripWriter }">
+					<ul id="choice-menu" class="dropdown-menu">
+						<li><a id="choice-menu1" class="dropdown-item" onclick="goAdmin()">신고하기</a></li>
+					</ul>
+				</c:if>
 			</div>
 			<br><br>
 			<p>제목 : ${trip.tripTitle }</p>
@@ -38,10 +45,11 @@
 			<br>
 			<p>${trip.tripContents }</p>
 			<!-- 좋아요, 조회수 영역 -->
+			<br>
 			<div id="like-count">
 				<img src="/resources/images/trip/beforeLike.png" id="beforeLike" class="likeimgs" width="35px" height="30px" onclick="contentLike()">
     	        <img src="/resources/images/trip/afterLike.png" id="afterLike" class="likeimgs" width="35px" height="30px" onclick="contentLike()">
-				<span>${trip.tripLike }</span>     
+				<span>${trip.tripLike }</span> &nbsp;&nbsp;&nbsp;&nbsp;
 				<img src="/resources/images/trip/see.png" width="35px" height="30px">      
             	<span>${trip.tripCount }</span>
 			</div>
@@ -49,9 +57,7 @@
 	</div>
 	<br>
 	<div id="button-move">
-		<button class="but-move">이전 게시글</button>
 		<button class="but-move" onclick="location.href='/trip/tripList.tripkase';">목록으로</button>
-		<button class="but-move">다음 게시글</button>
 	</div>
 	<br><br><br>	
 	<!-- 댓글 등록 -->
@@ -60,7 +66,7 @@
 		<input type="hidden" name="repTripNo" value="${trip.tripNo }">
 		<div id="tReply-wrapper">
 			<div id="tReply-background">
-				<textarea id="tReply-write" name="tReplyContents"></textarea>
+				<textarea id="tReply-write" name="tReplyContents" spellcheck="false"></textarea>
 				<input type="submit" id="tReply-writebt" value="등록하기">		
 			</div>
 		</div>
@@ -70,11 +76,29 @@
 	<div id="reply-list">
 		<c:forEach items="${rList }" var="tripReply">
 			<div id="profile-wrapper">
-				<div id="profile-user"></div>
+				<div id="profile-user">
+					
+				</div>
 			</div>
 			<div id="user-wrapper">
 				<span id="user-content">${tripReply.tReplyWriter } | </span>
 				<span>${tripReply.tReplyCreate } | </span>
+				<div id="choice-drop" class="btn-group dropstart">
+					<button type="button" id="replyBt" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="/resources/images/trip/dot.png" id="dot-select">
+					</button>
+					<c:if test="${member.memberNick eq tReply.tripWriter }">
+						<ul id="choice-menu" class="dropdown-menu">
+							<li><a id="choice-menu1" class="dropdown-item" onclick="location.href='/trip/tripModifyView.tripkase?tripNo=${trip.tripNo }&page=${page }';">수정하기</a></li>
+							<li><a id="choice-menu2" class="dropdown-item" onclick="removeReply(${tripReply.tReplyNo });">삭제하기</a></li>
+						</ul>
+					</c:if>
+					<c:if test="${member.memberNick ne tReply.tripWriter }">
+						<ul id="choice-menu" class="dropdown-menu">
+							<li><a id="choice-menu1" class="dropdown-item" onclick="goAdmin()">신고하기</a></li>
+						</ul>
+					</c:if>
+				</div>
 			</div>
 			<p id="user-comment">${tripReply.tReplyContents }</p>
 			<br><hr>
@@ -96,12 +120,31 @@
 			$("#beforeLike").click(function() {
 				$("#beforeLike").hide();
 				$("#afterLike").show();
+				event.preventDefault();
+				confirm("기능 구현중 입니다. 조금만 기다려주세요.");
 			})
 			$("#afterLike").click(function() {
 				$("#beforeLike").show();
 				$("#afterLike").hide();
 			})
 		})
+		
+		function goAdmin() {
+			event.preventDefault();
+			confirm("기능 구현중 입니다. 조금만 기다려주세요.");			
+		}
+		
+		function removeReply(tReplyNo) {
+			event.preventDefault(); // alert창이 현재 자리에서 뜨게 해주는 것
+			if(confirm("댓글을 삭제하시겠습니까?")) {
+				var $delForm = $("<form>");
+				$delForm.attr("action", "/tirp/removeReply.kh");
+				$delForm.attr("method", "post");
+				$delForm.append("<input type='hidden' name='tReplyNo' value='"+tReplyNo+"'>");
+				$delForm.appendTo("body");
+				$delForm.submit();
+			}
+		}
 	</script>
 </body>
 </html>

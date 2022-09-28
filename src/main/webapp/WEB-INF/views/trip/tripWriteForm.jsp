@@ -18,7 +18,7 @@
 		<!-- 게시글 제목, 내용 작성 영역 -->
 		<div id="text-area">
 			<input type="text" id="textTitle" name="tripTitle" placeholder=" 제목을 입력해주세요."> <br>
-			<textarea id="textContent" name="tripContents" placeholder=" 내용을 입력해주세요."></textarea> <br>
+			<textarea id="textContent" name="tripContents" placeholder=" 내용을 입력해주세요." spellcheck="false"></textarea> <br>
 		</div>
 		
 		<!-- 파일 업로드 영역 -->
@@ -28,27 +28,6 @@
 		<br><br>
 		
 		<hr style="width : 80%; margin : 0 auto;">
-		
-		<!-- 추쳔여행 추기하기 영역 -->
-		<div>
-			<p class="first-text">추천여행 추가하기</p>	
-			<p class="second-text">아래 박스를 클릭하면 추천 여행지 추가가 가능하며 추천하고 싶은 여행지는 최대 4개까지 추가 가능합니다.</p>
-		</div>
-		<br><br>
-		<div id="add-wrapper">
-			<div id="add-outside">
-				<div id="add-inside">
-					<div class="trip-add" onclick="window.open('/trip/addTrip.tripkase', 'window_name', 'width=600, height=600, location=no, status=no, scrollbars=yes');">
-					</div>
-					<div class="trip-add">
-					</div>
-					<div class="trip-add">
-					</div>
-					<div class="trip-add">
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<!-- 버튼 영역 -->
 		<br>

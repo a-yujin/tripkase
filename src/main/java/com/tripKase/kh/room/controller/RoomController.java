@@ -360,13 +360,13 @@ public class RoomController {
 	}
 	
 	/**
-	 * 숙소 상세 페이지 (사용자)
+	 * 숙소 이름 상세 페이지 (사용자)
 	 * @param mv
 	 * @param roomNo
 	 * @return
 	 */
 	@RequestMapping(value="/room/roomDetailView.tripkase", method=RequestMethod.GET)
-	public ModelAndView roomSearchDetail(
+	public ModelAndView roomSearchNameDetail(
 			ModelAndView mv,
 			@RequestParam("roomNo") int roomNo,
 			HttpSession session) {

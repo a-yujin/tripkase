@@ -87,28 +87,26 @@
 		ROOM_NAME LIKE '%' || #{searchValue} || '%'
 	</select>
 	<select id="selectSearchName" resultMap="roomJoinResultMap">
-		WITH ROOMS AS (SELECT A.ROOM_NO, B.ROOM_NAME, B.ROOM_ADDRESS, B.ROOM_PRICE, A.ROOM_FILENAME, A.ROOM_FILERENAME, ROW_NUMBER() OVER(PARTITION BY A.ROOM_NO ORDER BY A.ROOM_NO DESC) AS C_NUM FROM ROOMIMG_TBL A JOIN ROOM_TBL B ON A.ROOM_NO = B.ROOM_NO ORDER BY ROOM_NO)
+		WITH ROOMS AS (SELECT A.ROOM_NO, B.ROOM_NAME, B.ROOM_ADDRESS, B.ROOM_PRICE, B.ROOM_AREA, B.ROOM_TYPE, B.ROOM_PERSON, B.ROOM_PET, A.ROOM_FILENAME, A.ROOM_FILERENAME, ROW_NUMBER() OVER(PARTITION BY A.ROOM_NO ORDER BY A.ROOM_NO DESC) AS C_NUM FROM ROOMIMG_TBL A JOIN ROOM_TBL B ON A.ROOM_NO = B.ROOM_NO ORDER BY ROOM_NO)
 		SELECT * FROM ROOMS WHERE C_NUM = 1 
 		AND ROOM_NAME LIKE '%' || #{searchValue} || '%'
 	</select>
 	
 	<!-- 게시글 타입으로 검색 -->
 	<select id="selectTypeCount" resultType="_int">
-		
+		SELECT COUNT(*) FROM ROOM_TBL
+		WHERE ROOM_STATUS = 'Y'
+	    AND ROOM_AREA = #{areaValue}
+	    AND ROOM_TYPE = #{typeValue}
+		AND ROOM_PERSON = #{personValue}
+		AND ROOM_PET = #{petValue}
 	</select>
 	<select id="selectSearchType" resultMap="roomJoinResultMap">
-		WITH ROOMS AS (SELECT A.ROOM_NO, B.ROOM_NAME, B.ROOM_ADDRESS, B.ROOM_PRICE, A.ROOM_FILENAME, A.ROOM_FILERENAME, ROW_NUMBER() OVER(PARTITION BY A.ROOM_NO ORDER BY A.ROOM_NO DESC) AS C_NUM FROM ROOMIMG_TBL A JOIN ROOM_TBL B ON A.ROOM_NO = B.ROOM_NO ORDER BY ROOM_NO)
+		WITH ROOMS AS (SELECT A.ROOM_NO, B.ROOM_NAME, B.ROOM_ADDRESS, B.ROOM_PRICE, B.ROOM_AREA, B.ROOM_TYPE, B.ROOM_PERSON, B.ROOM_PET, A.ROOM_FILENAME, A.ROOM_FILERENAME, ROW_NUMBER() OVER(PARTITION BY A.ROOM_NO ORDER BY A.ROOM_NO DESC) AS C_NUM FROM ROOMIMG_TBL A JOIN ROOM_TBL B ON A.ROOM_NO = B.ROOM_NO ORDER BY ROOM_NO)
 		SELECT * FROM ROOMS WHERE C_NUM = 1 
-		<!-- 지역값이 전체보기(insertPage에 지역 전체보기의 값을 ""으로 넣음)가 아니거나 지역값이 널이 아닌경우는 선택한 지역값을 조회하게 -->
-		<if test='!areaValue.equals("") and areaValue !=null'>    
 	    AND ROOM_AREA = #{areaValue}
-	    </if>
-	    AND ROOM_TYPE IN
-		<!-- 맛집 종류인 타입밸류를 포이치 통해서 선택해서 선택된 값만 비교 -->
-	    <foreach item="roomType" collection="typeValue" open="(" close=")" separator="," >
-		#{roomType}
-		</foreach>
-		AND ROOM_PERSON = #{roomPerson}
-		AND ROOM_PET = #{roomPet}
+	    AND ROOM_TYPE = #{typeValue}
+		AND ROOM_PERSON = #{personValue}
+		AND ROOM_PET = #{petValue}
 	</select>
 </mapper>
