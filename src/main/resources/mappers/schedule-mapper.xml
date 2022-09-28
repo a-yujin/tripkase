@@ -39,6 +39,9 @@
 	<select id="selectAllSchedule" resultMap="ScheduleResultMap">
 		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_DAYS = '1일차' AND MEMBER_ID = #{memberId}
 	</select>
+	<select id="selectAllstorage" resultMap="ScheduleResultMap">
+		SELECT * FROM SCHEDULE_TBL WHERE MEMBER_ID = #{memberId}
+	</select>
 	<select id="selectScheduleBySeq" resultMap="ScheduleResultMap">
 		SELECT * FROM SCHEDULE_TBL WHERE SCHEDULE_SEQ = #{cheduleSeq}
 	</select>
@@ -51,10 +54,16 @@
 		UNION ALL
 		SELECT b.attr_name, b.attr_FILEPATH FROM SCHEDULE_MANAGE a JOIN attraction_TBL b ON (a.CONTENTS_NO = b.attr_NO and a.contents_type='관광지') WHERE SCHEDULE_SEQ = 4 and schedule_days=#{Days} -->
 	</select>
+	<select id="dayCount" resultType="_int">
+		SELECT COUNT(*) FROM SCHEDULE_TBL WHERE MEMBER_ID = #{memberId} GROUP BY SCHEDULE_SEQ 
+	</select>
 	<insert id="insertSchedule">
 		INSERT INTO SCHEDULE_TBL VALUES(SEQ_SCHENO.NEXTVAL, #{scheduleDays},#{scheduleName}, #{scheduleStart}, #{scheduleEnd}, default, #{memberId})
 	</insert>
 	<insert id="AddDays">
 		INSERT INTO SCHEDULE_TBL VALUES(SEQ_SCHENO.CURRVAL, #{scheduleDays},#{scheduleName}, #{scheduleStart}, #{scheduleEnd}, default, #{memberId})
+	</insert>
+	<insert id="insertScheduleData">
+		INSERT INTO SCHEDULE_MANAGE VALUES(SEQ_SMNO.NEXTVAL, #{scheduleSeq},#{scheduleDays},#{contentsType},#{contentsNo})
 	</insert>
 </mapper>

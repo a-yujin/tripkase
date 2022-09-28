@@ -71,13 +71,13 @@
 	</div>
 	<c:forEach items="${smList }" var="scheduleManage">
 		<div id="schedule">
-			<c:if test="${scheduleManage.contetnsType eq '관광지'}">
+			<c:if test="${scheduleManage.contetnsType eq 'attraction'}">
 				<span class="glyphicon glyphicon-map-marker"></span>
 			</c:if>
-			<c:if test="${scheduleManage.contetnsType eq '맛집'}">
+			<c:if test="${scheduleManage.contetnsType eq 'restaurant'}">
 				<span class="glyphicon glyphicon-cutlery"></span>
 			</c:if>
-			<c:if test="${scheduleManage.contetnsType eq '숙소'}">
+			<c:if test="${scheduleManage.contetnsType eq 'room'}">
 				<span class="glyphicon glyphicon-bed"></span>
 			</c:if>
 			<img id="contentsIMg" onclick="" width="150" height="150" src="/resources/resUploadFiles/20220921134942.jpg" alt="컨텐츠 이미지"/><br>
@@ -88,7 +88,7 @@
 		</div>
 	</c:forEach>
 	<div id="addContents">
-		<br><br><a href="#">보관함으로</a>
+		<br><br><a href="/storage/storageView.tripkase">보관함으로</a>
 	</div>
 </body>
 </html>
