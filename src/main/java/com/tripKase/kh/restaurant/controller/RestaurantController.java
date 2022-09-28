@@ -79,7 +79,7 @@ public class RestaurantController {
 					imgNo = imgNo + 1;
 				}
 					int result2 = resService.insertRestaurantImg(resImg);
-					mv.setViewName("redirect:/restaurant/restaurantMainPage.tripkase");
+					mv.setViewName("redirect:/restaurant/resAdminSearchPage.tripkase");
 			}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();

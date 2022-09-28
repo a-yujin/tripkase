@@ -9,65 +9,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="../resources/css/restaurant.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+<jsp:include page="../common/header.jsp"></jsp:include>
 	<form action="/storage/insertStorage.tripkase" method="post">
 		<input type="hidden" name="contentsCode" value="restaurant"> <!-- 보관함으로 넘기기 위한 컨텐츠 분류 코드 -->
 		<input type="hidden" name="contentsId"   value="${restaurant.resNo }"> <!-- 보관함으로 넘기기 위한 컨텐츠 넘버값 -->
-		<table align="center" border="1">
-			<tr>
-				<th>이미지</th>
-				<th>맛집이름</th>
-				<th>주소</th>
-				<th>상세내용</th>
-				<th>연락처</th>
-				<th>휴일</th>
-				<th>대표메뉴</th>
-			</tr>
-			<tr>
-				<td>
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					       <ol class="carousel-indicators">
-					           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					       </ol>
-					       <div class="carousel-inner">
-						       <div class="carousel-item active">
-						           <img src="/resources/resUploadFiles/${img.resFileRename }" class="d-block w-100">
-						              <div class="carousel-caption d-block">
-						                   <h1>First Image</h1>
-						               </div>
-						        </div>
-						        <c:forEach items="${resImgList }" var="img">
-							        <div class="carousel-item">
-							            <img src="/resources/resUploadFiles/${img.resFileRename }" class="d-block w-100">
-							               <div class="carousel-caption d-block">
-							                  <h1>Image</h1>
-							               </div>
-							        </div>
-						        </c:forEach>
-					        </div>
-					        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					            <span class="visually-hidden">Previous</span>
-					        </a>
-					        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					            <span class="visually-hidden">Next</span>
-					        </a>
-					  </div>
-				</td>
-				<td>${restaurant.resName }</td>
-				<td>${restaurant.resAddress }</td>
-				<td>${restaurant.resDetail }</td>
-				<td>${restaurant.resTel }</td>
-				<td>${restaurant.resDayoff }</td>
-				<td>${restaurant.resMainmenu }</td>
-			</tr>		
-			<input type="submit" value="보관">
-	</form>
-	</table>
+			<div id="top-wrapper">
+			<!-- 정보 영역 -->
+				<div id="top-text">
+					<p id="top-name">${restaurant.resName }</p>
+					<p id="top-address">${restaurant.resAddress }</p>
+				</div>	
+				<!-- 사진 영역 -->
+				<div id="top-picture">
+					<div id="pic-left">
+						<img id="first-img"src="../resources/resUploadFiles/${resImgList[0].resFileRename }">
+					</div>
+					<div id="pic-right">
+						<div id="right-top">
+							<div class="right-pic">
+								<div class="detail-pic">
+									<img class="double-pic" src="../resources/resUploadFiles/${resImgList[1].resFileRename }">
+								</div>
+								<div class="detail-pic">
+									<img class="double-pic" src="../resources/resUploadFiles/${resImgList[2].resFileRename }">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 버튼 영역 -->
+			<br><br>
+			<div id="top-button">
+				<button type="submit" class="detail-button">보관하기</button>
+				<button type="button" class="detail-button" onclick="javascript:history.go(-1);">목록으로</button>
+			</div>
+			</form>
+			<hr class="detail-hr">
+	<br><br>
+<jsp:include page="../common/footer.jsp"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

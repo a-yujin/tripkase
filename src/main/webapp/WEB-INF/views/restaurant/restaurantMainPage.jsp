@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 맛집 검색 페이지</title>
-<!-- 테스트용 jsp  -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,11 +60,11 @@
 					</div>
 					<br><br><br><br><br>
 					<div id="check-Type" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-					<label><input type="checkbox" name="typeValue" value="korean">　한식　　</label>
-						<label><input type="checkbox" name="typeValue" value="chinese">　중식　　</label>
-						<label><input type="checkbox" name="typeValue" value="japanese">　일식　　</label>
-						<label><input type="checkbox" name="typeValue" value="american">　양식　　</label>
-						<label><input type="checkbox" name="typeValue" value="etc">　기타</label>
+					<label><input type="checkbox" name="typeValue" value="korean" checked>　한식　　</label>
+						<label><input type="checkbox" name="typeValue" value="chinese" checked>　중식　　</label>
+						<label><input type="checkbox" name="typeValue" value="japanese" checked>　일식　　</label>
+						<label><input type="checkbox" name="typeValue" value="american" checked>　양식　　</label>
+						<label><input type="checkbox" name="typeValue" value="etc" checked>　기타</label>
 						<br><br>
 					</div>
 				</div>
@@ -76,6 +75,7 @@
 			</form>
 		</div>
 	</div>
+<jsp:include page="../common/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
