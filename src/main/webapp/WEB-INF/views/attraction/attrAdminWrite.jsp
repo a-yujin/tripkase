@@ -44,8 +44,6 @@
 					<label for="solo">홀로</label>
 					<input type="radio" name="attrTripType" id="family" value="family">
 					<label for="family">가족</label>
-					<input type="radio" name="attrTripType" id="parents" value="parents">
-					<label for="parents">효도</label>
 					<input type="radio" name="attrTripType" id="animal" value="pet">
 					<label for="animal">동물</label>
 				</td>

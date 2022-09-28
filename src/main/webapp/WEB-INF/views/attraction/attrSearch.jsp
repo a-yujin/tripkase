@@ -10,7 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <link href="/resources/css/attraction.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="../resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
@@ -40,12 +39,12 @@
 					<div class="searchChkDiv">
 						<label>누구와 함께 하나요?
 						  	<!-- 모두 선택 추가 -->
-							<label>연인과<input type="checkbox" value="couple" name="typeValue"></label>
-							<label>친구와<input type="checkbox" value="friend" name="typeValue"></label>
-							<label>혼자<input type="checkbox" value="alone" name="typeValue"></label>
-							<label>가족과<input type="checkbox" value="family" name="typeValue"></label>
-							<label>부모님과<input type="checkbox" value="parents" name="typeValue"></label>
-							<label>반려동물과<input type="checkbox" value="pet" name="typeValue"></label>
+						  	<label>모두<input type="checkbox" value="all" name="typeValue" onclick="selectAll(this)" checked></label>
+							<label>연인과<input type="checkbox" value="couple" name="typeValue" checked></label>
+							<label>친구와<input type="checkbox" value="friend" name="typeValue" checked></label>
+							<label>혼자<input type="checkbox" value="alone" name="typeValue" checked></label>
+							<label>가족과<input type="checkbox" value="family" name="typeValue" checked></label>
+							<label>반려동물과<input type="checkbox" value="pet" name="typeValue" checked></label>
 						</label>
 					</div>
 					<div class="searchBtnDiv">
@@ -55,6 +54,13 @@
 			</form>
 		</div>
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script>
+		function selectAll(selectAll)  {
+			  const checkboxes = document.getElementsByName('typeValue');
+			  checkboxes.forEach((checkbox) => {
+			    checkbox.checked = selectAll.checked;
+			  })
+			}
+	</script>
 </body>
 </html>

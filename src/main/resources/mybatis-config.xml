@@ -12,6 +12,7 @@
 		<typeAlias type="com.tripKase.kh.admin.domain.NoticeImg" alias="NoticeImg"/>
 		<typeAlias type="com.tripKase.kh.attraction.domain.Attraction" alias="Attraction"/>
 		<typeAlias type="com.tripKase.kh.attraction.domain.AttractionImg" alias="AttrImg"/>
+		<typeAlias type="com.tripKase.kh.attraction.domain.AttrImgDomain" alias="AttrImgDomain"/>
 		<typeAlias type="com.tripKase.kh.course.domain.Course" alias="Course"/>
 		<typeAlias type="com.tripKase.kh.course.domain.CourseImg" alias="CourseImg"/>
 		<typeAlias type="com.tripKase.kh.course.domain.CourseReply" alias="CourseReply"/>

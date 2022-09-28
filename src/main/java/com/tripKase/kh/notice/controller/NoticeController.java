@@ -75,6 +75,7 @@ public class NoticeController {
 			@RequestParam("noticeNo") Integer noticeNo,
 			HttpSession session) {
 		try {
+			Member member = (Member)session.getAttribute("loginMember");
 			Notice notice = nService.printOneByNo(noticeNo);
 			List<NoticeImg> nImgList = nService.printImgByNo(noticeNo);
 			List<NoticeReply> nReplyList = nService.printAllnReply(noticeNo);
@@ -82,6 +83,7 @@ public class NoticeController {
 			mv.addObject("notice", notice);
 			mv.addObject("nImgList", nImgList);
 			mv.addObject("nReplyList", nReplyList);
+			mv.addObject("member", member);
 			mv.setViewName("notice/noticeDetail");
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString());

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tripKase.kh.attraction.domain.AttrImgDomain;
 import com.tripKase.kh.attraction.domain.Attraction;
 import com.tripKase.kh.attraction.domain.AttractionImg;
 import com.tripKase.kh.attraction.service.AttractionService;
@@ -73,11 +74,11 @@ public class AttractionServiceImpl implements AttractionService {
 		return result;
 	}
 	// 관광지-이미지 수정
-	@Override
-	public int modifyAttrImg(AttractionImg attrImg) {
-		int result = attrStore.updateAttrImg(session, attrImg);
-		return result;
-	}
+//	@Override
+//	public int modifyAttrImg(AttractionImg attrImg) {
+//		int result = attrStore.updateAttrImg(session, attrImg);
+//		return result;
+//	}
 	
 	// 관광지 검색 게시글 수 가져오기
 	@Override
@@ -88,10 +89,17 @@ public class AttractionServiceImpl implements AttractionService {
 	
 	// 관광지 검색 게시글 목록 조회
 	@Override
-	public List<Attraction> printSearchAttr(String searchValue, String areaValue, String [] typeValue,
+	public List<AttrImgDomain> printSearchAttr(String searchValue, String areaValue, String [] typeValue,
 			int currentPage, int attrLimit) {
-		List<Attraction> attrList = attrStore.selectSearchAttr(session, searchValue, areaValue, typeValue, currentPage, attrLimit);
+		List<AttrImgDomain> attrList = attrStore.selectSearchAttr(session, searchValue, areaValue, typeValue, currentPage, attrLimit);
 		return attrList;
+	}
+	
+	// 관광지 검색 게시글 상세 조회
+	@Override
+	public List<AttrImgDomain> printOneAttr(Integer attrNo) {
+		List<AttrImgDomain> attrImgList = attrStore.selectOneAttr(session, attrNo);
+		return attrImgList;
 	}
 
 }

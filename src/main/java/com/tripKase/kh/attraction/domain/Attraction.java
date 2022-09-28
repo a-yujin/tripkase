@@ -13,9 +13,6 @@ public class Attraction {
 	private String attrFee; // 관광지 입장료
 	private String attrCar; // 관광지 주차 가능 여부
 	private String attrPet; // 관광지 반려동물 동반 가능 여부
-	private String attrFileName; // 관광지 사진 파일 이름
-	private String attrFileRename; // 관광지 사진 파일 변경된 이름
-	private String attrFilePath; // 관광지 사진 파일 경로
 	private String attrShortInfo; // 관광지 한줄 설명
 	private String attrStatus; // 관광지 게시 여부
 	
@@ -91,24 +88,6 @@ public class Attraction {
 	public void setAttrPet(String attrPet) {
 		this.attrPet = attrPet;
 	}
-	public String getAttrFileName() {
-		return attrFileName;
-	}
-	public void setAttrFileName(String attrFileName) {
-		this.attrFileName = attrFileName;
-	}
-	public String getAttrFileRename() {
-		return attrFileRename;
-	}
-	public void setAttrFileRename(String attrFileRename) {
-		this.attrFileRename = attrFileRename;
-	}
-	public String getAttrFilePath() {
-		return attrFilePath;
-	}
-	public void setAttrFilePath(String attrFilePath) {
-		this.attrFilePath = attrFilePath;
-	}
 	public String getAttrShortInfo() {
 		return attrShortInfo;
 	}
@@ -127,8 +106,8 @@ public class Attraction {
 		return "Attraction [attrNo=" + attrNo + ", attrLocation=" + attrLocation + ", attrName=" + attrName
 				+ ", attrTripType=" + attrTripType + ", attrInfo=" + attrInfo + ", attrTel=" + attrTel
 				+ ", attrWebsite=" + attrWebsite + ", attrAddress=" + attrAddress + ", attrHours=" + attrHours
-				+ ", attrFee=" + attrFee + ", attrCar=" + attrCar + ", attrPet=" + attrPet + ", attrFileName="
-				+ attrFileName + ", attrFileRename=" + attrFileRename + ", attrFilePath=" + attrFilePath
-				+ ", attrShortInfo=" + attrShortInfo + ", attrStatus=" + attrStatus + "]";
+				+ ", attrFee=" + attrFee + ", attrCar=" + attrCar + ", attrPet=" + attrPet + ", attrShortInfo="
+				+ attrShortInfo + ", attrStatus=" + attrStatus + "]";
 	}
+	
 }
