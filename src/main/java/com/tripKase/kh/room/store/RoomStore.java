@@ -38,4 +38,9 @@ public interface RoomStore {
 	public List<RoomJoin> selectSearchName(SqlSessionTemplate session, String searchValue, int currentPage, int roomsLimit);
 
 	public List<RoomImg> selectAllRoomImg(SqlSessionTemplate session, int roomNo);
+	// 숙소 타입 검색 리스트
+	public int getRoomTypeCount(SqlSessionTemplate session, String areaValue, String typeValue, int personValue,
+			String petValue);
+	public List<RoomJoin> selectSearchType(SqlSessionTemplate session, String areaValue, String typeValue,
+			int personValue, String petValue, int currentPage, int roomsLimit);
 }

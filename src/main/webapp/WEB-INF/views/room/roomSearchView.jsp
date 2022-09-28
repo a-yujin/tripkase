@@ -21,50 +21,73 @@
 		</form>
 		<form action="/room/roomNameSearch.tripkase" method="get" enctype="multipart/form-data">
 			<div>
-				<div id="choice-area">
-					<button class="areaBt-first">전체보기</button>
-					<button class="areaBt">서울</button>
-					<button class="areaBt">경기도</button>
-					<button class="areaBt">인천</button>
-					<button class="areaBt">강원도</button>
-					<button class="areaBt">충청북도</button>
-					<button class="areaBt">충청남도</button>
-					<button class="areaBt">경상북도</button>
-					<button class="areaBt">경상남도</button>
-					<button class="areaBt">전라북도</button>
-					<button class="areaBt">전라남도</button>
-					<button class="areaBt">제주도</button>
+				<div id="choice-area" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+					<input type="radio" class="btn-check" id="btnradio1" name="areaValue" autocomplete="off" checked value="">
+					<label class="btn btn-outline-primary" for="btnradio1">전체보기</label>
+					
+					<input type="radio" class="btn-check" id="btnradio2" name="areaValue" autocomplete="off" value="서울">
+					<label class="btn btn-outline-primary" for="btnradio2">　서울　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio3" name="areaValue" autocomplete="off" value="경기도">
+					<label class="btn btn-outline-primary" for="btnradio3">　경기도　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio4" name="areaValue" autocomplete="off" value="인천">
+					<label class="btn btn-outline-primary" for="btnradio4">　인천　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio5" name="areaValue" autocomplete="off" value="강원">
+					<label class="btn btn-outline-primary" for="btnradio5">　강원도　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio6" name="areaValue" autocomplete="off" value="충청북도">
+					<label class="btn btn-outline-primary" for="btnradio6">　충청북도　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio7" name="areaValue" autocomplete="off" value="충청남도">
+					<label class="btn btn-outline-primary" for="btnradio7">　충청남도　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio8" name="areaValue" autocomplete="off" value="경상북도">
+					<label class="btn btn-outline-primary" for="btnradio8">　경상북도　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio9" name="areaValue" autocomplete="off" value="경상남도">
+					<label class="btn btn-outline-primary" for="btnradio9">　경상남도　</label>
+					
+					<input type="radio" class="btn-check" id="btnradio10" name="areaValue" autocomplete="off" value="전라북도">
+					<label class="btn btn-outline-primary" for="btnradio10">　전라북도　</label>
+						
+					<input type="radio" class="btn-check" id="btnradio11" name="areaValue" autocomplete="off" value="전라남도">
+					<label class="btn btn-outline-primary" for="btnradio11">　전라남도　</label>
+						
+					<input type="radio" class="btn-check" id="btnradio12" name="areaValue" autocomplete="off" value="제주도">
+					<label class="btn btn-outline-primary" for="btnradio12">　제주도　</label>
 				</div>
 				<div id="choice-checkIn">
 					<input type="date" id="check-in" class="room-check">
 					<input type="date" id="check-out" class="room-check">
 				</div>
-				<div id="choice-place">
-					<div id="choice-type">
+				<div id="choice-place" >
+					<div id="choice-type" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 						<span>숙소 종류</span>
-						<input type="radio" id="type-all"> 전체
-						<input type="radio"> 모텔
-						<input type="radio"> 호텔
-						<input type="radio"> 펜션
-						<input type="radio"> 리조트
+						<input type="radio" name="typeValue" value="모텔"> 모텔
+						<input type="radio" name="typeValue" value="호텔"> 호텔
+						<input type="radio" name="typeValue" value="펜션"> 펜션
+						<input type="radio" name="typeValue" value="리조트"> 리조트
 					</div>
 					<div id="choice-person">
 						<span id="person-text">입실 인원</span>
-						<input type="number">
+						<input type="number" name="personValue">
 					</div>
 					<div id="choice-pet">
 						<span id="pet-text">반려견 동반 여부</span>
 						<div id="pet-yes" class="form-check form-switch">
-		  					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+							<input type="radio" name="petValue" value="N"> No
+							<input type="radio" name="petValue" value="Y"> Yes
 						</div>
 					</div>
 				</div>
 			</div>
-		</form>
 		<br><br>
 		<div id="search-button">
 			<button type="submit" id="sbutton">조회하기</button>
 		</div>
+		</form>
 	</div>		
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>

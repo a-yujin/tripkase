@@ -12,13 +12,21 @@
 	<jsp:include page="../common/header.jsp"/>
 	<div id="roomlist">
 		<c:forEach items="${rjList }" var="roomJoin">
-			<div id="roomlist-outside">
-				<p>${roomJoin.roomName }</p>
-				<p>${roomJoin.roomAddress } ${roomJoin.roomName }</p>
-				<p>1일 숙박 ${roomJoin.roomPrice }</p>
-				<hr>
+			<div id="roomlist-outside" onclick="location.href='/room/roomDetailView.tripkase?roomNo=${roomNo}';">
+				<div id="roomlist-left">
+					<img src="/resources/ruploadFiles/${roomJoin.roomFileRename }" id="roomlist-img">			
+				</div>
+				<div id="roomlist-right">
+					<p>${roomJoin.roomName }</p>
+					<p>${roomJoin.roomAddress }</p>
+				</div>
+				<div id="roomlist-price">
+					<p>1일 숙박 ${roomJoin.roomPrice }</p>				
+				</div>
 			</div>
+			<hr id="roomlist-hr">
 		</c:forEach>
 	</div>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

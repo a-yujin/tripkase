@@ -112,4 +112,27 @@ public class RoomStoreLogic implements RoomStore{
 		List<RoomImg> riList = session.selectList("RoomMapper.selectAllRoomImg", roomNo);
 		return riList;
 	}
+	@Override
+	public int getRoomTypeCount(SqlSessionTemplate session, String areaValue, String typeValue, int personValue,
+			String petValue) {
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("personValue", personValue);
+		paramMap.put("petValue", petValue);
+		return session.selectOne("RoomMapper.selectTypeCount", paramMap);
+	}
+	@Override
+	public List<RoomJoin> selectSearchType(SqlSessionTemplate session, String areaValue, String typeValue,
+			int personValue, String petValue, int currentPage, int roomsLimit) {
+		int offset = (currentPage-1)*roomsLimit;
+		RowBounds rowBounds = new RowBounds(offset, roomsLimit);
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("areaValue", areaValue);
+		paramMap.put("typeValue", typeValue);
+		paramMap.put("personValue", personValue);
+		paramMap.put("petValue", petValue);
+		List<RoomJoin> riList = session.selectList("RoomMapper.selectSearchType", paramMap, rowBounds);
+		return riList;
+	}
 }

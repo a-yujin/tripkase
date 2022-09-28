@@ -46,6 +46,7 @@
 		SELECT * FROM TRIP_TBL WHERE TRIP_NO = #{tripNo} AND TRIP_STATUS = 'Y'
 	</select>
 	
+	<!-- 게시글 검색 -->
 	<select id="selectSearchTrip" resultMap="tripResultMap">
 		SELECT * FROM TRIP_TBL
 		WHERE TRIP_STATUS = 'Y' AND 

@@ -99,9 +99,23 @@ public class RoomServiceImpl implements RoomService{
 		List<RoomJoin> rjList = rStore.selectSearchName(session, searchValue, currentPage, roomsLimit);
 		return rjList;
 	}
+	// 숙소 검색 이미지
 	@Override
 	public List<RoomImg> printSearchImg(int roomNo) {
 		List<RoomImg> riList = rStore.selectAllRoomImg(session, roomNo);
+		return riList;
+	}
+	// 숙소 타입 검색 페이징 처리
+	@Override
+	public int getRoomTypeCount(String areaValue, String typeValue, int personValue, String petValue) {
+		int result = rStore.getRoomTypeCount(session, areaValue, typeValue, personValue, petValue);
+		return result;
+	}
+	// 숙소 타입 검색 리스트
+	@Override
+	public List<RoomJoin> printSearchType(String areaValue, String typeValue, int personValue, String petValue,
+			int currentPage, int roomsLimit) {
+		List<RoomJoin> riList = rStore.selectSearchType(session, areaValue, typeValue, personValue, petValue, currentPage, roomsLimit);
 		return riList;
 	}
 }

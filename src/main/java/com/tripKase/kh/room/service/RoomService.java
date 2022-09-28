@@ -34,6 +34,10 @@ public interface RoomService {
 	public int getRoomNameCount(String searchValue);
 	// 숙소 이름 검색 리스트
 	public List<RoomJoin> printSearchName(String searchValue, int currentPage, int roomsLimit);
-	
 	public List<RoomImg> printSearchImg(int roomNo);
+	// 숙소 타입 검색 리스트 페이징 처리
+	public int getRoomTypeCount(String areaValue, String typeValue, int personValue, String petValue);
+	// 숙소 타입 검색 리스트
+	public List<RoomJoin> printSearchType(String areaValue, String typeValue, int personValue, String petValue,
+			int currentPage, int roomsLimit);
 }
