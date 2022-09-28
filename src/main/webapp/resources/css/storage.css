@@ -18,10 +18,17 @@
         text-decoration: underline;
     }
     
+    h2 {
+    	text-align : center;
+    }
+    
+    #storage-hr {
+		width : 1600px;
+		margin : 0 auto;
+	}
 
     #storagetitle {
         height: 80px;
-        border-bottom : 1px solid gray;
     }
     
     .contents-box {
@@ -40,6 +47,13 @@
     }
 
     .contents-img {
+        display: block;
+        margin: auto;
+        border-radius: 20px;
+        box-shadow: 5px 5px 5px #000;
+    }
+    
+    #x-img {
         display: block;
         margin: auto;
         border-radius: 20px;

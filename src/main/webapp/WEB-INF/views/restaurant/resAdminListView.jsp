@@ -25,7 +25,7 @@
 <jsp:include page="../admin/menuBar.jsp"/>
 	<h1 align="center">맛집 목록</h1>
 <br><br>
-<table align="center" border="1" width="1100px">
+<table align="center" border="1" width="800px">
 	<tr>
 		<th class="restitle">이미지</th>
 		<th class="restitle" width="80px">제목</th>
@@ -42,7 +42,7 @@
 				</td>
 				<td><a href="/restaurant/resAdminDetailView.tripkase?resNo=${restaurant.resNo }">${restaurant.resName }</a></td>
 				<td>${restaurant.resAddress }</td>
-				<td class="resDetail">${restaurant.resDetail }</td>
+				<td class="resDetail">${restaurant.resDetail.substring(0, 70) }...</td>
 				<td><a href="/restaurant/modifyRestaurantView.tripkase?resNo=${restaurant.resNo }">수정</a></td>
 				<td><a href="/restaurant/deleteRestaurant.tripkase?resNo=${restaurant.resNo }">삭제</a></td>
 			</tr>
@@ -84,7 +84,7 @@
 		</td>
 	</tr>
 </table>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

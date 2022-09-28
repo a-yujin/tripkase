@@ -19,30 +19,54 @@
 </style>
 <body>
 <jsp:include page="../common/header.jsp"></jsp:include>
-	<div id="reslist">
-		<c:if test="${!empty resList }">
-			<c:forEach items="${resList }" var="resList">
-				<div id="reslist-outside" onclick="location.href='/restaurant/restaurantDetailView.tripkase?resNo=${resList.resNo }&page=${currentPage}';">
-					<div id="reslist-left">
-						<img src="/resources/resUploadFiles/${resList.resFileRename }" id="reslist-img">			
-					</div>
-					<div id="reslist-right">
-						<h4>${resList.resName }</h4>
-						<p>${resList.resAddress }</p>
-						<div id="reslist-detail">
-							<p>${resList.resDetail.substring(0, 70)}...</p>		
+	<c:if test="${sessionScope.loginMember ne null}">
+		<div id="reslist">
+			<c:if test="${!empty resList }">
+				<c:forEach items="${resList }" var="resList">
+					
+						<div id="reslist-outside" onclick="location.href='/restaurant/restaurantDetailView.tripkase?resNo=${resList.resNo }&page=${currentPage}';">
+						<div id="reslist-left">
+							<img src="/resources/resUploadFiles/${resList.resFileRename }" id="reslist-img">			
 						</div>
-					</div>
-				</div>
-				<hr id="reslist-hr">
-			</c:forEach>
-		</c:if>
+						<div id="reslist-right">
+							<h4>${resList.resName }</h4>
+							<p>${resList.resAddress }</p>
+							<div id="reslist-detail">
+								<p>${resList.resDetail.substring(0, 70)}...</p>		
+							</div>
+						</div>
+						</div>
+					<hr id="reslist-hr">
+				</c:forEach>
+			</c:if>
+		</div>
+	</c:if>
+	<c:if test="${sessionScope.loginMember eq null}">
+		<div id="reslist">
+			<c:if test="${!empty resList }">
+				<c:forEach items="${resList }" var="resList">
+					
+						<div id="reslist-outside" onclick="alertLogin();">
+						<div id="reslist-left">
+							<img src="/resources/resUploadFiles/${resList.resFileRename }" id="reslist-img">			
+						</div>
+						<div id="reslist-right">
+							<h4>${resList.resName }</h4>
+							<p>${resList.resAddress }</p>
+							<div id="reslist-detail">
+								<p>${resList.resDetail.substring(0, 70)}...</p>		
+							</div>
+						</div>
+						</div>
+					<hr id="reslist-hr">
+				</c:forEach>
+			</c:if>
+		</div>
+	</c:if>
 		<c:if test="${empty resList }">
-				<tr>
-					<td>검색 결과가 없습니다.</td>
-				</tr>
+					<h2>검색 결과가 없습니다.</h2>
 		</c:if>
-	</div><br><br>
+	<br><br>
 	<div id="rdata-page">
 			<c:if test ="${currentPage != 1}">
 				<a id="pageback" href="/restaurant/${urlVal }.tripkase?page=${currentPage - 1 }&areaValue=${areaValue}&searchValue=${searchValue}
@@ -72,6 +96,11 @@
 			</c:if>
 	</div>
 <br><br><br><br><br><br><br><br>
+<script>
+function alertLogin(){
+	alert("회원만 볼 수 있습니다. 로그인 해주세요");
+}
+</script>
 <jsp:include page="../common/footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
