@@ -78,9 +78,9 @@ table {
 					<input type="text" name="memberGrade" value="${mOne.memberGrade }" readonly>
 				</td>
 			</tr>
-			<br><br>
 			<tr>
 				<td colspan="2" align="center">
+				<br>
 					<button type="button" class="btn btn-outline-primary" onclick="checkPassword();">수정페이지로 이동</button>
 					<button type="button" class="btn btn-outline-primary" onclick="removeMember();">탈퇴하기</button>
 				</td>

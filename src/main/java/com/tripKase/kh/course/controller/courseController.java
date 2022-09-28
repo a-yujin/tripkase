@@ -214,24 +214,25 @@ public class courseController {
 		return mv;
 	}
 	
-	// 댓글등록
-	@RequestMapping(value="/course/addReply.tripkase", method = RequestMethod.POST)
-	public ModelAndView registerReply(
-			ModelAndView mv,
-			@ModelAttribute CourseReply courseReply,
-			HttpSession session) {
-		Member member = (Member)session.getAttribute("loginMember");
-		String cReplyWriter = member.getMemberNick();
-		int cosNo = courseReply.getcReplyNo();
-		courseReply.setcReplyWriter(cReplyWriter);
-		int result = cService.registerReply(courseReply);
-		if( result > 0 ) {
-			mv.setViewName("redirect:/course/courseDetail.tripkase?courseNo="+cosNo);
-		}
-		
-		return mv;
-	}
-	
+
+	// 코스수정
+//	@RequestMapping(value="/course/modifyCourse.tripkase", method = RequestMethod.GET)
+//	public ModelAndView modifyCourse (
+//			ModelAndView mv,
+//			@ModelAttribute Course course,
+//			@RequestParam(value="uploadFile", required = false) List<MultipartFile> uploadFile,
+//			HttpServletRequest request,
+//			MultipartHttpServletRequest mRequest,
+//			@RequestParam("locationName") String locationName,
+//			@RequestParam("courseNo") Integer courseNo) {
+//		
+//		int result = cService.modifyCourse(course);
+//		if(result > 0) {
+//			mv.setViewName("redirect:/course/modifyCourse.tripkase");
+//		}
+//		
+//		return mv;
+//	}
 }
 
 
