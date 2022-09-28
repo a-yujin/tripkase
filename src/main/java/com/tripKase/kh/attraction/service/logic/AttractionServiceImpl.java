@@ -81,16 +81,16 @@ public class AttractionServiceImpl implements AttractionService {
 	
 	// 관광지 검색 게시글 수 가져오기
 	@Override
-	public int getSearchCount(String searchValue, String areaValue, String typeValue, String petValue) {
-		int result = attrStore.getSearchCount(session, searchValue, areaValue, typeValue, petValue);
+	public int getSearchCount(String searchValue, String areaValue, String [] typeValue) {
+		int result = attrStore.getSearchCount(session, searchValue, areaValue, typeValue);
 		return result;
 	}
 	
 	// 관광지 검색 게시글 목록 조회
 	@Override
-	public List<Attraction> printSearchAttr(String searchValue, String areaValue, String typeValue, String petValue,
+	public List<Attraction> printSearchAttr(String searchValue, String areaValue, String [] typeValue,
 			int currentPage, int attrLimit) {
-		List<Attraction> attrList = attrStore.selectSearchAttr(session, searchValue, areaValue, typeValue, petValue, currentPage, attrLimit);
+		List<Attraction> attrList = attrStore.selectSearchAttr(session, searchValue, areaValue, typeValue, currentPage, attrLimit);
 		return attrList;
 	}
 

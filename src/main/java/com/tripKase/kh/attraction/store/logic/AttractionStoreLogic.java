@@ -77,28 +77,25 @@ public class AttractionStoreLogic implements AttractionStore {
 	
 	// 관광지 검색 게시글 수 가져오기
 	@Override
-	public int getSearchCount(SqlSession session, String searchValue, String areaValue, String typeValue,
-			String petValue) {
+	public int getSearchCount(SqlSession session, String searchValue, String areaValue, String [] typeValue) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchValue", searchValue);
 		paramMap.put("areaValue", areaValue);
 		paramMap.put("typeValue", typeValue);
-		paramMap.put("petValue", petValue);
 		int searchCount = session.selectOne("AttrMapper.getSearchCount", paramMap);
 		return searchCount;
 	}
 	
 	// 관광지 검색 게시글 목록 조회
 	@Override
-	public List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String typeValue,
-			String petValue, int currentPage, int attrLimit) {
+	public List<Attraction> selectSearchAttr(SqlSession session, String searchValue, String areaValue, String [] typeValue,
+			int currentPage, int attrLimit) {
 		int offset = (currentPage-1)*attrLimit;
 		RowBounds rowBounds = new RowBounds(offset, attrLimit);
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("searchValue", searchValue);
 		paramMap.put("areaValue", areaValue);
 		paramMap.put("typeValue", typeValue);
-		paramMap.put("petValue", petValue);
 		List<Attraction> attrList = session.selectList("AttrMapper.selectSearchAttr", paramMap, rowBounds);
 		return attrList;
 	}

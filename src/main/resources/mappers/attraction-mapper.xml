@@ -21,7 +21,7 @@
 	</resultMap>
 	<resultMap type="AttrImg" id="attrImgResultMap">
 		<id property="attrImgNo" 			column="ATTR_IMG_NO"/>
-		<result property="refAttrNo" 		column="REF_ATTR_NO"/>
+		<result property="attrNo" 		column="ATTR_NO"/>
 		<result property="attrFileName" 	column="ATTR_FILENAME"/>
 		<result property="attrFileRename"	column="ATTR_FILERENAME"/>
 		<result property="attrFilePath" 	column="ATTR_FILEPATH"/>
@@ -51,25 +51,12 @@
 		SELECT * FROM ATTRACTION_TBL WHERE ATTR_NO = ${attrNo} AND ATTR_STATUS = 'Y'
 	</select>
 	<select id="selectImgByNo" resultMap="attrImgResultMap">
-		SELECT * FROM ATTRACTION_IMG WHERE REF_ATTR_NO = #{attrNo}
+		SELECT * FROM ATTRACTION_IMG WHERE ATTR_NO = #{attrNo}
 	</select>
 	
 	<!-- 관광지 수정 -->
 	<update id="updateAttr">
-		UDPATE ATTRACTION_TBL
-		SET ATTR_LOCATION = #{attrLocation},
-			ATTR_NAME = #{attrName},
-			ATTR_TRIP_TYPE = #{attrTripType},
-			ATTR_INFO = #{attrInfo},
-			ATTR_TEL = #{attrTel},
-			ATTR_WEBSITE = #{attrWebsite},
-			ATTR_ADDRESS = #{attrAddress},
-			ATTR_HOURS = #{attrHours},
-			ATTR_FEE = #{attrFee},
-			ATTR_CAR = #{attrCar},
-			ATTR_PET = #{attrPet},
-			ATTR_SHORT_INFO = #{attrShortInfo},
-		WHERE ATTR_NO = #{attrNo}
+		UDPATE ATTRACTION_TBL SET ATTR_LOCATION = #{attrLocation}, ATTR_NAME = #{attrName}, ATTR_TRIP_TYPE = #{attrTripType}, ATTR_INFO = #{attrInfo}, ATTR_TEL = #{attrTel}, ATTR_WEBSITE = #{attrWebsite}, ATTR_ADDRESS = #{attrAddress}, ATTR_HOURS = #{attrHours}, ATTR_FEE = #{attrFee}, ATTR_CAR = #{attrCar}, ATTR_PET = #{attrPet}, ATTR_SHORT_INFO = #{attrShortInfo} WHERE ATTR_NO = #{attrNo}
 	</update>
 	<!-- 관광지-이미지 수정 -->
 	<update id="updateAttrImg">
@@ -82,12 +69,33 @@
 	</delete>
 	
 	<!-- 관광지 검색 게시글 수 -->
-	<select id="getSearchCount" resultType="_int">
-		
+	<select id="getSearchCount" resultType="_int" parameterType="map">
+		SELECT COUNT(*) FROM ATTRACTION_TBL
+		WHERE ATTR_NAME LIKE '%'||#{searchValue}||'%' AND ATTR_STATUS = 'Y'
+		 <if test='!areaValue.equals("") and areaValue !=null'>
+            AND ATTR_LOCATION = #{areaValue}
+        </if>
+			AND ATTR_TRIP_TYPE IN
+		<foreach item="attrTripType" collection="typeValue" open="(" close=")" separator="," >
+			#{attrTripType}
+		</foreach>
 	</select>
 	
 	<!-- 관광지 검색 게시글 목록 조회 -->
-	<select id="selectSearchAttr" resultMap="attrResultMap">
-	
+	<select id="selectSearchAttr" resultMap="attrResultMap" parameterType="map">
+		WITH ATTR AS ( SELECT A.ATTR_NO, B.ATTR_NAME, B.ATTR_SHORT_INFO, B.ATTR_LOCATION, B.ATTR_TRIP_TYPE, B.ATTR_ADDRESS, B.ATTR_STATUS, A.ATTR_FILERENAME, ROW_NUMBER()
+	    OVER(PARTITION BY A.ATTR_NO ORDER BY A.ATTR_NO DESC) AS ATTR_NUM
+	    FROM ATTRACTION_IMG A JOIN ATTRACTION_TBL B ON A.ATTR_NO = B.ATTR_NO ORDER BY ATTR_NO)
+	    <!-- 검색값을 와일드카드로 감싼 후 관광지 이름과 비교해서 동일하고 게시여부가 Y인 관광지만 -->
+	    SELECT * FROM ATTR WHERE ATTR_NUM = 1 AND ATTR_NAME LIKE '%'||#{searchValue}||'%' AND ATTR_STATUS = 'Y'
+	    <!-- 지역값이 전체보기(등록에 지역 전체보기의 값을 ""으로 넣음)가 아니거나 지역값이 널이 아닌경우는 선택한 지역값을 조회하게 -->
+		<if test='!areaValue.equals("") and areaValue !=null'>
+	    	AND ATTR_LOCATION = #{areaValue}
+	    </if>
+	    AND ATTR_TRIP_TYPE IN
+		<!-- 여행 유형인 타입밸류를 포이치 통해서 선택해서 선택된 값만 비교	  -->
+	    <foreach item="attrTripType" collection="typeValue" open="(" close=")" separator="," >
+			#{attrTripType}
+		</foreach>
 	</select>
 </mapper>

@@ -83,7 +83,7 @@ public class AttractionController {
 					attrImg.setAttrFileName(attrFileName);
 					attrImg.setAttrFileRename(attrFileRename);
 					attrImg.setAttrFilePath(attrFilePath);
-					attrImgNo = attrImgNo +1;
+					attrImgNo = attrImgNo+1;
 				}
 				
 				int result2 = attrService.registerAttrImg(attrImg);
@@ -148,12 +148,10 @@ public class AttractionController {
 	public ModelAndView showAttrModify(
 			ModelAndView mv,
 			@RequestParam("attrNo") Integer attrNo,
-			@RequestParam("page") int page,
-			HttpSession session) {
+			@RequestParam("page") int page) {
 		try {
 			Attraction attr = attrService.printOneByNo(attrNo);
 			List<AttractionImg> attrImgList = attrService.printImgByNo(attrNo);
-			session.setAttribute("attrNo", attr.getAttrNo());
 			mv.addObject("attr", attr);
 			mv.addObject("attrImgList", attrImgList);
 			mv.addObject("page", page);
@@ -261,11 +259,10 @@ public class AttractionController {
 			ModelAndView mv,
 			@RequestParam(value="searchValue", required = false) String searchValue,
 			@RequestParam("areaValue") String areaValue,
-			@RequestParam("typeValue") String typeValue,
-			@RequestParam("petValue") String petValue,
+			@RequestParam("typeValue") String [] typeValue,
 			@RequestParam(value="page", required=false, defaultValue="1") int currentPage) {
 		try {
-			int searchCount = attrService.getSearchCount(searchValue, areaValue, typeValue, petValue);
+			int searchCount = attrService.getSearchCount(searchValue, areaValue, typeValue);
 			int attrLimit = 5; // 한 페이지에 보여줄 게시글 수
 			int naviLimit = 5; // 한 화면에서 보여줄 페이지 수
 			int maxPage; // 마지막 페이지 번호
@@ -279,7 +276,7 @@ public class AttractionController {
 				endNavi = maxPage;
 			}
 			
-			List<Attraction> attrList = attrService.printSearchAttr(searchValue, areaValue, typeValue, petValue, currentPage, attrLimit);
+			List<Attraction> attrList = attrService.printSearchAttr(searchValue, areaValue, typeValue, currentPage, attrLimit);
 			if(!attrList.isEmpty()) {
 				mv.addObject("attrList", attrList);
 			} else {
@@ -289,13 +286,29 @@ public class AttractionController {
 			mv.addObject("searchValue", searchValue);
 			mv.addObject("areaValue", areaValue);
 			mv.addObject("typeValue", typeValue);
-			mv.addObject("petValue", petValue);
 			mv.addObject("maxPage", maxPage);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("startNavi", startNavi);
 			mv.addObject("endNavi", endNavi);
 			
 			mv.setViewName("attraction/attrSearchList");
+		} catch (Exception e) {
+			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/attraction/detail.tripkase", method=RequestMethod.GET)
+	public ModelAndView showAttrDetail(
+			ModelAndView mv,
+			HttpSession session,
+			@RequestParam("attrNo") Integer attrNo,
+			@RequestParam("page") Integer page) {
+		try {
+			Attraction attr = attrService.printOneByNo(attrNo);
+			mv.addObject("attr", attr);
+			mv.addObject("page", page);
+			mv.setViewName("attraction/attrDetail");
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
 		}

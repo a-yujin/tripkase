@@ -14,6 +14,9 @@
 	<h1 align="center">관광지 상세</h1>
 	<form action="/attraction/modify.tripkase" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="attrNo" value="${attr.attrNo}">
+		<input type="hidden" name="page" value="${page}">
+		<input type="hidden" value="${attrImg.attrImgNo}" name="attrImgNo">
+		<input type="hidden" value="${attrImg.attrFileRename}" name="attrFileRename">
 		<table align="center" border="1">
 			<tr>
 				<td>관광지 이름</td>
@@ -22,32 +25,34 @@
 			<tr>
 				<td>관광지 지역</td>
 				<td>
-					<input type="radio" name="attrLocation" id="seoul"><label for="seoul">서울</label>
-					<input type="radio" name="attrLocation" id="gg"><label for="gg">경기</label>
-					<input type="radio" name="attrLocation" id="incheon"><label for="incheon">인천</label>
-					<input type="radio" name="attrLocation" id="gw"><label for="gw">강원</label>
-					<input type="radio" name="attrLocation" id="cb"><label for="cb">충북</label>
-					<input type="radio" name="attrLocation" id="cn"><label for="cn">충남</label>
-					<input type="radio" name="attrLocation" id="gb"><label for="gb">경북</label>
-					<input type="radio" name="attrLocation" id="gn"><label for="gn">경남</label>
-					<input type="radio" name="attrLocation" id="jb"><label for="jb">전북</label>
-					<input type="radio" name="attrLocation" id="jn"><label for="jn">전남</label>
-					<input type="radio" name="attrLocation" id="jeju"><label for="jeju">제주</label>
+					<input type="radio" name="attrLocation" id="seoul" value="seoul"><label for="seoul">서울</label>
+					<input type="radio" name="attrLocation" id="gg" value="gyeonggi"><label for="gg">경기</label>
+					<input type="radio" name="attrLocation" id="incheon" value="incheon"><label for="incheon">인천</label>
+					<input type="radio" name="attrLocation" id="gw" value="kangwon"><label for="gw">강원</label>
+					<input type="radio" name="attrLocation" id="cb" value="chungbuk"><label for="cb">충북</label>
+					<input type="radio" name="attrLocation" id="cn" value="chungnam"><label for="cn">충남</label>
+					<input type="radio" name="attrLocation" id="gb" value="gyeongbuk"><label for="gb">경북</label>
+					<input type="radio" name="attrLocation" id="gn" value="gyeongnam"><label for="gn">경남</label>
+					<input type="radio" name="attrLocation" id="jb" value="jeonbuk"><label for="jb">전북</label>
+					<input type="radio" name="attrLocation" id="jn" value="jeonnam"><label for="jn">전남</label>
+					<input type="radio" name="attrLocation" id="jeju" value="jeju"><label for="jeju">제주</label>
 				</td>
 			</tr>
 			<tr>
 				<td>여행 유형</td>
 				<td>
-					<input type="checkbox" name="attrTripType" id="couple">
+					<input type="radio" name="attrTripType" id="couple" value="couple">
 					<label for="couple">커플</label>
-					<input type="checkbox" name="attrTripType" id="friend">
+					<input type="radio" name="attrTripType" id="friend" value="friend">
 					<label for="friend">우정</label>
-					<input type="checkbox" name="attrTripType" id="solo">
+					<input type="radio" name="attrTripType" id="solo" value="alone">
 					<label for="solo">홀로</label>
-					<input type="checkbox" name="attrTripType" id="family">
+					<input type="radio" name="attrTripType" id="family" value="family">
 					<label for="family">가족</label>
-					<input type="checkbox" name="attrTripType" id="parents">
+					<input type="radio" name="attrTripType" id="parents" value="parents">
 					<label for="parents">효도</label>
+					<input type="radio" name="attrTripType" id="animal" value="pet">
+					<label for="animal">동물</label>
 				</td>
 			</tr>
 			<tr>
@@ -81,27 +86,27 @@
 			<tr>
 				<td>주차 가능 여부</td>
 				<td>
-					<input type="radio" name="attrCar" id="yesCar">
+					<input type="radio" name="attrCar" id="yesCar" value="가능">
 					<label for="yesCar">예</label>
-					<input type="radio" name="attrCar" id="noCar">
+					<input type="radio" name="attrCar" id="noCar" value="">
 					<label for="noCar">아니요</label>
 				</td>
 			</tr>
 			<tr>
 				<td>반려동물 동반 가능 여부</td>
 				<td>
-					<input type="radio" name="attrAnimal" id="yesAnimal">
-					<label for="yesAnimal">예</label>
-					<input type="radio" name="attrAnimal" id="noAnimal">
-					<label for="noAnimal">아니요</label>
+					<input type="radio" name="attrPet" id="yesPet" value="가능">
+					<label for="yesPet">예</label>
+					<input type="radio" name="attrPet" id="noPet" value="">
+					<label for="noPet">아니요</label>
 				</td>
 			</tr>
 			<tr class="fileTr">
 				<td>관광지 사진</td>
 				<td>
-					<button type="button" onclick="addFile();">추가</button>
-					<button type="button" onclick="removeFile();">삭제</button><br>
-					<input multiple="multiple" type="file" name="reloadFile">
+					<c:forEach items="${attrImgList}" var="img">
+						<input type="file" name="reloadFile" value="${attrImg.attrFileName}">
+					</c:forEach>
 				</td>
 			</tr>
 			<tr>

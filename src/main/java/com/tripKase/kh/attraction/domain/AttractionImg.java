@@ -2,7 +2,7 @@ package com.tripKase.kh.attraction.domain;
 
 public class AttractionImg {
 	private int attrImgNo; // 관광지 사진 번호
-	private int refAttrNo; // 참고 관광지 번호
+	private int attrNo; // 참고 관광지 번호
 	private String attrFileName; // 관광지 사진 파일 이름
 	private String attrFileRename; // 관광지 사진 파일 변경된 이름
 	private String attrFilePath; // 관광지 사진 파일 경로
@@ -13,11 +13,11 @@ public class AttractionImg {
 	public void setAttrImgNo(int attrImgNo) {
 		this.attrImgNo = attrImgNo;
 	}
-	public int getRefAttrNo() {
-		return refAttrNo;
+	public int getAttrNo() {
+		return attrNo;
 	}
-	public void setRefAttrNo(int refAttrNo) {
-		this.refAttrNo = refAttrNo;
+	public void setAttrNo(int attrNo) {
+		this.attrNo = attrNo;
 	}
 	public String getAttrFileName() {
 		return attrFileName;
@@ -40,7 +40,7 @@ public class AttractionImg {
 	
 	@Override
 	public String toString() {
-		return "AttractionImg [attrImgNo=" + attrImgNo + ", refAttrNo=" + refAttrNo + ", attrFileName=" + attrFileName
+		return "AttractionImg [attrImgNo=" + attrImgNo + ", attrNo=" + attrNo + ", attrFileName=" + attrFileName
 				+ ", attrFileRename=" + attrFileRename + ", attrFilePath=" + attrFilePath + "]";
 	}
 }

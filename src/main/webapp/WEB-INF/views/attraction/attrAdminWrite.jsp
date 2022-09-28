@@ -20,32 +20,34 @@
 			<tr>
 				<td>관광지 지역</td>
 				<td>
-					<input type="radio" name="attrLocation" id="seoul" value="서울"><label for="seoul">서울</label>
-					<input type="radio" name="attrLocation" id="gg" value="경기"><label for="gg">경기</label>
-					<input type="radio" name="attrLocation" id="incheon" value="인천"><label for="incheon">인천</label>
-					<input type="radio" name="attrLocation" id="gw" value="강원"><label for="gw">강원</label>
-					<input type="radio" name="attrLocation" id="cb" value="충북"><label for="cb">충북</label>
-					<input type="radio" name="attrLocation" id="cn" value="충남"><label for="cn">충남</label>
-					<input type="radio" name="attrLocation" id="gb" value="경북"><label for="gb">경북</label>
-					<input type="radio" name="attrLocation" id="gn" value="경남"><label for="gn">경남</label>
-					<input type="radio" name="attrLocation" id="jb" value="전북"><label for="jb">전북</label>
-					<input type="radio" name="attrLocation" id="jn" value="전남"><label for="jn">전남</label>
-					<input type="radio" name="attrLocation" id="jeju" value="제주"><label for="jeju">제주</label>
+					<input type="radio" name="attrLocation" id="seoul" value="seoul"><label for="seoul">서울</label>
+					<input type="radio" name="attrLocation" id="gg" value="gyeonggi"><label for="gg">경기</label>
+					<input type="radio" name="attrLocation" id="incheon" value="incheon"><label for="incheon">인천</label>
+					<input type="radio" name="attrLocation" id="gw" value="kangwon"><label for="gw">강원</label>
+					<input type="radio" name="attrLocation" id="cb" value="chungbuk"><label for="cb">충북</label>
+					<input type="radio" name="attrLocation" id="cn" value="chungnam"><label for="cn">충남</label>
+					<input type="radio" name="attrLocation" id="gb" value="gyeongbuk"><label for="gb">경북</label>
+					<input type="radio" name="attrLocation" id="gn" value="gyeongnam"><label for="gn">경남</label>
+					<input type="radio" name="attrLocation" id="jb" value="jeonbuk"><label for="jb">전북</label>
+					<input type="radio" name="attrLocation" id="jn" value="jeonnam"><label for="jn">전남</label>
+					<input type="radio" name="attrLocation" id="jeju" value="jeju"><label for="jeju">제주</label>
 				</td>
 			</tr>
 			<tr>
 				<td>여행 유형</td>
 				<td>
-					<input type="checkbox" name="attrTripType" id="couple" value="커플">
+					<input type="radio" name="attrTripType" id="couple" value="couple">
 					<label for="couple">커플</label>
-					<input type="checkbox" name="attrTripType" id="friend" value="우정">
+					<input type="radio" name="attrTripType" id="friend" value="friend">
 					<label for="friend">우정</label>
-					<input type="checkbox" name="attrTripType" id="solo" value="홀로">
+					<input type="radio" name="attrTripType" id="solo" value="alone">
 					<label for="solo">홀로</label>
-					<input type="checkbox" name="attrTripType" id="family" value="가족">
+					<input type="radio" name="attrTripType" id="family" value="family">
 					<label for="family">가족</label>
-					<input type="checkbox" name="attrTripType" id="parents" value="효도">
+					<input type="radio" name="attrTripType" id="parents" value="parents">
 					<label for="parents">효도</label>
+					<input type="radio" name="attrTripType" id="animal" value="pet">
+					<label for="animal">동물</label>
 				</td>
 			</tr>
 			<tr>
@@ -81,17 +83,17 @@
 				<td>
 					<input type="radio" name="attrCar" id="yesCar" value="가능">
 					<label for="yesCar">예</label>
-					<input type="radio" name="attrCar" id="noCar">
+					<input type="radio" name="attrCar" id="noCar" value="">
 					<label for="noCar">아니요</label>
 				</td>
 			</tr>
 			<tr>
 				<td>반려동물 동반 가능 여부</td>
 				<td>
-					<input type="radio" name="attrAnimal" id="yesAnimal" value="가능">
-					<label for="yesAnimal">예</label>
-					<input type="radio" name="attrAnimal" id="noAnimal">
-					<label for="noAnimal">아니요</label>
+					<input type="radio" name="attrPet" id="yesPet" value="가능">
+					<label for="yesPet">예</label>
+					<input type="radio" name="attrPet" id="noPet" value="">
+					<label for="noPet">아니요</label>
 				</td>
 			</tr>
 			<tr class="fileTr">

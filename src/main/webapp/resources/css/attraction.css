@@ -1,4 +1,8 @@
 @charset "UTF-8";
+body{
+	font-family : 'Noto Sans KR',sans-serif;
+}
+
 /* 관광지 검색 화면 */
 #attrSearchWrap{
 	width : 100%;
