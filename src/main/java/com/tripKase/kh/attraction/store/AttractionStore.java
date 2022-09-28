@@ -31,7 +31,7 @@ public interface AttractionStore {
 	// 관광지 수정
 	int updateAttr(SqlSession session, Attraction attr);
 	// 관광지-이미지 수정
-//	int updateAttrImg(SqlSession session, AttractionImg attrImg);
+	int updateAttrImg(SqlSession session, AttractionImg attrImg);
 	
 	// 관광지 검색 게시글 수 가져오기
 	int getSearchCount(SqlSession session, String searchValue, String areaValue, String [] typeValue);

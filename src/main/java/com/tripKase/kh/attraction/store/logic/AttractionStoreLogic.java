@@ -70,11 +70,11 @@ public class AttractionStoreLogic implements AttractionStore {
 		return result;
 	}
 	// 관광지-이미지 수정
-//	@Override
-//	public int updateAttrImg(SqlSession session, AttractionImg attrImg) {
-//		int result = session.update("AttrMapper.updateAttrImg", attrImg);
-//		return result;
-//	}
+	@Override
+	public int updateAttrImg(SqlSession session, AttractionImg attrImg) {
+		int result = session.update("AttrMapper.updateAttrImg", attrImg);
+		return result;
+	}
 	
 	// 관광지 검색 게시글 수 가져오기
 	@Override

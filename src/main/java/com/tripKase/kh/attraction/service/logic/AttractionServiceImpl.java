@@ -74,11 +74,11 @@ public class AttractionServiceImpl implements AttractionService {
 		return result;
 	}
 	// 관광지-이미지 수정
-//	@Override
-//	public int modifyAttrImg(AttractionImg attrImg) {
-//		int result = attrStore.updateAttrImg(session, attrImg);
-//		return result;
-//	}
+	@Override
+	public int modifyAttrImg(AttractionImg attrImg) {
+		int result = attrStore.updateAttrImg(session, attrImg);
+		return result;
+	}
 	
 	// 관광지 검색 게시글 수 가져오기
 	@Override

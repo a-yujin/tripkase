@@ -15,8 +15,6 @@
 	<form action="/attraction/modify.tripkase" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="attrNo" value="${attr.attrNo}">
 		<input type="hidden" name="page" value="${page}">
-<%-- 		<input type="hidden" value="${attrImg.attrImgNo}" name="attrImgNo">
-		<input type="hidden" value="${attrImg.attrFileRename}" name="attrFileRename"> --%>
 		<table align="center" border="1">
 			<tr>
 				<td>관광지 이름</td>
@@ -99,21 +97,22 @@
 					<label for="noPet">아니요</label>
 				</td>
 			</tr>
-			<tr class="fileTr">
+			<tr>
 				<td>관광지 사진</td>
 				<td>
+					<c:forEach items="${attrImgList}" var="attrImg">
+						<input type="hidden" value="${attrImg.attrImgNo}" name="attrImgNo">
+						<input type="hidden" value="${attrImg.attrFileRename}" name="attrFileRename">
+					</c:forEach>
 					<button type="button" onclick="addFile();">추가</button>
-					<button type="button" onclick="removeFile();">삭제</button><br>
-					<input multiple="multiple" type="file" name="uploadFile">
+					<button type="button" onclick="removeFile();">삭제</button>
+					<input type="file" name="reloadFile">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-				<%-- 	<input type="submit" value="수정">
-					<input type="button" onclick="attrRemove(${page});" value="삭제"> --%>
-					<!-- 수정 삭제 오류 -->
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
+					<input type="submit" value="수정">
+					<input type="button" onclick="attrRemove(${attr.attrNo}, ${page});" value="삭제">
 				</td>
 			</tr>
 		</table>
@@ -132,14 +131,13 @@
 			 	$(trTag).children('td').eq(1).children('input:last').remove();
 			 	$(trTag).children('td').eq(1).children('br:last').remove();
 			} 
-			
 		}
-		
+	
 		// 관광지 삭제
-		function attrRemove(page) {
+		function attrRemove(attrNo, page) {
 			event.preventDefault();
 			if(confirm("등록된 관광지를 삭제하시겠습니까?")) {
-				location.href="/attraction/remove.tripkase?page="+page;
+				location.href="/attraction/remove.tripkase?attrNo="+attrNo+"&page="+page;
 			}
 		}
 	</script>
