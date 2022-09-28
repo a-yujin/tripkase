@@ -209,10 +209,13 @@ public class TripController {
 			HttpSession session) {
 		Trip trip = tService.printListOne(tripNo);
 		List<TripReply> rList = tService.printAllTripReply(tripNo);
+		// 로그인 사용자 닉네임 가져오기
+		Member member = (Member)session.getAttribute("loginMember");
 		// 댓글 List 
 		session.setAttribute("tripNo", trip.getTripNo());
 		// 댓글 List를 jsp에서 사용가능하게 해주는 코드
 		mv.addObject("trip", trip);
+		mv.addObject("member", member);
 		mv.addObject("rList", rList);
 		mv.addObject("page", page);
 		mv.setViewName("trip/tripDetailView");

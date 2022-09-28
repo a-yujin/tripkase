@@ -16,12 +16,13 @@ public class Trip {
 	private int tripCount; // 여행소통 게시글 수
 	private int tripLike; // 여행소통 게시글 좋아요 수
 	private int tripShow; // 여행소통 게시글 조회수
+	private String tripProfile;
 	
 	public Trip() {}
 
 	public Trip(int tripNo, String tripTitle, String tripContents, String tripWriter, Date tripCreate, Date tripUpdate,
 			String tripFileName, String tripFileRename, String tripFilePath, String tripStatus, int tripCount,
-			int tripLike, int tripShow) {
+			int tripLike, int tripShow, String tripProfile) {
 		super();
 		this.tripNo = tripNo;
 		this.tripTitle = tripTitle;
@@ -36,6 +37,7 @@ public class Trip {
 		this.tripCount = tripCount;
 		this.tripLike = tripLike;
 		this.tripShow = tripShow;
+		this.tripProfile = tripProfile;
 	}
 
 	public int getTripNo() {
@@ -142,12 +144,20 @@ public class Trip {
 		this.tripShow = tripShow;
 	}
 
+	public String getTripProfile() {
+		return tripProfile;
+	}
+
+	public void setTripProfile(String tripProfile) {
+		this.tripProfile = tripProfile;
+	}
+
 	@Override
 	public String toString() {
 		return "Trip [tripNo=" + tripNo + ", tripTitle=" + tripTitle + ", tripContents=" + tripContents
 				+ ", tripWriter=" + tripWriter + ", tripCreate=" + tripCreate + ", tripUpdate=" + tripUpdate
 				+ ", tripFileName=" + tripFileName + ", tripFileRename=" + tripFileRename + ", tripFilePath="
 				+ tripFilePath + ", tripStatus=" + tripStatus + ", tripCount=" + tripCount + ", tripLike=" + tripLike
-				+ ", tripShow=" + tripShow + "]";
+				+ ", tripShow=" + tripShow + ", tripProfile=" + tripProfile + "]";
 	}
 }

@@ -115,6 +115,11 @@ body {
 	border : none;
 	background-color : white;	
 }
+#replyBt {
+	float : right;
+	border : none;
+	background-color : white;
+}
 #choice-menu {
 	height : 80px;
 	font-size : 12px;
@@ -199,7 +204,7 @@ body {
 			border-radius : 50%;
 		}
 	#user-wrapper {
-		width : 60%;
+		width : 85%;
 		margin-left : 120px;
 	}
 	#user-comment {
@@ -264,7 +269,7 @@ body {
 	#list-text {
 		font-size : 14px;
 		margin-top : 10px;
-		height : 150px;
+		height : 140px;
 		overflow : hidden;
 	}
 	#like-counter {
@@ -281,6 +286,10 @@ body {
 	margin : 0 auto;
 	padding-bottom : 120px;
 }
+	#search-input{
+		width : 1100px;
+		float : left;
+	}
 	#searchBt {
 		border : solid 1px lightgray;
 		color : BLACK;

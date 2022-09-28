@@ -3,6 +3,10 @@
 body {
 	margin : 0 auto;
 }
+li {
+  list-style-type: none;
+}
+
 /* roomSearchView.jsp */
 #search-wrapper {
 	width : 100%;
@@ -237,7 +241,14 @@ body {
 #rdata-page {
 	width : 1500px;
 	padding-top : 50px;
-	padding-left : 900px;
+	padding-left : 880px;
+	text-align : center;
+}
+#rlist-page {
+	width : 1500px;
+	padding-top : 50px;
+	padding-left : 800px;
+	padding-bottom : 40px;
 	text-align : center;
 }
 #pageback {
@@ -356,19 +367,59 @@ body {
 			font-size : 16px;
 		}
 	#top-picture {
-		width : 1200px;
+		width : 1250px;
 		margin : 0 auto;
 	}
 		#pic-left {
-			width : 50%;
+			width : 48%;
 			float : left;
 		}
 		#pic-right {
 			width : 50%;
-			float : right;
+			float : left;
 		}
 		#right-top {
 			float : left;
 		}
 		.right-pic {
+			margin-right : 10px;
+			margin-bottom : 10px;
 		}
+#top-button {
+	width : 1200px;
+	text-align : center;
+}
+	.detail-button {
+		width : 100px;
+		height : 40px;
+		margin-top : 50px;
+		margin-bottom : 50px;
+		background-color : white;
+		border : solid 1px lightgray;
+		border-radius : 15px;
+	}
+#detail-hr {
+	width : 1200px;
+	margin : 0 auto;
+}
+#context-wrapper {
+	text-align : center;
+}
+.detail-text {
+	margin-top : 50px;
+	margin-bottom : 80px;
+	font-size : 18px;
+	font-weight : bold;
+}
+#detail-room {
+	width : 1000px;
+	margin : 0 auto;
+	text-align : left;
+}
+#room-imglist {
+	text-align : center;
+}
+	.room-images {
+		margin-top : 10px;
+		margin-bottom : 10px;
+	}

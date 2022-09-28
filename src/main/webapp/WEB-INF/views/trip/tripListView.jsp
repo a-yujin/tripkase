@@ -38,11 +38,11 @@
 				<div class="card" id="card-inside" style="width: 280px;">
 					<c:if test="${not empty loginMember}">
 						<a href="/trip/detailView.tripkase?tripNo=${trip.tripNo }&page=${currentPage }">
-						<img src="/resources/tuploadFiles/${trip.tripFileRename }" class="card-img-top" alt="리스트 이미지" width="200px" height="280px">
+							<img src="/resources/tuploadFiles/${trip.tripFileRename }" class="card-img-top" alt="리스트 이미지" width="200px" height="280px">
 						</a>
 					</c:if>
 					<c:if test="${sessionScope.loginMember eq null}">
-						<img src="/resources/tuploadFiles/${trip.tripFileRename }" class="card-img-top" alt="리스트 이미지" width="200px" height="280px">
+						<img src="/resources/tuploadFiles/${trip.tripFileRename }" class="card-img-top" alt="리스트 이미지" width="200px" height="280px" onclick="detailView()">
 					</c:if>
 					<div class="card-body">
 						<!-- 게시글 제목 -->
@@ -51,8 +51,8 @@
 						<p id="list-text" class="card-text">${trip.tripContents }</p>
 						<!-- 게시글 좋아요 -->
 						<input type="hidden" id="like-check" value="${trip.tripLike }">
-						<img src="/resources/images/trip/beforeLike.png" id="beforeLike" width="35px" height="30px">
-						<span id="like-counter">${trip.tripLike }</span>
+						<img src="/resources/images/trip/see.png" id="beforeLike" width="35px" height="30px">
+						<span id="like-counter">${trip.tripCount }</span>
 						<span id="card-maker">${trip.tripWriter } ${trip.tripCreate }</span>
 					</div>
 				</div>
@@ -85,6 +85,15 @@
 			</td>
 		</tr>
 	</table>
+	<jsp:include page="../common/footer.jsp"/>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+	<script>
+		function detailView() {
+			event.preventDefault();
+			if(confirm("로그인 후 이용해주세요.")) {
+				location.href="/member/loginView.tripkase";
+			}
+		}
+	</script>
 </body>
 </html>
