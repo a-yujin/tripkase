@@ -1,5 +1,6 @@
 package com.tripKase.kh.schedule.service.logic;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import com.tripKase.kh.schedule.domain.Schedule;
 import com.tripKase.kh.schedule.domain.ScheduleManage;
 import com.tripKase.kh.schedule.service.ScheduleService;
 import com.tripKase.kh.schedule.store.ScheduleStore;
+import com.tripKase.kh.storage.domain.Storage;
 
 @Service
 public class ScheduleServiceLogic implements ScheduleService {
@@ -52,6 +54,36 @@ public class ScheduleServiceLogic implements ScheduleService {
 	@Override
 	public int getTotalDays(int cheduleSeq) {
 		int result = sStore.getTotalDays(session,cheduleSeq);
+		return result;
+	}
+
+	@Override
+	public Storage selectStoByNo(int stoNo) {
+		Storage sto = sStore.selectStoByNo(session, stoNo);
+		return sto;
+	}
+
+	@Override
+	public int insertStorage(Storage storage) {
+		int result = sStore.insertStorage(session, storage);
+		return result;
+	}
+
+	@Override
+	public List<Integer> dayCount(String memberId) {
+		List<Integer> iList = sStore.dayCount(session, memberId);
+		return iList;
+	}
+
+	@Override
+	public List<Schedule> selectAllstorage(String memberId) {
+		List<Schedule> sList = sStore.selectAllstorage(session, memberId);
+		return sList;
+	}
+
+	@Override
+	public int insertScheduleData(HashMap<String, String> param) {
+		int result = sStore.insertScheduleData(session, param);
 		return result;
 	}
 

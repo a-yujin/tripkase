@@ -37,7 +37,7 @@
 				<tr>
 					<td>작성자</td>
 					<%-- <td>${loginMember.memberName }</td> --%>
-					<td>admin</td>
+					<td><input size="80" type="text" name="noticeWriter" value="Admin"></td>
 				</tr>
 				<tr>
 					<td>내용</td>

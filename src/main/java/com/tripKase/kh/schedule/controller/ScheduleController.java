@@ -3,6 +3,7 @@ package com.tripKase.kh.schedule.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,8 @@ import com.tripKase.kh.member.domain.Member;
 import com.tripKase.kh.schedule.domain.Schedule;
 import com.tripKase.kh.schedule.domain.ScheduleManage;
 import com.tripKase.kh.schedule.service.ScheduleService;
+import com.tripKase.kh.storage.domain.Storage;
+import com.tripKase.kh.storage.store.StorageStore;
 
 @Controller
 public class ScheduleController {
@@ -74,6 +77,41 @@ public class ScheduleController {
 		mv.addObject("sList",sList);
 		mv.addObject("smList",smList);
 		mv.setViewName("/schedule/scheduleDetail");
+		return mv;
+	}
+	
+	@RequestMapping("/schedule/choiceSchedule.tripkase")
+	public ModelAndView choiceSchedule(
+			ModelAndView mv
+			,HttpSession session
+			,@RequestParam("contentsType") String contentsType
+			,@RequestParam("contentsNo") int contentsNo
+			) {
+		String memberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+		List<Schedule> sList = sService.selectAllstorage(memberId);
+		mv.addObject("sList",sList);
+		mv.addObject("contentsType",contentsType);
+		mv.addObject("contentsNo",contentsNo);
+		mv.setViewName("/schedule/choiceSchedule");
+		return mv;
+	}
+	
+	@RequestMapping("/schedule/insertSchedule.tripkase")
+	public ModelAndView insertStorage(
+			ModelAndView mv
+			,@RequestParam("contentsType") String contentsType
+			,@RequestParam("contentsNo") String contentsNo
+			,@RequestParam("scheduleSeq") String scheduleSeq
+			,@RequestParam("scheduleDays") String scheduleDays
+			,HttpSession session) {
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("contentsType", contentsType);
+			param.put("contentsNo", contentsNo);
+			param.put("scheduleSeq", scheduleSeq);
+			param.put("scheduleDays", scheduleDays);
+			int result = sService.insertScheduleData(param);
+			System.out.println(result);
+			mv.setViewName("/schedule/afterInsert");
 		return mv;
 	}
 	

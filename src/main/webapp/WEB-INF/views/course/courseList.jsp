@@ -22,6 +22,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="courseTable">
 		<h2 align="center">코스 조회</h2>	
 		<c:if test="${cList ne null }">
@@ -68,6 +69,7 @@
 				</table>
 		</c:if>
 	</div>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
