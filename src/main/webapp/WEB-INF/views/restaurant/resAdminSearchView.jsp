@@ -69,11 +69,11 @@
 					</div>
 					<br><br><br>
 					<div>
-					<label><input type="checkbox" name="typeValue" value="korean">　한식　</label>
-						<label><input type="checkbox" name="typeValue" value="chinese">　중식　</label>
-						<label><input type="checkbox" name="typeValue" value="japanese">　일식　</label>
-						<label><input type="checkbox" name="typeValue" value="american">　양식　</label>
-						<label><input type="checkbox" name="typeValue" value="etc">　기타</label>
+					<label><input type="checkbox" name="typeValue" value="korean" checked>　한식　</label>
+						<label><input type="checkbox" name="typeValue" value="chinese" checked>　중식　</label>
+						<label><input type="checkbox" name="typeValue" value="japanese" checked>　일식　</label>
+						<label><input type="checkbox" name="typeValue" value="american" checked>　양식　</label>
+						<label><input type="checkbox" name="typeValue" value="etc" checked>　기타</label>
 						<br><br>
 					</div>
 				</div>
@@ -83,5 +83,7 @@
 				</div>
 			</form>
 		</div>
+<br><br><br><br><br><br><br><br><br>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

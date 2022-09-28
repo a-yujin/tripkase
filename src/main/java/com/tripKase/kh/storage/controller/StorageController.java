@@ -35,8 +35,14 @@ public class StorageController {
 			String memberId = member.getMemberId();
 			paramMap.put("memberId", memberId);
 			int result = stoService.insertStorage(paramMap);
+			List<Storage> resDataList = stoService.getResDataByMemberId(memberId);		// 멤버 아이디별로 각 컨텐츠 정보 가져옴
+			List<Storage> roomDataList = stoService.getRoomDataByMemberId(memberId);
+			List<Storage> attrDataList = stoService.getAttrDataByMemberId(memberId);
+			mv.addObject("resDataList",resDataList);
+			mv.addObject("roomDataList",roomDataList);
+			mv.addObject("attrDataList",attrDataList);
 			if(result > 0) {
-				mv.setViewName("storage/storageMainPage");
+				mv.setViewName("/storage/storageMainPage");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,7 +61,6 @@ public class StorageController {
 	public ModelAndView deleteStorage(ModelAndView mv, HttpSession session, @RequestParam("stoNo") Integer stoNo) {
 		try {
 			int result = stoService.deleteStorage(stoNo);
-			System.out.println(stoNo);
 			if(result > 0) {
 				session.removeAttribute("stoNo");
 				mv.setViewName("redirect:/storage/storageView.tripkase");				

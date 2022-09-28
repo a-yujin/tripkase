@@ -83,6 +83,7 @@
 		<br><br>
 		<input type="submit" value="등록">
 	</form>
+<jsp:include page="../common/footer.jsp"/>
 <script>
 	function addFile(){
 		var number = 2;

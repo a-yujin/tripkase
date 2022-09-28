@@ -61,9 +61,6 @@
 		<br><br>상세정보
 		<textarea name="resDetail"></textarea>
 		
-		<br><br>지도
-		<input type="text" name="resMap">
-		
 		<br><br>문의
 		<input type="text" name="resTel">
 		
@@ -94,5 +91,7 @@
 		} 
 	}
 </script>
+<br><br><br><br><br><br><br><br>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
