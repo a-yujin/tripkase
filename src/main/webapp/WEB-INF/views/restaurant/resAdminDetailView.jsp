@@ -15,50 +15,58 @@
  <jsp:include page="../admin/menuBar.jsp"></jsp:include>
 <body>
 <script>
-	
 </script>
+<style>
+	.admintable {
+		text-align : center;
+		width : 80px;
+		border : 1px solid black;
+	}
+	
+	.contents {
+		text-align : center;
+		border : 1px solid black;
+		width : 40px;
+	}
+</style>
  <div>
 	<h2 align="center">맛집 상세 조회 (관리자)</h2>
 		<table align="center" border="1" width="800">
 		<tbody>
-			<tr>
-				<td>가게 이름</td>
-				<td>${restaurant.resName }</td>
+			<tr class="admintable">
+				<td class="contents">가게 이름</td>
+				<td class="contents">${restaurant.resName }</td>
 			</tr>
-			<tr>
-				<td>주소</td>
+			<tr class="admintable">
+				<td  class="contents">주소</td>
 				<td>${restaurant.resAddress }</td>
 			</tr>
-			<tr>
-				<td>문의처</td>
-				<td>${restaurant.resTel }</td>
+			<tr class="admintable">
+				<td class="contents">문의처</td>
+				<td class="contents">${restaurant.resTel }</td>
+			</tr>
+			<tr class="admintable">
+				<td class="contents">휴일</td>
+				<td class="contents">${restaurant.resDayoff }</td>
+			</tr>
+			<tr class="admintable">
+				<td class="contents">대표메뉴</td>
+				<td class="contents">${restaurant.resMainmenu }</td>
 			</tr>
 			<tr>
-				<td>문의처</td>
-				<td>${restaurant.resTel }</td>
+				<td class="contents">상세내용</td>
+				<td class="contents">${restaurant.resDetail }</td>
 			</tr>
-			<tr>
-				<td>휴일</td>
-				<td>${restaurant.resDayoff }</td>
-			</tr>
-			<tr>
-				<td>대표메뉴</td>
-				<td>${restaurant.resMainmenu }</td>
-			</tr>
-			<tr>
-				<td>상세내용</td>
-				<td>${restaurant.resDetail }</td>
-			</tr>
-			<tr>
-				<td>이미지</td>
-				<td>
+			<tr class="admintable">
+				<td class="contents">이미지</td>
+				<td class="contents">
 					<c:forEach items="${resImgList}" var="resImg">
 						<img src="/resources/resUploadFiles/${resImg.resFileRename}" width="200px" height="200px">				
 					</c:forEach>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
+				<td  class="contents" colspan="2" align="center">
 					<button class="btn btn-default" type="button" onclick="location.href='/restaurant/modifyRestaurantView.tripkase?resNo=${restaurant.resNo }'">수정</button>
 					<button class="btn btn-default" type="button" onclick="location.href='/restaurant/deleteRestaurant.tripkase?resNo=${restaurant.resNo }'">삭제</button>
 				</td>

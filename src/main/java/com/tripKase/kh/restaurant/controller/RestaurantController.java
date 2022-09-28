@@ -92,31 +92,47 @@ public class RestaurantController {
 	}
 	
 	
-	//맛집 삭제
+	/**
+	 *  맛집 삭제 기능 ( 관리자 )
+	 * @param mv
+	 * @param session
+	 * @param resNo
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value="/restaurant/deleteRestaurant.tripkase", method=RequestMethod.GET)
-	public String deleteRestaurant(HttpSession session) {
+	public ModelAndView deleteRestaurant(ModelAndView mv, HttpSession session, @RequestParam("resNo") int resNo) {
 		try {
-			int resNo = Integer.parseInt(session.getAttribute("resNo").toString());
 			int result = resService.deleteRestaurant(resNo);
 			if(result > 0) {
-				session.removeAttribute("resNo");
+				mv.setViewName("redirect:/restaurant/resAdminSearchPage.tripkase");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/restaurant/resAdminSearchPage.tripkase";
+		return mv;
 	}
 	
 
-	//맛집 검색 기본 페이지 http://127.0.0.1:9999/restaurant/restaurantMainPage.tripkase
+	/**
+	 * 맛집 검색 기본 페이지 http://127.0.0.1:9999/restaurant/restaurantMainPage.tripkase
+	 * @return String
+	 */
 	@RequestMapping(value="/restaurant/restaurantMainPage.tripkase", method=RequestMethod.GET)
 	public String restaurantMainPage() {
 
 		return "restaurant/restaurantMainPage";
 	}
 	
-	
-	// 맛집 검색 목록 페이지
+
+	/**
+	 *  맛집 검색 메소드
+	 * @param mv
+	 * @param searchValue
+	 * @param areaValue
+	 * @param typeValue
+	 * @param currentPage
+	 * @return ModelAndView
+	 */
 	@RequestMapping(value="/restaurant/restaurantSearch.tripkase", method=RequestMethod.GET)
 	public ModelAndView restaurantSearch(
 			ModelAndView mv
@@ -162,14 +178,23 @@ public class RestaurantController {
 	}
 	
 	
-	//맛집 상세 조회
+	/**
+	 * 맛집 상세 페이지 열기
+	 * @param mv
+	 * @param session
+	 * @param resNo
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping(value="/restaurant/restaurantDetailView.tripkase", method=RequestMethod.GET)
 	public ModelAndView restaurantDetailView(ModelAndView mv, HttpSession session,
 							@RequestParam("resNo") Integer resNo,  @RequestParam("page") Integer page) {
 		try {
 			Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
+			List<ResImg> resImgList = resService.selectResImgByNo(resNo);
 			mv.addObject("restaurant" , restaurant);
 			mv.addObject("page", page);
+			mv.addObject("resImgList", resImgList);
 			mv.setViewName("restaurant/restaurantDetailView");
 		} catch (Exception e) {
 			mv.addObject("msg", e.toString()).setViewName("common/errorPage");
@@ -187,9 +212,14 @@ public class RestaurantController {
 	}
 	
 	
-	/** 관리자 맛집 검색 조회
-	 *	 
-	 * 
+	/**
+	 * 맛집 검색 조회 ( 관리자 )
+	 * @param mv
+	 * @param searchValue
+	 * @param areaValue
+	 * @param typeValue
+	 * @param currentPage
+	 * @return
 	 */
 		@RequestMapping(value="/restaurant/restaurantAdminSearchView.tripkase", method=RequestMethod.GET)
 		public ModelAndView restaurantAdminSearch(
@@ -236,7 +266,7 @@ public class RestaurantController {
 		}
 		
 		
-		/** 맛집 수정 페이지로 이동(관리자)
+		/** 맛집 수정 페이지 이동(관리자)
 		 * 	
 		 */
 		@RequestMapping(value="/restaurant/modifyRestaurantView.tripkase", method=RequestMethod.GET)
@@ -261,7 +291,7 @@ public class RestaurantController {
 		
 		
 		/**
-		 * 맛집 상세 조회
+		 * 맛집 상세 조회 ( 관리자 )
 		 * @param mv
 		 * @param session
 		 * @param resNo
@@ -274,6 +304,7 @@ public class RestaurantController {
 			try {
 				Restaurant restaurant = resService.printOneByRestaurantNo(resNo);
 				List<ResImg> resImgList = resService.selectResImgByNo(resNo);
+				System.out.println(restaurant);
 				mv.addObject("restaurant" , restaurant);
 				mv.addObject("resImgList", resImgList);
 				mv.setViewName("restaurant/resAdminDetailView");
@@ -305,12 +336,6 @@ public class RestaurantController {
 				,HttpServletRequest request) {
 				int num = 0;
 				ResImg resImg = null;
-				System.out.println("restaurant : " + restaurant.toString());
-				System.out.println("imgNoArr : " + imgNoArr[0]);
-				System.out.println("ddd1 : " + reloadFile.toString());
-				System.out.println("ddd2 : " + resFileRenameArr[0]);
-			
-				
 				int result = resService.updateRestaurant(restaurant);
 				try {
 					for(MultipartFile mf : reloadFile) {
@@ -319,13 +344,11 @@ public class RestaurantController {
 							String root = request.getSession().getServletContext().getRealPath("resources");
 							String savePath = root + "\\resUploadFiles";
 							SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
-							//기존 파일 삭제
 							String rFileRename = resFileRenameArr[num];
 							File file = new File(savePath + "\\" + rFileRename);
 							if(!file.exists()) {
 								file.delete();
 							}
-							//새로운 파일 등록
 							String resFileRename = sdf.format(new Date(System.currentTimeMillis()))+num+"."+resFileName.substring(resFileName.lastIndexOf(".")+1);
 							file = new File(savePath);
 							mf.transferTo(new File(savePath+"\\"+resFileRename));
