@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세: 관광지 상세</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link href="/resources/css/attraction.css" rel="stylesheet">
 </head>
 <body>
@@ -38,7 +40,7 @@
 					<td colspan="3"><hr class="invisiblehr"></td>
 				</tr>
 				<tr>
-					<td class="storeBtn" colspan="3"><input type="submit" value="보관하기"></td>
+					<td class="storeBtn" colspan="3"><button class="btn btn-default" type="submit">보관하기</button> <button type="button" class="btn btn-default" onclick="javascript:history.go(-1);">목록으로</button></td>
 				</tr>
 				<tr>
 					<td colspan="3"><hr></td>
