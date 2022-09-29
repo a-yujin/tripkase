@@ -30,15 +30,6 @@ public class AttractionController {
 	private AttractionService attrService;
 	
 	/**
-	 * 관광지 검색 화면
-	 * @return
-	 */
-	@RequestMapping(value="/attraction/searchView.tripkase", method=RequestMethod.GET)
-	public String showAttrSearch(){
-		return "attraction/attrSearch";
-	}
-	
-	/**
 	 * 관광지 등록 화면
 	 * @return
 	 */
@@ -138,7 +129,7 @@ public class AttractionController {
 		
 		return mv;
 	}
-	
+
 	/**
 	 * 관광지 수정 화면
 	 * @param mv
@@ -164,7 +155,7 @@ public class AttractionController {
 		}
 		return mv;
 	}
-	
+
 	/**
 	 * 관광지 수정
 	 * @param attr
@@ -223,7 +214,7 @@ public class AttractionController {
 		}
 		return mv;
 	}
-	
+
 	/**
 	 * 관광지 삭제
 	 * @param session
@@ -247,7 +238,16 @@ public class AttractionController {
 			return "common/errorPage";
 		}
 	}
-	
+
+	/**
+	 * 관광지 검색 화면
+	 * @return
+	 */
+	@RequestMapping(value="/attraction/searchView.tripkase", method=RequestMethod.GET)
+	public String showAttrSearch(){
+		return "attraction/attrSearch";
+	}
+
 	/**
 	 * 관광지 검색(목록 결과)
 	 * @param mv
@@ -259,7 +259,7 @@ public class AttractionController {
 	 * @return
 	 */
 	@RequestMapping(value="/attraction/searchList.tripkase", method=RequestMethod.GET)
-	public ModelAndView showAttrList(
+	public ModelAndView showSearchList(
 			ModelAndView mv,
 			@RequestParam(value="searchValue", required = false) String searchValue,
 			@RequestParam("areaValue") String areaValue,
@@ -312,7 +312,7 @@ public class AttractionController {
 	 * @return
 	 */
 	@RequestMapping(value="/attraction/detail.tripkase", method=RequestMethod.GET)
-	public ModelAndView showAttrDetail(
+	public ModelAndView showSearchDetail(
 			ModelAndView mv,
 			HttpSession session,
 			@RequestParam("attrNo") Integer attrNo,

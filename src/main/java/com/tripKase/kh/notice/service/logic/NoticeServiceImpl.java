@@ -2,7 +2,7 @@ package com.tripKase.kh.notice.service.logic;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +15,10 @@ import com.tripKase.kh.notice.store.NoticeStore;
 @Service
 public class NoticeServiceImpl implements NoticeService{
 	@Autowired
-	private SqlSessionTemplate session;
+	private SqlSession session;
 	
 	@Autowired
 	private NoticeStore nStore;
-
-	// 공지 등록
-	@Override
-	public int registerNotice(Notice notice) {
-		int result = nStore.insertNotice(session, notice);
-		return result;
-	}
 
 	// 총 게시글 수 가져오기
 	@Override

@@ -10,6 +10,7 @@
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	<br><br><br>
 	<h1 align="center">관광지 목록</h1>
 	<table align="center" border="1">
 		<tr>
@@ -60,6 +61,7 @@
 			</tr>
 		</c:if>
 	</table>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
