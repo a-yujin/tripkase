@@ -80,6 +80,7 @@
 		<button class="detail-button" onclick="roomDataRemove()">삭제하기</button>
 	</div>
 	<br><br><br>
+	<jsp:include page="../common/footer.jsp"/>
 	<script>
 		// 데이터 삭제
 		function roomDataRemove() {

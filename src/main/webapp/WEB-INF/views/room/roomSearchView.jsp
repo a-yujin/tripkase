@@ -22,7 +22,7 @@
 		<form action="/room/roomTypeSearch.tripkase" method="get" enctype="multipart/form-data">
 			<div id="area-wrapper">
 				<div id="choice-area" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-					<input type="radio" class="btn-check" id="btnradio1" name="areaValue" autocomplete="off" value="">
+					<input type="radio" class="btn-check" id="btnradio1" name="areaValue" autocomplete="off" value="" checked>
 					<label class="btn btn-outline-primary" for="btnradio1">전체보기</label>
 					
 					<input type="radio" class="btn-check" id="btnradio2" name="areaValue" autocomplete="off" value="서울">
@@ -91,6 +91,7 @@
 		</div>
 		</form>
 	</div>		
+	<jsp:include page="../common/footer.jsp"/>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

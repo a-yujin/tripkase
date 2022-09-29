@@ -89,32 +89,6 @@ public class TripController {
 	}
 
 	/**
-	 * 여행소통 상세페이지 댓글 등록
-	 * @param mv
-	 * @param tReply
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value="/trip/addReply.tripkase", method=RequestMethod.POST)
-	public ModelAndView registerTriptReply(
-			ModelAndView mv,
-			@ModelAttribute TripReply tripReply,
-			@RequestParam("page") int page,
-			HttpSession session) {
-		Member member = (Member)session.getAttribute("loginMember");
-		String tReplyWriter = member.getMemberNick();
-		tripReply.settReplyWriter(tReplyWriter);
-		String tReplyProfile = member.getmPfpReName();
-		tripReply.settReplyProfile(tReplyProfile);
-		int tripNo = tripReply.getRepTripNo();
-		int result = tService.registerReply(tripReply);
-		if(result > 0) {
-			mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo+"&page="+page);
-		}
-		return mv;
-	}
-	
-	/**
 	 * 여행소통 게시판 리스트
 	 * @param mv
 	 * @param trip
@@ -155,7 +129,7 @@ public class TripController {
 		mv.setViewName("trip/tripListView");
 		return mv;
 	}
-	
+
 	/**
 	 * 게시글 검색 기능
 	 * @param mv
@@ -196,7 +170,7 @@ public class TripController {
 		mv.setViewName("trip/tripListView");
 		return mv;
 	}
-	
+
 	/**
 	 * 여행소통 상세페이지
 	 * @param mv
@@ -224,8 +198,52 @@ public class TripController {
 		mv.addObject("page", page);
 		mv.setViewName("trip/tripDetailView");
 		return mv;
-	} 
+	}
+
+	/**
+	 * 여행소통 상세페이지 댓글 등록
+	 * @param mv
+	 * @param tReply
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/trip/addReply.tripkase", method=RequestMethod.POST)
+	public ModelAndView registerTriptReply(
+			ModelAndView mv,
+			@ModelAttribute TripReply tripReply,
+			@RequestParam("page") int page,
+			HttpSession session) {
+		Member member = (Member)session.getAttribute("loginMember");
+		String tReplyWriter = member.getMemberNick();
+		tripReply.settReplyWriter(tReplyWriter);
+		String tReplyProfile = member.getmPfpReName();
+		tripReply.settReplyProfile(tReplyProfile);
+		int tripNo = tripReply.getRepTripNo();
+		int result = tService.registerReply(tripReply);
+		if(result > 0) {
+			mv.setViewName("redirect:/trip/detailView.tripkase?tripNo="+tripNo+"&page="+page);
+		}
+		return mv;
+	}
 	
+	/**
+	 * 여행소통 게시글 삭제
+	 * @param model
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/trip/tripRemove.tripkase", method=RequestMethod.GET)
+	public String tripRemove(
+			Model model,
+			HttpSession session) {
+		int tripNo = (Integer)session.getAttribute("tripNo");
+		int result = tService.removeListOne(tripNo);
+		if(result > 0) {
+			session.removeAttribute("tripNo");
+		}
+		return "redirect:/trip/tripList.tripkase";
+	}
+
 	/**
 	 * 게시글 상세페이지 수정 화면
 	 * @param mv
@@ -290,30 +308,12 @@ public class TripController {
 	}
 	
 	/**
-	 * 여행소통 게시글 삭제
-	 * @param model
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value="/trip/tripRemove.tripkase", method=RequestMethod.GET)
-	public String tripRemove(
-			Model model,
-			HttpSession session) {
-		int tripNo = (Integer)session.getAttribute("tripNo");
-		int result = tService.removeListOne(tripNo);
-		if(result > 0) {
-			session.removeAttribute("tripNo");
-		}
-		return "redirect:/trip/tripList.tripkase";
-	}
-	
-	/**
 	 * 댓글 삭제
 	 * @param tReplyNo
 	 * @return
 	 */
 	@RequestMapping(value="/tirp/removeReply.tripkase", method=RequestMethod.POST)
-	public String removeBoardReply(
+	public String removeTripReply(
 			@RequestParam("tReplyNo") Integer tReplyNo) {
 		int result = tService.deleteReply(tReplyNo);
 		return "redirect:/trip/tripList.tripkase";
