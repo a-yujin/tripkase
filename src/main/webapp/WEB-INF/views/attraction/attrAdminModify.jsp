@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세: 관광지 상세</title>
+	<style>
+		input,textarea{
+			border:0px;
+		}
+	</style>
+	
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 </head>
 <body>

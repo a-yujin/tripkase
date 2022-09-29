@@ -15,11 +15,16 @@
     body {
         font-family : 'Noto Sans KR',sans-serif;
     }
+    .resForm{
+    	margin:auto;
+    	width: 700px;
+    }
 </style>
 <!-- 테스트용 jsp -->
 <body>
  <jsp:include page="../common/header.jsp"></jsp:include>
  <jsp:include page="../admin/menuBar.jsp"></jsp:include>
+	<div class="resForm">
 	<form action="/restaurant/insertRestaurantData.tripkase" method="post" enctype="multipart/form-data">
 		
 		<br><br>종류 선택
@@ -76,6 +81,7 @@
 		<br><br>
 		<input type="submit" value="등록">
 	</form>
+	</div>
 <script>
 	function addFile(){
 		var number = 2;
