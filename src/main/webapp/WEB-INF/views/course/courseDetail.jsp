@@ -113,6 +113,19 @@ div {
 #footer{
 	margin-top : 100%;
 }
+#cdetail-button {
+	margin : 0 auto;	
+	text-align : center;
+	border : solid 1px lightgray;
+	width : 100px;
+	height : 40px;
+	background-color : white;
+	border-radius : 15px;
+}
+#cdetail-wraaper {
+	width : 100%;
+	margin-left : 500px;
+}
 </style>
 
 </head>
@@ -140,6 +153,10 @@ div {
 				
 				<div class="map"></div>
 				
+				<center>	
+				<h4>코 스 사 진</h4>
+				</center>
+				<br><br>
 				<div id="courseSchedule-wapper">
 					<c:forEach items="${cImg}" var="cImg">
 						<div id="courseSchedule-inside">
@@ -155,6 +172,10 @@ div {
 						</div>
 					</c:forEach>
 				</div>
+	<br>
+	<div id="cdetail-wrapeer">
+		<button type="button" id="cdetail-button" onclick="javascript:history.go(-1);">목록으로</button>	
+	</div>
 			</div>
 		</div>
 	</form>

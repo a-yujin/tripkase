@@ -21,6 +21,10 @@
   border: 1px solid lightgray;
   outline: none;
 }
+#profile-img{
+	border : none;
+	margin-top: 25px;
+}
 </style>
 
 </head>
@@ -83,7 +87,7 @@
 			<tr>
 				<td> * 프로필 사진 </td>
 				<td>
-					<input multiple="multiple" type="file" name="uploadFile">
+					<input multiple="multiple" type="file" name="uploadFile" id="profile-img">
 				</td>
 			</tr>	
 				<tr>
