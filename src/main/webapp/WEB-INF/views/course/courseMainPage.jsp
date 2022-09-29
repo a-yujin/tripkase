@@ -33,15 +33,16 @@
             height: 14px;
             border-radius: 100%;
         }
-        
+    #contents {
+    	width : 1000px;
+    	margin : 0 auto;
+    }
     .image-box {
 		   float : left;
 	       text-align : center;
 	       width : 20%;
 	       height : 100%;
 	       overflow:hidden;
-    		
-    		
 		}		
 
 	.imagee {
@@ -54,11 +55,18 @@
         
    .textarea{
    			  float : center;
-		      width : 85%;
+   			  text-align : left;
+		      width : 70%;
 		      height : 100%;
+		      margin-left : 300px;
  		 }     
  	.courseList{
  			height : 150px;
+ 			list-style : none; 
+ 	}
+ 	
+ 	#hrs{
+ 		color : black;
  	}
   
 </style>
@@ -92,7 +100,7 @@
 	<div id=contents align="center">
 		<ul>
 			<c:forEach items="${cmList }" var="courseMain">
-				<hr>
+				<hr id="hrs">
 				<li class="courseList" >
 						<div class="image-box" >
 							<a href="/course/courseDetail.tripkase?courseNo=${courseMain.courseNo }"> 
