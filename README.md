@@ -10,6 +10,6 @@
 관리자 : 회원관리, 공지관리, 문의관리, 신고관리, 컨텐츠관리(코스 등록/수정/삭제, 관광지 등록/수정/삭제, 숙소 등록/수정/삭제)
 
 4. 개발환경
-HTML,CSS,JavaScript,Java,oracle,mybatis,spring
+HTML,CSS,JavaScript,Java,oracle,mybatis,spring,
 
 
