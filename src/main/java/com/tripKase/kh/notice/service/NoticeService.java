@@ -7,9 +7,6 @@ import com.tripKase.kh.notice.domain.Notice;
 import com.tripKase.kh.notice.domain.NoticeReply;
 
 public interface NoticeService {
-	// 공지 등록
-	public int registerNotice(Notice notice);
-
 	// 총 게시글 수 가져오기
 	public int getTotalCount();
 

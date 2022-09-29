@@ -20,17 +20,17 @@
 			<tr>
 				<td>관광지 지역</td>
 				<td>
-					<input type="radio" name="attrLocation" id="seoul" value="seoul"><label for="seoul">서울</label>
-					<input type="radio" name="attrLocation" id="gg" value="gyeonggi"><label for="gg">경기</label>
-					<input type="radio" name="attrLocation" id="incheon" value="incheon"><label for="incheon">인천</label>
-					<input type="radio" name="attrLocation" id="gw" value="kangwon"><label for="gw">강원</label>
-					<input type="radio" name="attrLocation" id="cb" value="chungbuk"><label for="cb">충북</label>
-					<input type="radio" name="attrLocation" id="cn" value="chungnam"><label for="cn">충남</label>
-					<input type="radio" name="attrLocation" id="gb" value="gyeongbuk"><label for="gb">경북</label>
-					<input type="radio" name="attrLocation" id="gn" value="gyeongnam"><label for="gn">경남</label>
-					<input type="radio" name="attrLocation" id="jb" value="jeonbuk"><label for="jb">전북</label>
-					<input type="radio" name="attrLocation" id="jn" value="jeonnam"><label for="jn">전남</label>
-					<input type="radio" name="attrLocation" id="jeju" value="jeju"><label for="jeju">제주</label>
+					<input type="radio" name="attrLocation" id="seoul" value="서울"><label for="seoul">서울</label>
+					<input type="radio" name="attrLocation" id="gg" value="경기"><label for="gg">경기</label>
+					<input type="radio" name="attrLocation" id="incheon" value="인천"><label for="incheon">인천</label>
+					<input type="radio" name="attrLocation" id="gw" value="강원"><label for="gw">강원</label>
+					<input type="radio" name="attrLocation" id="cb" value="충북"><label for="cb">충북</label>
+					<input type="radio" name="attrLocation" id="cn" value="충남"><label for="cn">충남</label>
+					<input type="radio" name="attrLocation" id="gb" value="경북"><label for="gb">경북</label>
+					<input type="radio" name="attrLocation" id="gn" value="경남"><label for="gn">경남</label>
+					<input type="radio" name="attrLocation" id="jb" value="전북"><label for="jb">전북</label>
+					<input type="radio" name="attrLocation" id="jn" value="전남"><label for="jn">전남</label>
+					<input type="radio" name="attrLocation" id="jeju" value="제주"><label for="jeju">제주</label>
 				</td>
 			</tr>
 			<tr>

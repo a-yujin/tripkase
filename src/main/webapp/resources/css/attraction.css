@@ -21,8 +21,9 @@
 
 #attrSearchArea{
 	height: auto;
-	width: 700px;
+	width: 1000px;
 	margin: 0 auto;
+	font-size: 16px;
 }
 
 #searchTextDiv{
@@ -31,7 +32,7 @@
 
 #searchText{
 	font-size: 12px;
-	width: 95%;
+	width: 98%;
 	margin-bottom: 50px;
 }
 
@@ -63,7 +64,7 @@
 }
 
 .searchChkDiv{
-	margin-left: 120px;
+	margin-left: 210px;
 	margin-bottom: 50px;
 }
 
@@ -72,7 +73,7 @@
 }
 
 .searchBtnDiv{
-	margin-left: 310px;
+	margin-left: 450px;
 }
 
 /* 관광지 목록 화면 */
@@ -141,7 +142,60 @@
 }
 
 /* 관광지 상세 화면 */
-#detailWrap{
-	width: 700px;
-	align: center;
+.attrDetailTbl{
+
+}
+
+.attrName2{
+	text-align: center;
+	padding-bottom: 10px;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.attrAddr2{
+	text-align: center;
+}
+
+.storeBtn{
+	text-align: center;
+	font-size: 18px;
+}
+
+.attrInfo2{
+	font-size: 16px;
+}
+
+.info-items{
+	font-size: 16px;
+}
+
+.front-item{
+	width: 20%;
+}
+
+.leftImg{
+	padding-right: 10px;
+}
+
+.attr-images{
+	margin-top : 10px;
+	margin-bottom : 10px;
+	text-align: center;
+}
+
+.topLeft{
+
+}
+.topRight{
+
+}
+.bottomLeft{
+
+}
+.bottomRight{
+
+}
+
+.attrAddr{
 }
