@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>여행카세: 관광지 등록</title>
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
+	<style>
+	input, textarea{
+		border:0;
+	}
+	</style>
+	
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>

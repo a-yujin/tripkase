@@ -18,6 +18,9 @@
 	#table{
 		width : 800px;
 	}
+	input, textarea{
+		border:0;
+	}
 	
 </style>
 
