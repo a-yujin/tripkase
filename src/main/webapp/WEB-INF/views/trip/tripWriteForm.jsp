@@ -9,9 +9,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+	<jsp:include page="../common/header.jsp"/>
 	<div>
 		<p class="first-text">게시글 작성</p>
-		<p class="second-text">♥ 사용자님의 1번째 게시글 작성을 해주세요. ♥</p>
 	</div>
 	
 	<form action="/trip/tripDetail.tripkase" method="post" enctype="multipart/form-data">
@@ -37,7 +37,7 @@
 		</div>
 		<br><br>
 	</form>
-	
+	<jsp:include page="../common/footer.jsp"/>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

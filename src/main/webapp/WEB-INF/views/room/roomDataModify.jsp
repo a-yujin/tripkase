@@ -22,8 +22,6 @@
 	<form action="/room/updateRoomData.tripkase" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="roomNo" value="${room.roomNo }">
 		<input type="hidden" name="page" value="${page }">
-		<input type="hidden" value="${roomImg.roomImgNo }" name="roomImgNo">
-		<input type="hidden" value="${roomImg.roomFileRename }" name="roomFileRename">
 		<div id="plus-wrapper">
 			<div id="plus-price">
 				<p class="update-text">가격</p>
@@ -85,13 +83,16 @@
 				<p>숙소정보</p>
 				<textarea id="roomGuide" name="roomGuide" spellcheck="false">${room.roomGuide }</textarea>
 			</div>
-			<div>
+			<div class="fileTr">
 				<p>숙소사진</p>
-				<c:forEach items="${riList }" var="img">
-					<input type="file" name="reloadFile" value="${roomImg.roomFileRename }">
+				<c:forEach items="${riList }" var="roomImg">
+					<input type="hidden" value="${roomImg.roomImgNo }" name="roomImgNo">
+					<input type="hidden" value="${roomImg.roomFileRename }" name="roomFileRename">	
 				</c:forEach>
+					<button class="btn btn-default" type="button" onclick="addFile();">추가</button>
+					<button class="btn btn-default" type="button" onclick="removeFile();">삭제</button>
+					<input type="file" name="reloadFile">
 			</div>
-			
 		</div>
 		<br><br>
 		<div id="room-button">
@@ -99,6 +100,7 @@
 		</div>
 		<br><br><br>
 	</form>
+	<jsp:include page="../common/footer.jsp"/>
 	<script>
 		var selectBox = function(value) {
 			$("#changeInput").val(Value);
@@ -106,6 +108,20 @@
 		$(function() {
 			$("#address-search").postcodifyPopUp();
 		});
+		
+		function addFile(){
+			var number = 2;
+			var divTag = $(".fileTr");
+			$(divTag).append("<br><input multiple='multiple' type='file' name='uploadFile' />");
+			number = number + 1;
+		}
+		function removeFile(){
+			var divTag = $(".fileTr");
+		 	if($(divTag).children('input').length > 1) {
+			 	$(divTag).children('input:last').remove();
+			 	$(divTag).children('br:last').remove();
+			} 
+		}
 		
 		function sample4_execDaumPostcode() {
 	        new daum.Postcode({

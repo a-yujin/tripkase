@@ -12,11 +12,11 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<br><br>
-	
 	<center>
 	<h4>숙 소 조 회</h4>
 	</center>
 	
+	<c:if test="${sessionScope.loginMember ne null}">
 	<div id="roomlist">
 		<c:forEach items="${rjList }" var="roomJoin">
 			<div id="roomlist-outside" onclick="location.href='/room/roomDetailView.tripkase?roomNo=${roomJoin.roomNo}';">
@@ -34,6 +34,29 @@
 			<hr id="roomlist-hr">
 		</c:forEach>
 	</div>
+	</c:if>
+	<c:if test="${sessionScope.loginMember eq null}">
+		<div id="roomlist">
+		<c:forEach items="${rjList }" var="roomJoin">
+			<div id="roomlist-outside" onclick="alertLogin();">
+				<div id="roomlist-left">
+					<img src="/resources/ruploadFiles/${roomJoin.roomFileRename }" id="roomlist-img">			
+				</div>
+				<div id="roomlist-right">
+					<p>${roomJoin.roomName }</p>
+					<p>${roomJoin.roomAddress }</p>
+				</div>
+				<div id="roomlist-price">
+					<p>1일 숙박 ${roomJoin.roomPrice }</p>				
+				</div>
+			</div>
+			<hr id="roomlist-hr">
+		</c:forEach>
+	</div>
+	</c:if>
+	
+	<button type="button" id="reSearch" onclick="javascript:history.go(-1);">재검색하기</button>
+	
 	<div id="rlist-page">
 		<c:if test="${currentPage != 1 }">
 			<a id="pageback" href="/room/${urlValue }.tripkase?page=${currentPage -1}">이전</a>
@@ -51,5 +74,13 @@
 		</c:if>
 	</div>
 	<jsp:include page="../common/footer.jsp"/>
+	<script>
+		function alertLogin(){
+			event.preventDefault();
+			if(confirm("로그인 후 이용해주세요.")) {
+				location.href="/member/loginView.tripkase";
+			}
+		}
+	</script>
 </body>
 </html>

@@ -197,7 +197,6 @@ public class RoomController {
 			ModelAndView mv,
 			@RequestParam("roomNo") Integer roomNo,
 			@RequestParam(value="page", required=false) Integer page) {
-		int currentPage = (page != null) ? page : 1;
 		Room room = rService.printOneData(roomNo);
 		List<RoomImg> riList = rService.roomImgDetail(roomNo);
 		mv.addObject("room", room);
@@ -221,7 +220,6 @@ public class RoomController {
 	public ModelAndView updateRoomData(
 			ModelAndView mv,
 			@ModelAttribute Room room,
-			@RequestParam("roomNo") Integer roomNo,
 			@RequestParam("page") Integer page,
 			@RequestParam(value="reloadFile", required=false) List<MultipartFile> reloadFile,
 			@RequestParam("roomImgNo") int[] roomImgNoArray,
@@ -283,7 +281,7 @@ public class RoomController {
 			@RequestParam(value="page", required=false, defaultValue="1") int currentPage,
 			HttpSession session) {
 		int totalCount = rService.getRoomNameCount(searchValue);
-		int roomsLimit = 5;
+		int roomsLimit = 10;
 		int naviLimit = 5;
 		int maxPage;
 		int startNavi;
@@ -330,7 +328,7 @@ public class RoomController {
 			@RequestParam(value="page", required=false, defaultValue="1") int currentPage,
 			HttpSession session) {
 		int totalCount = rService.getRoomTypeCount(areaValue, typeValue, personValue, petValue);
-		int roomsLimit = 5;
+		int roomsLimit = 10;
 		int naviLimit = 5;
 		int maxPage;
 		int startNavi;
@@ -347,6 +345,7 @@ public class RoomController {
 		}else {
 			mv.addObject("rjList", null);
 		}
+		mv.addObject("urlValue", "roomTypeSearch");
 		mv.addObject("areaValue", areaValue);
 		mv.addObject("typeValue", typeValue);
 		mv.addObject("personValue", personValue);

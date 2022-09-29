@@ -110,6 +110,7 @@
 		</div>
 		<br><br><br>
 	</form>
+	<jsp:include page="../common/footer.jsp"/>
 	<script>
 		var selectBox = function(value) {
 			$("#changeInput").val(Value);
