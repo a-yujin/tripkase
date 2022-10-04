@@ -40,7 +40,7 @@
     .image-box {
 		   float : left;
 	       text-align : center;
-	       width : 20%;
+	       width : 30%;
 	       height : 100%;
 	       overflow:hidden;
 		}		
@@ -62,10 +62,13 @@
  		 }     
  	.courseList{
  			height : 150px;
- 			list-style : none; 
+ 			list-style : none;
+ 			padding-bottom : 30px; 
+ 			padding-top : 0px;
+ 			border-bottom : 1px solid;
  	}
  	
- 	#hrs{
+ 	.hrs{
  		color : black;
  	}
   
@@ -80,7 +83,7 @@
 	<h2 align="center"><b>#지역</b></h2>
 		<div align="center">
 			<div id="select-area" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-				<input type="radio"   class="btn-check" id="cosArea1" 	onclick="selectCourse(this, 'all');"> 		<label class="btn btn-outline-primary" for="cosArea1">전체보기</label>
+				<input type="radio"   class="btn-check" id="cosArea1" 	onclick="selectCourse(this, 'all');" checked value=""> 		<label class="btn btn-outline-primary" for="cosArea1">전체보기</label>
 				<input type="radio"   class="btn-check" id="cosArea2" 	onclick="selectCourse(this, 'seoul');"> 	<label class="btn btn-outline-primary" for="cosArea2">서울</label>
 				<input type="radio"   class="btn-check" id="cosArea3" 	onclick="selectCourse(this, 'gyeonggi');">	<label class="btn btn-outline-primary" for="cosArea3">경기</label>
 				<input type="radio"   class="btn-check" id="cosArea4" 	onclick="selectCourse(this, 'incheon');"> 	<label class="btn btn-outline-primary" for="cosArea4">인천</label>
@@ -100,7 +103,7 @@
 	<div id=contents align="center">
 		<ul>
 			<c:forEach items="${cmList }" var="courseMain">
-				<hr id="hrs">
+				<hr class="hrs">
 				<li class="courseList" >
 						<div class="image-box" >
 							<a href="/course/courseDetail.tripkase?courseNo=${courseMain.courseNo }"> 
@@ -113,7 +116,7 @@
 							<br><br><br>
 							<span>여행 테마 : ${courseMain.courseThema }</span>
 					</div>	
-					<br><br>
+				
 				</li>
 			</c:forEach>
 		</ul>

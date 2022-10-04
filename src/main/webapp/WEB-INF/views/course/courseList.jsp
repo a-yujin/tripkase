@@ -87,6 +87,7 @@
 				</table>
 		</c:if>
 	</div>
+	<hr>
 	<br><br><br>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <jsp:include page="../common/footer.jsp"/>
