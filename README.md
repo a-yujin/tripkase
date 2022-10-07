@@ -70,7 +70,41 @@
   <li>apache tomcat</li>
   <li>github</li>
 </ul>
+<hr>
 
 <h3>여행 탐색</h3>
-![코스](https://user-images.githubusercontent.com/97438483/194474173-26d422d1-776b-4f75-a523-c275ad11c573.JPG)
+<h4>코스</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194474173-26d422d1-776b-4f75-a523-c275ad11c573.JPG">
+<h4>관광지</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194474522-7c1e6e84-a1a5-448e-ab6d-af3d670890a3.JPG">
+<h4>맛집</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194474606-db122d65-2c5d-48c6-803f-7d09c12364c1.JPG">
+<h4>숙소</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194474610-8c22cd77-19fc-468e-a1cf-4cfb790ba427.JPG">
+<hr>
+
+<h3>게시판</h3>
+<img src="https://user-images.githubusercontent.com/97438483/194475419-14d7a1fc-48b6-48eb-8e36-3e9a7f1b49f4.JPG">
+<img src="https://user-images.githubusercontent.com/97438483/194475425-bfd81b4b-ec06-4a2c-9269-455122579833.JPG">
+
+
+<h3>마이페이지</h3>
+<img src="https://user-images.githubusercontent.com/97438483/194475345-7b6626a0-343c-48df-a73e-d466202ba863.JPG">
+<img src="https://user-images.githubusercontent.com/97438483/194475348-d6713810-415f-48a9-8220-e3f7bc1961c0.JPG">
+<h4>보관함</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194475361-bf28b548-d502-4a4e-b3d0-6ba094379ddc.JPG">
+<h4>여행일정</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194475367-10f0384a-d0dc-4818-a41c-358a788cadbc.JPG">
+<h4>내정보 관리</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194476257-d6007d48-ccf4-41b7-8475-8b6109db075b.JPG">
+<h4>Q&A</h4>
+<img src="https://user-images.githubusercontent.com/97438483/194476269-77f924ec-82b5-43e5-9e34-cc203da0e0b3.JPG">
+<hr>
+
+<h3>관리자 페이지</h3>
+<img src="https://user-images.githubusercontent.com/97438483/194475680-8ecf224e-b416-436f-8ec1-c706b56e20bc.JPG">
+<img src="https://user-images.githubusercontent.com/97438483/194475704-5399e80a-d9e1-41f2-865e-a4c30dd0f340.JPG">
+<img src="https://user-images.githubusercontent.com/97438483/194475706-d73aa065-e68f-4b7b-b1fe-23d410ab407b.JPG">
+<img src="https://user-images.githubusercontent.com/97438483/194475718-964a6b03-50a9-45fb-bc29-f46f2172cc9f.JPG">
+<img src="https://user-images.githubusercontent.com/97438483/194475726-7e5cc4df-ccdf-4d27-acdb-dff498a4da07.JPG">
 
