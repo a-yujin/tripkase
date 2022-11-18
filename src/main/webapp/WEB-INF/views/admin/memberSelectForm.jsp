@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 회원 검색</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 	<style>
 		.memberSearch{
 			float:left;
-			padding-left:100px;
+			padding:25px 140px;
 		}
 		label{
 			display:inline-block;
@@ -23,6 +22,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="memberSearch">
 		<form action="/admin/memberOne.tripkase">
@@ -37,12 +37,13 @@
 						<input type="text" name="memberName" id="memberName" placeholder="이름을 입력해주세요"/><br><br>
 					</div>
 					<div class="button">
-					<button type="submit" class="btn btn-default">검색</button>
+					<button type="submit" class="btn btn-dark">검색</button>
 					</div>
 			</fieldset>
 		</form>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	</div>
+</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 </body>

@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 여행일정</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
@@ -22,6 +21,7 @@
         border:1px solid;
         margin-top:100px;
         padding-top:30px;
+        border-radius: 10px;
     }
     #btnSubmit{
         width:100px;
@@ -35,6 +35,7 @@
     	text-align:center;
     	width: 300px;
     	height: 100px;
+        border-radius: 10px;
     }
     #calendar{
     	display:none;
@@ -43,10 +44,11 @@
     	margin:0 auto;
     	padding:30px;
     	width:300px;
+        border-radius: 10px;
     	
 	}
 	#CalendarBtn{
-		width:100px;
+		width:112px;
 		height:50px;
         margin:auto;
 	}
@@ -63,7 +65,7 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 
 		<div id="scheduleReg">
-			<button id="btnSubmit" type="button" class="btn btn-default" onclick="showCalendar();">일정 등록</button>
+			<button id="btnSubmit" type="button" class="btn btn-dark" onclick="showCalendar();">일정 등록</button>
 			<br>
 			<div id="calendar">
 				<form action="/schedule/RegisteSchedule.tripkase">
@@ -72,8 +74,8 @@
 					일정<br>
 					<input type="date" name="scheduleStart"/><input type="date" name="scheduleEnd"/><br><br>
 					<div id="CalendarBtn">
-					<button type="submit" onclick="return confirm('일정을 등록하시겠습니까?');">확인</button>
-					<button type="button" onclick="hideCalendar();">닫기</button>
+					<button type="submit" class="btn btn-dark" onclick="return confirm('일정을 등록하시겠습니까?');">확인</button>
+					<button type="button" class="btn btn-dark" onclick="hideCalendar();">닫기</button>
 					</div>
 				</form>
 			</div>
@@ -83,7 +85,7 @@
 					${schedule.scheduleStart }~${schedule.scheduleEnd } <br>
 					</div>
 					<div class="delteSchedule">
-						<button type="button" class="btn btn-primary" onclick="removeSchedule(${schedule.scheduleSeq});">일정삭제</button><br> 
+						<button type="button" class="btn btn-danger" onclick="removeSchedule(${schedule.scheduleSeq});">일정삭제</button><br> 
 					</div>
 				</c:forEach>
 		</div>

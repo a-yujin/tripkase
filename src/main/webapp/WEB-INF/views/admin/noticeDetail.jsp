@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행 카세 : 공지 상세 조회</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 <style>
 	.noticeTable{
@@ -19,10 +18,11 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="noticeTable">
 		<h2 align="center">공지 상세 조회</h2><br>
-		<table align="center" width="500" border="1">
+		<table class="table" align="center" width="500" border="1">
 			<tr>
 				<td>제목</td>
 				<td>${notice.noticeTitle }</td>
@@ -60,14 +60,15 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button class="btn btn-default" type="button" onclick="location.href='/admin/modifyNoticeView.tripkase?noticeNo=${notice.noticeNo }'">수정 </button>
+					<button class="btn btn-dark" type="button" onclick="location.href='/admin/modifyNoticeView.tripkase?noticeNo=${notice.noticeNo }'">수정 </button>
 					<%-- <a href="#" onclick="boardRemove(${page});" >삭제하기</a> --%>
-					<button class="btn btn-default" type="button" onclick="location.href='/admin/deleteNotice.tripkase?noticeNo=${notice.noticeNo }'" >삭제</button>
+					<button class="btn btn-dark" type="button" onclick="location.href='/admin/deleteNotice.tripkase?noticeNo=${notice.noticeNo }'" >삭제</button>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<br><br><br><br><br><br><br><br>
+</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

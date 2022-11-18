@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행 카세 : 공지등록</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 <style>
 	.noticeDiv{
@@ -24,12 +23,13 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	
 	<div class="noticeDiv">
 		<h2 align="center">공지 등록</h2>
 		<form action="/admin/registerNotice.tripkase" method="post" enctype="multipart/form-data">
-			<table class="noticeTable" align="center" border="1">			
+			<table class="table noticeTable" align="center" border="1">			
 				<tr>
 					<td width="100">제목</td>
 					<td><input size="80" type="text" name="noticeTitle" placeholder="제목을 입력해주세요"></td>
@@ -46,20 +46,24 @@
 				<tr class="fileTr">
 					<td>첨부파일</td>
 					<td>
-						<button class="btn btn-default" type="button" onclick="addFile();">파일 추가</button>
-						<button class="btn btn-default" type="button" onclick="removeFile();">파일 삭제</button>
+						<button class="btn btn-dark" type="button" onclick="addFile();">파일 추가</button>
+						<button class="btn btn-dark" type="button" onclick="removeFile();">파일 삭제</button>
+						<br><br>
 						<input multiple="multiple" type="file" name="uploadFile">
 					</td>
 				</tr>
 				<tr>
 					<td align="center" colspan="2">
-						<button class="btn btn-default" type="submit">등록</button>
-						<button class="btn btn-default" type="reset">취소</button>
+						<button class="btn btn-dark" type="submit">등록</button>
+						<button class="btn btn-dark" type="reset">취소</button>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<jsp:include page="../common/footer.jsp"/>	
 	<script>
 		function addFile(){
 			var number = 2;
@@ -76,8 +80,6 @@
 			
 		}
 	</script>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<jsp:include page="../common/footer.jsp"/>	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

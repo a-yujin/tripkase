@@ -26,7 +26,7 @@
 			padding:20px;
 		}
 		#schedule{
-			margin:30px;
+			margin:50px;
 			float:left;
 			width:200px;
 			height:200px;
@@ -40,7 +40,7 @@
 			text-align:center;
 		}
 		#addContents{
-			margin-top:70px;
+			margin-top:90px;
 			margin-left:50px;
 			
 			border:1px solid;
@@ -58,12 +58,12 @@
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	
-	<div id="h1">
+	<div id="h1" style="padding-bottom: 0;">
 		<h1><b>여행일정 관리</b></h1>
 	</div>
-	<div id="h2">
-		<h2>#${sList[0].scheduleName}</h2>
-		<h2>${sList[0].scheduleStart} ~ ${sList[0].scheduleEnd}</h2>
+	<div id="h2" style="padding-top: 0; padding-bottom: 0">
+		<h3>#${sList[0].scheduleName}</h3>
+		<h3>${sList[0].scheduleStart} ~ ${sList[0].scheduleEnd}</h3>
 	</div>
 	<div id="days">
 	<ul class="nav nav-tabs">

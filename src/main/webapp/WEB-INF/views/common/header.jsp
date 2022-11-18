@@ -10,12 +10,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link href="/resources/css/header.css" rel="stylesheet">
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
-<style>
-	#member-pfp{
-		margin-right : 20px;
-		margin-
-	}
-</style>
 </head>
 <body>
 	<div id="tk_wrap">
@@ -36,8 +30,10 @@
 	      	<c:if test="${sessionScope.loginMember ne null }"> <!-- ne : not equal -->
 	      		<table align="right">
 			        <tr>
-			        	<td rowspan="3">	
+			        	<td rowspan="3">
+			        		<div style="width: 60; height: 60px; overflow: hidden; border-radius: 50px; margin-right: 15px;">
 			        		<img id="member-pfp" class="image" src="/resources/muploadFiles/${sessionScope.loginMember.mPfpReName}" width ="60px" height="60px">
+			        		</div>	
 		        		</td>
 		        		<td></td>
 		        		<td></td>

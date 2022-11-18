@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 신고 상세 조회</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <style>
 	.reportTable{
 		float:left;
@@ -20,6 +19,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	
 	<div class="reportTable">
@@ -47,7 +47,7 @@
 					<td><textarea name="contetns" >${trip.tripContents }</textarea></td>
 				</tr>
 				<tr align="center">
-					<td colspan="2"><button class="btn btn-default" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&tripNo=${trip.tripNo}'">게시글 삭제</button></td>
+					<td colspan="2"><button class="btn btn-dark" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&tripNo=${trip.tripNo}'">게시글 삭제</button></td>
 				</tr>
 			</c:if>
 			<c:if test="${tripReply ne null }">
@@ -56,7 +56,7 @@
 					<td><input type="text" name="contetns" value="${tripReply.tripReplyContents }" readonly/></td>
 				</tr>
 				<tr align="center">
-					<td colspan="2"><button class="btn btn-default" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&tReplyNo=${tripReply.replyNo}'">댓글 삭제</button></td>
+					<td colspan="2"><button class="btn btn-dark" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&tReplyNo=${tripReply.replyNo}'">댓글 삭제</button></td>
 				</tr>
 			</c:if>
 			<c:if test="${noticeReply ne null }">
@@ -65,7 +65,7 @@
 					<td><input type="text" name="contetns" value="${noticeReply.noticeReplyContents }" readonly/></td>
 				</tr>
 				<tr align="center">
-					<td colspan="2"><button class="btn btn-default" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&nReplyNo=${noticeReply.repyNo}'">댓글 삭제</button></td>
+					<td colspan="2"><button class="btn btn-dark" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&nReplyNo=${noticeReply.repyNo}'">댓글 삭제</button></td>
 				</tr>
 			</c:if>
 			<c:if test="${grade ne null }">
@@ -74,11 +74,12 @@
 					<td><input type="text" name="contetns" value="${grade.gradeComment }" readonly/></td>
 				</tr>
 				<tr align="center">
-					<td colspan="2"><button class="btn btn-default" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&gradeNo=${grade.gradeNo}'">평점 삭제</button></td>
+					<td colspan="2"><button class="btn btn-dark" type="button" onclick="location.href='/admin/deleteContents.tripkase?reportNo=${report.reportNo }&gradeNo=${grade.gradeNo}'">평점 삭제</button></td>
 				</tr>
 			</c:if>
 		</table>
 	</div>
+</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

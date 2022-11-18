@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 관리자 페이지</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 	<style>
 		body{
@@ -18,10 +16,11 @@
 		}
 		a{
 			text-decoration : none;
+			font-size: 16px;
 		}
 		#side{
 			float : left;
-			width : 20%;
+			width : 150px;
 			border-right : 1px solid lightgray;
 			padding-left : 20px;
 			font-size: 20px;
@@ -39,7 +38,7 @@
 			display : block;
 		}
 		li{
-			text-align:center;
+			text-align:left;
 		}
 	</style>
 </head>

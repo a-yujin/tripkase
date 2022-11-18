@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 여행일정</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
@@ -20,8 +19,9 @@
         width:600px;
         margin:auto;
         border:1px solid;
-        margin-top:100px;
+        margin-top:50px;
         padding-top:30px;
+        border-radius: 10px;
     }
     #btnSubmit{
         width:100px;
@@ -31,7 +31,7 @@
     #schedule{
     	border:1px solid;
     	margin:30px;
-    	
+        border-radius: 10px;
     }
     #calendar{
     	display:none;
@@ -52,8 +52,7 @@
 </head>
 <body>
 		<div id="scheduleReg">
-			<button id="btnSubmit" type="button" class="btn btn-default">나의 일정</button>
-			<br>
+			<h3 style="text-align: center;">나의 일정</h3>
 				<c:if test="${empty sList}">
 					여행일정 페이지에서 여행일정을 등록해주세요!
 				</c:if>
@@ -61,9 +60,13 @@
 				<c:forEach items="${sList }" var="schedule" varStatus="i">
 					<form action="/schedule/insertSchedule.tripkase">
 						<div id="schedule" style="cursor : pointer">
+							<div style="margin: 10px;">
 							${schedule.scheduleName } ${schedule.scheduleDays }<br>
 							${schedule.scheduleStart }~${schedule.scheduleEnd }<br>
-							<button onclick="">일정에 넣기</button>
+							</div>
+							<div style="width: 130px; margin: auto;">
+							<button class="btn btn-dark" style="margin: 10px;">일정에 넣기</button>
+							</div>
 						</div>
 						<input type="hidden" name="contentsType" value="${contentsType}">
 						<input type="hidden" name="contentsNo" value="${contentsNo}">

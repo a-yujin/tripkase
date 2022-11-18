@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 전체 문의 조회</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <style>
 	.qnaTable{
 		float:left;
@@ -21,6 +20,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="qnaTable">
 	<h2 align="center">전체 문의 조회</h2><br>
@@ -38,7 +38,7 @@
 							<td>${ qna.questionType}</td>
 							<td>${ qna.questionTitle}</td>
 							<td>${ qna.qCreateDate}</td>
-							<td><button class="btn btn-default" type="button" onclick="location.href='/admin/qnaDetail.tripkase?qnaNo=${qna.questionNo}'">상세조회</button></td>		
+							<td><button class="btn btn-dark" type="button" onclick="location.href='/admin/qnaDetail.tripkase?qnaNo=${qna.questionNo}'">상세조회</button></td>		
 						</tr>
 						</c:forEach> 
 						<tr>
@@ -46,17 +46,17 @@
 								<ul class="pagination">
 									<li>
 										<c:if test="${currentPage ne 1 }">
-											<a href="/admin/qnaList.tripkase?page=${currentPage - 1}">이전</a>
+											<button class="btn btn-dark" onclick="loation.href='/admin/qnaList.tripkase?page=${currentPage - 1}'">이전</button>
 										</c:if>
 									</li>
 									<li>
 										<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-											<a href="/admin/qnaList.tripkase?page=${page }">${page }</a>
+											<button class="btn btn-dark" onclick="loation.href='/admin/qnaList.tripkase?page=${page}'">${page }</button>
 										</c:forEach>
 									</li>
 									<li>
 										<c:if test="${currentPage ne maxPage}">
-											<a href="/admin/qnaList.tripkase?page=${currentPage + 1 }">다음</a>
+											<button class="btn btn-dark" onclick="loation.href='/admin/qnaList.tripkase?page=${currentPage + 1}'">다음</button>
 										</c:if>
 									</li>
 								</ul>
@@ -64,6 +64,7 @@
 						</tr>
 				</table>
 	</div>
+</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

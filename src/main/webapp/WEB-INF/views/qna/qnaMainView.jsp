@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <title>여행카세 : Q&A</title>
 	<style>
 	#myQnA{
@@ -43,7 +44,7 @@
 							<td>${ qna.questionType}</td>
 							<td>${ qna.questionTitle}</td>
 							<td>${ qna.qCreateDate}</td>
-							<td><button class="btn btn-default" type="button" onclick="location.href='/qna/qnaDetail.tripkase?qnaNo=${qna.questionNo}'">상세조회</button></td>		
+							<td><button class="btn btn-dark" type="button" onclick="location.href='/qna/qnaDetail.tripkase?qnaNo=${qna.questionNo}'">상세조회</button></td>		
 							<c:if test="${qna.aContents eq null}">
 								<td>대기</td>
 							</c:if>
@@ -57,24 +58,24 @@
 								<ul class="pagination">
 									<li>
 										<c:if test="${currentPage ne 1 }">
-											<a href="/qna/qnaMainView.tripkase?page=${currentPage - 1}">이전</a>
+											<button class="btn btn-dark" onclick="location.href='/qna/qnaMainView.tripkase?page=${currentPage - 1}'">이전</button>
 										</c:if>
 									</li>
 									<li>
 										<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-											<a href="/qna/qnaMainView.tripkase?page=${page }">${page }</a>
+											<button class="btn btn-dark" onclick="location.href='/qna/qnaMainView.tripkase?page=${page}'">${page }</button>
 										</c:forEach>
 									</li>
 									<li>
 										<c:if test="${currentPage ne maxPage}">
-											<a href="/qna/qnaMainView.tripkase?page=${currentPage + 1 }">다음</a>
+											<button class="btn btn-dark" onclick="location.href='/qna/qnaMainView.tripkase?page=${currentPage + 1}'">다음</button>
 										</c:if>
 									</li>
 								</ul>
 							</td>
 							<td>
 								<br>
-								<button class="btn btn-primary" onclick="location.href='/qna/qnaWriterForm.tripkase'">질문 등록</button>
+								<button class="btn btn-dark" onclick="location.href='/qna/qnaWriterForm.tripkase'">질문 등록</button>
 							</td>
 						</tr>
 				</table>

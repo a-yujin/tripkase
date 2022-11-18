@@ -121,7 +121,7 @@
 	function choiceSchedule(contentsCode, contentsNo) {
 		console.log(contentsCode);
 		console.log(contentsNo);
-		window.open("/schedule/choiceSchedule.tripkase?contentsType="+contentsCode+"&contentsNo="+contentsNo,"_blank","width=900px,height=900px");
+		window.open("/schedule/choiceSchedule.tripkase?contentsType="+contentsCode+"&contentsNo="+contentsNo,"_blank","width=750px,height=800px");
 	}
 </script>
 </body>

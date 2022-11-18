@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행카세 : 전체 공지 조회</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <style>
 	.noticeTable{
 		float:left;
@@ -21,6 +20,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="noticeTable">
 	<h2 align="center">전체 공지 조회</h2><br>
@@ -36,7 +36,7 @@
 						<td>${ i.count}</td>
 						<td>${ notice.noticeTitle}</td>
 						<td>${ notice.nUpdateDate}</td>
-						<td><button class="btn btn-default" type="button" onclick="location.href='/admin/noticeDetail.tripkase?noticeNo=${notice.noticeNo}'">상세조회</button></td>		
+						<td><button class="btn btn-dark" type="button" onclick="location.href='/admin/noticeDetail.tripkase?noticeNo=${notice.noticeNo}'">상세조회</button></td>		
 					</tr>
 					</c:forEach> 
 					<tr>
@@ -44,28 +44,29 @@
 							<ul class="pagination">
 								<li>
 									<c:if test="${currentPage ne 1 }">
-										<a href="/admin/noticeList.tripkase?page=${currentPage - 1}">이전</a>
+										<button class="btn btn-dark" onclick="location.href='/admin/noticeList.tripkase?page=${currentPage - 1}'">이전</button>
 									</c:if>
 								</li>
 								<li>
 									<c:forEach var="page" begin="${startNavi }" end="${endNavi }">
-										<a href="/admin/noticeList.tripkase?page=${page }">${page }</a>
+										<button class="btn btn-dark" onclick="location.href='/admin/noticeList.tripkase?page=${page}'">${page }</button>
 									</c:forEach>
 								</li>
 								<li>
 									<c:if test="${currentPage ne maxPage}">
-										<a href="/admin/noticeList.tripkase?page=${currentPage + 1 }">다음</a>
+										<button class="btn btn-dark" onclick="location.href='/admin/noticeList.tripkase?page=${currentPage + 1}'">다음</button>
 									</c:if>
 								</li>
 							</ul>	
 						</td>
 						<td>
 							<br>
-							<button class="btn btn-primary" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
+							<button class="btn btn-dark" type="button" onclick="location.href='/admin/noticeWriteForm.tripkase'">공지등록</button>
 						</td>
 					</tr>
 			</table>
 	</div>
+</div>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

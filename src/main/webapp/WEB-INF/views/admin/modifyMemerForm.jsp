@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>여행 카세 : 회원 수정</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <script src="/resources/js/jquery-3.6.1.min.js"></script>
 <style>
 	.memberTable{
@@ -14,13 +13,14 @@
 		padding-left:100px;
 		width:700px;
 	}
-	table{
-		width=1000;
+	table th, table td{
+		text-align: center;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
+<div class="contents" style="width: 1200px; margin: auto;">
 	<jsp:include page="../admin/menuBar.jsp"></jsp:include>
 	<div class="memberTable">
 			<form action="/admin/updateMember.tripkase" method="post">
@@ -60,7 +60,7 @@
 							<td><input type="text" name="mRegisterDate" value="${member.mRegisterDate }" readonly/></td></tr>
 						<tr align="center">
 							<td colspan="2">
-							<button>수정 등록</button>
+							<button class="btn btn-dark">수정 등록</button>
 						</td>
 					</table>
 					<input type="hidden" name="mPfpName" value="${member.mPfpName }" /><br>
@@ -69,6 +69,7 @@
 				</fieldset>
 			</form>
 	</div>
+</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../common/footer.jsp"/>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
