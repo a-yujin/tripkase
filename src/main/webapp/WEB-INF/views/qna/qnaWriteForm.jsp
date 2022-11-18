@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
 <title>여행카세 : 질문 등록</title>
 	<style>
 		body{
@@ -32,7 +33,7 @@
 					숙소 <input type="radio" name="questionType" value="room"/> &nbsp;
 					기타 <input type="radio" name="questionType" value="other"/>
 					<br><br>
-			<table>
+			<table class="table">
 				<tr>
 					<td>제목</td>
 				</tr>
@@ -50,7 +51,7 @@
 				</tr>
 				<tr align="center">
 					<td >
-						<button class="btn btn-primary" type="submit">등록</button>
+						<button class="btn btn-dark" type="submit">등록</button>
 					</td>
 				</tr>
 			</table>
