@@ -18,6 +18,18 @@
 - 양우석 : 보관함, 맛집
 - 양유진 : 공지사항 게시판, 관광지
 
+## 개발 환경
+- Java
+- HTML5
+- CSS
+- JavaScript
+- jQuery
+- Spring
+- Oracle
+- MyBatis
+- Apache Tomcat
+- GitHub
+
 ## 주요 기능
 <h4>사용자</h4>
 <ul>
@@ -48,21 +60,6 @@
   <li>소통 게시글, 소통 게시글 댓글, 공지 게시글 댓글 3개의 테이블에서 신고 코드를 통해 1개의 신고 테이블에 쌓이도록 구현</li>
   <li>보관함에 있는 컨텐츠들을 다수의 여행일정에서 원하는 일차에 쌓이도록 쿼리문 작성</li>
   <li>관리자 페이지를 따로 두어 해당 페이지에서 관리자의 기능을 모두 할 수 있도록 구현</li>
-</ul>
-<hr>
-
-<h3>개발환경</h3>
-<ul>
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-  <li>jQuery</li>
-  <li>Java</li>
-  <li>spring</li>
-  <li>Oracle</li>
-  <li>mybatis</li>
-  <li>apache tomcat</li>
-  <li>github</li>
 </ul>
 <hr>
 
