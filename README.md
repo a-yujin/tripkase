@@ -1,5 +1,4 @@
-<div align="center"><img src="/resourcesReadme/logo_tripkase.png"></div>
-<img src="/resourcesReadme/main_tripkase.png">
+<img src="/resourcesReadme/main_original_tripkase.png">
 <h3>프로젝트명</h3>
 여행카세(TripKase)
 <hr>
