@@ -1,6 +1,6 @@
 <img src="/resourcesReadme/main_original_tripkase.png">
 <h3>프로젝트명</h3>
-여행카세(TripKase)
+여행카세(Trip-kase)
 <hr>
 
 <h3>프로젝트 소개</h3>
