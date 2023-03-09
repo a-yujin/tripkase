@@ -32,7 +32,7 @@
 
 ## 주요 기능
 ### 사용자
-- [코스, 관광지, 맛집, 숙소 검색](#여행탐색) : 지역 및 사용자의 조건을 받아 컨텐츠를 추천 받습니다.
+- [코스 검색](#코스검색), [관광지 검색](#관광지검색), [맛집 검색](#맛집검색), [숙소 검색](#숙소검색) : 지역 및 사용자의 조건을 받아 컨텐츠를 추천 받습니다.
 - [보관함](#) : 추천받은 컨텐츠를 보관함에서 넣고 일정에 추가 할 수 있습니다.
 - [여행 일정 관리](#) : 보관함에서 일정추가한 컨텐츠들이 하나의 여행일정이 되어 여행일정을 관리 할 수 있습니다.
 - [내 정보 관리](#) : 나의 정보를 관리합니다
@@ -40,11 +40,11 @@
 - [소통 게시판](#) : 여행을 다녀온 후 후기와 관련된 게시판입니다.
 - [공지 게시판](#) : 관리자가 공지사항을 남기는 게시판입니다.
 ### 관리자
-- [회원관리](#) : 전체회원, 개별회원을 조회하여 정보를 수정/삭제(탈퇴)할 수 있습니다.
-- [공지관리](#) : 사용자들에게 보여줄 공지를 조회, 등록, 수정, 삭제가 가능합니다.
-- [신고관리](#) : 사용자들이 신고한 해당 게시글, 댓글을 삭제 할 수 있습니다.
-- [문의관리](#) : 사용자들이 남긴 문의에 답변을 남길 수 있습니다.
-- [컨텐츠관리](#) : 코스, 관광지, 맛집, 숙소의 등록, 수정, 삭제가 가능합니다.
+- [회원 관리](#회원관리) : 전체회원, 개별회원을 조회하여 정보를 수정/삭제(탈퇴)할 수 있습니다.
+- [공지 관리](#공지관리) : 사용자들에게 보여줄 공지를 조회, 등록, 수정, 삭제가 가능합니다.
+- [신고 관리](#신고관리) : 사용자들이 신고한 해당 게시글, 댓글을 삭제 할 수 있습니다.
+- [문의 관리](#문의관리) : 사용자들이 남긴 문의에 답변을 남길 수 있습니다.
+- [컨텐츠 관리](#컨텐츠관리) : 코스, 관광지, 맛집, 숙소의 등록, 수정, 삭제가 가능합니다.
 
 ## 설계 주안점
 <ul>
@@ -56,17 +56,19 @@
   <li>보관함에 있는 컨텐츠들을 다수의 여행일정에서 원하는 일차에 쌓이도록 쿼리문 작성</li>
   <li>관리자 페이지를 따로 두어 해당 페이지에서 관리자의 기능을 모두 할 수 있도록 구현</li>
 </ul>
-
-## 여행탐색
-<h4>코스</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194474173-26d422d1-776b-4f75-a523-c275ad11c573.JPG">
-<h4>관광지</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194474522-7c1e6e84-a1a5-448e-ab6d-af3d670890a3.JPG">
-<h4>맛집</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194474606-db122d65-2c5d-48c6-803f-7d09c12364c1.JPG">
-<h4>숙소</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194474610-8c22cd77-19fc-468e-a1cf-4cfb790ba427.JPG">
-<hr>
+<img src="/resourcesReadme/">
+## 실행 화면
+### 코스검색
+<img src="/resourcesReadme/list_course_tripkase.png">
+<img src="/resourcesReadme/detail_course_tripkase.png">
+### 관광지검색
+<img src="/resourcesReadme/search_attraction_tripkase.png">
+<img src="/resourcesReadme/list_attraction_tripkase.png">
+<img src="/resourcesReadme/detail_attraction_tripkase.png">
+### 맛집검색
+<img src="/resourcesReadme/https://user-images.githubusercontent.com/97438483/194474606-db122d65-2c5d-48c6-803f-7d09c12364c1.JPG">
+### 숙소검색
+<img src="/resourcesReadme/https://user-images.githubusercontent.com/97438483/194474610-8c22cd77-19fc-468e-a1cf-4cfb790ba427.JPG">
 
 <h3>게시판</h3>
 <img src="https://user-images.githubusercontent.com/97438483/194475419-14d7a1fc-48b6-48eb-8e36-3e9a7f1b49f4.JPG">
@@ -92,4 +94,3 @@
 <img src="https://user-images.githubusercontent.com/97438483/194475706-d73aa065-e68f-4b7b-b1fe-23d410ab407b.JPG">
 <img src="https://user-images.githubusercontent.com/97438483/194475718-964a6b03-50a9-45fb-bc29-f46f2172cc9f.JPG">
 <img src="https://user-images.githubusercontent.com/97438483/194475726-7e5cc4df-ccdf-4d27-acdb-dff498a4da07.JPG">
-
