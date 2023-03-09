@@ -56,18 +56,24 @@
   <li>보관함에 있는 컨텐츠들을 다수의 여행일정에서 원하는 일차에 쌓이도록 쿼리문 작성</li>
   <li>관리자 페이지를 따로 두어 해당 페이지에서 관리자의 기능을 모두 할 수 있도록 구현</li>
 </ul>
+
 <img src="/resourcesReadme/">
+
 ## 실행 화면
 ### 코스검색
+
 <img src="/resourcesReadme/list_course_tripkase.png">
 <img src="/resourcesReadme/detail_course_tripkase.png">
 ### 관광지검색
+
 <img src="/resourcesReadme/search_attraction_tripkase.png">
 <img src="/resourcesReadme/list_attraction_tripkase.png">
 <img src="/resourcesReadme/detail_attraction_tripkase.png">
 ### 맛집검색
+
 <img src="/resourcesReadme/https://user-images.githubusercontent.com/97438483/194474606-db122d65-2c5d-48c6-803f-7d09c12364c1.JPG">
 ### 숙소검색
+
 <img src="/resourcesReadme/https://user-images.githubusercontent.com/97438483/194474610-8c22cd77-19fc-468e-a1cf-4cfb790ba427.JPG">
 
 <h3>게시판</h3>
