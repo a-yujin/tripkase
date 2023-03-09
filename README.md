@@ -33,10 +33,10 @@
 ## 주요 기능
 ### 사용자
 - [마이 페이지](#마이페이지)
-  - [보관함](#) : 추천받은 컨텐츠를 보관함에서 넣고 일정에 추가 할 수 있습니다.
-  - [여행 일정 관리](#) : 보관함에서 일정추가한 컨텐츠들이 하나의 여행일정이 되어 여행일정을 관리 할 수 있습니다.
-  - [내 정보 관리](#) : 나의 정보를 관리합니다
-  - [Q&A](#) : 관리자에게 문의를 남길 수 있습니다.
+  - [보관함](#보관함) : 추천받은 컨텐츠를 보관함에서 넣고 일정에 추가 할 수 있습니다.
+  - [여행 일정 관리](#여행일정관리) : 보관함에서 일정추가한 컨텐츠들이 하나의 여행일정이 되어 여행일정을 관리 할 수 있습니다.
+  - [내 정보 관리](#내정보관리) : 나의 정보를 관리합니다
+  - [Q&A](#Q&A) : 관리자에게 문의를 남길 수 있습니다.
 - 여행 탐색 : 지역 및 사용자의 조건을 받아 컨텐츠를 추천 받습니다.
   - [코스 검색](#코스검색)
   - [관광지 검색](#관광지검색)
@@ -44,7 +44,6 @@
   - [숙소 검색](#숙소검색)
 - [소통 게시판](#소통게시판) : 여행을 다녀온 후 후기와 관련된 게시판입니다.
 - [공지 게시판](#공지게시판) : 관리자가 공지사항을 남기는 게시판입니다.
-
 
 ### 관리자
 - [회원 관리](#회원관리) : 전체회원, 개별회원을 조회하여 정보를 수정/삭제(탈퇴)할 수 있습니다.
@@ -102,17 +101,27 @@
 <img src="/resourcesReadme/detail_notice_tripkase.png">
 
 ### 마이페이지
-<img src="https://user-images.githubusercontent.com/97438483/194475345-7b6626a0-343c-48df-a73e-d466202ba863.JPG">
-<img src="https://user-images.githubusercontent.com/97438483/194475348-d6713810-415f-48a9-8220-e3f7bc1961c0.JPG">
-<h4>보관함</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194475361-bf28b548-d502-4a4e-b3d0-6ba094379ddc.JPG">
-<h4>여행일정</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194475367-10f0384a-d0dc-4818-a41c-358a788cadbc.JPG">
-<h4>내정보 관리</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194476257-d6007d48-ccf4-41b7-8475-8b6109db075b.JPG">
-<h4>Q&A</h4>
-<img src="https://user-images.githubusercontent.com/97438483/194476269-77f924ec-82b5-43e5-9e34-cc203da0e0b3.JPG">
 <hr>
+<img src="/resourcesReadme/mypage_tripkase.png">
+
+### 보관함
+<hr>
+<img src="/resourcesReadme/mystorage_tripkase.png">
+
+### 여행일정관리
+<hr>
+<img src="/resourcesReadme/myschedule_tripkase.png">
+<img src="/resourcesReadme/detail_schedule_tripkase.png">
+
+### 내정보관리
+<hr>
+<img src="/resourcesReadme/myinfo_tripkase.png">
+
+### Q&A
+<hr>
+<img src="/resourcesReadme/list_qna_tripkase.png">
+<img src="/resourcesReadme/detail_qna_tripkase.png">
+<img src="/resourcesReadme/write_qna_tripkase.png">
 
 <h3>관리자 페이지</h3>
 <img src="https://user-images.githubusercontent.com/97438483/194475680-8ecf224e-b416-436f-8ec1-c706b56e20bc.JPG">
