@@ -117,7 +117,7 @@
 <hr>
 <img src="/resourcesReadme/myinfo_tripkase.png">
 
-### 
+### 문의
 <hr>
 <img src="/resourcesReadme/list_qna_tripkase.png">
 <img src="/resourcesReadme/detail_qna_tripkase.png">
