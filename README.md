@@ -46,11 +46,12 @@
 - [공지 게시판](#공지게시판) : 관리자가 공지사항을 남기는 게시판입니다.
 
 ### 관리자
-- [회원 관리](#회원관리) : 전체회원, 개별회원을 조회하여 정보를 수정/삭제(탈퇴)할 수 있습니다.
-- [공지 관리](#공지관리) : 사용자들에게 보여줄 공지를 조회, 등록, 수정, 삭제가 가능합니다.
-- [신고 관리](#신고관리) : 사용자들이 신고한 해당 게시글, 댓글을 삭제 할 수 있습니다.
-- [문의 관리](#문의관리) : 사용자들이 남긴 문의에 답변을 남길 수 있습니다.
-- [컨텐츠 관리](#컨텐츠관리) : 코스, 관광지, 맛집, 숙소의 등록, 수정, 삭제가 가능합니다.
+- [관리자 페이지](#관리자페이지)
+  - [회원 관리](#회원관리) : 전체회원, 개별회원을 조회하여 정보를 수정/삭제(탈퇴)할 수 있습니다.
+  - [공지 관리](#공지관리) : 사용자들에게 보여줄 공지를 조회, 등록, 수정, 삭제가 가능합니다.
+  - [신고 관리](#신고관리) : 사용자들이 신고한 해당 게시글, 댓글을 삭제 할 수 있습니다.
+  - [문의 관리](#문의관리) : 사용자들이 남긴 문의에 답변을 남길 수 있습니다.
+  - [컨텐츠 관리](#컨텐츠관리) : 코스, 관광지, 맛집, 숙소의 등록, 수정, 삭제가 가능합니다.
 
 ## 설계 주안점
 <ul>
@@ -123,9 +124,32 @@
 <img src="/resourcesReadme/detail_qna_tripkase.png">
 <img src="/resourcesReadme/write_qna_tripkase.png">
 
-<h3>관리자 페이지</h3>
-<img src="https://user-images.githubusercontent.com/97438483/194475680-8ecf224e-b416-436f-8ec1-c706b56e20bc.JPG">
-<img src="https://user-images.githubusercontent.com/97438483/194475704-5399e80a-d9e1-41f2-865e-a4c30dd0f340.JPG">
-<img src="https://user-images.githubusercontent.com/97438483/194475706-d73aa065-e68f-4b7b-b1fe-23d410ab407b.JPG">
-<img src="https://user-images.githubusercontent.com/97438483/194475718-964a6b03-50a9-45fb-bc29-f46f2172cc9f.JPG">
-<img src="https://user-images.githubusercontent.com/97438483/194475726-7e5cc4df-ccdf-4d27-acdb-dff498a4da07.JPG">
+### 관리자페이지
+<hr>
+<img src="/resourcesReadme/main_admin_tripkase.png">
+
+### 회원관리
+<hr>
+<img src="/resourcesReadme/list_member_tripkase.png">
+<img src="/resourcesReadme/detail_member_tripkase.png">
+<img src="/resourcesReadme/search_member_tripkase.png">
+
+### 공지관리
+<hr>
+<img src="/resourcesReadme/list_notice_admin_tripkase.png">
+<img src="/resourcesReadme/detail_notice_admin_tripkase.png">
+
+### 신고관리
+<hr>
+<img src="/resourcesReadme/list_report_admin_tripkase.png">
+
+### 문의관리
+<hr>
+<img src="/resourcesReadme/list_qna_admin_tripkase.png">
+<img src="/resourcesReadme/detail_qna_admin_tripkase.png">
+
+### 컨텐츠관리
+<hr>
+<img src="/resourcesReadme/register_attraction_admin_tripkase.png">
+<img src="/resourcesReadme/list_attraction_admin_tripkase.png">
+<img src="/resourcesReadme/detail_attraction_admin_tripkase.png">
